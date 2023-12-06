@@ -8,17 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17292B1FD3F4002A2D18 /* KaalApp.swift */; };
-		614C172C2B1FD3F4002A2D18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C172B2B1FD3F4002A2D18 /* ContentView.swift */; };
+		614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C172B2B1FD3F4002A2D18 /* DashboardView.swift */; };
 		614C172E2B1FD3F5002A2D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 614C172D2B1FD3F5002A2D18 /* Assets.xcassets */; };
 		614C17312B1FD3F5002A2D18 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 614C17302B1FD3F5002A2D18 /* Preview Assets.xcassets */; };
+		614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174A2B1FF200002A2D18 /* APIManager.swift */; };
+		614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174E2B1FF281002A2D18 /* LocationManager.swift */; };
+		614C17512B1FF520002A2D18 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17502B1FF520002A2D18 /* DashboardViewModel.swift */; };
+		614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17532B1FF628002A2D18 /* DaylightModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		614C17262B1FD3F4002A2D18 /* Kaal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		614C17292B1FD3F4002A2D18 /* KaalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalApp.swift; sourceTree = "<group>"; };
-		614C172B2B1FD3F4002A2D18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		614C172B2B1FD3F4002A2D18 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		614C172D2B1FD3F5002A2D18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		614C17302B1FD3F5002A2D18 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		614C174A2B1FF200002A2D18 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		614C174E2B1FF281002A2D18 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		614C17502B1FF520002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		614C17532B1FF628002A2D18 /* DaylightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightModel.swift; sourceTree = "<group>"; };
+		614C17552B212BE1002A2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +60,13 @@
 		614C17282B1FD3F4002A2D18 /* Kaal */ = {
 			isa = PBXGroup;
 			children = (
+				614C17552B212BE1002A2D18 /* Info.plist */,
+				614C17522B1FF608002A2D18 /* Models */,
 				614C17292B1FD3F4002A2D18 /* KaalApp.swift */,
-				614C172B2B1FD3F4002A2D18 /* ContentView.swift */,
+				614C17492B1FF1DC002A2D18 /* NetworkModule */,
+				614C17482B1FF1CA002A2D18 /* View Models */,
+				614C17462B1FF1A0002A2D18 /* Models */,
+				614C17452B1FF18F002A2D18 /* Views */,
 				614C172D2B1FD3F5002A2D18 /* Assets.xcassets */,
 				614C172F2B1FD3F5002A2D18 /* Preview Content */,
 			);
@@ -65,6 +79,46 @@
 				614C17302B1FD3F5002A2D18 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		614C17452B1FF18F002A2D18 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				614C172B2B1FD3F4002A2D18 /* DashboardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		614C17462B1FF1A0002A2D18 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		614C17482B1FF1CA002A2D18 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				614C174E2B1FF281002A2D18 /* LocationManager.swift */,
+				614C17502B1FF520002A2D18 /* DashboardViewModel.swift */,
+			);
+			name = "View Models";
+			sourceTree = "<group>";
+		};
+		614C17492B1FF1DC002A2D18 /* NetworkModule */ = {
+			isa = PBXGroup;
+			children = (
+				614C174A2B1FF200002A2D18 /* APIManager.swift */,
+			);
+			name = NetworkModule;
+			sourceTree = "<group>";
+		};
+		614C17522B1FF608002A2D18 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				614C17532B1FF628002A2D18 /* DaylightModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +191,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				614C172C2B1FD3F4002A2D18 /* ContentView.swift in Sources */,
+				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
+				614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */,
+				614C17512B1FF520002A2D18 /* DashboardViewModel.swift in Sources */,
+				614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */,
+				614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +333,8 @@
 				DEVELOPMENT_TEAM = H8X7BGGD4F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Kaal/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to calculate the daylight timings.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +364,8 @@
 				DEVELOPMENT_TEAM = H8X7BGGD4F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Kaal/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to calculate the daylight timings.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
