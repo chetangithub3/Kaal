@@ -17,14 +17,15 @@ class DashboardViewModel: ObservableObject {
   
     @Published var sunrise = 0
     @Published var sunset = 0
+    @Published var daylightModel: DaylightModel
     init() {
         locationManager = LocationManager()
+        daylightModel = DaylightModel(sunrise: 0, sunset: 0, timezone: 0, cityName: "", date: Date())
     }
     
     func daylightFromLocation(){
         let baseURL = "https://api.openweathermap.org/data/2.5/weather?appid=04720e6c5a6808a994667a251ec0199a"
         guard let lat = locationManager.exposedLocation?.coordinate.latitude.magnitude, let lon = locationManager.exposedLocation?.coordinate.longitude.magnitude else {
-            locationManager.askLocation()
             return
         }
         let url = baseURL +  "&lat=\(lat)&lon=\(lon)"
@@ -54,10 +55,8 @@ class DashboardViewModel: ObservableObject {
             }, receiveValue: { (timeData: TimeData) in
                 
                 if let name = timeData.name, let sunrise = timeData.sys?.sunrise, let sunset = timeData.sys?.sunset, let timeZone = timeData.timezone {
-                    let weatherModel = DaylightModel(sunrise: sunrise, sunset: sunset, timezone: timeZone, cityName: name)
-                    print("\(sunset)")
-                    self.sunrise = sunrise + timeZone
-                    self.sunset = sunset + timeZone
+                    self.daylightModel = DaylightModel(sunrise: sunrise + timeZone + 1200, sunset: sunset + timeZone + 1200, timezone: timeZone, cityName: name, date: Date())
+                    
                 }
                 
             })

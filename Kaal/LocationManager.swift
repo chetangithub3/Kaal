@@ -35,9 +35,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
             default                     : openAppSettings()
         }
     }
-    func askLocation(){
-        locationManager.requestWhenInUseAuthorization()
-    }
+
     func openAppSettings() {
           if let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/") {
               UIApplication.shared.open(url, options: [:], completionHandler: nil)
