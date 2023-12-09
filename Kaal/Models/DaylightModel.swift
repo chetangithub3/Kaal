@@ -67,35 +67,18 @@ struct KaalModel: Identifiable, Equatable {
     var id = UUID()
     var place: String = ""
     var dateString: String
-    var sunriseString: String {
-        willSet {
-            if newValue != ""{
-                dateFormatter.dateFormat = "h:mm:ss a"
-                let updatedTime = Calendar.current.date(byAdding: .minute, value: 20, to: dateFormatter.date(from: newValue)!)!
-                sunriseString = dateFormatter.string(from: updatedTime)
-            }
-            
-        }
-    }
-    var sunsetString: String {
-        
-        willSet {
-
-            if newValue != ""{
-                dateFormatter.dateFormat = "h:mm:ss a"
-                let updatedTime = Calendar.current.date(byAdding: .minute, value: 20, to: dateFormatter.date(from: sunsetString)!)!
-                
-                sunsetString = dateFormatter.string(from: updatedTime)
-                
-            }
-        }
-    }
+    var sunriseString: String
+    var sunsetString: String
     
     let utcOffset: Int?
     
     var date: Date {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.date(from: dateString)!
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
+        var dt = dateFormatter.date(from: "\(dateString) 00:00:00 AM")!
+        dt = dateFormatter.calendar.date(byAdding: .hour, value: -8, to: dt) ?? dt
+        dt = dateFormatter.calendar.date(byAdding: .second, value: 1, to: dt) ?? dt
+        print("date = \(dt)")
+        return dt
     }
     var sunrise: Date {
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
@@ -124,13 +107,20 @@ struct KaalModel: Identifiable, Equatable {
     
     var rahuKaal: ClosedRange<Date> {
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
-        
-        return ranges[rahuInterval[dateFormatter.string(from: date)] ?? 1]
+
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dt = dateFormatter.date(from: "\(dateString)")!
+        dateFormatter.dateFormat = "EEEE"
+        return ranges[(rahuInterval[dateFormatter.string(from: dt)] ?? 1) - 1]
     }
     
     var yamaKaal: ClosedRange<Date> {
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
-        return ranges[yamaInterval[dateFormatter.string(from: date)] ?? 1 - 1]
+  
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dt = dateFormatter.date(from: "\(dateString)")!
+        dateFormatter.dateFormat = "EEEE"
+        return ranges[(yamaInterval[dateFormatter.string(from: dt)] ?? 1) - 1]
     }
     
     
