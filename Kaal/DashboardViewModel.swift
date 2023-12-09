@@ -31,12 +31,15 @@ class DashboardViewModel: ObservableObject {
     }
     
     
-    func daylightFromLocation(){
+    func daylightFromLocation(on date: Date = Date()){
         let baseURL = "https://api.sunrisesunset.io/json"
         guard let lat = locationManager.exposedLocation?.coordinate.latitude.magnitude, let lng = locationManager.exposedLocation?.coordinate.longitude.magnitude else {
             return
         }
-        let url = baseURL + "?lat=\(lat)&lng=\(lng)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let formattedDateString = dateFormatter.string(from: date)
+        let url = baseURL + "?lat=\(lat)&lng=\(lng)&date=\(formattedDateString)"
         guard let URL = URL(string: url) else {return}
         fetchData(from: URL)
     }
@@ -55,12 +58,6 @@ class DashboardViewModel: ObservableObject {
             }, receiveValue: { (timeData: DaylightData) in
                 
                 if let sunrise = timeData.results?.sunrise, let sunset = timeData.results?.sunset, let date = timeData.results?.date, let utcOffset = timeData.results?.utcOffset, let timeZone = timeData.results?.timezone {
-//                    print("********")
-//                    print(sunrise)
-//                    print(sunset)
-//                    print(date)
-//                    print(utcOffset)
-//                    print("********")
                     self.kaal = KaalModel(dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone)
                 }
                 

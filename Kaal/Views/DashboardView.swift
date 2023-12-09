@@ -11,15 +11,15 @@ import WeatherKit
 struct DashboardView: View {
     @State var sunrise = ""
     @State var sunset = ""
-    @State var rahuStart = ""
-    @State var rahuEnd = ""
-    @State var sunriseKaal = ""
-    @State var sunsetKaal = ""
     @State var rahuStartKaal = ""
     @State var rahuEndKaal = ""
+    @State var date = Date()
     @ObservedObject var viewModel = DashboardViewModel()
     var body: some View {
         VStack {
+            
+            DatePicker("select date", selection: $date, displayedComponents: .date)
+            
             Text("Sunrise \(sunrise)")
             Text("Sunset \(sunset)")
             
@@ -37,8 +37,11 @@ struct DashboardView: View {
             self.rahuEndKaal = "\(newValue.rahuKaal.upperBound)"
         })
         .onAppear(perform: {
-            viewModel.daylightFromLocation()
+            viewModel.daylightFromLocation(on: date)
         })
+        .onChange(of: date) { oldValue, newValue in
+            viewModel.daylightFromLocation(on: date)
+        }
     }
     
     
