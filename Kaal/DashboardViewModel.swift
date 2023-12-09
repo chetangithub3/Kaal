@@ -33,13 +33,12 @@ class DashboardViewModel: ObservableObject {
     
     func daylightFromLocation(){
         let baseURL = "https://api.sunrisesunset.io/json"
-        guard let lat = locationManager.exposedLocation?.coordinate.latitude.magnitude, let lon = locationManager.exposedLocation?.coordinate.longitude.magnitude else {
+        guard let lat = locationManager.exposedLocation?.coordinate.latitude.magnitude, let lng = locationManager.exposedLocation?.coordinate.longitude.magnitude else {
             return
         }
-        let url = baseURL +  "?lat=\(lat)&lon=\(lon)"
-        let urltest = baseURL +  "?lat=45.514923095703125&lng=122.68270840441737"
-        guard let urltest = URL(string: urltest) else {return}
-        fetchData(from: urltest)
+        let url = baseURL + "?lat=\(lat)&lng=\(lng)"
+        guard let URL = URL(string: url) else {return}
+        fetchData(from: URL)
     }
     
     func fetchData(from url: URL) {
