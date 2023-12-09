@@ -2,8 +2,17 @@
 //  DashboardViewModel.swift
 //  Kaal
 //
-//  Created by Chetan Dhowlaghar on 12/5/23.
+//  Created by Chetan Dhowlaghar on 12/8/23.
 //
+//Standard request:
+//https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873
+//
+//Specific date and setting timezone request:
+//https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873&timezone=UTC&date=1990-05-22
+//
+//Date range request:
+//https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873&date_start=1990-05-01&date_end=1990-07-01
+//{"results":{"date":"1990-05-22","sunrise":"9:52:03 AM","sunset":"12:20:21 AM","first_light":"8:01:32 AM","last_light":"2:10:52 AM","dawn":"9:21:28 AM","dusk":"12:50:56 AM","solar_noon":"5:06:12 PM","golden_hour":"11:41:50 PM","day_length":"14:28:18","timezone":"UTC","utc_offset":0},"status":"OK"}
 
 import Foundation
 import CoreLocation
@@ -14,33 +23,25 @@ class DashboardViewModel: ObservableObject {
     
     @ObservedObject var locationManager: LocationManager
     var cancellebles = Set<AnyCancellable>()
-  
-    @Published var sunrise = 0
-    @Published var sunset = 0
-    @Published var daylightModel: DaylightModel
+    
+    @Published var kaal = KaalModel(dateString: "", sunriseString: "", sunsetString: "", utcOffset: 0, timezone: "")
+    
     init() {
         locationManager = LocationManager()
-        daylightModel = DaylightModel(sunrise: 0, sunset: 0, timezone: 0, cityName: "", date: Date())
     }
     
+    
     func daylightFromLocation(){
-        let baseURL = "https://api.openweathermap.org/data/2.5/weather?appid=04720e6c5a6808a994667a251ec0199a"
+        let baseURL = "https://api.sunrisesunset.io/json"
         guard let lat = locationManager.exposedLocation?.coordinate.latitude.magnitude, let lon = locationManager.exposedLocation?.coordinate.longitude.magnitude else {
             return
         }
-        let url = baseURL +  "&lat=\(lat)&lon=\(lon)"
-        guard let url = URL(string: url) else {return}
-        fetchData(from: url)
+        let url = baseURL +  "?lat=\(lat)&lon=\(lon)"
+        let urltest = baseURL +  "?lat=45.514923095703125&lng=122.68270840441737"
+        guard let urltest = URL(string: urltest) else {return}
+        fetchData(from: urltest)
     }
-   
     
-    func truncateString(_ input: String, fromSubstring substring: String) -> String {
-           if let range = input.range(of: substring) {
-               let truncatedString = input.prefix(upTo: range.lowerBound)
-               return String(truncatedString)
-           }
-           return input
-       }
     func fetchData(from url: URL) {
         APIManager.publisher(for: url)
             .sink (receiveCompletion: { (completion) in
@@ -52,11 +53,16 @@ class DashboardViewModel: ObservableObject {
                         
                         
                 }
-            }, receiveValue: { (timeData: TimeData) in
+            }, receiveValue: { (timeData: DaylightData) in
                 
-                if let name = timeData.name, let sunrise = timeData.sys?.sunrise, let sunset = timeData.sys?.sunset, let timeZone = timeData.timezone {
-                    self.daylightModel = DaylightModel(sunrise: sunrise + timeZone + 1200, sunset: sunset + timeZone + 1200, timezone: timeZone, cityName: name, date: Date())
-                    
+                if let sunrise = timeData.results?.sunrise, let sunset = timeData.results?.sunset, let date = timeData.results?.date, let utcOffset = timeData.results?.utcOffset, let timeZone = timeData.results?.timezone {
+//                    print("********")
+//                    print(sunrise)
+//                    print(sunset)
+//                    print(date)
+//                    print(utcOffset)
+//                    print("********")
+                    self.kaal = KaalModel(dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone)
                 }
                 
             })

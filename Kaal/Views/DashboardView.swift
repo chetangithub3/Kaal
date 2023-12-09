@@ -13,7 +13,12 @@ struct DashboardView: View {
     @State var sunset = ""
     @State var rahuStart = ""
     @State var rahuEnd = ""
-    @ObservedObject var vm = DashboardViewModel()
+    @State var sunriseKaal = ""
+    @State var sunsetKaal = ""
+    @State var rahuStartKaal = ""
+    @State var rahuEndKaal = ""
+    @ObservedObject var vm = DashboardViewModelTest()
+    @ObservedObject var vm2 = DashboardViewModel()
     var body: some View {
         VStack {
             Text("Hello\(sunrise)")
@@ -27,13 +32,20 @@ struct DashboardView: View {
                 
             }
             
+            Text("Kaal\(sunriseKaal)")
+            Text("Kaal\(sunsetKaal)")
+            Text("Rahu Start Time:\(rahuStartKaal)")
+            Text("Rahu End Time:\(rahuEndKaal)")
+            
             Button(action: {
                 calculaterSunrise()
             }, label: {
                 /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/.padding()
                     .background(Color.red)
             })
+            Spacer()
         }
+        .background(Color.gray)
         .padding()
         .onChange(of: vm.daylightModel, { oldValue, newValue in
             self.sunrise = convertUTC(utc: newValue.sunrise)
@@ -41,8 +53,17 @@ struct DashboardView: View {
             self.rahuStart = convertUTC(utc: newValue.rahuStart)
             self.rahuEnd = convertUTC(utc: newValue.rahuEnd)
         })
+        .onChange(of: vm2.kaal, { oldValue, newValue in
+            self.sunrise = newValue.sunriseString
+            self.sunset = newValue.sunsetString
+            self.rahuStartKaal = "\(newValue.rahuKaal.lowerBound)"
+            self.rahuEndKaal = "\(newValue.rahuKaal.upperBound)"
+        })
         .onAppear(perform: {
             vm.daylightFromLocation()
+        })
+        .onAppear(perform: {
+            vm2.daylightFromLocation()
         })
     }
     
@@ -85,11 +106,7 @@ struct DashboardView: View {
 
         let dayOfYear = calendar.ordinality(of: .day, in: .year, for: date)
 
-        if let day = dayOfYear {
-            print("Day of the year: \(day)")
-        } else {
-            print("Unable to calculate the day of the year.")
-        }
+     
     }
 }
 

@@ -13,8 +13,9 @@
 		614C17312B1FD3F5002A2D18 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 614C17302B1FD3F5002A2D18 /* Preview Assets.xcassets */; };
 		614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174A2B1FF200002A2D18 /* APIManager.swift */; };
 		614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174E2B1FF281002A2D18 /* LocationManager.swift */; };
-		614C17512B1FF520002A2D18 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17502B1FF520002A2D18 /* DashboardViewModel.swift */; };
+		614C17512B1FF520002A2D18 /* DashboardViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17502B1FF520002A2D18 /* DashboardViewModelTest.swift */; };
 		614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17532B1FF628002A2D18 /* DaylightModel.swift */; };
+		614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17562B243EE3002A2D18 /* DashboardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +26,10 @@
 		614C17302B1FD3F5002A2D18 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		614C174A2B1FF200002A2D18 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		614C174E2B1FF281002A2D18 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		614C17502B1FF520002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		614C17502B1FF520002A2D18 /* DashboardViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModelTest.swift; sourceTree = "<group>"; };
 		614C17532B1FF628002A2D18 /* DaylightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DaylightModel.swift; path = /Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Models/DaylightModel.swift; sourceTree = "<absolute>"; };
 		614C17552B212BE1002A2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		614C17562B243EE3002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +67,6 @@
 				614C17292B1FD3F4002A2D18 /* KaalApp.swift */,
 				614C17492B1FF1DC002A2D18 /* NetworkModule */,
 				614C17482B1FF1CA002A2D18 /* View Models */,
-				614C17462B1FF1A0002A2D18 /* Models */,
 				614C17452B1FF18F002A2D18 /* Views */,
 				614C172D2B1FD3F5002A2D18 /* Assets.xcassets */,
 				614C172F2B1FD3F5002A2D18 /* Preview Content */,
@@ -89,18 +90,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		614C17462B1FF1A0002A2D18 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		614C17482B1FF1CA002A2D18 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
 				614C174E2B1FF281002A2D18 /* LocationManager.swift */,
-				614C17502B1FF520002A2D18 /* DashboardViewModel.swift */,
+				614C17502B1FF520002A2D18 /* DashboardViewModelTest.swift */,
+				614C17562B243EE3002A2D18 /* DashboardViewModel.swift */,
 			);
 			name = "View Models";
 			sourceTree = "<group>";
@@ -193,10 +188,11 @@
 			files = (
 				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
 				614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */,
-				614C17512B1FF520002A2D18 /* DashboardViewModel.swift in Sources */,
+				614C17512B1FF520002A2D18 /* DashboardViewModelTest.swift in Sources */,
 				614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */,
 				614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
+				614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
