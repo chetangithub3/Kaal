@@ -13,6 +13,10 @@ struct DashboardView: View {
     @State var sunset = ""
     @State var rahuStartKaal = ""
     @State var rahuEndKaal = ""
+    @State var yamaStartKaal = ""
+    @State var yamaEndKaal = ""
+    @State var abhiStart = ""
+    @State var abhiEnd = ""
     @State var date = Date()
     @ObservedObject var viewModel = DashboardViewModel()
     var body: some View {
@@ -25,7 +29,10 @@ struct DashboardView: View {
             
             Text("Rahu Start Time:\(rahuStartKaal)")
             Text("Rahu End Time:\(rahuEndKaal)")
-
+            Text("Yama Start Time:\(yamaStartKaal)")
+            Text("Yama End Time:\(yamaEndKaal)")
+            Text("Abhijit Start Time:\(abhiStart)")
+            Text("Abhijit End Time:\(abhiEnd)")
             Spacer()
         }
         .background(Color.gray)
@@ -35,6 +42,10 @@ struct DashboardView: View {
             self.sunset = "\(newValue.sunset)"
             self.rahuStartKaal = "\(newValue.rahuKaal.lowerBound)"
             self.rahuEndKaal = "\(newValue.rahuKaal.upperBound)"
+            self.yamaStartKaal = "\(newValue.yamaKaal.lowerBound)"
+            self.yamaEndKaal = "\(newValue.yamaKaal.upperBound)"
+            self.abhiStart = "\(newValue.abhijitKaal.lowerBound)"
+            self.abhiEnd = "\(newValue.abhijitKaal.upperBound)"
         })
         .onAppear(perform: {
             viewModel.daylightFromLocation(on: date)
@@ -77,14 +88,7 @@ struct DashboardView: View {
     
     //
     
-    func calculaterSunrise(){
-        let calendar = Calendar.current
-        let date = Date() // Get the current date
 
-        let dayOfYear = calendar.ordinality(of: .day, in: .year, for: date)
-
-     
-    }
 }
 
 #Preview {

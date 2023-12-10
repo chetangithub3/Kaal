@@ -69,15 +69,14 @@ struct KaalModel: Identifiable, Equatable {
     var dateString: String
     var sunriseString: String
     var sunsetString: String
-    
     let utcOffset: Int?
+    let timezone: String?
     
     var date: Date {
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
         var dt = dateFormatter.date(from: "\(dateString) 00:00:00 AM")!
         dt = dateFormatter.calendar.date(byAdding: .hour, value: -8, to: dt) ?? dt
         dt = dateFormatter.calendar.date(byAdding: .second, value: 1, to: dt) ?? dt
-        print("date = \(dt)")
         return dt
     }
     var sunrise: Date {
@@ -94,12 +93,8 @@ struct KaalModel: Identifiable, Equatable {
         combined = dateFormatter.calendar.date(byAdding: .minute, value: 20, to: combined) ?? combined
         return combined
     }
-    let timezone: String?
-    
-    
 
     // logic
-
     var rahuInterval: [String:Int] = ["Sunday": 8, "Monday" : 2, "Tuesday":  7, "Wednesday": 5, "Thursday": 6, "Friday": 4, "Saturday": 3]
     
     var yamaInterval: [String:Int] = ["Sunday": 5, "Monday" : 4, "Tuesday":  3, "Wednesday": 2, "Thursday": 1, "Friday": 7, "Saturday": 6]
@@ -123,6 +118,13 @@ struct KaalModel: Identifiable, Equatable {
         return ranges[(yamaInterval[dateFormatter.string(from: dt)] ?? 1) - 1]
     }
     
+    var abhijitKaal: ClosedRange<Date> {
+        let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 15)
+        var myDate = date
+        myDate = dateFormatter.calendar.date(byAdding: .hour, value: 12, to: myDate) ?? myDate
+        let myRange = rangeContainingTime(ranges: ranges, timeToCheck: myDate)
+        return myRange ?? ranges[7]
+    }
     
     // helper
     let dateFormatter = DateFormatter()
@@ -145,66 +147,13 @@ struct KaalModel: Identifiable, Equatable {
         }
         return ranges
     }
-}
-
-struct DaylightModel: Identifiable, Equatable {
     
-    var id = UUID()
-    let sunrise: Int
-    let sunset: Int
-    let timezone: Int
-    let cityName: String
-    let date: Date
-    var rahuInterval: [String:Int] = ["Sunday": 8, "Monday" : 2, "Tuesday":  7, "Wednesday": 5, "Thursday": 6, "Friday": 4, "Saturday": 3]
-    //3. On Mondays, 2nd part; on Tuesdays, 7th part; on Wednesdays, 5th part; on Thursdays, 6th part; on Fridays, 4th part; on Saturdays, 3rd part; and on Sundays, 8th part is called Rahukalam.
-
-    
-    var rahuStart: Int {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE" // Set the date format to retrieve the weekday name
-
-        let weekdayName = dateFormatter.string(from: date)
-        
-        let ranges = divideRange(start: Double(sunrise), end: Double(sunset), into: 8)
-        guard ranges.count > 0 else {return 0}
-        let weekdayString = dateFormatter.string(from: date)
-        return Int(ranges[(rahuInterval[weekdayString] ?? 1) - 1].lowerBound)
-    }
-    
-    var rahuEnd: Int {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE" // Set the date format to retrieve the weekday name
-
-        let weekdayName = dateFormatter.string(from: date)
-        let ranges = divideRange(start: Double(sunrise), end: Double(sunset), into: 8)
-        guard ranges.count > 0 else {return 0}
-        let weekdayString = dateFormatter.string(from: date)
-        return Int(ranges[(rahuInterval[weekdayString] ?? 1) - 1].upperBound)
-    }
-    
-    
-    
-    func divideRange(start: Double, end: Double, into divisions: Int) -> [ClosedRange<Double>] {
-        guard divisions > 0 else { return [] }
-        
-        let rangeSize = (end - start) / Double(divisions)
-        var ranges = [ClosedRange<Double>]()
-        
-        var currentStart = start
-        for _ in 0..<divisions {
-            let currentEnd = currentStart + rangeSize
-            ranges.append(currentStart...currentEnd)
-            currentStart = currentEnd
+    func rangeContainingTime(ranges: [ClosedRange<Date>], timeToCheck: Date) -> ClosedRange<Date>? {
+        for range in ranges {
+            if range.contains(timeToCheck) {
+                return range
+            }
         }
-        
-        // Adjust the last range's end value to match the original end if needed
-        if let lastRange = ranges.last, lastRange.upperBound != end {
-            let adjustedRange = lastRange.lowerBound...end
-            ranges[ranges.count - 1] = adjustedRange
-        }
-        
-        return ranges
+        return nil
     }
 }
