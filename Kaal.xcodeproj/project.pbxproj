@@ -15,6 +15,9 @@
 		614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174E2B1FF281002A2D18 /* LocationManager.swift */; };
 		614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17532B1FF628002A2D18 /* DaylightModel.swift */; };
 		614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17562B243EE3002A2D18 /* DashboardViewModel.swift */; };
+		61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE67882B258A2B0036CF69 /* InauspiciousTimesGridView.swift */; };
+		61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE678A2B258A4F0036CF69 /* AuspiciousTimesGridView.swift */; };
+		61BE678D2B258A5F0036CF69 /* MiscGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE678C2B258A5F0036CF69 /* MiscGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		614C17532B1FF628002A2D18 /* DaylightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DaylightModel.swift; path = /Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Models/DaylightModel.swift; sourceTree = "<absolute>"; };
 		614C17552B212BE1002A2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		614C17562B243EE3002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		61BE67882B258A2B0036CF69 /* InauspiciousTimesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InauspiciousTimesGridView.swift; sourceTree = "<group>"; };
+		61BE678A2B258A4F0036CF69 /* AuspiciousTimesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuspiciousTimesGridView.swift; sourceTree = "<group>"; };
+		61BE678C2B258A5F0036CF69 /* MiscGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,9 @@
 			isa = PBXGroup;
 			children = (
 				614C172B2B1FD3F4002A2D18 /* DashboardView.swift */,
+				61BE67882B258A2B0036CF69 /* InauspiciousTimesGridView.swift */,
+				61BE678A2B258A4F0036CF69 /* AuspiciousTimesGridView.swift */,
+				61BE678C2B258A5F0036CF69 /* MiscGridView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,6 +192,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61BE678D2B258A5F0036CF69 /* MiscGridView.swift in Sources */,
+				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
+				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
 				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
 				614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */,
 				614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */,

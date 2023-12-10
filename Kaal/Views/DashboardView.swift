@@ -9,6 +9,8 @@ import SwiftUI
 import WeatherKit
 
 struct DashboardView: View {
+    
+    @State private var selectedTab: Int = 0
     @State var sunrise = ""
     @State var sunset = ""
     @State var rahuStartKaal = ""
@@ -20,8 +22,24 @@ struct DashboardView: View {
     @State var date = Date()
     @ObservedObject var viewModel = DashboardViewModel()
     var body: some View {
+        
         VStack {
-            
+            VStack {
+                       Picker("", selection: $selectedTab) {
+                           Text("Auspicious").tag(0)
+                           Text("Neutral").tag(1)
+                           Text("Inauspicious").tag(2)
+                       }
+                       .pickerStyle(SegmentedPickerStyle())
+
+                       switch(selectedTab) {
+                           case 0: AuspiciousTimesGridView()
+                           case 1: InauspiciousTimesGridView()
+                           case 2: MiscGridView()
+                           default:
+                               EmptyView()
+                       }
+                   }
             DatePicker("select date", selection: $date, displayedComponents: .date)
             
             Text("Sunrise \(sunrise)")
