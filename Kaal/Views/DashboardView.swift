@@ -30,7 +30,7 @@ struct DashboardView: View {
                     Picker("", selection: $selectedTab) {
                         Text("Auspicious").tag(0)
                         Text("Inauspicious").tag(1)
-                        Text("Misc").tag(2)
+                        Text("More").tag(2)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     

@@ -13,7 +13,7 @@ struct KaalApp: App {
     
     var body: some Scene {
         WindowGroup {
-            DashboardView().environmentObject(viewModel)
+            MainView().environmentObject(viewModel)
         }
     }
 }
