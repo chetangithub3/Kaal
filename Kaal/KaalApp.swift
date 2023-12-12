@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct KaalApp: App {
+    @StateObject var viewModel = DashboardViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            DashboardView()
+            DashboardView().environmentObject(viewModel)
         }
     }
 }

@@ -126,6 +126,21 @@ struct KaalModel: Identifiable, Equatable {
         return myRange ?? ranges[7]
     }
     
+    var brahmaMahurat: ClosedRange<Date> {
+        let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
+        guard let intervalInMins = Calendar.current.dateComponents([.minute], from: ranges[0].lowerBound, to: ranges[0].upperBound).minute else {
+            return ranges[0]
+        }
+        print("%%%")
+        print(intervalInMins)
+        
+        let lowerBound = dateFormatter.calendar.date(byAdding: .minute, value: -3*intervalInMins, to: sunrise) ?? sunrise
+        print("%%% - \(lowerBound)")
+        let upperBound = dateFormatter.calendar.date(byAdding: .minute, value: -intervalInMins, to: sunrise) ?? sunrise
+        print("%%% - \(upperBound)")
+        return lowerBound...upperBound
+    }
+    
     // helper
     let dateFormatter = DateFormatter()
     
