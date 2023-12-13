@@ -8,8 +8,36 @@
 import SwiftUI
 
 struct RahuKaalView: View {
+    
+    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
+    @State var date = Date()
+    @EnvironmentObject var viewModel: DashboardViewModel
+    @State var startTime = ""
+    @State var endTime = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            DatePicker("Change Date", selection: $date, displayedComponents: .date)
+            
+            Text("Start time: \(startTime)")
+            Text("End time: \(endTime)")
+        }
+        .onAppear(perform: {
+            convertDateRangeToStrings()
+        })
+        .onChange(of: date) { oldValue, newValue in
+           viewModel.daylightFromLocation(on: date)
+        }
+    }
+    
+    func convertDateRangeToStrings() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = storedTimeFormat
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        let lowerBound = dateFormatter.string(from: viewModel.kaal.rahuKaal.lowerBound)
+        startTime = lowerBound
+        let upperbound = dateFormatter.string(from: viewModel.kaal.rahuKaal.upperBound)
+        endTime = upperbound
     }
 }
 
