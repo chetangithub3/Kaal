@@ -12,6 +12,7 @@ import SwiftUI
 struct SettingsMenuView: View {
     @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
     @State var selectedTimeFormat = ""
+    var link = "https://www.youtube.com/"
     var body: some View {
         Form {
             Section("Clock") {
@@ -28,6 +29,19 @@ struct SettingsMenuView: View {
                 }
                 
             }
+            Section("Share") {
+                Button {
+                    shareLink()
+                } label: {
+                    HStack {
+                        Text("Share the app")
+                        Spacer()
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
+
+               
+            }
 
         }
         .onAppear(perform: {
@@ -37,6 +51,11 @@ struct SettingsMenuView: View {
             self.storedTimeFormat = newValue
         }
     }
+    
+    func shareLink() {
+         let activityViewController = UIActivityViewController(activityItems: [URL(string: link)!], applicationActivities: nil)
+         UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
+     }
 }
 
 #Preview {
