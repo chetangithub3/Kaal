@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct KaalApp: App {
     @StateObject var viewModel = DashboardViewModel()
-    
+    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     var body: some Scene {
         WindowGroup {
             MainView().environmentObject(viewModel)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BrahmaMuhurtaView: View {
-    
+    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State var date = Date()
     @EnvironmentObject var viewModel: DashboardViewModel
     @State var startTime = ""
@@ -30,7 +30,7 @@ struct BrahmaMuhurtaView: View {
     
     func convertDateRangeToStrings() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.dateFormat = storedTimeFormat
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         let lowerBound = dateFormatter.string(from: viewModel.kaal.brahmaMahurat.lowerBound)
         startTime = lowerBound
