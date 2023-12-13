@@ -26,8 +26,11 @@ class DashboardViewModel: ObservableObject {
     
     @Published var kaal = KaalModel(dateString: "", sunriseString: "", sunsetString: "", utcOffset: 0, timezone: "")
     
-    init() {
+    private var apiManager: APIManagerDelegate
+    
+    init(apiManager: APIManagerDelegate = APIManager()) {
         locationManager = LocationManager()
+        self.apiManager = apiManager
     }
     
     
@@ -45,7 +48,7 @@ class DashboardViewModel: ObservableObject {
     }
     
     func fetchData(from url: URL) {
-        APIManager.publisher(for: url)
+        apiManager.publisher(for: url)
             .sink (receiveCompletion: { (completion) in
                 switch completion {
                     case .finished:
