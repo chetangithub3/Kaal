@@ -131,13 +131,8 @@ struct KaalModel: Identifiable, Equatable {
         guard let intervalInMins = Calendar.current.dateComponents([.minute], from: ranges[0].lowerBound, to: ranges[0].upperBound).minute else {
             return ranges[0]
         }
-        print("%%%")
-        print(intervalInMins)
-        
         let lowerBound = dateFormatter.calendar.date(byAdding: .minute, value: -3*intervalInMins, to: sunrise) ?? sunrise
-        print("%%% - \(lowerBound)")
         let upperBound = dateFormatter.calendar.date(byAdding: .minute, value: -intervalInMins, to: sunrise) ?? sunrise
-        print("%%% - \(upperBound)")
         return lowerBound...upperBound
     }
     
