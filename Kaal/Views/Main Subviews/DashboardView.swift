@@ -11,16 +11,6 @@ import WeatherKit
 struct DashboardView: View {
     
     @State private var selectedTab: Int = 0
-    @State var sunrise = ""
-    @State var sunset = ""
-    @State var rahuStartKaal = ""
-    @State var rahuEndKaal = ""
-    @State var yamaStartKaal = ""
-    @State var yamaEndKaal = ""
-    @State var abhiStart = ""
-    @State var abhiEnd = ""
-    @State var brahmaStart = ""
-    @State var brahmaEnd = ""
     @State var date = Date()
     @EnvironmentObject var viewModel: DashboardViewModel
     var body: some View {
@@ -34,16 +24,18 @@ struct DashboardView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     
-                   
-                    TabView(selection: $selectedTab) {
-                        AuspiciousTimesGridView().tag(0)
-                        InauspiciousTimesGridView().tag(1)
-                        OthersGridView().tag(2)
+                    if !viewModel.kaal.dateString.isEmpty {
+                        TabView(selection: $selectedTab) {
+                            AuspiciousTimesGridView().tag(0)
+                            InauspiciousTimesGridView().tag(1)
+                            OthersGridView().tag(2)
+                        }
+                        .animation(.easeInOut)
+                        .transition(.slide)
+                        .tabViewStyle(.page)
+                        .indexViewStyle(.page(backgroundDisplayMode: .never))
                     }
-                    .animation(.easeInOut)
-                    .transition(.slide)
-                    .tabViewStyle(.page)
-                    .indexViewStyle(.page(backgroundDisplayMode: .never))
+                   
                     
                     
 
