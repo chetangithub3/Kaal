@@ -15,6 +15,7 @@
 		614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174E2B1FF281002A2D18 /* LocationManager.swift */; };
 		614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17532B1FF628002A2D18 /* DaylightModel.swift */; };
 		614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17562B243EE3002A2D18 /* DashboardViewModel.swift */; };
+		61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61662F332B2BBE1800B3C4ED /* TileView.swift */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
 		61A1C77B2B291D1000E42544 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77A2B291D1000E42544 /* MainView.swift */; };
@@ -38,6 +39,7 @@
 		614C17532B1FF628002A2D18 /* DaylightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DaylightModel.swift; path = /Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Models/DaylightModel.swift; sourceTree = "<absolute>"; };
 		614C17552B212BE1002A2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		614C17562B243EE3002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		61662F332B2BBE1800B3C4ED /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -104,12 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				61A1C77A2B291D1000E42544 /* MainView.swift */,
-				614C172B2B1FD3F4002A2D18 /* DashboardView.swift */,
-				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
+				61662F352B2BBE2600B3C4ED /* Main Subviews */,
 				61A1C7772B291C2D00E42544 /* Inauspicious Times */,
 				61A1C7782B291C4B00E42544 /* Auspicious Times */,
 				61A1C7792B291C5800E42544 /* Other Times */,
-				61A1C77C2B291D4000E42544 /* NotificationsView.swift */,
+				61662F332B2BBE1800B3C4ED /* TileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,6 +138,16 @@
 				614C17532B1FF628002A2D18 /* DaylightModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		61662F352B2BBE2600B3C4ED /* Main Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				614C172B2B1FD3F4002A2D18 /* DashboardView.swift */,
+				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
+				61A1C77C2B291D4000E42544 /* NotificationsView.swift */,
+			);
+			path = "Main Subviews";
 			sourceTree = "<group>";
 		};
 		61A1C7772B291C2D00E42544 /* Inauspicious Times */ = {
@@ -249,6 +260,7 @@
 				614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */,
 				614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */,
 				614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */,
+				61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */,
 				61A1C77D2B291D4000E42544 /* NotificationsView.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,

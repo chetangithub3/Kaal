@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AuspiciousTimesGridView: View {
-    
+    @EnvironmentObject var viewModel: DashboardViewModel
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible())]) {
@@ -16,23 +16,13 @@ struct AuspiciousTimesGridView: View {
                 NavigationLink {
                     AbhijitKaalView()
                 } label: {
-                    Text("Abhijit Kaal")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                        .foregroundColor(.white)
+                    TileView(title: "Abhijit Kaal", range: viewModel.kaal.abhijitKaal)
                 }
                 
                 NavigationLink {
                     BrahmaMuhurtaView()
                 } label: {
-                    Text("Brahma Muhurta")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                        .foregroundColor(.white)
+                    TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat)
                 }
             }
             

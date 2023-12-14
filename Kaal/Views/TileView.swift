@@ -6,13 +6,43 @@
 //
 
 import SwiftUI
-
+  
 struct TileView: View {
+    
+    @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
+    var title: String
+    var range: ClosedRange<Date>
+    var icon: String?
+    @State var rahu = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            if let icon = icon{
+                Image(systemName: icon)
+            }
+            Text(title)
+            Text("\(convertTheDateRange(range: range).0) - \(convertTheDateRange(range: range).1)")
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
+            
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(Color.blue)
+        .cornerRadius(8)
+        .foregroundColor(.white)
+
+       
+    }
+    
+    func convertTheDateRange(range: ClosedRange<Date>) -> (String, String){
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = storedTimeFormat
+        let start = timeFormatter.string(from: range.lowerBound)
+        let end = timeFormatter.string(from: range.upperBound)
+        return (start,end)
     }
 }
 
 #Preview {
-    TileView()
+    TileView(title: "Test", range: Date()...Date())
 }
