@@ -51,14 +51,10 @@ struct DashboardView: View {
 
                 Spacer()
             }
-            .foregroundColor(Color(red: 9/255, green: 38/255, blue: 53/255))
-            
             .onAppear(perform: {
                 viewModel.daylightFromLocation(on: date)
             })
             .navigationTitle(Text("Kaal"))
-            .background(Color(red: 246/255, green: 244/255, blue: 235/255))
-            .background(ignoresSafeAreaEdges: .all)
             
             
         }
