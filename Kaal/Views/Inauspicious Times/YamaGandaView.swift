@@ -27,6 +27,9 @@ struct YamaGandaView: View {
         })
         .onChange(of: date) { oldValue, newValue in
            viewModel.daylightFromLocation(on: date)
+        } 
+        .onChange(of: viewModel.kaal) { oldValue, newValue in
+            convertDateRangeToStrings()
         }
     }
     
