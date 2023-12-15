@@ -37,6 +37,7 @@ struct TileView: View {
     func convertTheDateRange(range: ClosedRange<Date>) -> (String, String){
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = storedTimeFormat
+        timeFormatter.timeZone = TimeZone(identifier: "UTC")
         let start = timeFormatter.string(from: range.lowerBound)
         let end = timeFormatter.string(from: range.upperBound)
         return (start,end)
