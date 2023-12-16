@@ -15,8 +15,7 @@ struct BrahmaMuhurtaView: View {
     @State var endTime = ""
     var body: some View {
         VStack{
-            DatePicker("Change Date", selection: $date, displayedComponents: .date)
-            
+            CustomDatePickerView(date: $date)
             Text("Start time: \(startTime)")
             Text("End time: \(endTime)")
             HighlightedClockView(range: viewModel.kaal.brahmaMahurat)

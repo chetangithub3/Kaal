@@ -17,8 +17,7 @@ struct AbhijitKaalView: View {
     
     var body: some View {
         VStack{
-            DatePicker("Change Date", selection: $date, displayedComponents: .date)
-            
+            CustomDatePickerView(date: $date)
             Text("Start time: \(startTime)")
             Text("End time: \(endTime)")
             HighlightedClockView(range: viewModel.kaal.abhijitKaal)

@@ -17,8 +17,7 @@ struct RahuKaalView: View {
     
     var body: some View {
         VStack{
-            DatePicker("Change Date", selection: $date, displayedComponents: .date)
-            CustomDatePicker(date: $date)
+            CustomDatePickerView(date: $date)
             Text("Start time: \(startTime)")
             Text("End time: \(endTime)")
             HighlightedClockView(range: viewModel.kaal.rahuKaal)
@@ -45,32 +44,6 @@ struct RahuKaalView: View {
     }
 }
 
-struct CustomDatePicker: View {
-    @Binding var date: Date
-    let dateFormatter: DateFormatter = {
-           let formatter = DateFormatter()
-           formatter.dateFormat = "EEEE, MMMM d, yyyy"
-           return formatter
-       }()
-    
-    var body: some View {
-        HStack{
-            Button {
-                self.date = DateFormatter().calendar.date(byAdding: .day, value: -1, to: date) ?? date
-            } label: {
-                Image(systemName: "minus")
-            }
-            Text("\(dateFormatter.string(from: date))")
-            
-            Button {
-                self.date = DateFormatter().calendar.date(byAdding: .day, value: 1, to: date) ?? date
-            } label: {
-                Image(systemName: "plus")
-            }
-
-        }
-    }
-}
 #Preview {
     RahuKaalView()
 }

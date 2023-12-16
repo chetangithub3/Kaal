@@ -23,7 +23,7 @@ class DashboardViewModel: ObservableObject {
     
     @ObservedObject var locationManager: LocationManager
     var cancellebles = Set<AnyCancellable>()
-    
+    @Published var isLoading = false
     @Published var kaal = KaalModel(dateString: "", sunriseString: "", sunsetString: "", utcOffset: 0, timezone: "")
     
     private var apiManager: APIManagerDelegate
@@ -48,6 +48,7 @@ class DashboardViewModel: ObservableObject {
     }
     
     func fetchData(from url: URL) {
+        self.isLoading = true
         apiManager.publisher(for: url)
             .sink (receiveCompletion: { (completion) in
                 switch completion {
@@ -62,6 +63,7 @@ class DashboardViewModel: ObservableObject {
                 
                 if let sunrise = timeData.results?.sunrise, let sunset = timeData.results?.sunset, let date = timeData.results?.date, let utcOffset = timeData.results?.utcOffset, let timeZone = timeData.results?.timezone {
                     self.kaal = KaalModel(dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone)
+                    self.isLoading = false
                 }
                 
             })
