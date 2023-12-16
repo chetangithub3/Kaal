@@ -21,6 +21,7 @@ struct YamaGandaView: View {
             
             Text("Start time: \(startTime)")
             Text("End time: \(endTime)")
+            HighlightedClockView(range: viewModel.kaal.yamaKaal)
         }
         .onAppear(perform: {
             convertDateRangeToStrings()

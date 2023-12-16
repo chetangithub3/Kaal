@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */; };
 		614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17292B1FD3F4002A2D18 /* KaalApp.swift */; };
 		614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C172B2B1FD3F4002A2D18 /* DashboardView.swift */; };
 		614C172E2B1FD3F5002A2D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 614C172D2B1FD3F5002A2D18 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedClockView.swift; sourceTree = "<group>"; };
 		614C17262B1FD3F4002A2D18 /* Kaal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		614C17292B1FD3F4002A2D18 /* KaalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalApp.swift; sourceTree = "<group>"; };
 		614C172B2B1FD3F4002A2D18 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				61A1C7782B291C4B00E42544 /* Auspicious Times */,
 				61A1C7792B291C5800E42544 /* Other Times */,
 				61662F332B2BBE1800B3C4ED /* TileView.swift */,
+				610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */,
+				610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */,
 				61A1C77B2B291D1000E42544 /* MainView.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,

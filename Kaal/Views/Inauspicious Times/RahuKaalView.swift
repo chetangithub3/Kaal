@@ -21,6 +21,7 @@ struct RahuKaalView: View {
             CustomDatePicker(date: $date)
             Text("Start time: \(startTime)")
             Text("End time: \(endTime)")
+            HighlightedClockView(range: viewModel.kaal.rahuKaal)
         }
         .onAppear(perform: {
             convertDateRangeToStrings()

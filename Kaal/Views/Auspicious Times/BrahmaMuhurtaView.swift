@@ -19,6 +19,7 @@ struct BrahmaMuhurtaView: View {
             
             Text("Start time: \(startTime)")
             Text("End time: \(endTime)")
+            HighlightedClockView(range: viewModel.kaal.brahmaMahurat)
         }.onAppear(perform: {
             convertDateRangeToStrings()
         })

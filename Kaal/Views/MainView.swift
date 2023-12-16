@@ -31,6 +31,12 @@ struct MainView: View {
     }
 }
 
+extension View {
+    func getScreenBounds() -> CGRect {
+        return UIScreen.main.bounds
+    }
+}
+
 #Preview {
     MainView()
 }
