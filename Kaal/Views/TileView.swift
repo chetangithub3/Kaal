@@ -15,21 +15,27 @@ struct TileView: View {
     var icon: String?
     @State var duration = ""
     var body: some View {
-        VStack{
-            if let icon = icon{
-                Image(systemName: icon)
-            }
-            Text(title)
-            Text("\(convertTheDateRange(range: range).0) - \(convertTheDateRange(range: range).1)")
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-            
+        VStack(alignment: .center){
+                    if let icon = icon{
+                        Image(systemName: icon)
+                    }
+                    Text(title)
+                    Text("\(convertTheDateRange(range: range).0) - \(convertTheDateRange(range: range).1)")
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
         }
         .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
+        .frame(width: (getScreenBounds().width - 60) / 2, height: (getScreenBounds().width - 60) / 2)
+        .background(
+            Image("yantra-svg")
+                .resizable()
+                .opacity(0.1)
+                .tint(.primary)
+                .background(Color.blue.gradient)
+        )
         .cornerRadius(8)
         .foregroundColor(.white)
+        
 
        
     }

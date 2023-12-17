@@ -20,7 +20,11 @@ struct RahuKaalView: View {
             CustomDatePickerView(date: $date)
             Text("Start time: \(startTime)")
             Text("End time: \(endTime)")
-            HighlightedClockView(range: viewModel.kaal.rahuKaal)
+            if storedTimeFormat == "hh:mm a" {
+                Highlighted12HourClockView(range: viewModel.kaal.rahuKaal)
+            } else {
+                Highlighted24HourClockView(range: viewModel.kaal.rahuKaal)
+            }
         }
         .onAppear(perform: {
             convertDateRangeToStrings()

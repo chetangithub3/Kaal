@@ -20,7 +20,11 @@ struct YamaGandaView: View {
             CustomDatePickerView(date: $date)
             Text("Start time: \(startTime)")
             Text("End time: \(endTime)")
-            HighlightedClockView(range: viewModel.kaal.yamaKaal)
+            if storedTimeFormat == "hh:mm a" {
+                Highlighted12HourClockView(range: viewModel.kaal.yamaKaal)
+            } else {
+                Highlighted24HourClockView(range: viewModel.kaal.yamaKaal)
+            }
         }
         .onAppear(perform: {
             convertDateRangeToStrings()

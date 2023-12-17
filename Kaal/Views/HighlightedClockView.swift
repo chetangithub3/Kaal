@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HighlightedClockView: View {
+struct Highlighted24HourClockView: View {
     
     var range: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
@@ -122,11 +122,17 @@ struct HighlightedClockView: View {
             }
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
+        .onChange(of: range) { _, _ in
+            self.percentage = 0
+            withAnimation {
+                self.percentage = 1.0
+            }
+        }
     }
     
 }
 
-struct Highlighted12ClockView: View {
+struct Highlighted12HourClockView: View {
     
     var range: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
@@ -138,15 +144,18 @@ struct Highlighted12ClockView: View {
         let startTime = range.lowerBound
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        if hour > 24 {
+            hour -= 24
+        }
         let minute = Double(calendar.component(.minute, from: startTime))
         let absoluteHour: Double = (hour) + (minute/60)
-        let angle = (absoluteHour * 360) / 24
+        let angle = (absoluteHour * 360) / 12
         return angle
     }
     
     var endAng: Double {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "hh:mm"
         let calendar = Calendar.current
         let startTime = range.upperBound
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
@@ -156,18 +165,17 @@ struct Highlighted12ClockView: View {
         }
         let minute = Double(calendar.component(.minute, from: startTime))
         let absoluteHour: Double = (hour) + (minute/60)
-        let angle = (absoluteHour * 360) / 24
+        let angle = (absoluteHour * 360) / 12
         return angle
     }
+    @State private var percentage: CGFloat = .zero
     var body: some View {
         
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
+            
             ZStack {
-                
-                    //Clock Design
-                
                 ZStack{
                     ForEach(1...60, id: \.self) { index in
                         Rectangle()
@@ -176,15 +184,6 @@ struct Highlighted12ClockView: View {
                             .offset(y: (width - 40) / 2)
                             .rotationEffect(.init(degrees: Double((index * 6))))
                     }
-                    
-                        //                    let texts = ["0", "6", "12", "18"]
-                    
-                        //                    ForEach(texts.indices) { index in
-                        //                        Text(texts[index])
-                        //                            .rotationEffect(.init(degrees: Double(index) * -90))
-                        //                            .offset(y: (width - 120)/2)
-                        //                            .rotationEffect(.init(degrees: Double(index) * 90))
-                        //                    }
                     
                     ForEach(1..<13) { index in
                         Text("\(index)")
@@ -201,37 +200,57 @@ struct Highlighted12ClockView: View {
                     .stroke(.primary.opacity(0.06), lineWidth: 20)
                 
                 Circle()
-                    .trim(from: startAng/360 + 0.25 , to: endAng/360 + 0.25)
+                    .trim(from: startAng/360 - 0.25, to: percentage == 0 ? startAng/360 - 0.25 : endAng/360 - 0.25)
                     .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                    //                Image(systemName: "moon")
-                    //                    .font(.callout)
-                    //                    .foregroundColor(.blue)
-                    //                    .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    //                    .rotationEffect(.init(degrees: 180))
-                    //                    .rotationEffect(.init(degrees: startAng))
-                    //                    .background(.white, in: Circle())
-                    //                    .offset(x: width/2)
-                    ////                                            .rotationEffect(.init(degrees: 180))
-                    //                    .rotationEffect(.init(degrees: 90))
-                    //                    .rotationEffect(.init(degrees: startAng))
                 
-                    //                Image(systemName: "circle")
-                    //                    .font(.callout)
-                    //                    .foregroundColor(.blue)
-                    //                    .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    //                    .rotationEffect(.init(degrees: 180))
-                    //                    .rotationEffect(.init(degrees: endAng))
-                    //                    .background(.white, in: Circle())
-                    //                    .offset(x: width/2)
-                    //                    .rotationEffect(.init(degrees: 90))
-                    //                    .rotationEffect(.init(degrees: endAng))
+                    .animation(.linear(duration: 1), value: 1)
+                    .onAppear {
+                        withAnimation {
+                            self.percentage = 1.0
+                        }
+                    }
+                Image(systemName: "circle")
+                    .font(.callout)
+                    .foregroundColor(.blue)
+                    .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .rotationEffect(.init(degrees: 180))
+                    .rotationEffect(.init(degrees: startAng))
+                    .background(.white, in: Circle())
+                    .offset(x: width/2)
+                    .rotationEffect(.init(degrees: 180))
+                    .rotationEffect(.init(degrees: 90))
+                    .rotationEffect(.init(degrees: startAng))
+                
+                Image(systemName: "circle")
+                    .font(.callout)
+                    .foregroundColor(.blue)
+                    .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .rotationEffect(.init(degrees: 180))
+                    .rotationEffect(.init(degrees: endAng))
+                    .background(.white, in: Circle())
+                    .offset(x: width/2)
+                    .rotationEffect(.init(degrees: 180))
+                    .rotationEffect(.init(degrees: 90))
+                    .rotationEffect(.init(degrees: percentage == 0 ? startAng : endAng))
+                    .animation(.linear(duration: 1), value: 1)
+                    .onAppear {
+                        withAnimation {
+                            self.percentage = 1.0
+                        }
+                    }
             }
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
+        .onChange(of: range) { _, _ in
+            self.percentage = 0
+            withAnimation {
+                self.percentage = 1.0
+            }
+        }
     }
     
 }
 
 #Preview {
-    HighlightedClockView(range: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()))
+    Highlighted12HourClockView(range: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()))
 }
