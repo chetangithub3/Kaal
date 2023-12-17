@@ -13,7 +13,7 @@ struct TileView: View {
     var title: String
     var range: ClosedRange<Date>
     var icon: String?
-    @State var rahu = ""
+    @State var duration = ""
     var body: some View {
         VStack{
             if let icon = icon{

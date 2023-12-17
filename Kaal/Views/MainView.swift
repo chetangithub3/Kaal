@@ -26,7 +26,7 @@ struct MainView: View {
             SettingsMenuView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")
-                    Text("Profile")
+                    Text("Settings")
                 }.tag(3)
         }.overlay(content: {
             if viewModel.isLoading{
