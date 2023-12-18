@@ -14,42 +14,46 @@ struct SettingsMenuView: View {
     @State var selectedTimeFormat = ""
     var link = "https://www.youtube.com/"
     var body: some View {
-        Form {
-            Section("Clock") {
-                
-                HStack{
-                    Text("Time format")
-                    Spacer()
-                    Picker("", selection: $selectedTimeFormat) {
-                        Text("12 Hour").tag("hh:mm a")
-                        Text("24 Hour").tag("HH:mm")
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .frame(width: 200)
-                }
-                
-            }
-            Section("Share") {
-                Button {
-                    shareLink()
-                } label: {
-                    HStack {
-                        Text("Share the app")
+        NavigationView(content: {
+            Form {
+                Section("Clock") {
+                    
+                    HStack{
+                        Text("Time format")
                         Spacer()
-                        Image(systemName: "square.and.arrow.up")
+                        Picker("", selection: $selectedTimeFormat) {
+                            Text("12 Hour").tag("hh:mm a")
+                            Text("24 Hour").tag("HH:mm")
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .frame(width: 200)
                     }
+                    
+                }
+                Section("Share") {
+                    Button {
+                        shareLink()
+                    } label: {
+                        HStack {
+                            Text("Share the app")
+                            Spacer()
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
+
+                   
                 }
 
-               
             }
-
-        }
-        .onAppear(perform: {
-            selectedTimeFormat = storedTimeFormat
+            .navigationTitle("Settings")
+            .onAppear(perform: {
+                selectedTimeFormat = storedTimeFormat
+            })
+            .onChange(of: selectedTimeFormat) { oldValue, newValue in
+                self.storedTimeFormat = newValue
+            }
         })
-        .onChange(of: selectedTimeFormat) { oldValue, newValue in
-            self.storedTimeFormat = newValue
-        }
+        
     }
     
     func shareLink() {

@@ -40,8 +40,6 @@ struct DashboardView: View {
                     
 
                 }
-
-                Spacer()
             }
             .onAppear(perform: {
                 viewModel.daylightFromLocation(on: date)
