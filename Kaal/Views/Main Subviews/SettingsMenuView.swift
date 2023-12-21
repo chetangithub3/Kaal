@@ -43,6 +43,21 @@ struct SettingsMenuView: View {
 
                    
                 }
+                
+      
+                Section("Change Address"){
+                    NavigationLink {
+                        ChangeAddressView(ddViewModel: AddressDropDownViewModel(apiManager: APIManager()))
+                    } label: {
+                        HStack {
+                            Text("Change Address")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+
+                    
+                }
 
             }
             .navigationTitle("Settings")
@@ -62,6 +77,7 @@ struct SettingsMenuView: View {
      }
 }
 
+
 #Preview {
-    SettingsMenuView()
+    SettingsMenuView(storedTimeFormat: "hh:mm a")
 }

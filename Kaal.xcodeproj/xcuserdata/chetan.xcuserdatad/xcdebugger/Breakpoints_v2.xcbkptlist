@@ -3,4 +3,214 @@
    uuid = "F1557517-2722-4056-83FF-35B017C2A0DC"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C78D6BF0-69E1-4E53-A568-8CD5321BBA76"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/AddressDropDownViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "fetchData(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C78D6BF0-69E1-4E53-A568-8CD5321BBA76 - 99e434e6d6b41be8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Array&lt;Kaal.AddressesListResponseElement&gt;) -&gt; () in Kaal.AddressDropDownViewModel.fetchData(from: Foundation.URL) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/AddressDropDownViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "C78D6BF0-69E1-4E53-A568-8CD5321BBA76 - 99e434e6d6b41bc9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Array&lt;Kaal.AddressesListResponseElement&gt;) -&gt; () in Kaal.AddressDropDownViewModel.fetchData(from: Foundation.URL) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/AddressDropDownViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0B668E2-3A3F-47A4-96BE-4BD605E12031"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/AddressDropDownViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "fetchData(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D0B668E2-3A3F-47A4-96BE-4BD605E12031 - 3a8778ee17064535"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Combine.Subscribers.Completion&lt;Swift.Error&gt;) -&gt; () in Kaal.AddressDropDownViewModel.fetchData(from: Foundation.URL) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/AddressDropDownViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "D0B668E2-3A3F-47A4-96BE-4BD605E12031 - 3a8778ee17064535"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Combine.Subscribers.Completion&lt;Swift.Error&gt;) -&gt; () in Kaal.AddressDropDownViewModel.fetchData(from: Foundation.URL) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/AddressDropDownViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D65EE989-A60C-4987-9A7C-107AB47A1635"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/AddressDropDownViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "callAPI(text:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D65EE989-A60C-4987-9A7C-107AB47A1635 - ee69a51359bc72e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kaal.AddressDropDownViewModel.callAPI(text: Swift.String) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/AddressDropDownViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "D65EE989-A60C-4987-9A7C-107AB47A1635 - ee69a51359bc72e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kaal.AddressDropDownViewModel.callAPI(text: Swift.String) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/AddressDropDownViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "280">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4FE06FB-A834-4613-ADC3-25F99AFCFEE3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/AddressDropDownViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "searchFieldListener()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F4FE06FB-A834-4613-ADC3-25F99AFCFEE3 - 4041747c61e1f7cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in Kaal.AddressDropDownViewModel.searchFieldListener() -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/AddressDropDownViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "F4FE06FB-A834-4613-ADC3-25F99AFCFEE3 - 4041747c61e1f7cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in Kaal.AddressDropDownViewModel.searchFieldListener() -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/AddressDropDownViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "272">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F67A11DE-D384-4E8C-B44F-EB0CB80A614D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/AddressDropDownViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "searchFieldListener()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
