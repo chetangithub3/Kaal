@@ -1,60 +1,58 @@
-//
-//  ChangeAddressView.swift
-//  Kaal
-//
-//  Created by Chetan Dhowlaghar on 12/20/23.
-//
+    //
+    //  ChangeAddressView.swift
+    //  Kaal
+    //
+    //  Created by Chetan Dhowlaghar on 12/20/23.
+    //
 
 import SwiftUI
 
 struct ChangeAddressView: View {
-    @ObservedObject var ddViewModel: AddressDropDownViewModel
-     let debounceTime = 1.0
-     var debounceTimer: Timer?
-    @State var results: [String] = []
-    @State var selectedAddress = ""
+    @AppStorage("savedLat") var savedLat = ""
+    @AppStorage("savedLong") var savedLng = ""
+    @AppStorage("currentArea") var currentArea: String = ""
+    @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var ddViewModel: AddressSearchViewModel
+  
+  
     var body: some View {
-        VStack{
-            SearchBar(selectedText: $selectedAddress, text: $ddViewModel.searchTex, showDropdown: $ddViewModel.showDropDown, searchResults: $ddViewModel.searchResults)
-        }
-    }
-}
-
-struct SearchBar: View {
-    @Binding var selectedText: String
-    @Binding var text: String
-    @Binding var showDropdown: Bool
-    @Binding var searchResults: [String]
-
-    var body: some View {
-        VStack {
+        Form {
             HStack {
-                TextField("Search area", text: $text, onEditingChanged: { _ in
-                })
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
+                TextField("Search area", text: $ddViewModel.searchText, onEditingChanged: { _ in
+                }).padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .foregroundColor(.primary)
+                
             }
             
-            if showDropdown && !searchResults.isEmpty {
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(searchResults, id: \.self) { result in
-                        Text(result)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal)
-                            
-                            .onTapGesture {
-                                self.showDropdown = false
-                                self.text = ""
-                                
+            if ddViewModel.showDropDown && !ddViewModel.results.isEmpty {
+                List{
+                    ForEach(ddViewModel.results.prefix(6), id: \.self) { result in
+                        let displayName = result.displayName ?? ""
+                        Button(action: {
+                            self.ddViewModel.showDropDown = false
+                            self.ddViewModel.searchText = ""
+                            self.currentArea = displayName
+                            self.savedLat = result.lat ?? ""
+                            self.savedLng = result.lon ?? ""
+                            self.presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            HStack{
+                                Text(displayName)
+                                Spacer()
                             }
+                            
+                        })
+                        
                     }
                 }
-               
-               
             }
+            Spacer()
         }
     }
 }
+
+
 #Preview {
-    ChangeAddressView(ddViewModel: AddressDropDownViewModel(apiManager: APIManager()))
+    ChangeAddressView(ddViewModel: AddressSearchViewModel(apiManager: APIManager()))
 }

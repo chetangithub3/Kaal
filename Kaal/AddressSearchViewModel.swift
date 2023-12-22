@@ -1,5 +1,5 @@
 //
-//  AddressDropDownViewModel.swift
+//  AddressSearchViewModel.swift
 //  Kaal
 //
 //  Created by Chetan Dhowlaghar on 12/20/23.
@@ -7,24 +7,27 @@
 // https://geocode.maps.co/search?q={String}
 import Foundation
 import Combine
+import SwiftUI
 
-class AddressDropDownViewModel: ObservableObject {
+class AddressSearchViewModel: ObservableObject {
     var cancellebles = Set<AnyCancellable>()
     var apiManager: APIManager
     
-    @Published var searchTex = ""
+    @Published var searchText = ""
     @Published var showDropDown = false
     @Published var results = [AddressesListResponseElement]()
-    @Published var searchResults: [String] = []
-    
+        
     init(apiManager: APIManager){
         self.apiManager = apiManager
-        searchFieldListener()
+        self.searchFieldListener()
+        
     }
+    
+   
     func searchFieldListener(){
         
-        $searchTex
-            .debounce(for: 1, scheduler: DispatchQueue.main)
+        $searchText  
+            .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink { text in
                 print(text)
                 if text.count > 2 {
@@ -51,20 +54,8 @@ class AddressDropDownViewModel: ObservableObject {
                         
                 }
             }, receiveValue: { (addresses: AddressesListResponse) in
-                
-                let addressLines = addresses
-                
-                let jhfj = addressLines.map({$0.displayName ?? ""})
-               
-                
-                for address in jhfj {
-                    
-                    print("=--------\(address)")
-                    
-                }
-                
-                self.searchResults = jhfj
-                if jhfj.count > 0 {
+                self.results = addresses
+                if addresses.count > 0 {
                     self.showDropDown = true
                 }
             })

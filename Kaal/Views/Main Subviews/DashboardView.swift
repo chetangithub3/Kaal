@@ -9,7 +9,7 @@ import SwiftUI
 import WeatherKit
 
 struct DashboardView: View {
-    
+    @AppStorage("currentArea") var currentArea: String = ""
     @State private var selectedTab: Int = 0
     @State var date = Date()
     @EnvironmentObject var viewModel: DashboardViewModel

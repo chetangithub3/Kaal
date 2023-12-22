@@ -20,8 +20,10 @@ import Combine
 import SwiftUI
 
 class DashboardViewModel: ObservableObject {
-    
-    @ObservedObject var locationManager: LocationManager
+    @AppStorage("savedLat") var savedLat = ""
+    @AppStorage("savedLong") var savedLng = ""
+  
+ 
     var cancellebles = Set<AnyCancellable>()
     @Published var isLoading = false
     @Published var kaal = KaalModel(dateString: "", sunriseString: "", sunsetString: "", utcOffset: 0, timezone: "")
@@ -29,14 +31,13 @@ class DashboardViewModel: ObservableObject {
     private var apiManager: APIManagerDelegate
     
     init(apiManager: APIManagerDelegate = APIManager()) {
-        locationManager = LocationManager()
         self.apiManager = apiManager
     }
     
     
     func daylightFromLocation(on date: Date = Date()){
         let baseURL = "https://api.sunrisesunset.io/json"
-        guard let lat = locationManager.exposedLocation?.coordinate.latitude.magnitude, let lng = locationManager.exposedLocation?.coordinate.longitude.magnitude else {
+        guard let lat = Double(savedLat), let lng = Double(savedLng) else {
             return
         }
         let dateFormatter = DateFormatter()

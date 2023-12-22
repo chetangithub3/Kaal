@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - AddressesListResponseElement
-struct AddressesListResponseElement: Codable {
+struct AddressesListResponseElement: Codable, Hashable {
     var lat, lon, displayName: String?
     let type: String?
 

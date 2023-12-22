@@ -10,6 +10,7 @@ import SwiftUI
 
 
 struct SettingsMenuView: View {
+    @AppStorage("currentArea") var currentArea: String = ""
     @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
     @State var selectedTimeFormat = ""
     var link = "https://www.youtube.com/"
@@ -47,12 +48,12 @@ struct SettingsMenuView: View {
       
                 Section("Change Address"){
                     NavigationLink {
-                        ChangeAddressView(ddViewModel: AddressDropDownViewModel(apiManager: APIManager()))
+                        ChangeAddressView(ddViewModel: AddressSearchViewModel(apiManager: APIManager()))
                     } label: {
                         HStack {
-                            Text("Change Address")
+                            Text("Current Address")
                             Spacer()
-                            Image(systemName: "chevron.right")
+                            Text("\(currentArea)")
                         }
                     }
 
