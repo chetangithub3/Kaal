@@ -9,11 +9,26 @@ import SwiftUI
 
 @main
 struct KaalApp: App {
-    @StateObject var viewModel = DashboardViewModel()
-    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     var body: some Scene {
         WindowGroup {
-            MainView().environmentObject(viewModel)
+            IntroView()
         }
+    }
+}
+
+
+struct IntroView: View{
+    
+    @AppStorage("isFirstTime") var isFirstTime = true
+    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
+    var body: some View {
+        if !isFirstTime{
+            MainView().environmentObject(DashboardViewModel())
+        }
+        else {
+            WelcomeView()
+        }
+        
+        
     }
 }
