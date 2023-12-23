@@ -6,6 +6,7 @@
     //
 
 import SwiftUI
+import CoreLocation
 
 struct ChangeAddressView: View {
     @AppStorage("savedLat") var savedLat = ""
@@ -13,15 +14,42 @@ struct ChangeAddressView: View {
     @AppStorage("currentArea") var currentArea: String = ""
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var ddViewModel: AddressSearchViewModel
-  
+    @ObservedObject var locationManager = LocationManager()
   
     var body: some View {
-        Form {
+        VStack {
+            Button(action: {
+                if let location = locationManager.handleLocation() {
+                    savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
+                    savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
+                    
+                    reverseGeocode(location: location)
+                    
+                    self.presentationMode.wrappedValue.dismiss()
+                } else {
+                    locationManager.askPermission()
+                }
+            }, label: {
+                HStack{
+                    Spacer()
+                    Text("Get address from your current location")
+                    Spacer()
+                }
+               
+                    
+            }).buttonStyle(.bordered)
+                .padding(.horizontal)
+            HStack{
+                Spacer()
+                Text("Or").padding()
+                Spacer()
+            }
             HStack {
                 TextField("Search area", text: $ddViewModel.searchText, onEditingChanged: { _ in
-                }).padding()
+                })
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .foregroundColor(.primary)
+                    .padding(.horizontal)
                 
             }
             
@@ -41,13 +69,40 @@ struct ChangeAddressView: View {
                                 Text(displayName)
                                 Spacer()
                             }
-                            
-                        })
-                        
+                        })               
                     }
                 }
             }
             Spacer()
+        }.onChange(of: locationManager.permissionGiven) { oldValue, newValue in
+            if newValue {
+                updateLocation()
+            }
+        }
+    }
+    
+    func updateLocation(){
+        if let location = locationManager.handleLocation() {
+            savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
+            savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
+            
+            reverseGeocode(location: location)
+            
+            self.presentationMode.wrappedValue.dismiss()
+        }
+    }
+    func reverseGeocode(location: CLLocation) {
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            guard error == nil, let placemark = placemarks?.first else {
+                print("Reverse geocoding error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            if let area = placemark.locality, let country = placemark.country {
+                self.currentArea = "\(area), \(country)"
+            } else {
+                return
+            }
         }
     }
 }
