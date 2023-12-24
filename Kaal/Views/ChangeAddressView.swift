@@ -52,7 +52,7 @@ struct ChangeAddressView: View {
                     .padding(.horizontal)
                 
             }
-            
+             
             if ddViewModel.showDropDown && !ddViewModel.results.isEmpty {
                 List{
                     ForEach(ddViewModel.results.prefix(6), id: \.self) { result in

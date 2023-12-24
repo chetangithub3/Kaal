@@ -34,6 +34,7 @@
 		61DE51C52B33CE1900221661 /* ChangeAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C42B33CE1900221661 /* ChangeAddressView.swift */; };
 		61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C62B37A16500221661 /* WelcomeView.swift */; };
 		61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C82B37A71E00221661 /* LocationPermissionView.swift */; };
+		61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		61DE51C42B33CE1900221661 /* ChangeAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAddressView.swift; sourceTree = "<group>"; };
 		61DE51C62B37A16500221661 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		61DE51C82B37A71E00221661 /* LocationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionView.swift; sourceTree = "<group>"; };
+		61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				61BE678C2B258A5F0036CF69 /* OthersGridView.swift */,
+				61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */,
 			);
 			path = "Other Times";
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				61DE51C12B33C2C600221661 /* AddressesListResponse.swift in Sources */,
 				61DE51C52B33CE1900221661 /* ChangeAddressView.swift in Sources */,
 				614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */,
+				61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

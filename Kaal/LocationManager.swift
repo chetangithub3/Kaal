@@ -19,6 +19,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var exposedLocation: CLLocation?
     @Published var neverAsked = true
     @Published var permissionGiven = false
+    @Published var permissionDenied = false
     override init() {
         super.init()
         locationManager.delegate = self
@@ -36,8 +37,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
             case .authorizedAlways      : 
                 exposedLocation = locationManager.location
                 permissionGiven = true
-            case .restricted            : break //
-            case .denied                : break //
+            case .restricted            : self.permissionDenied = true
+            case .denied                : self.permissionDenied = true
             default                     : openAppSettings()
         }
     }

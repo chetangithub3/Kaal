@@ -34,12 +34,8 @@ struct WelcomeView: View {
                 }
                 .padding()
                 Spacer()
-                Button {
-                    isFirstTime = false
-                } label: {
-                    Text("Next")
-                }
-                NavigationLink(destination: LocationPermissionView()) {
+               
+                NavigationLink(destination: LocationPermissionView().environmentObject(AddressSearchViewModel(apiManager: APIManager()))) {
                     Text("Next")
                 }
             }.frame(alignment: .top)

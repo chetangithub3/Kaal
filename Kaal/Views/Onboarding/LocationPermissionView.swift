@@ -9,29 +9,25 @@ import SwiftUI
 import CoreLocation
 
 struct LocationPermissionView: View {
-
-    @State private var locationManager = CLLocationManager()
-    
+    @AppStorage("savedLat") var savedLat = ""
+    @AppStorage("savedLong") var savedLng = ""
+    @AppStorage("currentArea") var currentArea: String = ""
+    @StateObject var locationManager = LocationManager()
+    @ObservedObject var dashboardVM = DashboardViewModel(apiManager: APIManager())
+    @ObservedObject var ddViewModel = AddressSearchViewModel(apiManager: APIManager())
+    @State var showNext = false
+    @AppStorage("isFirstTime") var isFirstTime = true
     var body: some View {
         VStack {
-            Text("Location Permission")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding()
-            Text("Why do we need your location?")
-                .font(.headline)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
-                .padding()
-            Text("To provide you with accurate timings based on your precise location, we need access to your location information.")
+            Text("Please grant the location permission, so that we can provide you with accurate timings based on your precise location.")
                 .font(.body)
-                .foregroundColor(.black)
+                .foregroundColor(.primary)
                 .multilineTextAlignment(.center)
                 .padding()
             Button(action: {
-                locationManager.requestWhenInUseAuthorization()
+                locationManager.askPermission()
             }) {
-                Text("Grant Location Access")
+                Text("Check for your location")
                     .fontWeight(.bold)
                     .padding()
                     .background(Color.blue)
@@ -39,13 +35,62 @@ struct LocationPermissionView: View {
                     .cornerRadius(8)
             }
             .padding()
+            HStack{
+                Spacer()
+                Text("Or").padding()
+                Spacer()
+            }
+            
+            AddressSearchBarView()
+            
+            Spacer()
+            if showNext{
+                NavigationLink(destination: MainView().environmentObject(dashboardVM)) {
+                    Text("Finish")
+                }
+            }
+          
         }
-        .onAppear {
+        
+        .onChange(of: locationManager.permissionGiven) { oldValue, newValue in
+            if newValue {
+                updateLocation()
+            }
+        }
+        .onChange(of: savedLat) { oldValue, newValue in
+            showNext = true
+            dashboardVM.daylightFromLocation()
             
         }
-
+        .onChange(of: dashboardVM.kaal) { oldValue, newValue in
+            isFirstTime = false
+        }
+        
+    }
+    func updateLocation(){
+        if let location = locationManager.handleLocation() {
+            savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
+            savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
+            
+            reverseGeocode(location: location)
+            
+        }
     }
     
+    func reverseGeocode(location: CLLocation) {
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            guard error == nil, let placemark = placemarks?.first else {
+                print("Reverse geocoding error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            if let area = placemark.locality, let country = placemark.country {
+                self.currentArea = "\(area), \(country)"
+            } else {
+                return
+            }
+        }
+    }
 //    private func checkLocationPermission() {
 //          if CLLocationManager.locationServicesEnabled() {
 //              switch locationManager.authorizationStatus {

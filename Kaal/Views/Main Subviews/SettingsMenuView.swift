@@ -31,6 +31,20 @@ struct SettingsMenuView: View {
                     }
                     
                 }
+                Section("Change Address"){
+                    NavigationLink {
+                        ChangeAddressView(ddViewModel: AddressSearchViewModel(apiManager: APIManager()))
+                    } label: {
+                        HStack {
+                            Text("Current Address")
+                            Spacer()
+                            Text("\(currentArea)")
+                        }
+                    }
+
+                    
+                }
+
                 Section("Share") {
                     Button {
                         shareLink()
@@ -46,19 +60,6 @@ struct SettingsMenuView: View {
                 }
                 
       
-                Section("Change Address"){
-                    NavigationLink {
-                        ChangeAddressView(ddViewModel: AddressSearchViewModel(apiManager: APIManager()))
-                    } label: {
-                        HStack {
-                            Text("Current Address")
-                            Spacer()
-                            Text("\(currentArea)")
-                        }
-                    }
-
-                    
-                }
 
             }
             .navigationTitle("Settings")

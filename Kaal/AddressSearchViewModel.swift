@@ -16,7 +16,6 @@ class AddressSearchViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var showDropDown = false
     @Published var results = [AddressesListResponseElement]()
-        
     init(apiManager: APIManager){
         self.apiManager = apiManager
         self.searchFieldListener()
