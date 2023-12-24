@@ -29,6 +29,12 @@
 		61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE678C2B258A5F0036CF69 /* OthersGridView.swift */; };
 		61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE678E2B26E4720036CF69 /* AbhijitKaalView.swift */; };
 		61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE67902B28152B0036CF69 /* BrahmaMuhurtaView.swift */; };
+		61DE51C12B33C2C600221661 /* AddressesListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C02B33C2C600221661 /* AddressesListResponse.swift */; };
+		61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C22B33C56A00221661 /* AddressSearchViewModel.swift */; };
+		61DE51C52B33CE1900221661 /* ChangeAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C42B33CE1900221661 /* ChangeAddressView.swift */; };
+		61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C62B37A16500221661 /* WelcomeView.swift */; };
+		61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C82B37A71E00221661 /* LocationPermissionView.swift */; };
+		61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +62,12 @@
 		61BE678C2B258A5F0036CF69 /* OthersGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersGridView.swift; sourceTree = "<group>"; };
 		61BE678E2B26E4720036CF69 /* AbhijitKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbhijitKaalView.swift; sourceTree = "<group>"; };
 		61BE67902B28152B0036CF69 /* BrahmaMuhurtaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrahmaMuhurtaView.swift; sourceTree = "<group>"; };
+		61DE51C02B33C2C600221661 /* AddressesListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesListResponse.swift; sourceTree = "<group>"; };
+		61DE51C22B33C56A00221661 /* AddressSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchViewModel.swift; sourceTree = "<group>"; };
+		61DE51C42B33CE1900221661 /* ChangeAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAddressView.swift; sourceTree = "<group>"; };
+		61DE51C62B37A16500221661 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		61DE51C82B37A71E00221661 /* LocationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionView.swift; sourceTree = "<group>"; };
+		61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +84,8 @@
 		611D0C222B30F8B000FD215C /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				61DE51C62B37A16500221661 /* WelcomeView.swift */,
+				61DE51C82B37A71E00221661 /* LocationPermissionView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -125,6 +139,7 @@
 				61A1C7782B291C4B00E42544 /* Auspicious Times */,
 				61A1C7792B291C5800E42544 /* Other Times */,
 				61662F332B2BBE1800B3C4ED /* TileView.swift */,
+				61DE51C42B33CE1900221661 /* ChangeAddressView.swift */,
 				610CE3352B2DA8C40045F006 /* LoadingView.swift */,
 				610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */,
 				610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */,
@@ -136,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				614C174E2B1FF281002A2D18 /* LocationManager.swift */,
+				61DE51C22B33C56A00221661 /* AddressSearchViewModel.swift */,
 				614C17562B243EE3002A2D18 /* DashboardViewModel.swift */,
 			);
 			name = "View Models";
@@ -153,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				614C17532B1FF628002A2D18 /* DaylightModel.swift */,
+				61DE51C02B33C2C600221661 /* AddressesListResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				61BE678C2B258A5F0036CF69 /* OthersGridView.swift */,
+				61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */,
 			);
 			path = "Other Times";
 			sourceTree = "<group>";
@@ -265,7 +283,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */,
 				61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */,
+				61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */,
 				610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */,
 				61A1C77B2B291D1000E42544 /* MainView.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
@@ -283,8 +303,12 @@
 				61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */,
 				61A1C77D2B291D4000E42544 /* NotificationsView.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
+				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
+				61DE51C12B33C2C600221661 /* AddressesListResponse.swift in Sources */,
+				61DE51C52B33CE1900221661 /* ChangeAddressView.swift in Sources */,
 				614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */,
+				61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

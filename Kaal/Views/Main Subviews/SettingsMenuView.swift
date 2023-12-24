@@ -10,6 +10,7 @@ import SwiftUI
 
 
 struct SettingsMenuView: View {
+    @AppStorage("currentArea") var currentArea: String = ""
     @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
     @State var selectedTimeFormat = ""
     var link = "https://www.youtube.com/"
@@ -30,6 +31,20 @@ struct SettingsMenuView: View {
                     }
                     
                 }
+                Section("Change Address"){
+                    NavigationLink {
+                        ChangeAddressView(ddViewModel: AddressSearchViewModel(apiManager: APIManager()))
+                    } label: {
+                        HStack {
+                            Text("Current Address")
+                            Spacer()
+                            Text("\(currentArea)")
+                        }
+                    }
+
+                    
+                }
+
                 Section("Share") {
                     Button {
                         shareLink()
@@ -43,6 +58,8 @@ struct SettingsMenuView: View {
 
                    
                 }
+                
+      
 
             }
             .navigationTitle("Settings")
@@ -62,6 +79,7 @@ struct SettingsMenuView: View {
      }
 }
 
+
 #Preview {
-    SettingsMenuView()
+    SettingsMenuView(storedTimeFormat: "hh:mm a")
 }
