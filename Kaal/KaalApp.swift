@@ -21,14 +21,14 @@ struct IntroView: View{
     
     @AppStorage("isFirstTime") var isFirstTime = true
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
+    
     var body: some View {
-        if !isFirstTime{
+        
+        if !isFirstTime {
             MainView().environmentObject(DashboardViewModel())
-        }
-        else {
+        } else {
             WelcomeView()
         }
-        
-        
     }
+    
 }

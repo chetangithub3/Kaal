@@ -9,24 +9,32 @@ import SwiftUI
 import CoreLocation
 
 struct LocationPermissionView: View {
-    @State private var isKeyboardVisible = false
+    
     @AppStorage("savedLat") var savedLat = ""
     @AppStorage("savedLong") var savedLng = ""
     @AppStorage("currentArea") var currentArea: String = ""
+    @AppStorage("isFirstTime") var isFirstTime = true
+    
     @StateObject var locationManager = LocationManager()
     @ObservedObject var dashboardVM = DashboardViewModel(apiManager: APIManager())
     @ObservedObject var ddViewModel = AddressSearchViewModel(apiManager: APIManager())
+    
+    @State private var isKeyboardVisible = false
     @State var showNext = false
     @State var next = false
-    @AppStorage("isFirstTime") var isFirstTime = true
+    
+    
     var body: some View {
         VStack {
-            if !isKeyboardVisible{
+            
+            if !isKeyboardVisible {
+                
                 Text("Please grant the location permission, so that we can provide you with accurate timings based on your precise location.")
                     .font(.body)
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
                     .padding()
+                
                 Button(action: {
                     locationManager.askPermission()
                 }) {
@@ -38,19 +46,24 @@ struct LocationPermissionView: View {
                         .cornerRadius(8)
                 }
                 .padding()
+                
                 HStack{
                     Spacer()
-                    Text("Or").padding()
+                    
+                    Text("Or")
+                        .padding()
                     Spacer()
                 }
             }
             
-            
             AddressSearchBarView()
+            
             if showNext{
                 Text("Saved location:\(currentArea)")
             }
+            
             Spacer()
+            
             if showNext{
                 Button(action: {
                     isFirstTime = false
@@ -58,6 +71,7 @@ struct LocationPermissionView: View {
                     Text("Finish")
                 })
             }
+            
             NavigationLink("", destination: MainView().environmentObject(dashboardVM), isActive: $next)
         }.navigationBarHidden(true)
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
@@ -82,13 +96,12 @@ struct LocationPermissionView: View {
             }
         
     }
+    
     func updateLocation(){
         if let location = locationManager.handleLocation() {
             savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
             savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
-            
             reverseGeocode(location: location)
-            
         }
     }
     
@@ -98,7 +111,7 @@ struct LocationPermissionView: View {
                 print("Reverse geocoding error: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-
+            
             if let area = placemark.locality, let country = placemark.country {
                 self.currentArea = "\(area), \(country)"
             } else {
@@ -106,7 +119,7 @@ struct LocationPermissionView: View {
             }
         }
     }
-
+    
 }
 
 #Preview {

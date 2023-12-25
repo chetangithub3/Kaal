@@ -9,10 +9,14 @@ import SwiftUI
 import WeatherKit
 
 struct DashboardView: View {
+    
     @AppStorage("currentArea") var currentArea: String = ""
+    
+    @EnvironmentObject var viewModel: DashboardViewModel
+    
     @State private var selectedTab: Int = 0
     @State var date = Date()
-    @EnvironmentObject var viewModel: DashboardViewModel
+ 
     var body: some View {
         NavigationView {
             VStack {
@@ -35,22 +39,15 @@ struct DashboardView: View {
                         .tabViewStyle(.page)
                         .indexViewStyle(.page(backgroundDisplayMode: .never))
                     }
-                   
-                    
-                    
-
                 }
             }
             .onAppear(perform: {
                 viewModel.daylightFromLocation(on: date)
             })
             .navigationTitle(Text("Kaal"))
-            
-            
         }
     }
     
-
 }
 
 #Preview {
