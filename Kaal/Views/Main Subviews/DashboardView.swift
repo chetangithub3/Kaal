@@ -24,7 +24,7 @@ struct DashboardView: View {
                     Picker("", selection: $selectedTab) {
                         Text("Auspicious").tag(0)
                         Text("Inauspicious").tag(1)
-                        Text("More").tag(2)
+                        // Text("More").tag(2)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     
@@ -32,7 +32,7 @@ struct DashboardView: View {
                         TabView(selection: $selectedTab) {
                             AuspiciousTimesGridView().tag(0)
                             InauspiciousTimesGridView().tag(1)
-                          //  OthersGridView().tag(2)
+                            // OthersGridView().tag(2)
                         }
                         .animation(.easeInOut)
                         .transition(.slide)
