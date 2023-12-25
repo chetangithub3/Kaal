@@ -32,7 +32,7 @@ struct DashboardView: View {
                         TabView(selection: $selectedTab) {
                             AuspiciousTimesGridView().tag(0)
                             InauspiciousTimesGridView().tag(1)
-                            OthersGridView().tag(2)
+                          //  OthersGridView().tag(2)
                         }
                         .animation(.easeInOut)
                         .transition(.slide)

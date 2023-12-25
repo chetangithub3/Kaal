@@ -1,9 +1,9 @@
-//
-//  AddressSearchBarView.swift
-//  Kaal
-//
-//  Created by Chetan Dhowlaghar on 12/23/23.
-//
+    //
+    //  AddressSearchBarView.swift
+    //  Kaal
+    //
+    //  Created by Chetan Dhowlaghar on 12/23/23.
+    //
 
 import SwiftUI
 
@@ -18,9 +18,9 @@ struct AddressSearchBarView: View {
             HStack {
                 TextField("Search area", text: $ddViewModel.searchText, onEditingChanged: { _ in
                 })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .foregroundColor(.primary)
-                    .padding(.horizontal)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .foregroundColor(.primary)
+                .padding(.horizontal)
                 
             }
             
@@ -44,7 +44,6 @@ struct AddressSearchBarView: View {
                 }
             }
         }
-      
     }
 }
 
