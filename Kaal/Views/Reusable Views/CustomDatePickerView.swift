@@ -16,6 +16,7 @@ struct CustomDatePickerView: View {
        }()
     
     var body: some View {
+        
         VStack {
             HStack{
                 Button {
@@ -29,16 +30,13 @@ struct CustomDatePickerView: View {
                     .datePickerStyle(.compact)
                     .labelsHidden()
                
-                
                 Button {
                     self.date = DateFormatter().calendar.date(byAdding: .day, value: 1, to: date) ?? date
                 } label: {
                     Image(systemName: "chevron.right")
                         .frame(width: 30, height: 30)
                 }
-
             }
-           
         }
     }
 }

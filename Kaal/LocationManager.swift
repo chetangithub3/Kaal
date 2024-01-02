@@ -12,14 +12,13 @@ import UIKit
 
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
 
-    // - Private
     private let locationManager = CLLocationManager()
-
-    // - API
+    
     @Published var exposedLocation: CLLocation?
     @Published var neverAsked = true
     @Published var permissionGiven = false
     @Published var permissionDenied = false
+    
     override init() {
         super.init()
         locationManager.delegate = self
@@ -43,11 +42,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         }
     }
     
-    func askPermission(){
+    func askPermission() {
         locationManager.requestWhenInUseAuthorization()
     }
     
-    func handleLocation() -> CLLocation?{
+    func handleLocation() -> CLLocation? {
+        
         let authStatus = locationManager.authorizationStatus
         switch authStatus {
             case .notDetermined         : neverAsked = true
