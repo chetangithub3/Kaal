@@ -60,7 +60,13 @@ struct ChangeAddressView: View {
                         Button(action: {
                             self.ddViewModel.showDropDown = false
                             self.ddViewModel.searchText = ""
-                            self.currentArea = displayName
+                            if let lat = Double(result.lat ?? ""), let lon = Double(result.lon ?? "") {
+                                let location =  CLLocation(latitude: lat, longitude: lon)
+                                reverseGeocode(location: location)
+                            } else {
+                                self.currentArea = result.displayName ?? ""
+                            }
+                           
                             self.savedLat = result.lat ?? ""
                             self.savedLng = result.lon ?? ""
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
