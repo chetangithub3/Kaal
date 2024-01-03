@@ -18,14 +18,39 @@ struct KaalDetailView: View {
         
         VStack{
             CustomDatePickerView(date: $date)
-            Text("Start time: \(startTime)")
-            Text("End time: \(endTime)")
+                .padding(.vertical)
+                .background(Color.secondary.opacity(0.3))
+           
+           
             if storedTimeFormat == "hh:mm a" {
-                Highlighted12HourClockView(range: kaalRange)
+                Highlighted12HourClockView(range: kaalRange).padding(.vertical)
             } else {
-                Highlighted24HourClockView(range: kaalRange)
+                Highlighted24HourClockView(range: kaalRange).padding(.vertical)
             }
+            HStack{
+                VStack(alignment: .leading) {
+                    Text("Start time").font(.subheadline)
+                    Text(startTime).font(.title2).bold()
+                }
+                
+                Spacer()
+
+                VStack(alignment: .leading) {
+                    Text("End time").font(.subheadline)
+                    Text(endTime).font(.title2).bold()
+                }
+                
+            }
+                .padding()
+               
+                
+            
+            
         }
+            .background(Color.secondary.opacity(0.2))
+            .cornerRadius(10)
+            .padding()
+            
         .onAppear(perform: {
             convertDateRangeToStrings()
         })
