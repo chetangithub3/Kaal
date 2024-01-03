@@ -63,7 +63,9 @@ struct ChangeAddressView: View {
                             self.currentArea = displayName
                             self.savedLat = result.lat ?? ""
                             self.savedLng = result.lon ?? ""
-                            self.presentationMode.wrappedValue.dismiss()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
                         }, label: {
                             HStack{
                                 Text(displayName)
@@ -79,6 +81,9 @@ struct ChangeAddressView: View {
                 updateLocation()
             }
         }
+        .onAppear(perform: {
+            print("on current area : \(currentArea)")
+        })
     }
     
     func updateLocation(){
