@@ -19,14 +19,21 @@ struct CustomDatePickerView: View {
         
         VStack {
             HStack{
+                Text("Date").font(.subheadline)
+                Spacer()
                 Button {
                     self.date = DateFormatter().calendar.date(byAdding: .day, value: -1, to: date) ?? date
                 } label: {
                     Image(systemName: "chevron.left")
                         .frame(width: 30, height: 30)
-                }
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.primary)
+                        .background(Color.secondary)
+                        .cornerRadius(10)
+                }.disabled(self.date <= Date())
+                    .opacity(self.date <= Date() ? 0.2  : 1.0)
                 
-                DatePicker("", selection: $date, displayedComponents: .date)
+                DatePicker("", selection: $date, in: Date()..., displayedComponents: .date)
                     .datePickerStyle(.compact)
                     .labelsHidden()
                
@@ -35,9 +42,12 @@ struct CustomDatePickerView: View {
                 } label: {
                     Image(systemName: "chevron.right")
                         .frame(width: 30, height: 30)
+                        .foregroundColor(.primary)
+                        .background(Color.secondary)
+                        .cornerRadius(10)
                 }
             }
-        }
+        }.padding(.horizontal)
     }
 }
 
