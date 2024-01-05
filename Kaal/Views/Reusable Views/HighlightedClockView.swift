@@ -47,7 +47,6 @@ struct Highlighted24HourClockView: View {
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
-            let height = geometry.size.height
             
             ZStack {
                 
@@ -134,8 +133,10 @@ struct Highlighted24HourClockView: View {
     func durationString(from range: ClosedRange<Date>) -> Text {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.minute, .hour], from: range.lowerBound, to: range.upperBound)
-        
+        print("hhhh")
+        print(components)
         if let hours = components.hour, let minutes = components.minute {
+            
             if hours == 0 {
                 return
                 Text("\(minutes)")
@@ -144,8 +145,6 @@ struct Highlighted24HourClockView: View {
                 +
                 Text(" mins")
                     .font(.caption)
-                
-                
             } else {
                 return
                 Text("\(hours)")
@@ -164,7 +163,7 @@ struct Highlighted24HourClockView: View {
                 
             }
         }
-        return  Text("Unknown duration")
+        return Text("Unknown duration")
         
     }
     
@@ -206,12 +205,13 @@ struct Highlighted12HourClockView: View {
         let angle = (absoluteHour * 360) / 12
         return angle
     }
-    @State private var percentage: CGFloat = .zero
+    
+    @State private var percentage: CGFloat = 1.0
+    
     var body: some View {
         
         GeometryReader { geometry in
             let width = geometry.size.width
-            let height = geometry.size.height
             
             ZStack {
                 ZStack{
@@ -242,11 +242,7 @@ struct Highlighted12HourClockView: View {
                     .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
                 
                     .animation(.linear(duration: 1), value: 1)
-                    .onAppear {
-                        withAnimation {
-                            self.percentage = 1.0
-                        }
-                    }
+             
                 
                 durationString(from: range)
                 
@@ -274,14 +270,21 @@ struct Highlighted12HourClockView: View {
                     .rotationEffect(.init(degrees: 90))
                     .rotationEffect(.init(degrees: percentage == 0 ? startAng : endAng))
                     .animation(.linear(duration: 1), value: 1)
-                    .onAppear {
-                        withAnimation {
-                            self.percentage = 1.0
-                        }
-                    }
+                    
             }
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
+        .onAppear {
+            // letting screenshot with no animation, then adding animation by changing values of percentageafter the page appears fully
+            DispatchQueue.main.async {
+                self.percentage = 0.0
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    withAnimation {
+                        self.percentage = 1.0
+                    }
+                }
+            }
+        }
         .onChange(of: range) { _, _ in
             self.percentage = 0
             withAnimation {

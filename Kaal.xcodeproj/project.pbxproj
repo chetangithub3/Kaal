@@ -246,6 +246,8 @@
 			dependencies = (
 			);
 			name = Kaal;
+			packageProductDependencies = (
+			);
 			productName = Kaal;
 			productReference = 614C17262B1FD3F4002A2D18 /* Kaal.app */;
 			productType = "com.apple.product-type.application";
@@ -274,6 +276,8 @@
 				Base,
 			);
 			mainGroup = 614C171D2B1FD3F4002A2D18;
+			packageReferences = (
+			);
 			productRefGroup = 614C17272B1FD3F4002A2D18 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

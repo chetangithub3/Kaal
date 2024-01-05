@@ -29,7 +29,6 @@ class AddressSearchViewModel: ObservableObject {
         $searchText
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink { text in
-                print(text)
                 if text.count > 2 {
                     self.callAPI(text: text)
                 }
@@ -51,7 +50,7 @@ class AddressSearchViewModel: ObservableObject {
                     case .finished:
                         return
                     case .failure(let error):
-                        dump(error)
+                    
                         print(error.localizedDescription)
                         self.showDropDown = false
                         

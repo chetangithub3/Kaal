@@ -23,7 +23,14 @@ struct ChangeAddressView: View {
                     savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
                     savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
                     
-                    reverseGeocode(location: location)
+                    reverseGeocode(location: location){ placemark, error in
+                        if let area = placemark?.locality, let country = placemark?.country {
+                            self.currentArea = "\(area), \(country)"
+                            self.presentationMode.wrappedValue.dismiss()
+                        } else {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
                     
                     self.presentationMode.wrappedValue.dismiss()
                 } else {
@@ -62,15 +69,17 @@ struct ChangeAddressView: View {
                             self.ddViewModel.searchText = ""
                             if let lat = Double(result.lat ?? ""), let lon = Double(result.lon ?? "") {
                                 let location =  CLLocation(latitude: lat, longitude: lon)
-                                reverseGeocode(location: location)
-                            } else {
+                                self.savedLat = result.lat ?? ""
+                                self.savedLng = result.lon ?? ""
                                 self.currentArea = result.displayName ?? ""
-                            }
-                           
-                            self.savedLat = result.lat ?? ""
-                            self.savedLng = result.lon ?? ""
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.presentationMode.wrappedValue.dismiss()
+                                reverseGeocode(location: location){ placemark, error in
+                                    if let area = placemark?.locality, let country = placemark?.country {
+                                        self.currentArea = "\(area), \(country)"
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    } else {
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    }
+                                }
                             }
                         }, label: {
                             HStack{
@@ -83,13 +92,10 @@ struct ChangeAddressView: View {
             }
             Spacer()
         }.onChange(of: locationManager.permissionGiven) { oldValue, newValue in
-            if newValue {
+            if newValue != oldValue {
                 updateLocation()
             }
         }
-        .onAppear(perform: {
-            print("on current area : \(currentArea)")
-        })
     }
     
     func updateLocation(){
@@ -97,25 +103,32 @@ struct ChangeAddressView: View {
             savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
             savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
             
-            reverseGeocode(location: location)
-            
-            self.presentationMode.wrappedValue.dismiss()
+            reverseGeocode(location: location){ placemark, error in
+                if let area = placemark?.locality, let country = placemark?.country {
+                    self.currentArea = "\(area), \(country)"
+                    self.presentationMode.wrappedValue.dismiss()
+                } else {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
         }
     }
-    func reverseGeocode(location: CLLocation) {
-        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
-            guard error == nil, let placemark = placemarks?.first else {
-                print("Reverse geocoding error: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-
-            if let area = placemark.locality, let country = placemark.country {
-                self.currentArea = "\(area), \(country)"
+    
+    func reverseGeocode(location: CLLocation, completion: @escaping (CLPlacemark?, Error?) -> Void) {
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+            if let error = error {
+                completion(nil, error) // Pass the error to the completion handler
+            } else if let placemark = placemarks?.first {
+                completion(placemark, nil) // Pass the placemark to the completion handler
             } else {
-                return
+                // Handle no placemarks found
+                completion(nil, NSError(domain: "YourDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "No placemark found"]))
             }
         }
     }
+
 }
 
 
