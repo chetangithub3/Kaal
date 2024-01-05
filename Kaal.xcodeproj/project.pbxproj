@@ -32,6 +32,7 @@
 		61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE678C2B258A5F0036CF69 /* OthersGridView.swift */; };
 		61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE678E2B26E4720036CF69 /* AbhijitKaalView.swift */; };
 		61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE67902B28152B0036CF69 /* BrahmaMuhurtaView.swift */; };
+		61DE17642B47618100C22C04 /* ScreenshotableView in Frameworks */ = {isa = PBXBuildFile; productRef = 61DE17632B47618100C22C04 /* ScreenshotableView */; };
 		61DE51C12B33C2C600221661 /* AddressesListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C02B33C2C600221661 /* AddressesListResponse.swift */; };
 		61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C22B33C56A00221661 /* AddressSearchViewModel.swift */; };
 		61DE51C52B33CE1900221661 /* ChangeAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C42B33CE1900221661 /* ChangeAddressView.swift */; };
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DE17642B47618100C22C04 /* ScreenshotableView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +248,9 @@
 			dependencies = (
 			);
 			name = Kaal;
+			packageProductDependencies = (
+				61DE17632B47618100C22C04 /* ScreenshotableView */,
+			);
 			productName = Kaal;
 			productReference = 614C17262B1FD3F4002A2D18 /* Kaal.app */;
 			productType = "com.apple.product-type.application";
@@ -274,6 +279,9 @@
 				Base,
 			);
 			mainGroup = 614C171D2B1FD3F4002A2D18;
+			packageReferences = (
+				61DE17622B47618100C22C04 /* XCRemoteSwiftPackageReference "ScreenshotableView" */,
+			);
 			productRefGroup = 614C17272B1FD3F4002A2D18 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -542,6 +550,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		61DE17622B47618100C22C04 /* XCRemoteSwiftPackageReference "ScreenshotableView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RickeyBoy/ScreenshotableView";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		61DE17632B47618100C22C04 /* ScreenshotableView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61DE17622B47618100C22C04 /* XCRemoteSwiftPackageReference "ScreenshotableView" */;
+			productName = ScreenshotableView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 614C171E2B1FD3F4002A2D18 /* Project object */;
 }

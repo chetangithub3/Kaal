@@ -87,9 +87,6 @@ struct ChangeAddressView: View {
                 updateLocation()
             }
         }
-        .onAppear(perform: {
-            print("on current area : \(currentArea)")
-        })
     }
     
     func updateLocation(){
