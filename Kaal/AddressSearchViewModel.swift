@@ -50,7 +50,7 @@ class AddressSearchViewModel: ObservableObject {
                     case .finished:
                         return
                     case .failure(let error):
-                        dump(error)
+                    
                         print(error.localizedDescription)
                         self.showDropDown = false
                         

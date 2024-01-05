@@ -133,9 +133,12 @@ struct Highlighted24HourClockView: View {
     func durationString(from range: ClosedRange<Date>) -> Text {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.minute, .hour], from: range.lowerBound, to: range.upperBound)
-        
+        print("hhhh")
+        print(components)
         if let hours = components.hour, let minutes = components.minute {
+            
             if hours == 0 {
+                return
                 Text("\(minutes)")
                     .bold()
                     .font(.title)
@@ -143,6 +146,7 @@ struct Highlighted24HourClockView: View {
                 Text(" mins")
                     .font(.caption)
             } else {
+                return
                 Text("\(hours)")
                     .bold()
                     .font(.title)
@@ -159,7 +163,7 @@ struct Highlighted24HourClockView: View {
                 
             }
         }
-        return  Text("Unknown duration")
+        return Text("Unknown duration")
         
     }
     
