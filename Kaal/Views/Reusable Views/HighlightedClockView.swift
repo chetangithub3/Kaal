@@ -218,16 +218,22 @@ struct Highlighted12HourClockView: View {
                     ForEach(1...60, id: \.self) { index in
                         Rectangle()
                             .fill(.primary)
-                            .frame(width: 2, height: index % 5 == 0 ? 15 : 5)
-                            .offset(y: (width - 40) / 2)
+                            .frame(width: 2, height: index % 5 == 0 ? 10 : 0)
+                            .offset(y: (width - 35) / 2)
                             .rotationEffect(.init(degrees: Double((index * 6))))
                     }
-                    
+                    ForEach(1...60, id: \.self) { index in
+                        Rectangle()
+                            .fill(.primary)
+                            .frame(width: 2, height: index % 5 == 0 ? 0 : 5)
+                            .offset(y: (width - 30) / 2)
+                            .rotationEffect(.init(degrees: Double((index * 6))))
+                    }
                     ForEach(1..<13) { index in
                         Text("\(index)")
                             .rotationEffect(.init(degrees: 180))
                             .rotationEffect(.init(degrees: Double(index) * -30))
-                            .offset(y: (width - 90)/2)
+                            .offset(y: (width - 70)/2)
                             .rotationEffect(.init(degrees: Double(index) * 30))
                             .rotationEffect(.init(degrees: 180))
                         

@@ -38,6 +38,7 @@
 		61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C62B37A16500221661 /* WelcomeView.swift */; };
 		61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C82B37A71E00221661 /* LocationPermissionView.swift */; };
 		61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */; };
+		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		61DE51C62B37A16500221661 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		61DE51C82B37A71E00221661 /* LocationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionView.swift; sourceTree = "<group>"; };
 		61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchBarView.swift; sourceTree = "<group>"; };
+		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			children = (
 				614C17552B212BE1002A2D18 /* Info.plist */,
 				614C17292B1FD3F4002A2D18 /* KaalApp.swift */,
+				61F6B9AE2B48C14200B9DF24 /* Extensions.swift */,
 				614C17522B1FF608002A2D18 /* Models */,
 				614C17492B1FF1DC002A2D18 /* NetworkModule */,
 				614C17482B1FF1CA002A2D18 /* View Models */,
@@ -329,6 +332,7 @@
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
 				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
+				61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */,
 				61DE51C12B33C2C600221661 /* AddressesListResponse.swift in Sources */,
 				61DE51C52B33CE1900221661 /* ChangeAddressView.swift in Sources */,
 				614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */,
