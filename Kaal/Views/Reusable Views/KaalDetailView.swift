@@ -41,13 +41,13 @@ struct KaalDetailView: View {
         }
         
         .onAppear(perform: {
-            convertDateRangeToStrings()
+            convertDateRangeToStrings(range: kaalRange)
         })
         .onChange(of: date) { oldValue, newValue in
             viewModel.daylightFromLocation(on: date)
         }
         .onChange(of: viewModel.kaal) { oldValue, newValue in
-            convertDateRangeToStrings()
+            convertDateRangeToStrings(range: kaalRange)
         }
         .onChange(of: sharedImage) { oldValue, newValue in
                 // to do: enable share button
@@ -98,15 +98,17 @@ struct KaalDetailView: View {
         .padding()
     }
     
-    func convertDateRangeToStrings() {
+    func convertDateRangeToStrings(range: ClosedRange<Date>) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = storedTimeFormat
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        let lowerBound = dateFormatter.string(from: viewModel.kaal.rahuKaal.lowerBound)
+        let lowerBound = dateFormatter.string(from: range.lowerBound)
         startTime = lowerBound
-        let upperbound = dateFormatter.string(from: viewModel.kaal.rahuKaal.upperBound)
+        let upperbound = dateFormatter.string(from: range.upperBound)
         endTime = upperbound
     }
+    
+
 }
 
 #Preview {
