@@ -28,12 +28,7 @@ struct MainView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }.tag(3)
-        }.overlay(content: {
-            if viewModel.isLoading{
-                LoadingView()
-            }
-            
-        })
+        }
     }
 }
 

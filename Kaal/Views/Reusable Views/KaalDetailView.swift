@@ -29,10 +29,13 @@ struct KaalDetailView: View {
             
             GeometryReader { proxy in
                 screenshottableView()
+                    .redacted(reason: viewModel.isLoading == true ? .placeholder : [])
                     .onAppear {
+                        DispatchQueue.main.async{
                             let frame = proxy.frame(in: .global)
                             let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
                             sharedImage = screenshot
+                        }
                     }
             }
         }
