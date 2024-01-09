@@ -22,18 +22,26 @@ struct KaalDetailView: View {
     @State var buttonHeight: CGFloat = 30
     
     var body: some View {
-        VStack{
-            GeometryReader { proxy in
+        ScrollView{
+            
                 screenshottableView()
-                    .redacted(reason: viewModel.isLoading == true ? .placeholder : [])
-                    .onAppear {
-                        DispatchQueue.main.async{
-                            let frame = proxy.frame(in: .global)
-                            let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
-                            sharedImage = screenshot
+                    .background(
+                        GeometryReader { geometry in
+                            VStack{
+                            }
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .onAppear(perform: {
+                                    DispatchQueue.main.async{
+                                        let frame = geometry.frame(in: .global)
+                                        let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
+                                        sharedImage = screenshot
+                                    }
+                                })
                         }
-                    }
-            }
+                    )
+                    .redacted(reason: viewModel.isLoading == true ? .placeholder : [])
+//
+            
             HStack{
                 Spacer()
                 Button {

@@ -43,7 +43,6 @@ struct CustomDatePickerView: View {
                                     .opacity(0.0)
                                     .preference(key: ButtonHeightKey.self, value: geometry.size.height)
                                     .onAppear {
-                                        print("Hhhhh- \(geometry.size.height)")
                                         self.height = geometry.size.height
                                     }
                                     
