@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct KaalDetailView: View {
+    
     @AppStorage("currentArea") var currentArea: String = ""
     var kaalRange: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
@@ -17,15 +18,12 @@ struct KaalDetailView: View {
     @State var endTime = ""
     @State var sharedImage: UIImage?
     @State private var isShareSheetPresented = false
+    @State var isEnableShared = false
+    @State var buttonHeight: CGFloat = 30
     var body: some View {
         
         VStack{
-            Button {
-                    // change layout : todo
-                isShareSheetPresented = true
-            } label: {
-                Text("Share")
-            }
+          
             
             GeometryReader { proxy in
                 screenshottableView()
@@ -38,8 +36,28 @@ struct KaalDetailView: View {
                         }
                     }
             }
+            HStack{
+                Spacer()
+                Button {
+                        // change layout : todo
+                    isShareSheetPresented = true
+                } label: {
+                    HStack{
+                        Text("Share").font(.subheadline)
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .padding(8)
+                    .frame(height: buttonHeight)
+                    .foregroundColor(.primary)
+                    .background(Color.secondary)
+                    .cornerRadius(10)
+                }
+            }
         }
-        
+        .onPreferenceChange(ButtonHeightKey.self) { newValue in
+            print(newValue)
+            buttonHeight = newValue
+        }
         .onAppear(perform: {
             convertDateRangeToStrings(range: kaalRange)
         })
@@ -50,9 +68,8 @@ struct KaalDetailView: View {
             convertDateRangeToStrings(range: kaalRange)
         }
         .onChange(of: sharedImage) { oldValue, newValue in
-                // to do: enable share button
             if newValue != nil{
-                print("Hurray")
+                isEnableShared = true
             }
         }
         .sheet(isPresented: $isShareSheetPresented) {
@@ -78,19 +95,23 @@ struct KaalDetailView: View {
             }
             HStack{
                 VStack(alignment: .leading) {
-                    Text("Start time").font(.subheadline)
+                    Text("Starts at:").font(.subheadline)
                     Text(startTime).font(.title2).bold()
                 }
                 
                 Spacer()
                 
                 VStack(alignment: .leading) {
-                    Text("End time").font(.subheadline)
+                    Text("Ends at:").font(.subheadline)
                     Text(endTime).font(.title2).bold()
                 }
                 
             }
             .padding()
+            
+            LocationItemView()
+                .padding(.vertical)
+                .background(Color.secondary.opacity(0.3))
             
         }
         .background(Color.secondary.opacity(0.2))
@@ -125,5 +146,17 @@ struct ActivityView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
         
+    }
+}
+
+
+struct ButtonHeightKey: PreferenceKey {
+    typealias Value = CGFloat // Define the type of value to be stored
+    
+    static var defaultValue: CGFloat = 30 // Default value
+    
+    // Function to aggregate the values passed up the view hierarchy
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue() // Aggregate the values
     }
 }

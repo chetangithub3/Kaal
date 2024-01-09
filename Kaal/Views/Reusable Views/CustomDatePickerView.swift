@@ -21,7 +21,7 @@ struct CustomDatePickerView: View {
         
         VStack {
             HStack{
-                Text("Date").font(.subheadline)
+                Text("Date:").font(.subheadline)
                 Spacer()
                 Button {
                     self.date = DateFormatter().calendar.date(byAdding: .day, value: -1, to: date) ?? date
@@ -41,9 +41,12 @@ struct CustomDatePickerView: View {
                             GeometryReader { geometry in
                                 Rectangle()
                                     .opacity(0.0)
+                                    .preference(key: ButtonHeightKey.self, value: geometry.size.height)
                                     .onAppear {
+                                        print("Hhhhh- \(geometry.size.height)")
                                         self.height = geometry.size.height
                                     }
+                                    
                             }
                         )
                        

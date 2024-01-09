@@ -28,6 +28,8 @@ struct MainView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }.tag(3)
+        } .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ChangeTab"))) { _ in
+            self.selection = 3
         }
     }
 }
