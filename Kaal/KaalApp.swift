@@ -20,7 +20,7 @@ struct KaalApp: App {
 }
 
 struct IntroView: View{
-    
+
     @AppStorage("isFirstTime") var isFirstTime = true
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State private var errorMessage: String = ""
@@ -34,6 +34,7 @@ struct IntroView: View{
                 WelcomeView()
             }
         }
+ 
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }

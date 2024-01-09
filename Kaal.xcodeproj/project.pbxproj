@@ -10,6 +10,7 @@
 		610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */; };
 		610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */; };
 		610CE3362B2DA8C40045F006 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE3352B2DA8C40045F006 /* LoadingView.swift */; };
+		61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */; };
 		611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2BFC2B3966E1004CA53A /* TimeData.swift */; };
 		611B2C012B396729004CA53A /* KaalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2C002B396729004CA53A /* KaalModel.swift */; };
 		614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17292B1FD3F4002A2D18 /* KaalApp.swift */; };
@@ -47,6 +48,7 @@
 		610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedClockView.swift; sourceTree = "<group>"; };
 		610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		610CE3352B2DA8C40045F006 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		611B2BFC2B3966E1004CA53A /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
 		611B2C002B396729004CA53A /* KaalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalModel.swift; sourceTree = "<group>"; };
 		614C17262B1FD3F4002A2D18 /* Kaal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				61A1C77A2B291D1000E42544 /* MainView.swift */,
+				61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */,
 				611D0C222B30F8B000FD215C /* Onboarding */,
 				61662F352B2BBE2600B3C4ED /* Main Subviews */,
 				61A1C7772B291C2D00E42544 /* Inauspicious Times */,
@@ -335,6 +338,7 @@
 				614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */,
 				61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */,
 				61D694D52B4D15D40039A97F /* LocationItemView.swift in Sources */,
+				61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */,
 				61A1C77D2B291D4000E42544 /* NotificationsView.swift in Sources */,
 				611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
