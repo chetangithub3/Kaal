@@ -20,11 +20,9 @@ struct KaalDetailView: View {
     @State private var isShareSheetPresented = false
     @State var isEnableShared = false
     @State var buttonHeight: CGFloat = 30
+    
     var body: some View {
-        
         VStack{
-          
-            
             GeometryReader { proxy in
                 screenshottableView()
                     .redacted(reason: viewModel.isLoading == true ? .placeholder : [])
@@ -39,7 +37,6 @@ struct KaalDetailView: View {
             HStack{
                 Spacer()
                 Button {
-                        // change layout : todo
                     isShareSheetPresented = true
                 } label: {
                     HStack{
@@ -53,9 +50,9 @@ struct KaalDetailView: View {
                     .cornerRadius(10)
                 }
             }
+            Spacer()
         }
         .onPreferenceChange(ButtonHeightKey.self) { newValue in
-            print(newValue)
             buttonHeight = newValue
         }
         .onAppear(perform: {
@@ -73,7 +70,7 @@ struct KaalDetailView: View {
             }
         }
         .sheet(isPresented: $isShareSheetPresented) {
-            ActivityView(activityItems: [ sharedImage]) // Replace this with the content you want to share
+            ActivityView(activityItems: [sharedImage]) // Replace this with the content you want to share
         }
         
         
@@ -128,8 +125,6 @@ struct KaalDetailView: View {
         let upperbound = dateFormatter.string(from: range.upperBound)
         endTime = upperbound
     }
-    
-
 }
 
 #Preview {
@@ -151,12 +146,11 @@ struct ActivityView: UIViewControllerRepresentable {
 
 
 struct ButtonHeightKey: PreferenceKey {
-    typealias Value = CGFloat // Define the type of value to be stored
+    typealias Value = CGFloat
     
     static var defaultValue: CGFloat = 30 // Default value
-    
-    // Function to aggregate the values passed up the view hierarchy
+ 
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue() // Aggregate the values
+        value = nextValue()
     }
 }

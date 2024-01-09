@@ -50,9 +50,6 @@ struct KaalModel: Identifiable, Equatable {
         dateFormatter.dateFormat = "EEEE"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         let dayOfWeekString = dateFormatter.string(from: date)
-        print(date)
-        print(dayOfWeekString)
-        print("yamaInterval -\(yamaInterval[dayOfWeekString])")
         return ranges[(yamaInterval[dayOfWeekString] ?? 1) - 1]
     }
     
