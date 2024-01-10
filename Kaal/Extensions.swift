@@ -52,3 +52,8 @@ extension UIApplication {
         return window
     }
 }
+
+enum NetworkStatus: String {
+    case connected
+    case disconnected
+}

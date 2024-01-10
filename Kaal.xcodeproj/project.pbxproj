@@ -21,6 +21,8 @@
 		614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174E2B1FF281002A2D18 /* LocationManager.swift */; };
 		614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17532B1FF628002A2D18 /* DaylightModel.swift */; };
 		614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17562B243EE3002A2D18 /* DashboardViewModel.swift */; };
+		6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 6159FCEB2B4E0CCF003703AC /* Reachability */; };
+		6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6159FCED2B4E197A003703AC /* NetworkManager.swift */; };
 		61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61662F332B2BBE1800B3C4ED /* TileView.swift */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -61,6 +63,7 @@
 		614C17532B1FF628002A2D18 /* DaylightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DaylightModel.swift; path = /Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Models/DaylightModel.swift; sourceTree = "<absolute>"; };
 		614C17552B212BE1002A2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		614C17562B243EE3002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		6159FCED2B4E197A003703AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		61662F332B2BBE1800B3C4ED /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				614C174A2B1FF200002A2D18 /* APIManager.swift */,
+				6159FCED2B4E197A003703AC /* NetworkManager.swift */,
 			);
 			name = NetworkModule;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			);
 			name = Kaal;
 			packageProductDependencies = (
+				6159FCEB2B4E0CCF003703AC /* Reachability */,
 			);
 			productName = Kaal;
 			productReference = 614C17262B1FD3F4002A2D18 /* Kaal.app */;
@@ -289,6 +295,7 @@
 			);
 			mainGroup = 614C171D2B1FD3F4002A2D18;
 			packageReferences = (
+				6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 614C17272B1FD3F4002A2D18 /* Products */;
 			projectDirPath = "";
@@ -326,6 +333,7 @@
 				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
 				61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */,
 				61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */,
+				6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */,
 				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
 				610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */,
 				61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */,
@@ -562,6 +570,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6159FCEB2B4E0CCF003703AC /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 614C171E2B1FD3F4002A2D18 /* Project object */;
 }

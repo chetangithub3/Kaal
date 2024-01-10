@@ -8,7 +8,7 @@
 import SwiftUI
   
 struct TileView: View {
-    
+    @EnvironmentObject var viewModel: DashboardViewModel
     @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
     var title: String
     var range: ClosedRange<Date>
