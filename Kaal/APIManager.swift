@@ -9,11 +9,7 @@ import Foundation
 import Combine
 
 
-enum APIError: Error {
-    case notFound
-    case badServer
-    case unhandled(Error)
-}
+
 
 protocol APIManagerDelegate {
     func publisher<T: Decodable>(for url: URL) -> AnyPublisher<T, Error>

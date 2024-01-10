@@ -57,3 +57,10 @@ enum NetworkStatus: String {
     case connected
     case disconnected
 }
+
+
+enum APIError: Error {
+    case notFound
+    case badServer
+    case unhandled(Error)
+}
