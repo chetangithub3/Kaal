@@ -12,7 +12,7 @@ import SwiftUI
 struct SettingsMenuView: View {
     @AppStorage("currentArea") var currentArea: String = ""
     @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
-    
+    @EnvironmentObject var viewModel: DashboardViewModel
     @State var selectedTimeFormat = ""
     @State var shouldAnimate = false
     var link = "https://www.youtube.com/"
@@ -72,6 +72,11 @@ struct SettingsMenuView: View {
             .onChange(of: selectedTimeFormat) { oldValue, newValue in
                 self.storedTimeFormat = newValue
             }
+            .onChange(of: currentArea, { oldValue, newValue in
+                if oldValue != newValue {
+                    viewModel.daylightFromLocation(on: Date())
+                }
+            })
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ChangeTab"))) { _ in
                shouldAnimate = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Highlighted24HourClockView: View, Clock {
-
+    var timezone: String
     var range: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State private var percentage: CGFloat = .zero
@@ -17,8 +17,8 @@ struct Highlighted24HourClockView: View, Clock {
         dateFormatter.dateFormat = "HH:mm"
         let calendar = Calendar.current
         let startTime = range.lowerBound
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        var hour: Double = Double(calendar.component(.hour, from: startTime))
         if hour > 24 {
             hour -= 24
         }
@@ -33,8 +33,8 @@ struct Highlighted24HourClockView: View, Clock {
         dateFormatter.dateFormat = "HH:mm"
         let calendar = Calendar.current
         let startTime = range.upperBound
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        var hour: Double = Double(calendar.component(.hour, from: startTime))
         if hour > 24 {
             hour -= 24
         }
@@ -136,7 +136,7 @@ struct Highlighted24HourClockView: View, Clock {
 }
 
 struct Highlighted12HourClockView: View, Clock {
-    
+    var timezone: String
     var range: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     
@@ -145,8 +145,8 @@ struct Highlighted12HourClockView: View, Clock {
         dateFormatter.dateFormat = "hh:mm"
         let calendar = Calendar.current
         let startTime = range.lowerBound
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        var hour: Double = Double(calendar.component(.hour, from: startTime))
         if hour > 24 {
             hour -= 24
         }
@@ -161,8 +161,8 @@ struct Highlighted12HourClockView: View, Clock {
         dateFormatter.dateFormat = "hh:mm"
         let calendar = Calendar.current
         let startTime = range.upperBound
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        var hour: Double = Double(calendar.component(.hour, from: startTime))
         if hour > 24 {
             hour -= 24
         }
@@ -268,5 +268,5 @@ struct Highlighted12HourClockView: View, Clock {
 }
 
 #Preview {
-    Highlighted12HourClockView(range: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()))
+    Highlighted12HourClockView(timezone: "UTC", range: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()))
 }

@@ -15,12 +15,13 @@ struct KaalModel: Identifiable, Equatable {
     
     var id = UUID()
     var place: String = ""
+    
+    
     var dateString: String
     var sunriseString: String
     var sunsetString: String
     let utcOffset: Int
-    let timezone: String?
-    
+    let timezone: String
     var date: Date 
     var sunrise: Date 
     var sunset: Date 
@@ -36,7 +37,7 @@ struct KaalModel: Identifiable, Equatable {
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
         let date = date
         let dayOfWeekString = dateFormatter.string(from: date)
      
@@ -48,7 +49,7 @@ struct KaalModel: Identifiable, Equatable {
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
         let dayOfWeekString = dateFormatter.string(from: date)
         return ranges[(yamaInterval[dayOfWeekString] ?? 1) - 1]
     }

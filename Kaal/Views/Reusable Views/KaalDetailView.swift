@@ -94,9 +94,9 @@ struct KaalDetailView: View {
             
             
             if storedTimeFormat == "hh:mm a" {
-                Highlighted12HourClockView(range: kaalRange).padding(.vertical)
+                Highlighted12HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
             } else {
-                Highlighted24HourClockView(range: kaalRange).padding(.vertical)
+                Highlighted24HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
             }
             HStack{
                 VStack(alignment: .leading) {
@@ -127,7 +127,7 @@ struct KaalDetailView: View {
     func convertDateRangeToStrings(range: ClosedRange<Date>) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = storedTimeFormat
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.timeZone = TimeZone(identifier: viewModel.kaal.timezone)
         let lowerBound = dateFormatter.string(from: range.lowerBound)
         startTime = lowerBound
         let upperbound = dateFormatter.string(from: range.upperBound)
