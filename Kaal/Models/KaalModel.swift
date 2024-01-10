@@ -38,9 +38,7 @@ struct KaalModel: Identifiable, Equatable {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         dateFormatter.timeZone = TimeZone(identifier: timezone)
-        let date = date
         let dayOfWeekString = dateFormatter.string(from: date)
-     
         return ranges[(rahuInterval[dayOfWeekString] ?? 1) - 1]
     }
     
