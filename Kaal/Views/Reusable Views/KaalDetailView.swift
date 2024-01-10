@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct KaalDetailView: View {
+    
     @AppStorage("currentArea") var currentArea: String = ""
     var kaalRange: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
@@ -15,54 +16,69 @@ struct KaalDetailView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
     @State var startTime = ""
     @State var endTime = ""
-    @State var shotting = false
     @State var sharedImage: UIImage?
     @State private var isShareSheetPresented = false
+    @State var isEnableShared = false
+    @State var buttonHeight: CGFloat = 30
+    
     var body: some View {
-        
-        VStack{
-            Button {
-                // change layout : todo
-                isShareSheetPresented = true
-            } label: {
-                Text("Share")
-            }
-//            ScreenshotablView(shotting: $shotting) { img in
-//                sharedImage = img
-//            } content: { style in
-//                screenshottableView(isAnimated: true)
-//            }
-
-            GeometryReader { proxy in
+        ScrollView{
+            
                 screenshottableView()
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1){
-                            let frame = proxy.frame(in: .global)
-                            let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
-                            sharedImage = screenshot
+                    .background(
+                        GeometryReader { geometry in
+                            VStack{
+                            }
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .onAppear(perform: {
+                                    DispatchQueue.main.async{
+                                        let frame = geometry.frame(in: .global)
+                                        let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
+                                        sharedImage = screenshot
+                                    }
+                                })
                         }
+                    )
+                    .redacted(reason: viewModel.isLoading == true ? .placeholder : [])
+//
+            
+            HStack{
+                Spacer()
+                Button {
+                    isShareSheetPresented = true
+                } label: {
+                    HStack{
+                        Text("Share").font(.subheadline)
+                        Image(systemName: "square.and.arrow.up")
                     }
+                    .padding(8)
+                    .frame(height: buttonHeight)
+                    .foregroundColor(.primary)
+                    .background(Color.secondary)
+                    .cornerRadius(10)
+                }
             }
+            Spacer()
         }
-        
+        .onPreferenceChange(ButtonHeightKey.self) { newValue in
+            buttonHeight = newValue
+        }
         .onAppear(perform: {
-            convertDateRangeToStrings()
-            shotting = true
+            convertDateRangeToStrings(range: kaalRange)
         })
         .onChange(of: date) { oldValue, newValue in
             viewModel.daylightFromLocation(on: date)
         }
         .onChange(of: viewModel.kaal) { oldValue, newValue in
-            convertDateRangeToStrings()
+            convertDateRangeToStrings(range: kaalRange)
         }
         .onChange(of: sharedImage) { oldValue, newValue in
-            // to do: enable share button
             if newValue != nil{
-                print("Hurray")
+                isEnableShared = true
             }
         }
         .sheet(isPresented: $isShareSheetPresented) {
-            ActivityView(activityItems: [ sharedImage]) // Replace this with the content you want to share
+            ActivityView(activityItems: [sharedImage]) // Replace this with the content you want to share
         }
         
         
@@ -78,25 +94,29 @@ struct KaalDetailView: View {
             
             
             if storedTimeFormat == "hh:mm a" {
-                Highlighted12HourClockView(range: kaalRange).padding(.vertical)
+                Highlighted12HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
             } else {
-                Highlighted24HourClockView(range: kaalRange).padding(.vertical)
+                Highlighted24HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
             }
             HStack{
                 VStack(alignment: .leading) {
-                    Text("Start time").font(.subheadline)
+                    Text("Starts at:").font(.subheadline)
                     Text(startTime).font(.title2).bold()
                 }
                 
                 Spacer()
                 
                 VStack(alignment: .leading) {
-                    Text("End time").font(.subheadline)
+                    Text("Ends at:").font(.subheadline)
                     Text(endTime).font(.title2).bold()
                 }
                 
             }
             .padding()
+            
+            LocationItemView()
+                .padding(.vertical)
+                .background(Color.secondary.opacity(0.3))
             
         }
         .background(Color.secondary.opacity(0.2))
@@ -104,13 +124,13 @@ struct KaalDetailView: View {
         .padding()
     }
     
-    func convertDateRangeToStrings() {
+    func convertDateRangeToStrings(range: ClosedRange<Date>) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = storedTimeFormat
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        let lowerBound = dateFormatter.string(from: viewModel.kaal.rahuKaal.lowerBound)
+        dateFormatter.timeZone = TimeZone(identifier: viewModel.kaal.timezone)
+        let lowerBound = dateFormatter.string(from: range.lowerBound)
         startTime = lowerBound
-        let upperbound = dateFormatter.string(from: viewModel.kaal.rahuKaal.upperBound)
+        let upperbound = dateFormatter.string(from: range.upperBound)
         endTime = upperbound
     }
 }
@@ -128,51 +148,17 @@ struct ActivityView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-            // Update the view controller if needed
+        
     }
 }
 
 
-extension UIView {
-    func takeScreenshot() -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.isOpaque, UIScreen.main.scale)
-        self.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let capturedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return capturedImage
-    }
+struct ButtonHeightKey: PreferenceKey {
+    typealias Value = CGFloat
     
-    func takeScreenshot(afterScreenUpdates: Bool) -> UIImage {
-        if !self.responds(to: #selector(drawHierarchy(in:afterScreenUpdates:))) {
-            return self.takeScreenshot()
-        }
-        UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.isOpaque, UIScreen.main.scale)
-        self.drawHierarchy(in: self.bounds, afterScreenUpdates: afterScreenUpdates)
-        let snapshot = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return snapshot!
-    }
-}
-
-extension View {
-    func takeScreenshot(frame:CGRect, afterScreenUpdates: Bool) -> UIImage {
-        let hosting = UIHostingController(rootView: self)
-        hosting.overrideUserInterfaceStyle = UIApplication.shared.currentUIWindow()?.overrideUserInterfaceStyle ?? .unspecified
-        hosting.view.frame = frame
-        return hosting.view.takeScreenshot(afterScreenUpdates: afterScreenUpdates)
-    }
-}
-
-extension UIApplication {
-    func currentUIWindow() -> UIWindow? {
-        let connectedScenes = UIApplication.shared.connectedScenes
-            .filter { $0.activationState == .foregroundActive }
-            .compactMap { $0 as? UIWindowScene }
-        
-        let window = connectedScenes.first?
-            .windows
-            .first { $0.isKeyWindow }
-        
-        return window
+    static var defaultValue: CGFloat = 30 // Default value
+ 
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }

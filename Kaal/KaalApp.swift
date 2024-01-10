@@ -19,8 +19,11 @@ struct KaalApp: App {
     }
 }
 
+
+
 struct IntroView: View{
-    
+    @State var networkStatus: NetworkStatus = .connected
+    @State private var timer: Timer? = nil
     @AppStorage("isFirstTime") var isFirstTime = true
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State private var errorMessage: String = ""
@@ -28,11 +31,26 @@ struct IntroView: View{
     @State var showAlert = false
     var body: some View {
         VStack{
-            if !isFirstTime {
-                MainView().environmentObject(DashboardViewModel())
+            if networkStatus == .disconnected{
+                NetworkErrorView()
             } else {
-                WelcomeView()
+                
+                if !isFirstTime {
+                    MainView().environmentObject(DashboardViewModel())
+                } else {
+                    WelcomeView()
+                }
             }
+            
+        }
+        .onAppear {
+            NetworkManager.shared.startMonitoring()
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                self.networkStatus = NetworkManager.shared.isNetworkAvailable ? .connected : .disconnected
+            }
+        }
+        .onDisappear {
+            NetworkManager.shared.stopMonitoring()
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
@@ -40,23 +58,6 @@ struct IntroView: View{
         .onDisappear {
             apiErrorCancellable?.cancel()
         }
-        .onAppear {
-            apiErrorCancellable = APIManager.shared.observeErrors()
-                .sink { error in
-                    switch error {
-                        case .notFound:
-                            self.errorMessage = "Resource not found"
-                               showAlert = true
-                        case .unhandled(let error):
-                            self.errorMessage = "Unhandled error: \(error.localizedDescription)"
-                               showAlert = true
-                        case .badServer:
-                            self.errorMessage = "Badf server: \(error.localizedDescription)"
-                            showAlert = true
-                    }
-                }
-        }
-        
     }
     
 }

@@ -8,7 +8,7 @@
 //https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873
 //
 //Specific date and setting timezone request:
-//https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873&timezone=UTC&date=1990-05-22
+//https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873&date=1990-05-22
 //
 //Date range request:
 //https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873&date_start=1990-05-01&date_end=1990-07-01
@@ -25,7 +25,7 @@ class DashboardViewModel: ObservableObject {
     @AppStorage("savedLong") var savedLng = ""
     var cancellebles = Set<AnyCancellable>()
     @Published var isLoading = false
-    @Published var kaal = KaalModel(dateString: "", sunriseString: "", sunsetString: "", utcOffset: 0, timezone: "")
+    @Published var kaal = KaalModel(dateString: "", sunriseString: "", sunsetString: "", utcOffset: 0, timezone: "", date: Date(), sunrise: Date(), sunset: Date())
     private var apiManager: APIManagerDelegate
     
     init(apiManager: APIManagerDelegate = APIManager()) {
@@ -60,7 +60,27 @@ class DashboardViewModel: ObservableObject {
             }, receiveValue: { (timeData: DaylightData) in
                 
                 if let sunrise = timeData.results?.sunrise, let sunset = timeData.results?.sunset, let date = timeData.results?.date, let utcOffset = timeData.results?.utcOffset, let timeZone = timeData.results?.timezone {
-                    self.kaal = KaalModel(dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone)
+                    
+                    //formatting
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
+                    dateFormatter.timeZone = TimeZone(identifier: timeZone)
+                    var dt = dateFormatter.date(from: "\(date) 00:00:01 AM")!
+                    
+                    // setting date
+                    //dt = dateFormatter.calendar.date(byAdding: .minute, value: utcOffset, to: dt) ?? dt
+                    print("utc : \(utcOffset)")
+                    print("timezone : \(timeZone)")
+                    //setting sunrise
+                    var combinedSunrise = dateFormatter.date(from: "\(date) \(sunrise)")!
+                  //  combinedSunrise = dateFormatter.calendar.date(byAdding: .minute, value: utcOffset, to: combinedSunrise) ?? combinedSunrise
+                    
+                    //setting sunset
+                    var combinedSunset = dateFormatter.date(from: "\(date) \(sunset)")!
+                   // combinedSunset = dateFormatter.calendar.date(byAdding: .minute, value: utcOffset, to: combinedSunset) ?? combinedSunset
+             
+                    self.kaal = KaalModel(dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
+                    
                     self.isLoading = false
                 }
                 

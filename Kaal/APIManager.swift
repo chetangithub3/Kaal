@@ -1,19 +1,15 @@
-//
-//  APIManager.swift
-//  Kaal
-//
-//  Created by Chetan Dhowlaghar on 12/5/23.
-//
+    //
+    //  APIManager.swift
+    //  Kaal
+    //
+    //  Created by Chetan Dhowlaghar on 12/5/23.
+    //
 
 import Foundation
 import Combine
 
 
-enum APIError: Error {
-    case notFound
-    case badServer
-    case unhandled(Error)
-}
+
 
 protocol APIManagerDelegate {
     func publisher<T: Decodable>(for url: URL) -> AnyPublisher<T, Error>
@@ -23,10 +19,10 @@ public struct APIManager: APIManagerDelegate {
     static let shared = APIManager()
     private let errorSubject = PassthroughSubject<APIError, Never>()
     
-     func publisher<T: Decodable>(for url: URL) -> AnyPublisher<T, Error> {
+    func publisher<T: Decodable>(for url: URL) -> AnyPublisher<T, Error> {
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { (data, response) in
-           
+                
                 guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
                     throw URLError(URLError.badServerResponse)
                 }
@@ -53,7 +49,7 @@ public struct APIManager: APIManagerDelegate {
     }
     
     func observeErrors() -> AnyPublisher<APIError, Never> {
-         return errorSubject.eraseToAnyPublisher()
-     }
+        return errorSubject.eraseToAnyPublisher()
+    }
     
 }

@@ -15,33 +15,16 @@ struct KaalModel: Identifiable, Equatable {
     
     var id = UUID()
     var place: String = ""
+    
+    
     var dateString: String
     var sunriseString: String
     var sunsetString: String
-    let utcOffset: Int?
-    let timezone: String?
-    
-    var date: Date {
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
-        var dt = dateFormatter.date(from: "\(dateString) 00:00:00 AM")!
-        dt = dateFormatter.calendar.date(byAdding: .hour, value: -8, to: dt) ?? dt
-        dt = dateFormatter.calendar.date(byAdding: .second, value: 1, to: dt) ?? dt
-        return dt
-    }
-    var sunrise: Date {
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
-        var combined = dateFormatter.date(from: "\(dateString) \(sunriseString)")!
-        combined = dateFormatter.calendar.date(byAdding: .hour, value: -8, to: combined) ?? combined
-        combined = dateFormatter.calendar.date(byAdding: .minute, value: 20, to: combined) ?? combined
-        return combined
-    }
-    var sunset: Date {
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
-        var combined = dateFormatter.date(from: "\(dateString) \(sunsetString)")!
-        combined = dateFormatter.calendar.date(byAdding: .hour, value: -8, to: combined) ?? combined
-        combined = dateFormatter.calendar.date(byAdding: .minute, value: 20, to: combined) ?? combined
-        return combined
-    }
+    let utcOffset: Int
+    let timezone: String
+    var date: Date 
+    var sunrise: Date 
+    var sunset: Date 
 
     // logic
     var rahuInterval: [String:Int] = ["Sunday": 8, "Monday" : 2, "Tuesday":  7, "Wednesday": 5, "Thursday": 6, "Friday": 4, "Saturday": 3]
@@ -50,27 +33,30 @@ struct KaalModel: Identifiable, Equatable {
     
     
     var rahuKaal: ClosedRange<Date> {
+       
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
-
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dt = dateFormatter.date(from: "\(dateString)")!
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
-        return ranges[(rahuInterval[dateFormatter.string(from: dt)] ?? 1) - 1]
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        let date = date
+        let dayOfWeekString = dateFormatter.string(from: date)
+     
+        return ranges[(rahuInterval[dayOfWeekString] ?? 1) - 1]
     }
     
     var yamaKaal: ClosedRange<Date> {
+        
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
-  
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dt = dateFormatter.date(from: "\(dateString)")!
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
-        return ranges[(yamaInterval[dateFormatter.string(from: dt)] ?? 1) - 1]
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        let dayOfWeekString = dateFormatter.string(from: date)
+        return ranges[(yamaInterval[dayOfWeekString] ?? 1) - 1]
     }
     
     var abhijitKaal: ClosedRange<Date> {
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 15)
         var myDate = date
-        myDate = dateFormatter.calendar.date(byAdding: .hour, value: 12, to: myDate) ?? myDate
         let myRange = rangeContainingTime(ranges: ranges, timeToCheck: myDate)
         return myRange ?? ranges[7]
     }

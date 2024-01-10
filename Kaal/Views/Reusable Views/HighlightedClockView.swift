@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct Highlighted24HourClockView: View {
-    
+struct Highlighted24HourClockView: View, Clock {
+    var timezone: String
     var range: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State private var percentage: CGFloat = .zero
@@ -17,8 +17,8 @@ struct Highlighted24HourClockView: View {
         dateFormatter.dateFormat = "HH:mm"
         let calendar = Calendar.current
         let startTime = range.lowerBound
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        var hour: Double = Double(calendar.component(.hour, from: startTime))
         if hour > 24 {
             hour -= 24
         }
@@ -33,8 +33,8 @@ struct Highlighted24HourClockView: View {
         dateFormatter.dateFormat = "HH:mm"
         let calendar = Calendar.current
         let startTime = range.upperBound
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        var hour: Double = Double(calendar.component(.hour, from: startTime))
         if hour > 24 {
             hour -= 24
         }
@@ -89,9 +89,7 @@ struct Highlighted24HourClockView: View {
                             self.percentage = 1.0
                         }
                     }
-                durationString(from: range)
-                    .font(.title)
-                    .bold()
+              
                 Image(systemName: "circle")
                     .font(.callout)
                     .foregroundColor(.blue)
@@ -120,6 +118,9 @@ struct Highlighted24HourClockView: View {
                             self.percentage = 1.0
                         }
                     }
+                durationTextFromRange(from: range)
+                    .font(.title)
+                    .bold()
             }
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
@@ -130,47 +131,12 @@ struct Highlighted24HourClockView: View {
             }
         }
     }
-    func durationString(from range: ClosedRange<Date>) -> Text {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.minute, .hour], from: range.lowerBound, to: range.upperBound)
-        print("hhhh")
-        print(components)
-        if let hours = components.hour, let minutes = components.minute {
-            
-            if hours == 0 {
-                return
-                Text("\(minutes)")
-                    .bold()
-                    .font(.title)
-                +
-                Text(" mins")
-                    .font(.caption)
-            } else {
-                return
-                Text("\(hours)")
-                    .bold()
-                    .font(.title)
-                +
-                Text(" hrs")
-                    .font(.caption)
-                +
-                Text(" \(minutes)")
-                    .bold()
-                    .font(.title)
-                +
-                Text(" mins")
-                    .font(.caption)
-                
-            }
-        }
-        return Text("Unknown duration")
-        
-    }
+  
     
 }
 
-struct Highlighted12HourClockView: View {
-    
+struct Highlighted12HourClockView: View, Clock {
+    var timezone: String
     var range: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     
@@ -179,8 +145,8 @@ struct Highlighted12HourClockView: View {
         dateFormatter.dateFormat = "hh:mm"
         let calendar = Calendar.current
         let startTime = range.lowerBound
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        var hour: Double = Double(calendar.component(.hour, from: startTime))
         if hour > 24 {
             hour -= 24
         }
@@ -195,8 +161,8 @@ struct Highlighted12HourClockView: View {
         dateFormatter.dateFormat = "hh:mm"
         let calendar = Calendar.current
         let startTime = range.upperBound
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        var hour: Double = Double(calendar.component(.hour, from: startTime) + 8)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        var hour: Double = Double(calendar.component(.hour, from: startTime))
         if hour > 24 {
             hour -= 24
         }
@@ -218,16 +184,22 @@ struct Highlighted12HourClockView: View {
                     ForEach(1...60, id: \.self) { index in
                         Rectangle()
                             .fill(.primary)
-                            .frame(width: 2, height: index % 5 == 0 ? 15 : 5)
-                            .offset(y: (width - 40) / 2)
+                            .frame(width: 2, height: index % 5 == 0 ? 10 : 0)
+                            .offset(y: (width - 35) / 2)
                             .rotationEffect(.init(degrees: Double((index * 6))))
                     }
-                    
+                    ForEach(1...60, id: \.self) { index in
+                        Rectangle()
+                            .fill(.primary)
+                            .frame(width: 2, height: index % 5 == 0 ? 0 : 5)
+                            .offset(y: (width - 30) / 2)
+                            .rotationEffect(.init(degrees: Double((index * 6))))
+                    }
                     ForEach(1..<13) { index in
                         Text("\(index)")
                             .rotationEffect(.init(degrees: 180))
                             .rotationEffect(.init(degrees: Double(index) * -30))
-                            .offset(y: (width - 90)/2)
+                            .offset(y: (width - 70)/2)
                             .rotationEffect(.init(degrees: Double(index) * 30))
                             .rotationEffect(.init(degrees: 180))
                         
@@ -243,9 +215,6 @@ struct Highlighted12HourClockView: View {
                 
                     .animation(.linear(duration: 1), value: 1)
              
-                
-                durationString(from: range)
-                
                 Image(systemName: "circle")
                     .font(.callout)
                     .foregroundColor(.blue)
@@ -271,6 +240,9 @@ struct Highlighted12HourClockView: View {
                     .rotationEffect(.init(degrees: percentage == 0 ? startAng : endAng))
                     .animation(.linear(duration: 1), value: 1)
                     
+                durationTextFromRange(from: range)
+                    .font(.title)
+                    .bold()
             }
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
@@ -292,45 +264,9 @@ struct Highlighted12HourClockView: View {
             }
         }
     }
-    func durationString(from range: ClosedRange<Date>) -> Text {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.minute, .hour], from: range.lowerBound, to: range.upperBound)
-        
-        if let hours = components.hour, let minutes = components.minute {
-            if hours == 0 {
-                return
-                Text("\(minutes)")
-                    .bold()
-                    .font(.title)
-                +
-                Text(" mins")
-                    .font(.caption)
-                
-                
-            } else {
-                return
-                Text("\(hours)")
-                    .bold()
-                    .font(.title)
-                +
-                Text(" hrs")
-                    .font(.caption)
-                +
-                Text(" \(minutes)")
-                    .bold()
-                    .font(.title)
-                +
-                Text(" mins")
-                    .font(.caption)
-                
-            }
-        }
-        return  Text("Unknown duration")
-        
-    }
     
 }
 
 #Preview {
-    Highlighted12HourClockView(range: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()))
+    Highlighted12HourClockView(timezone: "UTC", range: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()))
 }

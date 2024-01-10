@@ -25,13 +25,15 @@ struct DashboardView: View {
                         Text("Auspicious").tag(0)
                         Text("Inauspicious").tag(1)
                         // Text("More").tag(2)
-                    }
+                    }.padding(.horizontal)
                     .pickerStyle(SegmentedPickerStyle())
                     
                     if !viewModel.kaal.dateString.isEmpty {
                         TabView(selection: $selectedTab) {
                             AuspiciousTimesGridView().tag(0)
+                                .redacted(reason: viewModel.isLoading == true ? .placeholder : [])
                             InauspiciousTimesGridView().tag(1)
+                                .redacted(reason: viewModel.isLoading == true ? .placeholder : [])
                             // OthersGridView().tag(2)
                         }
                         .animation(.easeInOut)

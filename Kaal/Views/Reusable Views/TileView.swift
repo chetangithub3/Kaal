@@ -8,7 +8,7 @@
 import SwiftUI
   
 struct TileView: View {
-    
+    @EnvironmentObject var viewModel: DashboardViewModel
     @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
     var title: String
     var range: ClosedRange<Date>
@@ -43,7 +43,7 @@ struct TileView: View {
     func convertTheDateRange(range: ClosedRange<Date>) -> (String, String){
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = storedTimeFormat
-        timeFormatter.timeZone = TimeZone(identifier: "UTC")
+        timeFormatter.timeZone = TimeZone(identifier: viewModel.kaal.timezone)
         let start = timeFormatter.string(from: range.lowerBound)
         let end = timeFormatter.string(from: range.upperBound)
         return (start,end)
