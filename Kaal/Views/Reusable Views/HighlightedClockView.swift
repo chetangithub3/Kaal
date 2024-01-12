@@ -8,42 +8,54 @@
 import SwiftUI
 
 struct Highlighted24HourClockView: View, Clock {
+    
     var timezone: String
     var range: ClosedRange<Date>
+    
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State private var percentage: CGFloat = .zero
+    
     var startAng: Double {
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
         dateFormatter.dateFormat = "HH:mm"
+        
         let calendar = Calendar.current
         let startTime = range.lowerBound
-        dateFormatter.timeZone = TimeZone(identifier: timezone)
-        var hour: Double = Double(calendar.component(.hour, from: startTime))
-        if hour > 24 {
-            hour -= 24
-        }
+        
+        var components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
+        let hour = Double (components.hour!)
+
         let minute = Double(calendar.component(.minute, from: startTime))
         let absoluteHour: Double = (hour) + (minute/60)
+        print("absh   start\(absoluteHour)")
         let angle = (absoluteHour * 360) / 24
+        print("ang  start\(angle)")
         return angle
     }
     
     var endAng: Double {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let calendar = Calendar.current
-        let startTime = range.upperBound
         dateFormatter.timeZone = TimeZone(identifier: timezone)
-        var hour: Double = Double(calendar.component(.hour, from: startTime))
-        if hour > 24 {
-            hour -= 24
-        }
-        let minute = Double(calendar.component(.minute, from: startTime))
+        dateFormatter.dateFormat = "HH:mm"
+        
+        let calendar = Calendar.current
+        let endTime = range.upperBound
+        
+        var components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)
+        let hour = Double (components.hour!)
+        
+        let minute = Double(calendar.component(.minute, from: endTime))
         let absoluteHour: Double = (hour) + (minute/60)
+        
+        
+        print("absh end\(absoluteHour)")
         let angle = (absoluteHour * 360) / 24
+        print("ang  end\(angle)")
         return angle
     }
-    
+   
+
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
@@ -141,15 +153,16 @@ struct Highlighted12HourClockView: View, Clock {
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     
     var startAng: Double {
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm"
-        let calendar = Calendar.current
-        let startTime = range.lowerBound
         dateFormatter.timeZone = TimeZone(identifier: timezone)
-        var hour: Double = Double(calendar.component(.hour, from: startTime))
-        if hour > 24 {
-            hour -= 24
-        }
+        dateFormatter.dateFormat = "hh:mm a"
+       
+        var calendar = Calendar.current
+        var startTime = range.lowerBound
+        
+        var components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
+        let hour = Double (components.hour!)
         let minute = Double(calendar.component(.minute, from: startTime))
         let absoluteHour: Double = (hour) + (minute/60)
         let angle = (absoluteHour * 360) / 12
@@ -157,15 +170,17 @@ struct Highlighted12HourClockView: View, Clock {
     }
     
     var endAng: Double {
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        dateFormatter.dateFormat = "hh:mm a"
+        
         let calendar = Calendar.current
         let startTime = range.upperBound
-        dateFormatter.timeZone = TimeZone(identifier: timezone)
-        var hour: Double = Double(calendar.component(.hour, from: startTime))
-        if hour > 24 {
-            hour -= 24
-        }
+       
+      
+        var components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
+        let hour = Double (components.hour!)
         let minute = Double(calendar.component(.minute, from: startTime))
         let absoluteHour: Double = (hour) + (minute/60)
         let angle = (absoluteHour * 360) / 12
