@@ -48,7 +48,7 @@ struct SettingsMenuView: View {
                         }
                     }
                 }.scaleEffect(shouldAnimate ? 1.2 : 1.0) // Scaled effect for animation
-                    .animation(Animation.bouncy(duration: 0.5))
+                    .animation(.bouncy, value: 0.5)
                     
                     
                 

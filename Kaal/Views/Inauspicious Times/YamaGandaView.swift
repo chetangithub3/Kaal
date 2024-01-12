@@ -14,7 +14,8 @@ struct YamaGandaView: View {
     var body: some View {
         VStack{
             KaalDetailView(kaalRange: viewModel.kaal.yamaKaal)
-        }
+        }.navigationTitle(Kaal.yama.rawValue)
+            .navigationBarTitleDisplayMode(.inline)
        
     }
    

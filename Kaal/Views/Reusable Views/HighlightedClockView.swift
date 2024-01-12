@@ -23,7 +23,7 @@ struct Highlighted24HourClockView: View, Clock {
         let calendar = Calendar.current
         let startTime = range.lowerBound
         
-        var components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
+        let components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
         let hour = Double (components.hour!)
 
         let minute = Double(calendar.component(.minute, from: startTime))
@@ -42,7 +42,7 @@ struct Highlighted24HourClockView: View, Clock {
         let calendar = Calendar.current
         let endTime = range.upperBound
         
-        var components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)
+        let components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)
         let hour = Double (components.hour!)
         
         let minute = Double(calendar.component(.minute, from: endTime))
@@ -158,10 +158,10 @@ struct Highlighted12HourClockView: View, Clock {
         dateFormatter.timeZone = TimeZone(identifier: timezone)
         dateFormatter.dateFormat = "hh:mm a"
        
-        var calendar = Calendar.current
-        var startTime = range.lowerBound
-        
-        var components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
+        let calendar = Calendar.current
+        let startTime = range.lowerBound
+
+        let components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
         let hour = Double (components.hour!)
         let minute = Double(calendar.component(.minute, from: startTime))
         let absoluteHour: Double = (hour) + (minute/60)
@@ -179,7 +179,7 @@ struct Highlighted12HourClockView: View, Clock {
         let startTime = range.upperBound
        
       
-        var components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
+        let components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
         let hour = Double (components.hour!)
         let minute = Double(calendar.component(.minute, from: startTime))
         let absoluteHour: Double = (hour) + (minute/60)

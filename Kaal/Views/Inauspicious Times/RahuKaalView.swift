@@ -13,7 +13,8 @@ struct RahuKaalView: View {
     var body: some View {
         VStack{
             KaalDetailView(kaalRange: viewModel.kaal.rahuKaal)
-        }
+        }.navigationTitle(Kaal.rahu.rawValue)
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 

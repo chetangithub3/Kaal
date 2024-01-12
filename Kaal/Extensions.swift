@@ -64,3 +64,10 @@ enum APIError: Error {
     case badServer
     case unhandled(Error)
 }
+
+enum Kaal: String {
+    case abhijit = "Abhijit Kaal"
+    case brahma = "Brahma Muhurta"
+    case rahu = "Rahu Kaal"
+    case yama = "Yama Ganda"
+}
