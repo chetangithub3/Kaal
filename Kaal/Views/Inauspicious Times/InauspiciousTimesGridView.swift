@@ -22,7 +22,7 @@ struct InauspiciousTimesGridView: View {
                 NavigationLink {
                     YamaGandaView()
                 } label: {
-                    TileView(title: "Yama Gand", range: viewModel.kaal.yamaKaal)
+                    TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal)
                 }
             }
             

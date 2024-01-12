@@ -16,7 +16,8 @@ struct BrahmaMuhurtaView: View {
     var body: some View {
         VStack{
             KaalDetailView(kaalRange: viewModel.kaal.brahmaMahurat)
-        }
+        }.navigationTitle(Kaal.brahma.rawValue)
+            .navigationBarTitleDisplayMode(.inline)
     }
     
 }

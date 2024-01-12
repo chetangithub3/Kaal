@@ -23,7 +23,6 @@ struct KaalDetailView: View {
     
     var body: some View {
         ScrollView{
-            
                 screenshottableView()
                     .background(
                         GeometryReader { geometry in
@@ -78,15 +77,13 @@ struct KaalDetailView: View {
             }
         }
         .sheet(isPresented: $isShareSheetPresented) {
-            ActivityView(activityItems: [sharedImage]) // Replace this with the content you want to share
+            ActivityView(activityItems: [sharedImage as Any]) // Replace this with the content you want to share
         }
         
         
     }
     
     func screenshottableView() -> some View {
-        
-        return
         VStack{
             CustomDatePickerView(date: $date)
                 .padding(.vertical)

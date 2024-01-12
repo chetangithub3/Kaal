@@ -17,7 +17,7 @@ struct LoadingView: View {
                 .frame(width: 100, height: 100)
                 .cornerRadius(15)
                 .rotationEffect(.degrees(isLoading ? 360 : 0))
-                .animation(Animation.linear(duration: 3.0).repeatForever(autoreverses: false))
+                .animation(.linear(duration: 3.0).repeatForever(autoreverses: false), value: 1)
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
                         self.isLoading = true
