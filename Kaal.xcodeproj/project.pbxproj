@@ -43,6 +43,7 @@
 		61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C62B37A16500221661 /* WelcomeView.swift */; };
 		61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C82B37A71E00221661 /* LocationPermissionView.swift */; };
 		61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */; };
+		61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EA78072B512BED00AF618F /* ForLaterVersions.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		61DE51C62B37A16500221661 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		61DE51C82B37A71E00221661 /* LocationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionView.swift; sourceTree = "<group>"; };
 		61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchBarView.swift; sourceTree = "<group>"; };
+		61EA78072B512BED00AF618F /* ForLaterVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForLaterVersions.swift; sourceTree = "<group>"; };
 		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,6 +245,7 @@
 				610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */,
 				61B5DBFB2B4387D9003E0E8C /* KaalDetailView.swift */,
 				61D694D42B4D15D40039A97F /* LocationItemView.swift */,
+				61EA78072B512BED00AF618F /* ForLaterVersions.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */,
 				610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */,
 				61A1C77B2B291D1000E42544 /* MainView.swift in Sources */,
+				61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
 				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
