@@ -14,6 +14,7 @@ struct KaalApp: App {
     var body: some Scene {
         WindowGroup {
             IntroView()
+                .environment(\.colorScheme, .light)
             
         }
     }
