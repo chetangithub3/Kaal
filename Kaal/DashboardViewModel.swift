@@ -73,7 +73,7 @@ class DashboardViewModel: ObservableObject {
                     var combinedSunset = dateFormatter.date(from: "\(date) \(sunset)")!
   
                     self.kaal = KaalModel(dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
-                    dump(self.kaal)
+           
                     self.isLoading = false
                 }
                 
