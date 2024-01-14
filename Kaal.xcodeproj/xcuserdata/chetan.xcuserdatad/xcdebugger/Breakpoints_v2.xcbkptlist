@@ -115,5 +115,179 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4B34E682-537D-49D3-A417-986B49B5AA1B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/Views/Onboarding/LocationPermissionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "reverseGeocode(location:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4B34E682-537D-49D3-A417-986B49B5AA1B - 8259497042b159"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kaal.LocationPermissionView.reverseGeocode(location: __C.CLLocation) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Onboarding/LocationPermissionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "4B34E682-537D-49D3-A417-986B49B5AA1B - dc7330108e8a52be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Kaal.LocationPermissionView.reverseGeocode(location: __C.CLLocation) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Onboarding/LocationPermissionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "4B34E682-537D-49D3-A417-986B49B5AA1B - dc7330108e8a529d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Kaal.LocationPermissionView.reverseGeocode(location: __C.CLLocation) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Onboarding/LocationPermissionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "1768">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E44C2A7-A5CD-44CB-A22B-013E315F4472"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/Views/Onboarding/LocationPermissionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "reverseGeocode(location:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8E44C2A7-A5CD-44CB-A22B-013E315F4472 - dc7330108e8a51db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Kaal.LocationPermissionView.reverseGeocode(location: __C.CLLocation) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Onboarding/LocationPermissionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "560">
+               </Location>
+               <Location
+                  uuid = "8E44C2A7-A5CD-44CB-A22B-013E315F4472 - dc7330108e8a51db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Kaal.LocationPermissionView.reverseGeocode(location: __C.CLLocation) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Onboarding/LocationPermissionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "876">
+               </Location>
+               <Location
+                  uuid = "8E44C2A7-A5CD-44CB-A22B-013E315F4472 - dc7330108e8a513a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Kaal.LocationPermissionView.reverseGeocode(location: __C.CLLocation) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Onboarding/LocationPermissionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "1208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68AD488E-01CD-4270-B2EB-BF15153F6C26"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/Views/Onboarding/LocationPermissionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "reverseGeocode(location:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "68AD488E-01CD-4270-B2EB-BF15153F6C26 - dc7330108e8a51f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Kaal.LocationPermissionView.reverseGeocode(location: __C.CLLocation) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Onboarding/LocationPermissionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "1208">
+               </Location>
+               <Location
+                  uuid = "68AD488E-01CD-4270-B2EB-BF15153F6C26 - dc7330108e8a51f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Kaal.LocationPermissionView.reverseGeocode(location: __C.CLLocation) -&gt; ()"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Onboarding/LocationPermissionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "1684">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
