@@ -95,22 +95,30 @@ struct KaalDetailView: View {
             } else {
                 Highlighted24HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
             }
-            HStack{
-                VStack(alignment: .leading) {
-                    Text("Starts at:").font(.subheadline)
-                    Text(startTime).font(.title2).bold()
+            VStack{
+                HStack{
+                    VStack(alignment: .leading) {
+                        Text("Starts at:").font(.subheadline)
+                        Text(startTime).font(.title2).bold()
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .leading) {
+                        Text("Ends at:").font(.subheadline)
+                        Text(endTime).font(.title2).bold()
+                    }
+                    
                 }
-                
-                Spacer()
-                
-                VStack(alignment: .leading) {
-                    Text("Ends at:").font(.subheadline)
-                    Text(endTime).font(.title2).bold()
-                }
-                
+                Text("Note: All times are according to the local time of the saved location.")
+                               .italic()
+                               .font(.subheadline)
+                               .foregroundColor(.gray)
+                               .lineLimit(1)
+                               .minimumScaleFactor(0.5)
             }
             .padding()
-            
+      
             LocationItemView()
                 .padding(.vertical)
                 .background(Color.secondary.opacity(0.3))

@@ -66,6 +66,7 @@ struct SettingsMenuView: View {
                 
             }
             .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
                 selectedTimeFormat = storedTimeFormat
             })
