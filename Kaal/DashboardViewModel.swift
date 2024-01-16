@@ -25,7 +25,7 @@ class DashboardViewModel: ObservableObject {
     @AppStorage("savedLong") var savedLng = ""
     var cancellebles = Set<AnyCancellable>()
     @Published var isLoading = false
-    @Published var kaal = KaalModel(dateString: "", sunriseString: "", sunsetString: "", utcOffset: 0, timezone: "", date: Date(), sunrise: Date(), sunset: Date())
+    @Published var kaal = KaalModel(dateString: "2024-01-16", sunriseString: "7:54:11 AM", sunsetString: "4:42:54 PM", utcOffset: -480, timezone: "America/Los_Angeles", date: Date(), sunrise: Date(), sunset: Date())
     private var apiManager: APIManagerDelegate
     
     init(apiManager: APIManagerDelegate = APIManager()) {
@@ -42,6 +42,7 @@ class DashboardViewModel: ObservableObject {
         let formattedDateString = dateFormatter.string(from: date)
         let url = baseURL + "?lat=\(lat)&lng=\(lng)&date=\(formattedDateString)"
         guard let URL = URL(string: url) else {return}
+        print(url)
         fetchData(from: URL)
     }
     

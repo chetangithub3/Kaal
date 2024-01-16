@@ -164,9 +164,7 @@ struct Highlighted12HourClockView: View, Clock {
         let minute = Double((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)).minute!)
         let absoluteHour: Double = (hour) + (minute/60)
         var angle = (absoluteHour * 360) / 12
-        while angle >= 360{
-            angle -= 360
-        }
+
         return angle
     }
     
@@ -183,9 +181,7 @@ struct Highlighted12HourClockView: View, Clock {
         let minute = Double((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)).minute!)
         let absoluteHour: Double = (hour) + (minute/60)
         var angle = (absoluteHour * 360) / 12
-        while angle >= 360{
-            angle -= 360
-        }
+
         return angle
     }
     
@@ -225,12 +221,25 @@ struct Highlighted12HourClockView: View, Clock {
                 }
                 Circle()
                     .stroke(.primary.opacity(0.06), lineWidth: 20)
-                
-                Circle()
-                    .trim(from: startAng/360 , to: percentage == 0 ? startAng/360  : endAng/360 )
-                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                    .rotationEffect(.init(degrees: -90))
-                    .animation(.linear(duration: 1), value: 1)
+                if getTrims().0 > getTrims().1 {
+                    Circle()
+                        .trim(from: getTrims().0 , to: percentage == 0 ? getTrims().0   :  1 )
+                        .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                        .rotationEffect(.init(degrees: -90))
+                       .animation(.linear(duration: 3).delay(0.2), value: 3)
+                    Circle()
+                        .trim(from: 0.0001 , to: percentage == 0 ? 0.0001  :  getTrims().1 )
+                        .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                        .rotationEffect(.init(degrees: -90))
+                        .animation(.linear(duration: 0.5).delay(1.2), value: 1)
+                } else {
+                    Circle()
+                        .trim(from: getTrims().0 , to: percentage == 0 ? getTrims().0   :  getTrims().1 )
+                        .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                        .rotationEffect(.init(degrees: -90))
+                        .animation(.linear(duration: 1), value: 1)
+                }
+               
              
                 Image(systemName: "circle")
                     .font(.callout)
@@ -281,7 +290,19 @@ struct Highlighted12HourClockView: View, Clock {
             }
         }
     }
-    
+
+    func getTrims() -> (CGFloat,CGFloat) {
+        var startAngle = startAng
+        var endAngle = endAng
+        while startAngle >= 360{
+            startAngle -= 360
+        }
+        while endAngle >= 360{
+            endAngle -= 360
+        }
+        return (CGFloat(startAngle/360), CGFloat(endAngle/360))
+        
+    }
 }
 
 #Preview {
