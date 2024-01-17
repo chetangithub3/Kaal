@@ -121,6 +121,7 @@ struct KaalDetailView: View {
       
             LocationItemView()
                 .padding(.vertical)
+                .padding(.horizontal)
                 .background(Color.secondary.opacity(0.3))
             
         }

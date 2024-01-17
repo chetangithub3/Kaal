@@ -71,3 +71,8 @@ enum Kaal: String {
     case rahu = "Rahu Kaal"
     case yama = "Yama Ganda"
 }
+
+enum LocationItemTheme {
+    case underlined
+    case button
+}

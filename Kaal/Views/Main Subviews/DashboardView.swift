@@ -34,9 +34,7 @@ struct DashboardView: View {
                         Image(systemName: "calendar")
                         Text(currentDate).font(.subheadline)
                         Spacer()
-                        Image(systemName: "map")
-                        Text(currentArea)
-                            .font(.subheadline)
+                        LocationItemView(theme: .underlined)
                     }
                     
                 }.padding(.horizontal)
@@ -78,20 +76,19 @@ struct DashboardView: View {
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                         .padding(.horizontal)
-                    
+                    HStack{
+                        Text("Mahurat:")
+                            .bold()
+                            .font(.title2)
+                        Spacer()
+                    }.padding([.horizontal, .top])
                     ScrollView(.horizontal) {
                         if !viewModel.kaal.dateString.isEmpty {
-                            HStack {
+                            HStack(spacing: 16) {
                                 NavigationLink {
                                     AbhijitKaalView()
                                 } label: {
                                     TileView(title: "Abhijit Kaal", range: viewModel.kaal.abhijitKaal)
-                                }
-                                
-                                NavigationLink {
-                                    BrahmaMuhurtaView()
-                                } label: {
-                                    TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat)
                                 }
                                 
                                 NavigationLink {
@@ -101,15 +98,22 @@ struct DashboardView: View {
                                 }
                                 
                                 NavigationLink {
+                                    BrahmaMuhurtaView()
+                                } label: {
+                                    TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat)
+                                }
+                               
+                                NavigationLink {
                                     YamaGandaView()
                                 } label: {
                                     TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal)
                                 }
                                 
-                            }
+                            }.padding(.horizontal, 16)
                         }
-                    }.padding(.vertical)
-                        .scrollIndicators(.hidden)
+                    }
+                    .scrollIndicators(.hidden)
+                    
                 }
             }
             .onAppear(perform: {
