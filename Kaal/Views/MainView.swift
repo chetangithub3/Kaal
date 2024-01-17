@@ -17,11 +17,11 @@ struct MainView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }.tag(1)
-//            NotificationsView()
-//                .tabItem {
-//                    Image(systemName: "bell.fill")
-//                    Text("Notification")
-//                }.tag(2)
+            NotificationsView()
+                .tabItem {
+                    Image(systemName: "bell.fill")
+                    Text("Notification")
+                }.tag(2)
             
             SettingsMenuView()
                 .tabItem {
