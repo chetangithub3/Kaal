@@ -135,6 +135,17 @@ struct Highlighted24HourClockView: View, Clock {
             }
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
+        .onAppear(perform: {
+                // letting screenshot with no animation, then adding animation by changing values of percentageafter the page appears fully
+                DispatchQueue.main.async {
+                    self.percentage = 0.0
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        withAnimation {
+                            self.percentage = 1.0
+                        }
+                    }
+                }
+        })
         .onChange(of: range) { _, _ in
             self.percentage = 0
             withAnimation {
@@ -220,25 +231,13 @@ struct Highlighted12HourClockView: View, Clock {
                 }
                 Circle()
                     .stroke(.primary.opacity(0.06), lineWidth: 20)
-                if getTrims().0 > getTrims().1 {
-                    Circle()
-                        .trim(from: getTrims().0 , to: percentage == 0 ? getTrims().0   :  1 )
-                        .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                        .rotationEffect(.init(degrees: -90))
-                       .animation(.linear(duration: 3).delay(0.2), value: 3)
-                    Circle()
-                        .trim(from: 0.0001 , to: percentage == 0 ? 0.0001  :  getTrims().1 )
-                        .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                        .rotationEffect(.init(degrees: -90))
-                        .animation(.linear(duration: 0.5).delay(1.2), value: 1)
-                } else {
-                    Circle()
-                        .trim(from: getTrims().0 , to: percentage == 0 ? getTrims().0   :  getTrims().1 )
-                        .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                        .rotationEffect(.init(degrees: -90))
-                        .animation(.linear(duration: 1), value: 1)
-                }
-               
+
+                Circle()
+                    .trim(from: 0.0 , to: percentage == 0 ? 0.0   :  getAngles().1 / 360 )
+                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                    .rotationEffect(.init(degrees: -90))
+                    .rotationEffect(.init(degrees: getAngles().0))
+                    .animation(.linear(duration: 1), value: 1)
              
                 Image(systemName: "circle")
                     .font(.callout)
@@ -290,7 +289,7 @@ struct Highlighted12HourClockView: View, Clock {
         }
     }
 
-    func getTrims() -> (CGFloat,CGFloat) {
+    func getAngles() -> (Double,Double) {
         var startAngle = startAng
         var endAngle = endAng
         while startAngle >= 360{
@@ -299,9 +298,14 @@ struct Highlighted12HourClockView: View, Clock {
         while endAngle >= 360{
             endAngle -= 360
         }
-        return (CGFloat(startAngle/360), CGFloat(endAngle/360))
-        
+        if startAngle > endAngle {
+            endAngle = endAngle - startAngle + 360
+        } else {
+            endAngle = endAngle - startAngle
+        }
+        return (startAngle, endAngle)
     }
+
 }
 
 #Preview {
