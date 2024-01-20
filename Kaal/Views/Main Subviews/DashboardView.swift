@@ -152,7 +152,6 @@ struct DashboardView: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = storedTimeFormat
         dateFormatter.timeZone = TimeZone(identifier: viewModel.kaal.timezone)
-        print(";;;;;;;;;;;; \(range)")
         let lowerBound = dateFormatter.string(from: range.lowerBound)
         startTime = lowerBound
         let upperbound = dateFormatter.string(from: range.upperBound)

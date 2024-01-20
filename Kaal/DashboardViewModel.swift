@@ -42,7 +42,7 @@ class DashboardViewModel: ObservableObject {
         let formattedDateString = dateFormatter.string(from: date)
         let url = baseURL + "?lat=\(lat)&lng=\(lng)&date=\(formattedDateString)"
         guard let URL = URL(string: url) else {return}
-        print(url)
+      
         fetchData(from: URL)
     }
     

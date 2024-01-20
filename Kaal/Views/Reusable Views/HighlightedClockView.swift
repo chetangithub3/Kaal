@@ -28,9 +28,9 @@ struct Highlighted24HourClockView: View, Clock {
 
         let minute = Double(calendar.component(.minute, from: startTime))
         let absoluteHour: Double = (hour) + (minute/60)
-        print("absh   start\(absoluteHour)")
+  
         let angle = (absoluteHour * 360) / 24
-        print("ang  start\(angle)")
+   
         return angle
     }
     
@@ -48,10 +48,9 @@ struct Highlighted24HourClockView: View, Clock {
         let minute = Double(calendar.component(.minute, from: endTime))
         let absoluteHour: Double = (hour) + (minute/60)
         
-        
-        print("absh end\(absoluteHour)")
+
         let angle = (absoluteHour * 360) / 24
-        print("ang  end\(angle)")
+
         return angle
     }
    
