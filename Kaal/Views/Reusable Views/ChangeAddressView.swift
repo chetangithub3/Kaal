@@ -56,8 +56,15 @@ struct ChangeAddressView: View {
                 })
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .foregroundColor(.primary)
-                    .padding(.horizontal)
-                
+                   
+                Button(action: {
+                    ddViewModel.callAPI(text: ddViewModel.searchText)
+                }, label: {
+                    Image(systemName: "magnifyingglass")
+                        .cornerRadius(8)
+                }).padding(.horizontal)
+                    .buttonStyle(.bordered)
+                    .disabled(ddViewModel.searchText.isEmpty)
             }
              
             if ddViewModel.showDropDown && !ddViewModel.results.isEmpty {

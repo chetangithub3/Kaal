@@ -13,6 +13,19 @@ protocol Clock {
 
 extension Clock {
     
+    func getTrims(startAng: Double, endAng: Double) -> (CGFloat,CGFloat) {
+        var startAngle = startAng
+        var endAngle = endAng
+        while startAngle >= 360{
+            startAngle -= 360
+        }
+        while endAngle >= 360{
+            endAngle -= 360
+        }
+        return (CGFloat(startAngle/360), CGFloat(endAngle/360))
+        
+    }
+    
     func durationTextFromRange(from range: ClosedRange<Date>) -> Text {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.minute, .hour], from: range.lowerBound, to: range.upperBound)

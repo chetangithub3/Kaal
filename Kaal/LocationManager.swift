@@ -25,22 +25,22 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func locationManager(_ manager: CLLocationManager,
-                         didChangeAuthorization status:      CLAuthorizationStatus) {
-
-        switch status {
-            case .notDetermined         : neverAsked = true
-            case .authorizedWhenInUse   : 
-                exposedLocation = locationManager.location
-                permissionGiven = true
-            case .authorizedAlways      : 
-                exposedLocation = locationManager.location
-                permissionGiven = true
-            case .restricted            : self.permissionDenied = true
-            case .denied                : self.permissionDenied = true
-            default                     : openAppSettings()
-        }
-    }
+//    func locationManager(_ manager: CLLocationManager,
+//                         didChangeAuthorization status:      CLAuthorizationStatus) {
+//
+//        switch status {
+//            case .notDetermined         : neverAsked = true
+//            case .authorizedWhenInUse   : 
+//                exposedLocation = locationManager.location
+//                permissionGiven = true
+//            case .authorizedAlways      : 
+//                exposedLocation = locationManager.location
+//                permissionGiven = true
+//            case .restricted            : self.permissionDenied = true
+//            case .denied                : self.permissionDenied = true
+//            default                     : openAppSettings()
+//        }
+//    }
     
     func askPermission() {
         locationManager.requestWhenInUseAuthorization()
@@ -50,11 +50,16 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         
         let authStatus = locationManager.authorizationStatus
         switch authStatus {
-            case .notDetermined         : neverAsked = true
-            case .authorizedWhenInUse   : exposedLocation = locationManager.location
-            case .authorizedAlways      : exposedLocation = locationManager.location
-            case .restricted            : break //
-            case .denied                : break //
+            case .notDetermined         : askPermission()
+                
+            case .authorizedWhenInUse   :
+                exposedLocation = locationManager.location
+                permissionGiven = true
+            case .authorizedAlways      :
+                exposedLocation = locationManager.location
+                permissionGiven = true
+            case .restricted            : openAppSettings()
+            case .denied                : openAppSettings()
             default                     : openAppSettings()
         }
         return locationManager.location

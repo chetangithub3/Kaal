@@ -36,7 +36,12 @@ struct LocationPermissionView: View {
                     .padding()
                 
                 Button(action: {
-                    locationManager.askPermission()
+                  let location =  locationManager.handleLocation()
+                    if let location = location {
+                        savedLat = location.coordinate.latitude.description
+                        savedLng = location.coordinate.longitude.description
+                        updateLocation()
+                    }
                 }) {
                     Text("Check for your location")
                         .fontWeight(.bold)
@@ -87,16 +92,22 @@ struct LocationPermissionView: View {
                 }
             }
             .onChange(of: savedLat) { oldValue, newValue in
-                
                 dashboardVM.daylightFromLocation()
-                
             }
             .onChange(of: dashboardVM.kaal) { oldValue, newValue in
                 showNext = true
+                
             }
+            .onAppear(perform: checkSavedLocation)
         
     }
     
+    func checkSavedLocation() {
+        if !savedLat.isEmpty && !savedLng.isEmpty {
+            showNext = true
+            dashboardVM.daylightFromLocation()
+        }
+    }
     func updateLocation(){
         if let location = locationManager.handleLocation() {
             savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""

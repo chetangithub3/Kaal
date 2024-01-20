@@ -31,6 +31,12 @@ struct KaalModel: Identifiable, Equatable {
     
     var yamaInterval: [String:Int] = ["Sunday": 5, "Monday" : 4, "Tuesday":  3, "Wednesday": 2, "Thursday": 1, "Friday": 7, "Saturday": 6]
     
+    var daySpan: ClosedRange<Date> {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        return sunrise...sunset
+    }
     
     var rahuKaal: ClosedRange<Date> {
        

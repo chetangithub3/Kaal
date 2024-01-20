@@ -33,7 +33,7 @@ struct TileView: View {
                 .tint(.primary)
                 .background(Color.blue.gradient)
         )
-        .cornerRadius(8)
+        .cornerRadius(10)
         .foregroundColor(.white)
         
 
