@@ -45,6 +45,7 @@
 		61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */; };
 		61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EA78072B512BED00AF618F /* ForLaterVersions.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
+		61F7783D2B5C871B00E2C0B8 /* OnboardingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 61F7783C2B5C871B00E2C0B8 /* OnboardingKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F7783D2B5C871B00E2C0B8 /* OnboardingKit in Frameworks */,
 				6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +270,7 @@
 			name = Kaal;
 			packageProductDependencies = (
 				6159FCEB2B4E0CCF003703AC /* Reachability */,
+				61F7783C2B5C871B00E2C0B8 /* OnboardingKit */,
 			);
 			productName = Kaal;
 			productReference = 614C17262B1FD3F4002A2D18 /* Kaal.app */;
@@ -299,6 +302,7 @@
 			mainGroup = 614C171D2B1FD3F4002A2D18;
 			packageReferences = (
 				6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */,
+				61F7783B2B5C871B00E2C0B8 /* XCRemoteSwiftPackageReference "OnboardingKit" */,
 			);
 			productRefGroup = 614C17272B1FD3F4002A2D18 /* Products */;
 			projectDirPath = "";
@@ -511,7 +515,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chetan.KaalaVeda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -545,7 +549,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chetan.KaalaVeda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -586,6 +590,14 @@
 				kind = branch;
 			};
 		};
+		61F7783B2B5C871B00E2C0B8 /* XCRemoteSwiftPackageReference "OnboardingKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JamesSedlacek/OnboardingKit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -593,6 +605,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
+		};
+		61F7783C2B5C871B00E2C0B8 /* OnboardingKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61F7783B2B5C871B00E2C0B8 /* XCRemoteSwiftPackageReference "OnboardingKit" */;
+			productName = OnboardingKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -6,11 +6,14 @@
     //
 
 import SwiftUI
+import OnboardingKit
 
 struct WelcomeView: View {
     
     @AppStorage("isFirstTime") var isFirstTime = true
-    
+//    @Environment(OnboardingProvider.self)
+//      private var onboardingProvider
+//      @State private var isAnimating = false
     var body: some View {
         NavigationView {
             VStack {
@@ -29,6 +32,10 @@ struct WelcomeView: View {
                         .font(.headline)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
+                    Text("Discover the power of choosing the right moment with our app. Align your actions with the cosmic flow by tracking the most auspicious muhurtas. Increase your chances of success and reduce obstacles effortlessly.")
+                           .font(.headline)
+                           .lineLimit(1)
+                           .minimumScaleFactor(0.5)
                 }
                 .padding()
                 
