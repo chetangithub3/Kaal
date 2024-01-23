@@ -18,6 +18,7 @@ class AddressSearchViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var showDropDown = false
     @Published var results = [AddressesListResponseElement]()
+    @Published var isNot3Chars = true
     
     init(apiManager: APIManager) {
         self.apiManager = apiManager
@@ -30,7 +31,10 @@ class AddressSearchViewModel: ObservableObject {
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink { text in
                 if text.count > 2 {
+                    self.isNot3Chars = false
                     self.callAPI(text: text)
+                } else {
+                    
                 }
             }.store(in: &textCancellebles)
     }

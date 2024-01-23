@@ -15,7 +15,15 @@ struct ChangeAddressView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var ddViewModel: AddressSearchViewModel
     @ObservedObject var locationManager = LocationManager()
-  
+    @State private var selectedOption = 0
+    
+    var showDropdown: Bool {
+        withAnimation {
+            ddViewModel.showDropDown && !ddViewModel.results.isEmpty
+        }
+       
+    }
+    let options = ["Option 1", "Option 2", "Option 3", "Option 1", "Option 2", "Option 3"]
     var body: some View {
         VStack {
             Button(action: {
@@ -52,50 +60,51 @@ struct ChangeAddressView: View {
                 Spacer()
             }
             HStack {
-                TextField("Search area", text: $ddViewModel.searchText, onEditingChanged: { _ in
+                TextField("Search city", text: $ddViewModel.searchText, onEditingChanged: { _ in
                 })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(.plain)
                     .foregroundColor(.primary)
+                    .padding(8)
+                    
                    
                 Button(action: {
                     ddViewModel.callAPI(text: ddViewModel.searchText)
                 }, label: {
-                    Image(systemName: "magnifyingglass")
-                        .cornerRadius(8)
-                }).padding(.horizontal)
-                    .buttonStyle(.bordered)
-                    .disabled(ddViewModel.searchText.isEmpty)
-            }
-             
-            if ddViewModel.showDropDown && !ddViewModel.results.isEmpty {
-                List{
-                    ForEach(ddViewModel.results.prefix(6), id: \.self) { result in
-                        let displayName = result.displayName ?? ""
-                        Button(action: {
-                            self.ddViewModel.showDropDown = false
-                            self.ddViewModel.searchText = ""
-                            if let lat = Double(result.lat ?? ""), let lon = Double(result.lon ?? "") {
-                                let location =  CLLocation(latitude: lat, longitude: lon)
-                                self.savedLat = result.lat ?? ""
-                                self.savedLng = result.lon ?? ""
-                                self.currentArea = result.displayName ?? ""
-                                reverseGeocode(location: location){ placemark, error in
-                                    if let area = placemark?.locality, let country = placemark?.country {
-                                        self.currentArea = "\(area), \(country)"
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    } else {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    }
-                                }
-                            }
-                        }, label: {
-                            HStack{
-                                Text(displayName)
-                                Spacer()
-                            }
-                        })               
-                    }
+                    
+                    Image(systemName: "location.magnifyingglass")
+                        .foregroundColor((ddViewModel.searchText.isEmpty && ddViewModel.isNot3Chars) ? .white : .primary)
+                       
+                        .padding(.horizontal, 8)
+                        
+                })
+                .disabled(ddViewModel.searchText.isEmpty && ddViewModel.isNot3Chars)
+            }.padding(.horizontal)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(.primary.opacity(0.5), lineWidth: 2)
+                        .padding(.horizontal)
                 }
+             
+            if showDropdown {
+                DropDownMenuView() { option in
+                    let result = ddViewModel.results[option]
+                    self.ddViewModel.showDropDown = false
+                    self.ddViewModel.searchText = ""
+                    if let lat = Double(result.lat ?? ""), let lon = Double(result.lon ?? "") {
+                        let location =  CLLocation(latitude: lat, longitude: lon)
+                        self.savedLat = result.lat ?? ""
+                        self.savedLng = result.lon ?? ""
+                        self.currentArea = result.displayName ?? ""
+                        reverseGeocode(location: location){ placemark, error in
+                            if let area = placemark?.locality, let country = placemark?.country {
+                                self.currentArea = "\(area), \(country)"
+                                self.presentationMode.wrappedValue.dismiss()
+                            } else {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                    }
+                }.environmentObject(ddViewModel)
             }
             Spacer()
         }.onChange(of: locationManager.permissionGiven) { oldValue, newValue in
