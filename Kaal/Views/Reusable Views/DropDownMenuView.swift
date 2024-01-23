@@ -1,9 +1,9 @@
-//
-//  DropDownMenuView.swift
-//  Kaal
-//
-//  Created by Chetan Dhowlaghar on 1/20/24.
-//
+    //
+    //  DropDownMenuView.swift
+    //  Kaal
+    //
+    //  Created by Chetan Dhowlaghar on 1/20/24.
+    //
 
 import SwiftUI
 
@@ -11,12 +11,12 @@ struct DropDownMenuView: View {
     @EnvironmentObject var ddViewModel: AddressSearchViewModel
     var action: (Int) -> Void
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             if ddViewModel.results.count == 0 {
                 Text("No results found")
             } else {
                 ScrollView{
-                    VStack(alignment: .center, spacing: 16){
+                    VStack{
                         ForEach($ddViewModel.results.indices) { option in
                             VStack(spacing: 0){
                                 HStack(alignment: .center) {
@@ -24,33 +24,23 @@ struct DropDownMenuView: View {
                                         .multilineTextAlignment(.leading)
                                         
                                     Spacer()
-                                }
-                                Divider().padding(.horizontal)
-                            }.padding(.horizontal)
+                                }.padding(8)
+                                Divider().padding(.horizontal, 8)
+                            }
+                            
                                 .onTapGesture(perform: {
                                     action(option)
                                 })
-                                
-                           
-                               
                         }
+                    } .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(.primary.opacity(0.5), lineWidth: 2)
                     }
                 }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(.primary.opacity(0.5), lineWidth: 2)
             }
-        }
-      
-        
             
-        
-       
-      
-                
-                
         }.padding()
-      
+        
     }
 }
 
