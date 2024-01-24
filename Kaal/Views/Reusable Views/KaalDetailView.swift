@@ -24,26 +24,23 @@ struct KaalDetailView: View {
     
     var body: some View {
         ScrollView{
-                screenshottableView()
-                    .background(
-                        GeometryReader { geometry in
-                            VStack{
-                            }
-                                .frame(width: geometry.size.width, height: geometry.size.height)
-                                .onAppear(perform: {
-                                    DispatchQueue.main.async{
-                                        let frame = geometry.frame(in: .global)
-                                        let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
-                                        sharedImage = screenshot
-                                    }
-                                })
+            screenshottableView()
+                .background(
+                    GeometryReader { geometry in
+                        VStack{
                         }
-                    )
-                    .redacted(reason: viewModel.isLoading ? .placeholder : [])
-                    .shimmering(
-                          active: viewModel.isLoading,
-                          animation: .easeInOut(duration: 2).repeatCount(5, autoreverses: false).delay(1)
-                      )
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .onAppear(perform: {
+                            DispatchQueue.main.async{
+                                let frame = geometry.frame(in: .global)
+                                let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
+                                sharedImage = screenshot
+                            }
+                        })
+                    }
+                )
+            
+            
             
             HStack{
                 Spacer()
@@ -92,44 +89,53 @@ struct KaalDetailView: View {
             CustomDatePickerView(date: $date, timezone: viewModel.kaal.timezone)
                 .padding(.vertical)
                 .background(Color.secondary.opacity(0.3))
-            
-                HStack{
-                        Text(kaal.title).font(.title3).bold()
-                        Text(":")
-                        Text(kaal.nature.description).font(.title3).bold()
-                }
-            
-            .padding()
-            
-            if storedTimeFormat == "hh:mm a" {
-                Highlighted12HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
-            } else {
-                Highlighted24HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
-            }
             VStack{
                 HStack{
-                    VStack(alignment: .leading) {
-                        Text("Starts at:").font(.subheadline)
-                        Text(startTime).font(.title2).bold()
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .leading) {
-                        Text("Ends at:").font(.subheadline)
-                        Text(endTime).font(.title2).bold()
-                    }
-                    
+                    Text(kaal.title).font(.title3).bold()
+                    Text(":")
+                    Text(kaal.nature.description).font(.title3).bold()
                 }
-                Text("Note: All times are according to the local time of the saved location.")
-                               .italic()
-                               .font(.subheadline)
-                               .foregroundColor(.gray)
-                               .lineLimit(1)
-                               .minimumScaleFactor(0.5)
+                
+                .padding()
+                
+                
+                
+                if storedTimeFormat == "hh:mm a" {
+                    Highlighted12HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
+                } else {
+                    Highlighted24HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
+                }
+                VStack{
+                    HStack{
+                        VStack(alignment: .leading) {
+                            Text("Starts at:").font(.subheadline)
+                            Text(startTime).font(.title2).bold()
+                        }
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .leading) {
+                            Text("Ends at:").font(.subheadline)
+                            Text(endTime).font(.title2).bold()
+                        }
+                        
+                    }
+                    Text("Note: All times are according to the local time of the saved location.")
+                        .italic()
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                }
             }
             .padding()
-      
+            .shimmering(
+                active: viewModel.isLoading,
+                animation: .easeInOut(duration: 2).repeatCount(5, autoreverses: false).delay(1)
+            )
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
+            
+            
             LocationItemView()
                 .padding(.vertical)
                 .padding(.horizontal)
@@ -174,7 +180,7 @@ struct ButtonHeightKey: PreferenceKey {
     typealias Value = CGFloat
     
     static var defaultValue: CGFloat = 30 // Default value
- 
+    
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }
