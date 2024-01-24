@@ -65,14 +65,75 @@ enum APIError: Error {
     case unhandled(Error)
 }
 
-enum Kaal: String {
-    case abhijit = "Abhijit Kaal"
-    case brahma = "Brahma Muhurta"
-    case rahu = "Rahu Kaal"
-    case yama = "Yama Ganda"
+
+enum TimeIntervalNature {
+    case auspicious
+    case inauspicious
+    case neutral
 }
 
+extension TimeIntervalNature {
+    
+    var description: String {
+        switch self {
+            case .auspicious:
+                return "Auspicious"
+            case .inauspicious:
+                return "Inauspicious"
+            case .neutral:
+                return "Neutral"
+        }
+    }
+    var color: Color {
+        switch self {
+        case .auspicious:
+            return Color.green
+        case .inauspicious:
+            return Color.red
+        case .neutral:
+            return Color.yellow
+        }
+    }
+}
+
+enum Kaal: String {
+    case abhijit 
+    case brahma
+    case rahu
+    case yama
+}
+
+extension Kaal {
+    var title : String {
+        
+        switch self {
+                
+            case .abhijit:
+                return "Abhijit Kaala"
+            case .brahma:
+                return "Brahma Muhurta"
+            case .rahu:
+                return "Rahu Kaala"
+            case .yama:
+                return "Yama Ganda"
+        }
+    }
+    var nature: TimeIntervalNature {
+        switch self {
+        case .abhijit, .brahma:
+            return .auspicious
+        case .yama, .rahu:
+            return .inauspicious
+        }
+    }
+
+    var color: Color {
+        return nature.color
+    }
+}
 enum LocationItemTheme {
     case underlined
     case button
 }
+
+

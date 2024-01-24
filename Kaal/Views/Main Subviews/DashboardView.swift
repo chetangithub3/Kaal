@@ -132,6 +132,7 @@ struct DashboardView: View {
     private func formattedDate() {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d"
+        formatter.timeZone = TimeZone(identifier: viewModel.kaal.timezone) 
         currentDate = formatter.string(from: viewModel.kaal.date)
     }
     

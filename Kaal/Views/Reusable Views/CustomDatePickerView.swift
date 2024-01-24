@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomDatePickerView: View {
     @Binding var date: Date
-    
+    var timezone: String
     let dateFormatter: DateFormatter = {
            let formatter = DateFormatter()
            formatter.dateFormat = "EEEE, MMMM d, yyyy"
@@ -21,7 +21,8 @@ struct CustomDatePickerView: View {
         
         VStack {
             HStack{
-                Text("Date:").font(.subheadline)
+                
+                Text(getWeekday()).font(.subheadline).bold()
                 Spacer()
                 Button {
                     self.date = DateFormatter().calendar.date(byAdding: .day, value: -1, to: date) ?? date
@@ -64,6 +65,17 @@ struct CustomDatePickerView: View {
             }
         }.padding(.horizontal)
     }
+    
+    func getWeekday() -> String{
+        let formattedDate = dateFormatter.string(from: date)
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        if dateFormatter.calendar.isDateInToday(date) {
+            return "Today"
+        }
+        let components = formattedDate.components(separatedBy: ", ")
+        let weekdayName = components.first ?? ""
+        return weekdayName
+    }
 }
 
 extension DatePickerStyle {
@@ -71,5 +83,5 @@ extension DatePickerStyle {
 }
 
 #Preview {
-    CustomDatePickerView(date: .constant(Date()))
+    CustomDatePickerView(date: .constant(Date()), timezone: "UTC")
 }

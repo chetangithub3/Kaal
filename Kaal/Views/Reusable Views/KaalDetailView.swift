@@ -11,6 +11,7 @@ struct KaalDetailView: View {
     
     @AppStorage("currentArea") var currentArea: String = ""
     var kaalRange: ClosedRange<Date>
+    var kaal: Kaal
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State var date = Date()
     @EnvironmentObject var viewModel: DashboardViewModel
@@ -85,10 +86,17 @@ struct KaalDetailView: View {
     
     func screenshottableView() -> some View {
         VStack{
-            CustomDatePickerView(date: $date)
+            CustomDatePickerView(date: $date, timezone: viewModel.kaal.timezone)
                 .padding(.vertical)
                 .background(Color.secondary.opacity(0.3))
             
+                HStack{
+                        Text(kaal.title).font(.title3).bold()
+                        Text(":")
+                        Text(kaal.nature.description).font(.title3).bold()
+                }
+            
+            .padding()
             
             if storedTimeFormat == "hh:mm a" {
                 Highlighted12HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
@@ -142,7 +150,7 @@ struct KaalDetailView: View {
 }
 
 #Preview {
-    KaalDetailView(kaalRange: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()))
+    KaalDetailView(kaalRange: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()), kaal: Kaal.brahma)
 }
 
 struct ActivityView: UIViewControllerRepresentable {
