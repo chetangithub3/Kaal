@@ -24,6 +24,7 @@
 		6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 6159FCEB2B4E0CCF003703AC /* Reachability */; };
 		6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6159FCED2B4E197A003703AC /* NetworkManager.swift */; };
 		61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61662F332B2BBE1800B3C4ED /* TileView.swift */; };
+		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
 		61A1C77B2B291D1000E42544 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77A2B291D1000E42544 /* MainView.swift */; };
@@ -97,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				617A66D32B610532000A49DF /* Shimmer in Frameworks */,
 				61F7783D2B5C871B00E2C0B8 /* OnboardingKit in Frameworks */,
 				6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */,
 			);
@@ -274,6 +276,7 @@
 			packageProductDependencies = (
 				6159FCEB2B4E0CCF003703AC /* Reachability */,
 				61F7783C2B5C871B00E2C0B8 /* OnboardingKit */,
+				617A66D22B610532000A49DF /* Shimmer */,
 			);
 			productName = Kaal;
 			productReference = 614C17262B1FD3F4002A2D18 /* Kaal.app */;
@@ -306,6 +309,7 @@
 			packageReferences = (
 				6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */,
 				61F7783B2B5C871B00E2C0B8 /* XCRemoteSwiftPackageReference "OnboardingKit" */,
+				617A66D12B610532000A49DF /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			productRefGroup = 614C17272B1FD3F4002A2D18 /* Products */;
 			projectDirPath = "";
@@ -594,6 +598,14 @@
 				kind = branch;
 			};
 		};
+		617A66D12B610532000A49DF /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = exactVersion;
+				version = 1.4.0;
+			};
+		};
 		61F7783B2B5C871B00E2C0B8 /* XCRemoteSwiftPackageReference "OnboardingKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JamesSedlacek/OnboardingKit.git";
@@ -609,6 +621,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
+		};
+		617A66D22B610532000A49DF /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 617A66D12B610532000A49DF /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
 		};
 		61F7783C2B5C871B00E2C0B8 /* OnboardingKit */ = {
 			isa = XCSwiftPackageProductDependency;

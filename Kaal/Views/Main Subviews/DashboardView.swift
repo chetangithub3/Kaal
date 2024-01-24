@@ -116,6 +116,7 @@ struct DashboardView: View {
                     
                 }
             }
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             .onAppear(perform: {
                 viewModel.daylightFromLocation(on: date)
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)

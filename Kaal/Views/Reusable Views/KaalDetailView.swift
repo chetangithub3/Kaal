@@ -6,7 +6,7 @@
     //
 
 import SwiftUI
-
+import Shimmer
 struct KaalDetailView: View {
     
     @AppStorage("currentArea") var currentArea: String = ""
@@ -39,8 +39,11 @@ struct KaalDetailView: View {
                                 })
                         }
                     )
-                    .redacted(reason: viewModel.isLoading == true ? .placeholder : [])
-//
+                    .redacted(reason: viewModel.isLoading ? .placeholder : [])
+                    .shimmering(
+                          active: viewModel.isLoading,
+                          animation: .easeInOut(duration: 2).repeatCount(5, autoreverses: false).delay(1)
+                      )
             
             HStack{
                 Spacer()
