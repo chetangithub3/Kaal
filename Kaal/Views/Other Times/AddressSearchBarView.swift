@@ -21,27 +21,23 @@ struct AddressSearchBarView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .foregroundColor(.primary)
                 .padding(.horizontal)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(.primary.opacity(0.5), lineWidth: 2)
+                        .padding(.horizontal)
+                }
                 
             }
             
             if ddViewModel.showDropDown && !ddViewModel.results.isEmpty {
-                List{
-                    ForEach(ddViewModel.results.prefix(6), id: \.self) { result in
-                        let displayName = result.displayName ?? ""
-                        Button(action: {
-                            self.ddViewModel.showDropDown = false
-                            self.ddViewModel.searchText = ""
-                            self.currentArea = displayName
-                            self.savedLat = result.lat ?? ""
-                            self.savedLng = result.lon ?? ""
-                        }, label: {
-                            HStack{
-                                Text(displayName)
-                                Spacer()
-                            }
-                        })
-                    }
+                DropDownMenuView(){ option in
+                    self.ddViewModel.showDropDown = false
+                    self.ddViewModel.searchText = ""
+                    self.currentArea = ddViewModel.results[option].displayName ?? ""
+                    self.savedLat = ddViewModel.results[option].lat ?? ""
+                    self.savedLng = ddViewModel.results[option].lon ?? ""
                 }
+              
             }
         }
     }
