@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Highlighted24HourClockView: View, Clock {
-    
+   
+    var theme: TimeIntervalNature = TimeIntervalNature.neutral
     var timezone: String
     var range: ClosedRange<Date>
     
@@ -93,7 +94,7 @@ struct Highlighted24HourClockView: View, Clock {
                 
                 Image(systemName: "circle")
                     .font(.callout)
-                    .foregroundColor(.blue)
+                    .foregroundColor(theme.color)
                     .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .rotationEffect(.init(degrees: 180))
                     .rotationEffect(.init(degrees: startAng))
@@ -105,7 +106,7 @@ struct Highlighted24HourClockView: View, Clock {
                 
                 Image(systemName: "circle")
                     .font(.callout)
-                    .foregroundColor(.blue)
+                    .foregroundColor(theme.color)
                     .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .rotationEffect(.init(degrees: 180))
                     .rotationEffect(.init(degrees: endAng))
@@ -147,6 +148,7 @@ struct Highlighted24HourClockView: View, Clock {
 }
 
 struct Highlighted12HourClockView: View, Clock {
+    var theme: TimeIntervalNature = TimeIntervalNature.neutral
     var timezone: String
     var range: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
@@ -221,14 +223,14 @@ struct Highlighted12HourClockView: View, Clock {
                 
                 Circle()
                     .trim(from: 0.0 , to: percentage == 0 ? 0.0   :  getAngles().1 / 360 )
-                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                    .stroke(theme.color, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
                     .rotationEffect(.init(degrees: -90))
                     .rotationEffect(.init(degrees: getAngles().0))
                     .animation(.linear(duration: 1), value: 1)
                 
                 Image(systemName: "circle")
                     .font(.callout)
-                    .foregroundColor(.blue)
+                    .foregroundColor(theme.color)
                     .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .rotationEffect(.init(degrees: 180))
                     .rotationEffect(.init(degrees: startAng))
@@ -240,7 +242,7 @@ struct Highlighted12HourClockView: View, Clock {
                 
                 Image(systemName: "circle")
                     .font(.callout)
-                    .foregroundColor(.blue)
+                    .foregroundColor(theme.color)
                     .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .rotationEffect(.init(degrees: 180))
                     .rotationEffect(.init(degrees: endAng))

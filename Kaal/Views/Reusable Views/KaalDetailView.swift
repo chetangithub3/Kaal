@@ -57,7 +57,7 @@ struct KaalDetailView: View {
                     .background(Color.secondary)
                     .cornerRadius(10)
                 }
-            }
+            }.padding(.horizontal)
             Spacer()
         }
         .onPreferenceChange(ButtonHeightKey.self) { newValue in
@@ -95,15 +95,14 @@ struct KaalDetailView: View {
                     Text(":")
                     Text(kaal.nature.description).font(.title3).bold()
                 }
-                
-                .padding()
+ 
                 
                 
                 
                 if storedTimeFormat == "hh:mm a" {
-                    Highlighted12HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
+                    Highlighted12HourClockView(theme: kaal.nature, timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
                 } else {
-                    Highlighted24HourClockView(timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
+                    Highlighted24HourClockView(theme: kaal.nature, timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
                 }
                 VStack{
                     HStack{

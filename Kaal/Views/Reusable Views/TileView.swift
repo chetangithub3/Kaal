@@ -12,6 +12,7 @@ struct TileView: View {
     @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
     var title: String
     var range: ClosedRange<Date>
+    var theme: TimeIntervalNature = TimeIntervalNature.neutral
     var icon: String?
     @State var duration = ""
     var body: some View {
@@ -19,7 +20,9 @@ struct TileView: View {
                     if let icon = icon{
                         Image(systemName: icon)
                     }
-                    Text(title)
+            Text(title)
+                .font(.subheadline)
+                .bold()
                     Text("\(convertTheDateRange(range: range).0) - \(convertTheDateRange(range: range).1)")
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
@@ -31,7 +34,7 @@ struct TileView: View {
                 .resizable()
                 .opacity(0.1)
                 .tint(.primary)
-                .background(Color.blue.gradient)
+                .background(theme.color.gradient)
         )
         .cornerRadius(10)
         .foregroundColor(.white)

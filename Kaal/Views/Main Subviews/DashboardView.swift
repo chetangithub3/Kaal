@@ -88,25 +88,25 @@ struct DashboardView: View {
                                 NavigationLink {
                                     AbhijitKaalView()
                                 } label: {
-                                    TileView(title: "Abhijit Kaal", range: viewModel.kaal.abhijitKaal)
+                                    TileView(title: "Abhijit Kaal", range: viewModel.kaal.abhijitKaal, theme: Kaal.abhijit.nature)
                                 }
                                 
                                 NavigationLink {
                                     RahuKaalView()
                                 } label: {
-                                    TileView(title: "Rahu Kaal", range: viewModel.kaal.rahuKaal)
+                                    TileView(title: "Rahu Kaal", range: viewModel.kaal.rahuKaal, theme: Kaal.rahu.nature)
                                 }
                                 
                                 NavigationLink {
                                     BrahmaMuhurtaView()
                                 } label: {
-                                    TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat)
+                                    TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat, theme: Kaal.brahma.nature)
                                 }
                                
                                 NavigationLink {
                                     YamaGandaView()
                                 } label: {
-                                    TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal)
+                                    TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal, theme: Kaal.yama.nature)
                                 }
                                 
                             }.padding(.horizontal, 16)
