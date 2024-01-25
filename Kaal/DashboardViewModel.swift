@@ -67,11 +67,11 @@ class DashboardViewModel: ObservableObject {
                     dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
                     dateFormatter.timeZone = TimeZone(identifier: timeZone)
                     
-                    var dt = dateFormatter.date(from: "\(date) 00:00:01 AM")!
+                    let dt = dateFormatter.date(from: "\(date) 00:00:01 AM")!
                     
-                    var combinedSunrise = dateFormatter.date(from: "\(date) \(sunrise)")!
+                    let combinedSunrise = dateFormatter.date(from: "\(date) \(sunrise)")!
     
-                    var combinedSunset = dateFormatter.date(from: "\(date) \(sunset)")!
+                    let combinedSunset = dateFormatter.date(from: "\(date) \(sunset)")!
   
                     self.kaal = KaalModel(dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
            
