@@ -31,6 +31,7 @@ struct AddressSearchBarView: View {
             
             if ddViewModel.showDropDown && !ddViewModel.results.isEmpty {
                 DropDownMenuView(){ option in
+                    print(option)
                     self.ddViewModel.showDropDown = false
                     self.ddViewModel.searchText = ""
                     self.currentArea = ddViewModel.results[option].displayName ?? ""

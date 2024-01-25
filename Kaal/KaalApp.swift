@@ -30,6 +30,8 @@ struct IntroView: View{
     @State private var errorMessage: String = ""
     @State var apiErrorCancellable: AnyCancellable?
     @State var showAlert = false
+    @ObservedObject var addressViewModel = AddressSearchViewModel(apiManager: APIManager())
+    
     var body: some View {
         VStack{
             if networkStatus == .disconnected{
@@ -37,9 +39,9 @@ struct IntroView: View{
             } else {
                 
                 if !isFirstTime {
-                    MainView().environmentObject(DashboardViewModel())
+                    MainView().environmentObject(DashboardViewModel()).environmentObject(addressViewModel)
                 } else {
-                    WelcomeView()
+                    WelcomeView().environmentObject(addressViewModel)
                 }
             }
             

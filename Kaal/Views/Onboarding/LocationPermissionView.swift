@@ -17,7 +17,7 @@ struct LocationPermissionView: View {
     
     @StateObject var locationManager = LocationManager()
     @ObservedObject var dashboardVM = DashboardViewModel(apiManager: APIManager())
-    @ObservedObject var ddViewModel = AddressSearchViewModel(apiManager: APIManager())
+    @EnvironmentObject var ddViewModel: AddressSearchViewModel
     
     @State private var isKeyboardVisible = false
     @State var showNext = false

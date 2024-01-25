@@ -38,7 +38,7 @@ struct SettingsMenuView: View {
                 
                 Section("Change Address") {
                     NavigationLink {
-                        ChangeAddressView(ddViewModel: AddressSearchViewModel(apiManager: APIManager()))
+                        ChangeAddressView()
                     } label: {
                         HStack {
                             Text("Current Address")

@@ -11,9 +11,7 @@ import OnboardingKit
 struct WelcomeView: View {
     
     @AppStorage("isFirstTime") var isFirstTime = true
-//    @Environment(OnboardingProvider.self)
-//      private var onboardingProvider
-//      @State private var isAnimating = false
+    @EnvironmentObject var addressViewModel: AddressSearchViewModel
     var body: some View {
         NavigationView {
             VStack {
@@ -41,7 +39,7 @@ struct WelcomeView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: LocationPermissionView().environmentObject(AddressSearchViewModel(apiManager: APIManager()))) {
+                NavigationLink(destination: LocationPermissionView().environmentObject(addressViewModel)) {
                     Text("Next")
                 }
                 
