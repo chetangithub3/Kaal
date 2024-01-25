@@ -13,7 +13,7 @@ struct ChangeAddressView: View {
     @AppStorage("savedLong") var savedLng = ""
     @AppStorage("currentArea") var currentArea: String = ""
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var ddViewModel: AddressSearchViewModel
+    @ObservedObject var ddViewModel = AddressSearchViewModel(apiManager: APIManager())
     @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
@@ -140,5 +140,5 @@ struct ChangeAddressView: View {
 
 
 #Preview {
-    ChangeAddressView()
+    ChangeAddressView( ddViewModel: AddressSearchViewModel(apiManager: APIManager()))
 }

@@ -21,6 +21,7 @@ struct KaalDetailView: View {
     @State private var isShareSheetPresented = false
     @State var isEnableShared = false
     @State var buttonHeight: CGFloat = 30
+    @State var geometry: GeometryProxy?
     
     var body: some View {
         ScrollView{
@@ -32,20 +33,20 @@ struct KaalDetailView: View {
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .onAppear(perform: {
                             DispatchQueue.main.async{
-                                let frame = geometry.frame(in: .global)
-                                let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
-                                sharedImage = screenshot
+                                self.geometry = geometry
                             }
                         })
                     }
                 )
-            
-            
-            
+  
             HStack{
                 Spacer()
                 Button {
-                    isShareSheetPresented = true
+                    if let geometry = self.geometry{
+                        takeScreenshot(geometry: geometry) {
+                            isShareSheetPresented = true
+                        }
+                    }
                 } label: {
                     HStack{
                         Text("Share").font(.subheadline)
@@ -84,21 +85,30 @@ struct KaalDetailView: View {
         
     }
     
+    func takeScreenshot(geometry: GeometryProxy,  completion : @escaping () -> Void) {
+        let frame = geometry.frame(in: .global)
+        let screenshot = screenshottableView().takeScreenshot(frame: frame, afterScreenUpdates: true)
+        sharedImage = screenshot
+        if sharedImage != nil {
+            completion()
+        }
+    }
+    
     func screenshottableView() -> some View {
         VStack{
             CustomDatePickerView(date: $date, timezone: viewModel.kaal.timezone)
                 .padding(.vertical)
                 .background(Color.secondary.opacity(0.3))
             VStack{
-                HStack{
+                HStack(spacing: 4){
                     Text(kaal.title).font(.title3).bold()
                     Text(":")
-                    Text(kaal.nature.description).font(.title3).bold()
+                    Text(kaal.nature.description)
+                        .foregroundStyle(kaal.color)
+                        .font(.title3).bold()
+                        
                 }
- 
-                
-                
-                
+
                 if storedTimeFormat == "hh:mm a" {
                     Highlighted12HourClockView(theme: kaal.nature, timezone: viewModel.kaal.timezone, range: kaalRange).padding(.vertical)
                 } else {

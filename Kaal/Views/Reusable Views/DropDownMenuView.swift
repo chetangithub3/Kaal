@@ -33,15 +33,14 @@ struct DropDownMenuView: View {
                                 HStack(alignment: .center) {
                                     Text(ddViewModel.results[option].displayName ?? "")
                                         .multilineTextAlignment(.leading)
-                                        
+                                    
                                     Spacer()
                                 }.padding(8)
                                 Divider().padding(.horizontal, 8)
                             }
-                            
-                                .onTapGesture(perform: {
-                                    action(option)
-                                })
+                            .onTapGesture(perform: {
+                                action(option)
+                            })
                         }
                     }
                 }
