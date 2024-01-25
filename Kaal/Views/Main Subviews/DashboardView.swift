@@ -77,7 +77,7 @@ struct DashboardView: View {
                         .minimumScaleFactor(0.5)
                         .padding(.horizontal)
                     HStack{
-                        Text("Mahurat:")
+                        Text("Muhurta:")
                             .bold()
                             .font(.title2)
                         Spacer()
@@ -109,13 +109,13 @@ struct DashboardView: View {
                                     TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal, theme: Kaal.yama.nature)
                                 }
                                 
-                            }.padding(.horizontal, 16)
+                            }.padding(.horizontal)
                         }
                     }
                     .scrollIndicators(.hidden)
                     
                 }
-            }
+            }.background(getBackgroundColor())
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
             .onAppear(perform: {
                 viewModel.daylightFromLocation(on: date)

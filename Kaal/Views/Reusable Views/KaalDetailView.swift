@@ -53,8 +53,8 @@ struct KaalDetailView: View {
                     }
                     .padding(8)
                     .frame(height: buttonHeight)
-                    .foregroundColor(.primary)
-                    .background(Color.secondary)
+                    .foregroundColor(getTintColor())
+                    .background(Color.secondary.opacity(0.3))
                     .cornerRadius(10)
                 }
             }.padding(.horizontal)

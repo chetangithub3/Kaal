@@ -19,7 +19,7 @@ struct SettingsMenuView: View {
     
     var body: some View {
         NavigationView(content: {
-            Form {
+            List {
                 Section("Clock") {
                     HStack{
                         Text("Time format")
@@ -60,7 +60,7 @@ struct SettingsMenuView: View {
                             Text("Share the app")
                             Spacer()
                             Image(systemName: "square.and.arrow.up")
-                        }
+                        }.foregroundColor(.primary)
                     }
                 }
                 

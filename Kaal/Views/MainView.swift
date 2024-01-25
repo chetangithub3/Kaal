@@ -10,6 +10,8 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
     @State private var selection = 1
+    
+    
     var body: some View {
         TabView(selection: $selection) {
             DashboardView()
@@ -28,7 +30,10 @@ struct MainView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }.tag(3)
-        } .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ChangeTab"))) { _ in
+        }
+  .tint(getTintColor())
+        
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ChangeTab"))) { _ in
             self.selection = 3
         }
     }

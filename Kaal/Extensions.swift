@@ -31,11 +31,20 @@ extension UIView {
 }
 
 extension View {
+   
     func takeScreenshot(frame:CGRect, afterScreenUpdates: Bool) -> UIImage {
         let hosting = UIHostingController(rootView: self)
         hosting.overrideUserInterfaceStyle = UIApplication.shared.currentUIWindow()?.overrideUserInterfaceStyle ?? .unspecified
         hosting.view.frame = frame
         return hosting.view.takeScreenshot(afterScreenUpdates: afterScreenUpdates)
+    }
+    
+    func getTintColor() -> Color {
+        return Color(red: 196 / 255.0, green: 134 / 255.0, blue: 18 / 255.0)
+    }
+    
+    func getBackgroundColor() -> Color{
+        return Color(red: 242 / 255.0, green: 242 / 255.0, blue: 247 / 255.0)
     }
 }
 
@@ -87,11 +96,11 @@ extension TimeIntervalNature {
     var color: Color {
         switch self {
         case .auspicious:
-            return Color.green
+            return Color(red: 58 / 255.0, green: 95 / 255.0, blue: 11 / 255.0)
         case .inauspicious:
-            return Color.red
+            return Color(red: 179 / 255.0, green: 27 / 255.0, blue: 27 / 255.0)
         case .neutral:
-            return Color.yellow
+            return Color(red: 255 / 255.0, green: 196 / 255.0, blue: 12 / 255.0)
         }
     }
 }
