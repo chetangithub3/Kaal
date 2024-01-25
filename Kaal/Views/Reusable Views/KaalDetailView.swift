@@ -57,6 +57,8 @@ struct KaalDetailView: View {
                     .foregroundColor(getTintColor())
                     .background(Color.secondary.opacity(0.3))
                     .cornerRadius(10)
+                    .opacity(viewModel.isLoading ? 0.2 : 1.0)
+                    .disabled(viewModel.isLoading)
                 }
             }.padding(.horizontal)
             Spacer()
