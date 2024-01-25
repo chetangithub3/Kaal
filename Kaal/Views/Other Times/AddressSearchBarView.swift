@@ -6,12 +6,15 @@
     //
 
 import SwiftUI
+import CoreLocation
 
 struct AddressSearchBarView: View {
     @EnvironmentObject var ddViewModel:  AddressSearchViewModel
+    @EnvironmentObject var locationManager: LocationManager
     @AppStorage("savedLat") var savedLat = ""
     @AppStorage("savedLong") var savedLng = ""
     @AppStorage("currentArea") var currentArea: String = ""
+    var completion: () -> Void
     var body: some View {
         
         VStack{
@@ -31,12 +34,21 @@ struct AddressSearchBarView: View {
             
             if ddViewModel.showDropDown && !ddViewModel.results.isEmpty {
                 DropDownMenuView(){ option in
-                    print(option)
                     self.ddViewModel.showDropDown = false
                     self.ddViewModel.searchText = ""
-                    self.currentArea = ddViewModel.results[option].displayName ?? ""
-                    self.savedLat = ddViewModel.results[option].lat ?? ""
-                    self.savedLng = ddViewModel.results[option].lon ?? ""
+                   
+                    if let lat = Double(ddViewModel.results[option].lat ?? ""), let lon = Double(ddViewModel.results[option].lon ?? "") {
+                        let location =  CLLocation(latitude: lat, longitude: lon)
+                        self.savedLat = ddViewModel.results[option].lat ?? ""
+                        self.savedLng = ddViewModel.results[option].lon ?? ""
+                        self.currentArea = ddViewModel.results[option].displayName ?? ""
+                        locationManager.reverseGeocode(location: location){ placemark, error in
+                            if let area = placemark?.locality, let country = placemark?.country {
+                                self.currentArea = "\(area), \(country)"
+                            }
+                        }
+                    }
+                    completion()
                 }
               
             }
@@ -45,5 +57,7 @@ struct AddressSearchBarView: View {
 }
 
 #Preview {
-    AddressSearchBarView()
+    AddressSearchBarView(){
+        print("Hello")
+    }
 }

@@ -23,7 +23,7 @@ struct ChangeAddressView: View {
                     savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
                     savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
                     
-                    reverseGeocode(location: location){ placemark, error in
+                    locationManager.reverseGeocode(location: location){ placemark, error in
                         if let area = placemark?.locality, let country = placemark?.country {
                             self.currentArea = "\(area), \(country)"
                             self.presentationMode.wrappedValue.dismiss()
@@ -84,7 +84,7 @@ struct ChangeAddressView: View {
                         self.savedLat = result.lat ?? ""
                         self.savedLng = result.lon ?? ""
                         self.currentArea = result.displayName ?? ""
-                        reverseGeocode(location: location){ placemark, error in
+                        locationManager.reverseGeocode(location: location){ placemark, error in
                             if let area = placemark?.locality, let country = placemark?.country {
                                 self.currentArea = "\(area), \(country)"
                                 self.presentationMode.wrappedValue.dismiss()
@@ -110,7 +110,7 @@ struct ChangeAddressView: View {
             savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
             savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
             
-            reverseGeocode(location: location){ placemark, error in
+            locationManager.reverseGeocode(location: location){ placemark, error in
                 if let area = placemark?.locality, let country = placemark?.country {
                     self.currentArea = "\(area), \(country)"
                     self.presentationMode.wrappedValue.dismiss()
@@ -121,20 +121,7 @@ struct ChangeAddressView: View {
         }
     }
     
-    func reverseGeocode(location: CLLocation, completion: @escaping (CLPlacemark?, Error?) -> Void) {
-        let geocoder = CLGeocoder()
-        
-        geocoder.reverseGeocodeLocation(location) { placemarks, error in
-            if let error = error {
-                completion(nil, error) // Pass the error to the completion handler
-            } else if let placemark = placemarks?.first {
-                completion(placemark, nil) // Pass the placemark to the completion handler
-            } else {
-                    // Handle no placemarks found
-                completion(nil, NSError(domain: "YourDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "No placemark found"]))
-            }
-        }
-    }
+    
     
 }
 
