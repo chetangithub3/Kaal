@@ -15,8 +15,8 @@ struct BrahmaMuhurtaView: View {
     @State var endTime = ""
     var body: some View {
         VStack{
-            KaalDetailView(kaalRange: viewModel.kaal.brahmaMahurat)
-        }.navigationTitle(Kaal.brahma.rawValue)
+            KaalDetailView(kaalRange: viewModel.kaal.brahmaMahurat, kaal: Kaal.brahma)
+        }.navigationTitle(Kaal.brahma.title)
             .navigationBarTitleDisplayMode(.inline)
     }
     

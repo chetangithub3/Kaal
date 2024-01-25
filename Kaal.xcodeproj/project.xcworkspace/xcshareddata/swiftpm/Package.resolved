@@ -17,6 +17,15 @@
         "branch" : "master",
         "revision" : "a81b7367f2c46875f29577e03a60c39cdfad0c8d"
       }
+    },
+    {
+      "identity" : "swiftui-shimmer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/markiv/SwiftUI-Shimmer",
+      "state" : {
+        "revision" : "1f3a620e4abe890d00008cb2af7023d810b433a7",
+        "version" : "1.4.0"
+      }
     }
   ],
   "version" : 2

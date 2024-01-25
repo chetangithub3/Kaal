@@ -13,8 +13,8 @@ struct AbhijitKaalView: View {
     
     var body: some View {
         VStack{
-            KaalDetailView(kaalRange: viewModel.kaal.abhijitKaal)
-        }.navigationTitle(Kaal.abhijit.rawValue)
+            KaalDetailView(kaalRange: viewModel.kaal.abhijitKaal, kaal: Kaal.abhijit)
+        }.navigationTitle(Kaal.abhijit.title)
             .navigationBarTitleDisplayMode(.inline)
     }
     

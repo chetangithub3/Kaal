@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Highlighted24HourClockView: View, Clock {
-    
+   
+    var theme: TimeIntervalNature = TimeIntervalNature.neutral
     var timezone: String
     var range: ClosedRange<Date>
     
@@ -19,18 +20,13 @@ struct Highlighted24HourClockView: View, Clock {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: timezone)
         dateFormatter.dateFormat = "HH:mm"
-        
-        let calendar = Calendar.current
         let startTime = range.lowerBound
         
-        let components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
-        let hour = Double (components.hour!)
-
-        let minute = Double(calendar.component(.minute, from: startTime))
+        let hour = Double ((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)).hour!)
+        let minute = Double((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)).minute!)
         let absoluteHour: Double = (hour) + (minute/60)
-  
         let angle = (absoluteHour * 360) / 24
-   
+        
         return angle
     }
     
@@ -38,23 +34,17 @@ struct Highlighted24HourClockView: View, Clock {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: timezone)
         dateFormatter.dateFormat = "HH:mm"
-        
-        let calendar = Calendar.current
         let endTime = range.upperBound
         
-        let components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)
-        let hour = Double (components.hour!)
-        
-        let minute = Double(calendar.component(.minute, from: endTime))
+        let hour = Double ((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)).hour!)
+        let minute = Double((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)).minute!)
         let absoluteHour: Double = (hour) + (minute/60)
-        
-
         let angle = (absoluteHour * 360) / 24
 
         return angle
     }
-   
-
+    
+    
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
@@ -92,18 +82,19 @@ struct Highlighted24HourClockView: View, Clock {
                     .stroke(.primary.opacity(0.06), lineWidth: 20)
                 
                 Circle()
-                    .trim(from: startAng/360 + 0.25 , to: percentage == 0 ? startAng/360 + 0.25 : endAng/360 + 0.25)
+                    .trim(from: startAng/360, to: percentage == 0 ? startAng/360 : endAng/360)
                     .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round), antialiased: true)
+                    .rotationEffect(.init(degrees: 90))
                     .animation(.linear(duration: 1), value: 1)
                     .onAppear {
                         withAnimation {
                             self.percentage = 1.0
                         }
                     }
-              
+                
                 Image(systemName: "circle")
                     .font(.callout)
-                    .foregroundColor(.blue)
+                    .foregroundColor(theme.color)
                     .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .rotationEffect(.init(degrees: 180))
                     .rotationEffect(.init(degrees: startAng))
@@ -115,7 +106,7 @@ struct Highlighted24HourClockView: View, Clock {
                 
                 Image(systemName: "circle")
                     .font(.callout)
-                    .foregroundColor(.blue)
+                    .foregroundColor(theme.color)
                     .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .rotationEffect(.init(degrees: 180))
                     .rotationEffect(.init(degrees: endAng))
@@ -137,14 +128,14 @@ struct Highlighted24HourClockView: View, Clock {
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
         .onAppear(perform: {
                 // letting screenshot with no animation, then adding animation by changing values of percentageafter the page appears fully
-                DispatchQueue.main.async {
-                    self.percentage = 0.0
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        withAnimation {
-                            self.percentage = 1.0
-                        }
+            DispatchQueue.main.async {
+                self.percentage = 0.0
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    withAnimation {
+                        self.percentage = 1.0
                     }
                 }
+            }
         })
         .onChange(of: range) { _, _ in
             self.percentage = 0
@@ -153,11 +144,11 @@ struct Highlighted24HourClockView: View, Clock {
             }
         }
     }
-  
     
 }
 
 struct Highlighted12HourClockView: View, Clock {
+    var theme: TimeIntervalNature = TimeIntervalNature.neutral
     var timezone: String
     var range: ClosedRange<Date>
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
@@ -167,14 +158,13 @@ struct Highlighted12HourClockView: View, Clock {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: timezone)
         dateFormatter.dateFormat = "hh:mm a"
-        let calendar = Calendar.current
+  
         let startTime = range.lowerBound
-        let components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)
-        var hour = Double ((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)).hour!)
+        let hour = Double ((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)).hour!)
         let minute = Double((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: startTime)).minute!)
         let absoluteHour: Double = (hour) + (minute/60)
-        var angle = (absoluteHour * 360) / 12
-
+        let angle = (absoluteHour * 360) / 12
+        
         return angle
     }
     
@@ -184,14 +174,13 @@ struct Highlighted12HourClockView: View, Clock {
         dateFormatter.timeZone = TimeZone(identifier: timezone)
         dateFormatter.dateFormat = "hh:mm a"
         dateFormatter.locale = Locale.current
-        let calendar = Calendar.current
+        
         let endTime = range.upperBound
-        let components = calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)
-        var hour = Double ((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)).hour!)
+        let hour = Double ((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)).hour!)
         let minute = Double((dateFormatter.calendar.dateComponents(in: TimeZone(identifier: timezone)!, from: endTime)).minute!)
         let absoluteHour: Double = (hour) + (minute/60)
-        var angle = (absoluteHour * 360) / 12
-
+        let angle = (absoluteHour * 360) / 12
+        
         return angle
     }
     
@@ -203,6 +192,7 @@ struct Highlighted12HourClockView: View, Clock {
             let width = geometry.size.width
             
             ZStack {
+                
                 ZStack{
                     ForEach(1...60, id: \.self) { index in
                         Rectangle()
@@ -225,23 +215,22 @@ struct Highlighted12HourClockView: View, Clock {
                             .offset(y: (width - 70)/2)
                             .rotationEffect(.init(degrees: Double(index) * 30))
                             .rotationEffect(.init(degrees: 180))
-                        
                     }
-                    
                 }
+                
                 Circle()
                     .stroke(.primary.opacity(0.06), lineWidth: 20)
-
+                
                 Circle()
                     .trim(from: 0.0 , to: percentage == 0 ? 0.0   :  getAngles().1 / 360 )
-                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                    .stroke(theme.color, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
                     .rotationEffect(.init(degrees: -90))
                     .rotationEffect(.init(degrees: getAngles().0))
                     .animation(.linear(duration: 1), value: 1)
-             
+                
                 Image(systemName: "circle")
                     .font(.callout)
-                    .foregroundColor(.blue)
+                    .foregroundColor(theme.color)
                     .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .rotationEffect(.init(degrees: 180))
                     .rotationEffect(.init(degrees: startAng))
@@ -253,7 +242,7 @@ struct Highlighted12HourClockView: View, Clock {
                 
                 Image(systemName: "circle")
                     .font(.callout)
-                    .foregroundColor(.blue)
+                    .foregroundColor(theme.color)
                     .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .rotationEffect(.init(degrees: 180))
                     .rotationEffect(.init(degrees: endAng))
@@ -263,7 +252,7 @@ struct Highlighted12HourClockView: View, Clock {
                     .rotationEffect(.init(degrees: 90))
                     .rotationEffect(.init(degrees: percentage == 0 ? startAng : endAng))
                     .animation(.linear(duration: 1), value: 1)
-                    
+                
                 durationTextFromRange(from: range)
                     .font(.title)
                     .bold()
@@ -271,7 +260,7 @@ struct Highlighted12HourClockView: View, Clock {
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
         .onAppear {
-            // letting screenshot with no animation, then adding animation by changing values of percentageafter the page appears fully
+                // letting screenshot with no animation, then adding animation by changing values of percentageafter the page appears fully
             DispatchQueue.main.async {
                 self.percentage = 0.0
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -288,7 +277,7 @@ struct Highlighted12HourClockView: View, Clock {
             }
         }
     }
-
+    
     func getAngles() -> (Double,Double) {
         var startAngle = startAng
         var endAngle = endAng
@@ -305,7 +294,7 @@ struct Highlighted12HourClockView: View, Clock {
         }
         return (startAngle, endAngle)
     }
-
+    
 }
 
 #Preview {

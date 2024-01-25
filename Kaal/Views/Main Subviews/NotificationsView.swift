@@ -20,12 +20,14 @@ struct NotificationsView: View {
                 
                
             HStack{
+                Spacer()
                 Image(systemName: "quote.opening")
                 Text("Schedule notifications to keep track of the muhurtas")
                     .font(.italic(.subheadline)())
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                 Image(systemName: "quote.closing")
+                Spacer()
             }
             Text("Coming Soon")
                 .font(.italic(.caption)())
@@ -35,9 +37,9 @@ struct NotificationsView: View {
             
             
             Spacer()
-               }
-               .background(Color.white) // Set background color
-               .edgesIgnoringSafeArea(.all)
+               }.edgesIgnoringSafeArea(.all)
+               .background(getBackgroundColor())
+               
     }
 }
 

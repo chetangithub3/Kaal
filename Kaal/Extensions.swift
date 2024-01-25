@@ -31,11 +31,20 @@ extension UIView {
 }
 
 extension View {
+   
     func takeScreenshot(frame:CGRect, afterScreenUpdates: Bool) -> UIImage {
         let hosting = UIHostingController(rootView: self)
         hosting.overrideUserInterfaceStyle = UIApplication.shared.currentUIWindow()?.overrideUserInterfaceStyle ?? .unspecified
         hosting.view.frame = frame
         return hosting.view.takeScreenshot(afterScreenUpdates: afterScreenUpdates)
+    }
+    
+    func getTintColor() -> Color {
+        return Color(red: 196 / 255.0, green: 134 / 255.0, blue: 18 / 255.0)
+    }
+    
+    func getBackgroundColor() -> Color{
+        return Color(red: 242 / 255.0, green: 242 / 255.0, blue: 247 / 255.0)
     }
 }
 
@@ -65,14 +74,75 @@ enum APIError: Error {
     case unhandled(Error)
 }
 
-enum Kaal: String {
-    case abhijit = "Abhijit Kaal"
-    case brahma = "Brahma Muhurta"
-    case rahu = "Rahu Kaal"
-    case yama = "Yama Ganda"
+
+enum TimeIntervalNature {
+    case auspicious
+    case inauspicious
+    case neutral
 }
 
+extension TimeIntervalNature {
+    
+    var description: String {
+        switch self {
+            case .auspicious:
+                return "Auspicious"
+            case .inauspicious:
+                return "Inauspicious"
+            case .neutral:
+                return "Neutral"
+        }
+    }
+    var color: Color {
+        switch self {
+        case .auspicious:
+            return Color(red: 58 / 255.0, green: 95 / 255.0, blue: 11 / 255.0)
+        case .inauspicious:
+            return Color(red: 179 / 255.0, green: 27 / 255.0, blue: 27 / 255.0)
+        case .neutral:
+            return Color(red: 255 / 255.0, green: 196 / 255.0, blue: 12 / 255.0)
+        }
+    }
+}
+
+enum Kaal: String {
+    case abhijit 
+    case brahma
+    case rahu
+    case yama
+}
+
+extension Kaal {
+    var title : String {
+        
+        switch self {
+                
+            case .abhijit:
+                return "Abhijit Kaala"
+            case .brahma:
+                return "Brahma Muhurta"
+            case .rahu:
+                return "Rahu Kaala"
+            case .yama:
+                return "Yama Ganda"
+        }
+    }
+    var nature: TimeIntervalNature {
+        switch self {
+        case .abhijit, .brahma:
+            return .auspicious
+        case .yama, .rahu:
+            return .inauspicious
+        }
+    }
+
+    var color: Color {
+        return nature.color
+    }
+}
 enum LocationItemTheme {
     case underlined
     case button
 }
+
+
