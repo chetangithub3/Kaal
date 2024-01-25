@@ -34,7 +34,8 @@ class AddressSearchViewModel: ObservableObject {
                     self.isNot3Chars = false
                     self.callAPI(text: text)
                 } else {
-                    
+                    self.isNot3Chars = true
+                    self.results = []
                 }
             }.store(in: &textCancellebles)
     }
