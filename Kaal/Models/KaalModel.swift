@@ -60,8 +60,7 @@ struct KaalModel: Identifiable, Equatable {
     
     var abhijitKaal: ClosedRange<Date> {
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 15)
-        var myDate = date
-        let myRange = rangeContainingTime(ranges: ranges, timeToCheck: myDate)
+        let myRange = rangeContainingTime(ranges: ranges, timeToCheck: date)
         return myRange ?? ranges[7]
     }
     

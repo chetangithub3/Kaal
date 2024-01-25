@@ -70,4 +70,19 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
               UIApplication.shared.open(url, options: [:], completionHandler: nil)
           }
       }
+    
+    func reverseGeocode(location: CLLocation, completion: @escaping (CLPlacemark?, Error?) -> Void) {
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+            if let error = error {
+                completion(nil, error) // Pass the error to the completion handler
+            } else if let placemark = placemarks?.first {
+                completion(placemark, nil) // Pass the placemark to the completion handler
+            } else {
+                    // Handle no placemarks found
+                completion(nil, NSError(domain: "YourDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "No placemark found"]))
+            }
+        }
+    }
 }

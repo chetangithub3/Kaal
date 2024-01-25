@@ -12,8 +12,19 @@ struct DropDownMenuView: View {
     var action: (Int) -> Void
     var body: some View {
         VStack(spacing: 0){
-            if ddViewModel.results.count == 0 {
-                Text("No results found")
+            if ddViewModel.isLoading {
+                HStack{
+                    Spacer()
+                    ProgressView("Searching")
+                    Spacer()
+                }.padding(.vertical)
+            } else if $ddViewModel.results.count == 0{
+                HStack{
+                    Spacer()
+                    Text("No results found. Please check the entry.")
+                        
+                    Spacer()
+                }.padding(.vertical)
             } else {
                 ScrollView{
                     VStack{
@@ -22,24 +33,27 @@ struct DropDownMenuView: View {
                                 HStack(alignment: .center) {
                                     Text(ddViewModel.results[option].displayName ?? "")
                                         .multilineTextAlignment(.leading)
-                                        
+                                    
                                     Spacer()
                                 }.padding(8)
                                 Divider().padding(.horizontal, 8)
                             }
-                            
-                                .onTapGesture(perform: {
-                                    action(option)
-                                })
+                            .onTapGesture(perform: {
+                                action(option)
+                            })
                         }
-                    } .overlay {
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(.primary.opacity(0.5), lineWidth: 2)
                     }
                 }
             }
-            
-        }.padding()
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(.primary.opacity(0.5), lineWidth: 2)
+        }
+        .padding()
+        .onChange(of: ddViewModel.results) { oldValue, newValue in
+            print(newValue)
+        }
         
     }
 }

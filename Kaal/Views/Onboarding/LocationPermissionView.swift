@@ -17,7 +17,7 @@ struct LocationPermissionView: View {
     
     @StateObject var locationManager = LocationManager()
     @ObservedObject var dashboardVM = DashboardViewModel(apiManager: APIManager())
-    @ObservedObject var ddViewModel = AddressSearchViewModel(apiManager: APIManager())
+    @EnvironmentObject var ddViewModel: AddressSearchViewModel
     
     @State private var isKeyboardVisible = false
     @State var showNext = false
@@ -61,7 +61,10 @@ struct LocationPermissionView: View {
                 }
             }
             
-            AddressSearchBarView()
+            AddressSearchBarView(){
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                showNext = true
+            }.environmentObject(locationManager)
             
             if showNext{
                 Text("Saved location:\(currentArea)")
@@ -112,24 +115,17 @@ struct LocationPermissionView: View {
         if let location = locationManager.handleLocation() {
             savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
             savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
-            reverseGeocode(location: location)
+            locationManager.reverseGeocode(location: location){placemark, error in
+                if let area = placemark?.locality, let country = placemark?.country {
+                    self.currentArea = "\(area), \(country)"
+                } else {
+                    return
+                }
+            }
         }
     }
     
-    func reverseGeocode(location: CLLocation) {
-        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
-            guard error == nil, let placemark = placemarks?.first else {
-                print("Reverse geocoding error: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-            
-            if let area = placemark.locality, let country = placemark.country {
-                self.currentArea = "\(area), \(country)"
-            } else {
-                return
-            }
-        }
-    }
+
     
 }
 

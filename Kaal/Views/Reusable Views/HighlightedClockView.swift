@@ -83,7 +83,7 @@ struct Highlighted24HourClockView: View, Clock {
                 
                 Circle()
                     .trim(from: startAng/360, to: percentage == 0 ? startAng/360 : endAng/360)
-                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round), antialiased: true)
+                    .stroke(theme.color, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round), antialiased: true)
                     .rotationEffect(.init(degrees: 90))
                     .animation(.linear(duration: 1), value: 1)
                     .onAppear {
