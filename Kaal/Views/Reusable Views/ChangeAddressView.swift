@@ -15,15 +15,7 @@ struct ChangeAddressView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var ddViewModel: AddressSearchViewModel
     @ObservedObject var locationManager = LocationManager()
-    @State private var selectedOption = 0
     
-    var showDropdown: Bool {
-        withAnimation {
-            ddViewModel.showDropDown && !ddViewModel.results.isEmpty
-        }
-       
-    }
-    let options = ["Option 1", "Option 2", "Option 3", "Option 1", "Option 2", "Option 3"]
     var body: some View {
         VStack {
             Button(action: {
@@ -50,42 +42,39 @@ struct ChangeAddressView: View {
                     Text("Get address from your current location")
                     Spacer()
                 }
-               
-                    
             }).buttonStyle(.bordered)
                 .padding(.horizontal)
+            
             HStack{
                 Spacer()
                 Text("Or").padding()
                 Spacer()
             }
+            
             HStack {
                 TextField("Search city", text: $ddViewModel.searchText, onEditingChanged: { _ in
                 })
                 .textFieldStyle(.plain)
-                    .foregroundColor(.primary)
-                    .padding(8)
-                    
-                   
+                .foregroundColor(.primary)
+                .padding(8)
+                
                 Button(action: {
                     ddViewModel.callAPI(text: ddViewModel.searchText)
                 }, label: {
-                    
                     Image(systemName: "location.magnifyingglass")
                         .foregroundColor((ddViewModel.searchText.isEmpty && ddViewModel.isNot3Chars) ? .white : .primary)
-                       
                         .padding(.horizontal, 8)
-                        
                 })
                 .disabled(ddViewModel.searchText.isEmpty && ddViewModel.isNot3Chars)
-            }.padding(.horizontal)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 2)
-                        .stroke(.primary.opacity(0.5), lineWidth: 2)
-                        .padding(.horizontal)
-                }
-             
-            if showDropdown {
+            }
+            .padding(.horizontal)
+            .overlay {
+                RoundedRectangle(cornerRadius: 2)
+                    .stroke(.primary.opacity(0.5), lineWidth: 2)
+                    .padding(.horizontal)
+            }
+            
+            if !ddViewModel.isNot3Chars {
                 DropDownMenuView() { option in
                     let result = ddViewModel.results[option]
                     self.ddViewModel.showDropDown = false
@@ -106,7 +95,9 @@ struct ChangeAddressView: View {
                     }
                 }.environmentObject(ddViewModel)
             }
+            
             Spacer()
+            
         }.onChange(of: locationManager.permissionGiven) { oldValue, newValue in
             if newValue != oldValue {
                 updateLocation()
@@ -139,12 +130,12 @@ struct ChangeAddressView: View {
             } else if let placemark = placemarks?.first {
                 completion(placemark, nil) // Pass the placemark to the completion handler
             } else {
-                // Handle no placemarks found
+                    // Handle no placemarks found
                 completion(nil, NSError(domain: "YourDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "No placemark found"]))
             }
         }
     }
-
+    
 }
 
 

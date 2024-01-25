@@ -19,7 +19,7 @@ class AddressSearchViewModel: ObservableObject {
     @Published var showDropDown = false
     @Published var results = [AddressesListResponseElement]()
     @Published var isNot3Chars = true
-    
+    @Published var isLoading = false
     init(apiManager: APIManager) {
         self.apiManager = apiManager
         self.searchFieldListener()
@@ -48,23 +48,23 @@ class AddressSearchViewModel: ObservableObject {
     
     func fetchData(from url: URL) {
         cancellebles.removeAll()
+        isLoading = true
         apiManager.publisher(for: url)
             .sink (receiveCompletion: { (completion) in
+                self.isLoading = false
                 switch completion {
                     case .finished:
                         return
                     case .failure(let error):
-                    
+                        
                         print(error.localizedDescription)
-                        self.showDropDown = false
                         
                         
                 }
             }, receiveValue: { (addresses: AddressesListResponse) in
                 self.results = addresses
-                if addresses.count > 0 {
                     self.showDropDown = true
-                }
+                
             })
             .store(in: &cancellebles)
     }
