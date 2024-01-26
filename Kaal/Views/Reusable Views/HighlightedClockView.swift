@@ -294,7 +294,6 @@ struct Highlighted12HourClockView: View, Clock {
         } else {
             endAngle = endAngle - startAngle
         }
-        print("-----startAngle \(startAngle), endAngle \(endAngle)")
      
         return (startAngle, endAngle)
     }
