@@ -1,15 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "onboardingkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/JamesSedlacek/OnboardingKit.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "cd8061979ca70afd07c776d52af54fa853331d0d"
-      }
-    },
-    {
       "identity" : "reachability.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ashleymills/Reachability.swift",
