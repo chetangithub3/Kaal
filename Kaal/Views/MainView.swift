@@ -15,6 +15,9 @@ struct MainView: View {
     var body: some View {
         TabView(selection: $selection) {
             DashboardView()
+                .onAppear(perform: {
+                    viewModel.daylightFromLocation()
+                })
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")

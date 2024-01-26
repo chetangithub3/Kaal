@@ -16,7 +16,6 @@ struct DashboardView: View {
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State private var selectedTab: Int = 0
     @State var date = Date()
-    @State var progress = 0.7
     @State var startTime = ""
     @State var endTime = ""
     @State var currentDate = ""
@@ -118,6 +117,7 @@ struct DashboardView: View {
             }.background(getBackgroundColor())
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
             .onAppear(perform: {
+                
                 viewModel.daylightFromLocation(on: date)
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
             })

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KaalModel: Identifiable, Equatable {
+struct KaalModel: Identifiable, Equatable{
     static func == (lhs: KaalModel, rhs: KaalModel) -> Bool {
         return (lhs.place == rhs.place) && (lhs.dateString == rhs.dateString)
     }
