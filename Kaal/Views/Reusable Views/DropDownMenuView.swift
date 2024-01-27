@@ -47,8 +47,8 @@ struct DropDownMenuView: View {
             }
         }
         .overlay {
-            RoundedRectangle(cornerRadius: 6)
-                .stroke(.primary.opacity(0.5), lineWidth: 2)
+            RoundedRectangle(cornerRadius: 2)
+                .stroke(.primary.opacity(0.5), lineWidth: 1)
         }
         .padding()
         .onChange(of: ddViewModel.results) { oldValue, newValue in

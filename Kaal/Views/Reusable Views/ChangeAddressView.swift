@@ -15,62 +15,136 @@ struct ChangeAddressView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var ddViewModel = AddressSearchViewModel(apiManager: APIManager())
     @ObservedObject var locationManager = LocationManager()
+    @State private var isExpanded = false
+    @State private var is2Expanded = false
     
     var body: some View {
         VStack {
-            Button(action: {
-                if let location = locationManager.handleLocation() {
-                    savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
-                    savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
-                    
-                    locationManager.reverseGeocode(location: location){ placemark, error in
-                        if let area = placemark?.locality, let country = placemark?.country {
-                            self.currentArea = "\(area), \(country)"
+            HStack{
+                Text("Current location:").font(.subheadline)
+                Text("\(currentArea)").font(.subheadline).bold()
+            }.padding()
+            
+            VStack{
+                Button {
+                    withAnimation {
+                        self.isExpanded.toggle()
+                        self.is2Expanded = false
+                    }
+                } label: {
+                    HStack{
+                        Text("Change address from your location")
+                            .font(.subheadline)
+                        Spacer()
+                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                            
+                    }.padding()
+                }
+                
+                if isExpanded {
+                    Button(action: {
+                        if let location = locationManager.handleLocation() {
+                            savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
+                            savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
+                            
+                            locationManager.reverseGeocode(location: location){ placemark, error in
+                                if let area = placemark?.locality, let country = placemark?.country {
+                                    self.currentArea = "\(area), \(country)"
+                                    self.presentationMode.wrappedValue.dismiss()
+                                } else {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                            
                             self.presentationMode.wrappedValue.dismiss()
                         } else {
-                            self.presentationMode.wrappedValue.dismiss()
+                            locationManager.askPermission()
                         }
+                    }, label: {
+                        HStack{
+                            Spacer()
+                            Image(systemName: "location.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                            Text("Get address from your current location")
+                            Spacer()
+                        }.padding(.horizontal)
+                    }).buttonStyle(.bordered)
+                        .padding(.horizontal)
+                }
+            }.padding(.vertical)
+                .cornerRadius(4)
+                .border(.gray)
+                .padding()
+            
+            VStack{
+                Button {
+                    withAnimation {
+                        self.is2Expanded.toggle()
+                        self.isExpanded = false
                     }
-                    
+                } label: {
+                    HStack{
+                        Text("Search address manually")
+                            .font(.subheadline)
+                        Spacer()
+                        Image(systemName: is2Expanded ? "chevron.up" : "chevron.down")
+                        
+                    }.padding()
+                }
+                
+                if is2Expanded {
+                    searchBar
+                }
+                
+            }.padding(.vertical)
+                .cornerRadius(4)
+                .border(.gray)
+                .padding()
+            
+            
+            Spacer()
+            
+        }.navigationTitle(Text("Change address"))
+            .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: locationManager.permissionGiven) { oldValue, newValue in
+                if newValue != oldValue {
+                    updateLocation()
+                }
+            }
+    }
+    
+    func updateLocation(){
+        if let location = locationManager.handleLocation() {
+            savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
+            savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
+            
+            locationManager.reverseGeocode(location: location){ placemark, error in
+                if let area = placemark?.locality, let country = placemark?.country {
+                    self.currentArea = "\(area), \(country)"
                     self.presentationMode.wrappedValue.dismiss()
                 } else {
-                    locationManager.askPermission()
+                    self.presentationMode.wrappedValue.dismiss()
                 }
-            }, label: {
-                HStack{
-                    Spacer()
-                    Text("Get address from your current location")
-                    Spacer()
-                }
-            }).buttonStyle(.bordered)
-                .padding(.horizontal)
-            
-            HStack{
-                Spacer()
-                Text("Or").padding()
-                Spacer()
             }
-            
+        }
+    }
+    
+    var searchBar: some View {
+        VStack{
             HStack {
                 TextField("Search city", text: $ddViewModel.searchText, onEditingChanged: { _ in
                 })
                 .textFieldStyle(.plain)
                 .foregroundColor(.primary)
+                .padding(.horizontal)
                 .padding(8)
                 
-                Button(action: {
-                    ddViewModel.callAPI(text: ddViewModel.searchText)
-                }, label: {
-                    Image(systemName: "location.magnifyingglass")
-                        .foregroundColor((ddViewModel.searchText.isEmpty && ddViewModel.isNot3Chars) ? .white : .primary)
-                        .padding(.horizontal, 8)
-                })
-                .disabled(ddViewModel.searchText.isEmpty && ddViewModel.isNot3Chars)
             }
-            .padding(.horizontal)
+            
             .overlay {
                 RoundedRectangle(cornerRadius: 2)
-                    .stroke(.primary.opacity(0.5), lineWidth: 2)
+                    .stroke(.primary.opacity(0.5), lineWidth: 1)
                     .padding(.horizontal)
             }
             
@@ -95,34 +169,8 @@ struct ChangeAddressView: View {
                     }
                 }.environmentObject(ddViewModel)
             }
-            
-            Spacer()
-            
-        }.onChange(of: locationManager.permissionGiven) { oldValue, newValue in
-            if newValue != oldValue {
-                updateLocation()
-            }
-        }
+        }.padding(.bottom)
     }
-    
-    func updateLocation(){
-        if let location = locationManager.handleLocation() {
-            savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
-            savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
-            
-            locationManager.reverseGeocode(location: location){ placemark, error in
-                if let area = placemark?.locality, let country = placemark?.country {
-                    self.currentArea = "\(area), \(country)"
-                    self.presentationMode.wrappedValue.dismiss()
-                } else {
-                    self.presentationMode.wrappedValue.dismiss()
-                }
-            }
-        }
-    }
-    
-    
-    
 }
 
 

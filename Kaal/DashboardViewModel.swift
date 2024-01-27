@@ -20,7 +20,7 @@ import Combine
 import SwiftUI
 
 class DashboardViewModel: ObservableObject {
-    
+    @AppStorage("currentArea") var currentArea: String = ""
     @AppStorage("savedLat") var savedLat = ""
     @AppStorage("savedLong") var savedLng = ""
     var cancellebles = Set<AnyCancellable>()
@@ -73,8 +73,7 @@ class DashboardViewModel: ObservableObject {
     
                     let combinedSunset = dateFormatter.date(from: "\(date) \(sunset)")!
   
-                    self.kaal = KaalModel(dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
-           
+                    self.kaal = KaalModel(place: self.currentArea, dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
                     self.isLoading = false
                 }
                 
