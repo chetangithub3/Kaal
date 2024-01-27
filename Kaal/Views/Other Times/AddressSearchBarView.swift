@@ -17,7 +17,7 @@ struct AddressSearchBarView: View {
     var completion: () -> Void
     var body: some View {
         
-        VStack{
+        VStack(spacing: 4){
             HStack {
                 TextField("Search city", text: $ddViewModel.searchText, onEditingChanged: { _ in
                 })

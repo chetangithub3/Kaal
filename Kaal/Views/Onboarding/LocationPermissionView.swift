@@ -22,45 +22,100 @@ struct LocationPermissionView: View {
     @State private var isKeyboardVisible = false
     @State var showNext = false
     @State var next = false
-    
-    
+    @State private var isExpanded = false
+    @State private var is2Expanded = false
+    @State private var animate = false
     var body: some View {
         VStack {
-            Text("Please grant the location permission, so that we can provide you with accurate muhurta timings based on your precise location.")
+            Text("Please grant the location permission, so that we can provide you with accurate muhurta timings based on your precise location. You may also manually enter an approximate address.")
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
                 .padding()
+          
+          
             
-            HStack{
-                Text("Saved location:").font(.subheadline)
-                Text("\(currentArea)").font(.subheadline).bold()
-            }.padding()
-                .opacity(showNext ? 1.0 : 0.0)
-            
-            Button(action: {
-                let location =  locationManager.handleLocation()
-                if let location = location {
-                    savedLat = location.coordinate.latitude.description
-                    savedLng = location.coordinate.longitude.description
-                    updateLocation()
+            VStack{
+                Button {
+                    withAnimation {
+                        self.is2Expanded.toggle()
+                        self.isExpanded = false
+                    }
+                } label: {
+                    HStack{
+                        Text("Search address manually")
+                            .font(.subheadline)
+                        Spacer()
+                        Image(systemName: is2Expanded ? "chevron.up" : "chevron.down")
+                        
+                    }.padding(.horizontal)
                 }
-            }) {
-                Text("Check for your location")
-                    .fontWeight(.bold)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                
+                if is2Expanded {
+                    VStack{
+                        AddressSearchBarView(){
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            showNext = true
+                        }.environmentObject(locationManager)
+                    }
+                   
+                }
+                
+            }.padding(.vertical)
+                .cornerRadius(4)
+                .border(.gray)
+                .padding()
+            
+            
+            VStack{
+                Button {
+                    withAnimation {
+                        self.isExpanded.toggle()
+                        self.is2Expanded = false
+                    }
+                } label: {
+                    HStack{
+                        Text("Check for your location")
+                            .font(.subheadline)
+                        Spacer()
+                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                            
+                    }.padding()
+                }
+                
+                if isExpanded {
+                    Button(action: {
+                        if let location = locationManager.handleLocation() {
+                                savedLat = location.coordinate.latitude.description
+                                savedLng = location.coordinate.longitude.description
+                                updateLocation()
+                        } else {
+                            locationManager.askPermission()
+                        }
+                    }, label: {
+                        HStack{
+                            Spacer()
+                            Image(systemName: "location.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                            Text("Get address from your current location")
+                            Spacer()
+                        }
+                    }).buttonStyle(.bordered)
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                }
             }
-            .padding()
+                .cornerRadius(4)
+                .border(.gray)
+                .padding()
+            if showNext{
+                HStack{
+                    Text("Location saved:").font(.subheadline)
+                    Text("\(currentArea)").font(.subheadline).bold()
+                }.padding()
+            }
             
-            
-            
-            
-            AddressSearchBarView(){
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                showNext = true
-            }.environmentObject(locationManager)
+               
             
             
             
@@ -71,7 +126,22 @@ struct LocationPermissionView: View {
                     isFirstTime = false
                 }, label: {
                     Text("Go Home")
-                        .buttonStyle(BorderedButtonStyle())
+                        .font(.subheadline)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(4)
+                        .scaleEffect(animate ? 1.2 : 1.0)
+                        .animation(
+                            Animation.easeInOut(duration: 1)
+                                .repeatForever(autoreverses: true)
+                        )
+                        .onAppear(perform: {
+                            withAnimation {
+                                self.animate.toggle()
+                            }
+                        })
+                               
                 })
             }
             
@@ -93,9 +163,15 @@ struct LocationPermissionView: View {
             }
             .onChange(of: dashboardVM.kaal) { oldValue, newValue in
                 showNext = true
-                
+                isExpanded = false
+                is2Expanded = false
             }
             .onAppear(perform: checkSavedLocation)
+            .onChange(of: isExpanded) { oldValue, newValue in
+                if isExpanded{
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+            }
         
     }
     
