@@ -26,49 +26,43 @@ struct LocationPermissionView: View {
     
     var body: some View {
         VStack {
-            
-            if !isKeyboardVisible {
-                
-                Text("Please grant the location permission, so that we can provide you with accurate timings based on your precise location.")
-                    .font(.body)
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
-                Button(action: {
-                  let location =  locationManager.handleLocation()
-                    if let location = location {
-                        savedLat = location.coordinate.latitude.description
-                        savedLng = location.coordinate.longitude.description
-                        updateLocation()
-                    }
-                }) {
-                    Text("Check for your location")
-                        .fontWeight(.bold)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
+            Text("Please grant the location permission, so that we can provide you with accurate muhurta timings based on your precise location.")
+                .font(.subheadline)
+                .multilineTextAlignment(.leading)
                 .padding()
-                
-                HStack{
-                    Spacer()
-                    
-                    Text("Or")
-                        .padding()
-                    Spacer()
+            
+            HStack{
+                Text("Saved location:").font(.subheadline)
+                Text("\(currentArea)").font(.subheadline).bold()
+            }.padding()
+                .opacity(showNext ? 1.0 : 0.0)
+            
+            Button(action: {
+                let location =  locationManager.handleLocation()
+                if let location = location {
+                    savedLat = location.coordinate.latitude.description
+                    savedLng = location.coordinate.longitude.description
+                    updateLocation()
                 }
+            }) {
+                Text("Check for your location")
+                    .fontWeight(.bold)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
             }
+            .padding()
+            
+            
+            
             
             AddressSearchBarView(){
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 showNext = true
             }.environmentObject(locationManager)
             
-            if showNext{
-                Text("Saved location:\(currentArea)")
-            }
+            
             
             Spacer()
             
@@ -76,7 +70,8 @@ struct LocationPermissionView: View {
                 Button(action: {
                     isFirstTime = false
                 }, label: {
-                    Text("Finish")
+                    Text("Go Home")
+                        .buttonStyle(BorderedButtonStyle())
                 })
             }
             
@@ -88,7 +83,6 @@ struct LocationPermissionView: View {
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { notification in
                 self.isKeyboardVisible = false
             }
-        
             .onChange(of: locationManager.permissionGiven) { oldValue, newValue in
                 if newValue {
                     updateLocation()
@@ -125,7 +119,7 @@ struct LocationPermissionView: View {
         }
     }
     
-
+    
     
 }
 

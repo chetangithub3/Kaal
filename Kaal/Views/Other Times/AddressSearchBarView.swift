@@ -19,24 +19,23 @@ struct AddressSearchBarView: View {
         
         VStack{
             HStack {
-                TextField("Search area", text: $ddViewModel.searchText, onEditingChanged: { _ in
+                TextField("Search city", text: $ddViewModel.searchText, onEditingChanged: { _ in
                 })
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(.plain)
                 .foregroundColor(.primary)
                 .padding(.horizontal)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 2)
-                        .stroke(.primary.opacity(0.5), lineWidth: 2)
-                        .padding(.horizontal)
-                }
-                
+                .padding(8)
+            }.overlay {
+                RoundedRectangle(cornerRadius: 2)
+                    .stroke(.primary.opacity(0.5), lineWidth: 1)
+                    .padding(.horizontal)
             }
             
-            if ddViewModel.showDropDown && !ddViewModel.results.isEmpty {
+            if !ddViewModel.isNot3Chars {
                 DropDownMenuView(){ option in
                     self.ddViewModel.showDropDown = false
                     self.ddViewModel.searchText = ""
-                   
+                    
                     if let lat = Double(ddViewModel.results[option].lat ?? ""), let lon = Double(ddViewModel.results[option].lon ?? "") {
                         let location =  CLLocation(latitude: lat, longitude: lon)
                         self.savedLat = ddViewModel.results[option].lat ?? ""
@@ -49,10 +48,10 @@ struct AddressSearchBarView: View {
                         }
                     }
                     completion()
-                }
-              
+                }.environmentObject(ddViewModel)
+                
             }
-        }
+        }.padding(.bottom)
     }
 }
 
