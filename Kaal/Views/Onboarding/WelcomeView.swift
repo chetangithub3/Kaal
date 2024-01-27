@@ -6,7 +6,7 @@
     //
 
 import SwiftUI
-import OnboardingKit
+
 
 struct WelcomeView: View {
     
