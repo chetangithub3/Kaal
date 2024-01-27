@@ -200,7 +200,7 @@ struct Highlighted12HourClockView: View, Clock {
                         Rectangle()
                             .fill(.primary)
                             .frame(width: 2, height: index % 5 == 0 ? 10 : 0)
-                            .offset(y: (width - 35) / 2)
+                            .offset(y: (width - 34) / 2)
                             .rotationEffect(.init(degrees: Double((index * 6))))
                     }
                     ForEach(1...60, id: \.self) { index in

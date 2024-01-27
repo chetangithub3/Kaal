@@ -18,7 +18,7 @@ struct LocationPermissionView: View {
     @StateObject var locationManager = LocationManager()
     @ObservedObject var dashboardVM = DashboardViewModel(apiManager: APIManager())
     @EnvironmentObject var ddViewModel: AddressSearchViewModel
-    
+
     @State private var isKeyboardVisible = false
     @State var showNext = false
     @State var next = false
@@ -78,16 +78,16 @@ struct LocationPermissionView: View {
                             .font(.subheadline)
                         Spacer()
                         Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                            
+                        
                     }.padding()
                 }
                 
                 if isExpanded {
                     Button(action: {
                         if let location = locationManager.handleLocation() {
-                                savedLat = location.coordinate.latitude.description
-                                savedLng = location.coordinate.longitude.description
-                                updateLocation()
+                            savedLat = location.coordinate.latitude.description
+                            savedLng = location.coordinate.longitude.description
+                            updateLocation()
                         } else {
                             locationManager.askPermission()
                         }
@@ -108,6 +108,17 @@ struct LocationPermissionView: View {
                 .cornerRadius(4)
                 .border(.gray)
                 .padding()
+                .alert(isPresented: $locationManager.showAlert) {
+                    Alert(
+                        title: Text("Location Permission"),
+                        message: Text("Please enable the location permission from the Settings app"),
+                        primaryButton: .default(Text("Continue")) {
+                            locationManager.showAlert = false
+                            locationManager.openAppSettings()
+                        },
+                        secondaryButton: .cancel(Text("Cancel"))
+                    )
+                }
             if showNext{
                 HStack{
                     Text("Location saved:").font(.subheadline)
@@ -178,6 +189,8 @@ struct LocationPermissionView: View {
     func checkSavedLocation() {
         if !savedLat.isEmpty && !savedLng.isEmpty {
             showNext = true
+            isExpanded = false
+            is2Expanded = false
             dashboardVM.daylightFromLocation()
         }
     }
