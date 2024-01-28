@@ -55,7 +55,7 @@ struct SettingsMenuView: View {
                 
                 Section("Misc") {
                     HStack{
-                        Text("App verion")
+                        Text("App version")
                         Spacer()
                         Text(appVersion)
                     }

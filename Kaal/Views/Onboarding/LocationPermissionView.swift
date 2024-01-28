@@ -84,6 +84,9 @@ struct LocationPermissionView: View {
                 
                 if isExpanded {
                     Button(action: {
+                        if let location = locationManager.exposedLocation{
+                            updateLocation()
+                        }
                         if let location = locationManager.handleLocation() {
                             savedLat = location.coordinate.latitude.description
                             savedLng = location.coordinate.longitude.description
@@ -167,9 +170,14 @@ struct LocationPermissionView: View {
             .onChange(of: locationManager.permissionGiven) { oldValue, newValue in
                 if newValue {
                     updateLocation()
+                    checkSavedLocation()
                 }
             }
-            .onChange(of: savedLat) { oldValue, newValue in
+            .onChange(of: locationManager.exposedLocation, { oldValue, newValue in
+                updateLocation()
+                checkSavedLocation()
+            })
+            .onChange(of: currentArea) { oldValue, newValue in
                 dashboardVM.daylightFromLocation()
             }
             .onChange(of: dashboardVM.kaal) { oldValue, newValue in
@@ -198,10 +206,16 @@ struct LocationPermissionView: View {
         if let location = locationManager.handleLocation() {
             savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
             savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
+            print("savedLat = \(savedLat)")
             locationManager.reverseGeocode(location: location){placemark, error in
                 if let area = placemark?.locality, let country = placemark?.country {
                     self.currentArea = "\(area), \(country)"
+                    
+                    print("currr")
+                    print(currentArea)
+                    print("currr")
                 } else {
+                    print("burrr")
                     return
                 }
             }

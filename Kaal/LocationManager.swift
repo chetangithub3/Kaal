@@ -26,22 +26,22 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-//    func locationManager(_ manager: CLLocationManager,
-//                         didChangeAuthorization status:      CLAuthorizationStatus) {
-//
-//        switch status {
-//            case .notDetermined         : neverAsked = true
-//            case .authorizedWhenInUse   : 
-//                exposedLocation = locationManager.location
-//                permissionGiven = true
-//            case .authorizedAlways      : 
-//                exposedLocation = locationManager.location
-//                permissionGiven = true
-//            case .restricted            : self.permissionDenied = true
-//            case .denied                : self.permissionDenied = true
-//            default                     : openAppSettings()
-//        }
-//    }
+    func locationManager(_ manager: CLLocationManager,
+                         didChangeAuthorization status:      CLAuthorizationStatus) {
+
+        switch status {
+            case .notDetermined         : neverAsked = true
+            case .authorizedWhenInUse   : 
+                
+                permissionGiven = true
+            case .authorizedAlways      :
+               
+                permissionGiven = true
+            case .restricted            : self.permissionDenied = true
+            case .denied                : self.permissionDenied = true
+            default                     : openAppSettings()
+        }
+    }
     
     func askPermission() {
         locationManager.requestWhenInUseAuthorization()
