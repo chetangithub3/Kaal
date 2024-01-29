@@ -115,7 +115,7 @@ struct KaalModel: Identifiable, Equatable{
                    return true
                }
         let components = calendar.dateComponents([.minute], from: span.lowerBound, to: span.upperBound)
-        print("------\(components.minute ?? 0 > 720)")
+    
         if let minutes = components.minute, minutes > 720 {
             return true
         } else {

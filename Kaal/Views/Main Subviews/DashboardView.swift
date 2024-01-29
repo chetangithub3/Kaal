@@ -152,19 +152,7 @@ struct DashboardView: View {
                 return "Good Evening"
         }
     }
-    func isDaySpanMoreThan12Hours(span: ClosedRange<Date>) -> Bool{
-        let calendar = Calendar.current
-        guard span.lowerBound < span.upperBound else {
-                   return true
-               }
-        let components = calendar.dateComponents([.minute], from: span.lowerBound, to: span.upperBound)
-        print("------\(components.minute ?? 0 > 720)")
-        if let minutes = components.minute, minutes > 720 {
-            return true
-        } else {
-            return false
-        }
-    }
+
     
     func convertDateRangeToStrings(range: ClosedRange<Date>) {
         let dateFormatter = DateFormatter()
@@ -181,15 +169,3 @@ struct DashboardView: View {
     DashboardView()
 }
 
-
-struct CustomCompactDatePickerStyle: DatePickerStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: 2) {
-            // Customize the appearance of the compact date picker here
-            Image(systemName: "calendar")
-            DatePicker("", selection: configuration.$selection, in: Date()..., displayedComponents: .date)
-                           
-        }.datePickerStyle(CompactDatePickerStyle())
-            .labelsHidden()
-    }
-}
