@@ -46,13 +46,9 @@ struct CustomDatePickerView: View {
                                     .onAppear {
                                         self.height = geometry.size.height
                                     }
-                                    
                             }
                         )
-                       
-                
-          
-               
+
                 Button {
                     self.date = DateFormatter().calendar.date(byAdding: .day, value: 1, to: date) ?? date
                 } label: {

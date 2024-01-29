@@ -15,14 +15,14 @@ struct DashboardView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State private var selectedTab: Int = 0
-    @State var date = Date()
+   
     @State var startTime = ""
     @State var endTime = ""
     @State var currentDate = ""
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack{
+                VStack(spacing: 0){
                     HStack{
                         Text(greeting())
                             .bold()
@@ -30,8 +30,11 @@ struct DashboardView: View {
                         Spacer()
                     }
                     HStack(spacing: 2){
-                        Image(systemName: "calendar")
-                        Text(currentDate).font(.subheadline)
+                        DatePicker(selection: $viewModel.kaal.date, in: Date()..., displayedComponents: [.date])
+                        {
+                            
+                        }.datePickerStyle(CustomCompactDatePickerStyle())
+                       
                         Spacer()
                         LocationItemView(theme: .underlined)
                     }
@@ -117,8 +120,11 @@ struct DashboardView: View {
             }.background(getBackgroundColor())
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
             .onAppear(perform: {
-                
-                viewModel.daylightFromLocation(on: date)
+                viewModel.daylightFromLocation(on: viewModel.kaal.date)
+                convertDateRangeToStrings(range: viewModel.kaal.daySpan)
+            })
+            .onChange(of: viewModel.kaal.date, { oldValue, newValue in
+                viewModel.daylightFromLocation(on: viewModel.kaal.date)
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
             })
             .onChange(of: viewModel.kaal.daySpan, { oldValue, newValue in
@@ -165,39 +171,15 @@ struct DashboardView: View {
     DashboardView()
 }
 
-struct StickyLayoutGrid: View {
-    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
-    var body: some View {
-        NavigationView {
-            ScrollView(.vertical) { //set .horizontal to scroll horizontally
-                                    ///pinnedViews: [.sectionHeaders] => set header or footer you want to pin. if do not want to pin leave empty, sectionFooters => for sticky footer
-                LazyVGrid(columns: columns, spacing: 10, pinnedViews: [.sectionHeaders]) {
-                    Section(header: headerView(type: "Grid")) {
-                        ForEach(0..<10) { i in
-                            Text("Grid: \(i)").frame(width: 100, height: 100, alignment: .center).background(Color.gray).cornerRadius(10.0)
-                        }
-                    }
-                }
-                LazyVStack(spacing: 3, pinnedViews: [.sectionHeaders]) {
-                    Section(header: headerView(type: "List")) {
-                        ForEach(0..<15) { i in
-                            HStack {
-                                Spacer()
-                                Text("List: \(i)")
-                                Spacer()
-                            }.padding(.all, 30).background(Color.gray)
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Sticky Header")
-        }
-    }
-    func headerView(type: String) -> some View{
-        return HStack {
-            Spacer()
-            Text("Section header \(type)")
-            Spacer()
-        }.padding(.all, 10).background(Color.blue)
+
+struct CustomCompactDatePickerStyle: DatePickerStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 2) {
+            // Customize the appearance of the compact date picker here
+            Image(systemName: "calendar")
+            DatePicker("", selection: configuration.$selection, in: Date()..., displayedComponents: .date)
+                           
+        }.datePickerStyle(CompactDatePickerStyle())
+            .labelsHidden()
     }
 }

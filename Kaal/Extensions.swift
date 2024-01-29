@@ -3,7 +3,7 @@
 //  Kaal
 //
 //  Created by Chetan Dhowlaghar on 1/5/24.
-//
+// https://www.termsfeed.com/live/53b19986-13af-451c-a59e-726efa238cd7
 
 import Foundation
 import SwiftUI

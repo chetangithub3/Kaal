@@ -160,7 +160,7 @@ struct LocationPermissionView: View {
             }
             
             NavigationLink("", destination: MainView().environmentObject(dashboardVM), isActive: $next)
-        }.navigationBarHidden(true)
+        }.navigationTitle("Location")
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
                 self.isKeyboardVisible = true
             }
