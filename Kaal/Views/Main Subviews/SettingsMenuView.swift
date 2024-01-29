@@ -55,11 +55,18 @@ struct SettingsMenuView: View {
                     
                 
                 Section("Misc") {
+                    
+                    NavigationLink(destination: WebView(url:URL(string: "https://www.termsfeed.com/live/53b19986-13af-451c-a59e-726efa238cd7")! )) {
+                        Text("Privacy policy")
+                    }
+                    
                     HStack{
                         Text("App version")
                         Spacer()
                         Text(appVersion)
                     }
+                    
+                 
                     Button(action: {
                         sendFeedback()
                     }) {

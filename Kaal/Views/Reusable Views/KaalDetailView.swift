@@ -173,18 +173,7 @@ struct KaalDetailView: View {
     KaalDetailView(kaalRange: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()), kaal: Kaal.brahma)
 }
 
-struct ActivityView: UIViewControllerRepresentable {
-    var activityItems: [Any]
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        return activityViewController
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        
-    }
-}
+
 
 
 struct ButtonHeightKey: PreferenceKey {
