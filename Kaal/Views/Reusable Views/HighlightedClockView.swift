@@ -7,6 +7,29 @@
 
 import SwiftUI
 
+struct HighlightedClockView: View {
+    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
+     var isDaySpanMoreThan12Hours: Bool
+    
+    var timezone: String
+    var range: ClosedRange<Date>
+    var body: some View {
+        
+        VStack(spacing: 0){
+            if isDaySpanMoreThan12Hours{
+                Highlighted24HourClockView(timezone: timezone, range: range)
+            } else{
+                if storedTimeFormat == "hh:mm a" {
+                    Highlighted12HourClockView(timezone: timezone, range: range)
+                } else {
+                    Highlighted24HourClockView(timezone: timezone, range: range)
+                }
+            }
+        }
+        
+    }
+}
+
 struct Highlighted24HourClockView: View, Clock {
    
     var theme: TimeIntervalNature = TimeIntervalNature.neutral

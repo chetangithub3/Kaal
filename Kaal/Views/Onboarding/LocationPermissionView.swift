@@ -18,7 +18,7 @@ struct LocationPermissionView: View {
     @StateObject var locationManager = LocationManager()
     @ObservedObject var dashboardVM = DashboardViewModel(apiManager: APIManager())
     @EnvironmentObject var ddViewModel: AddressSearchViewModel
-
+    
     @State private var isKeyboardVisible = false
     @State var showNext = false
     @State var next = false
@@ -31,9 +31,7 @@ struct LocationPermissionView: View {
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
                 .padding()
-          
-          
-            
+
             VStack{
                 Button {
                     withAnimation {
@@ -57,7 +55,7 @@ struct LocationPermissionView: View {
                             showNext = true
                         }.environmentObject(locationManager)
                     }
-                   
+                    
                 }
                 
             }.padding(.vertical)
@@ -108,20 +106,20 @@ struct LocationPermissionView: View {
                         .padding(.bottom)
                 }
             }
-                .cornerRadius(4)
-                .border(.gray)
-                .padding()
-                .alert(isPresented: $locationManager.showAlert) {
-                    Alert(
-                        title: Text("Location Permission"),
-                        message: Text("Please enable the location permission from the Settings app"),
-                        primaryButton: .default(Text("Continue")) {
-                            locationManager.showAlert = false
-                            locationManager.openAppSettings()
-                        },
-                        secondaryButton: .cancel(Text("Cancel"))
-                    )
-                }
+            .cornerRadius(4)
+            .border(.gray)
+            .padding()
+            .alert(isPresented: $locationManager.showAlert) {
+                Alert(
+                    title: Text("Location Permission"),
+                    message: Text("Please enable the location permission from the Settings app"),
+                    primaryButton: .default(Text("Continue")) {
+                        locationManager.showAlert = false
+                        locationManager.openAppSettings()
+                    },
+                    secondaryButton: .cancel(Text("Cancel"))
+                )
+            }
             if showNext{
                 HStack{
                     Text("Location saved:").font(.subheadline)
@@ -129,7 +127,7 @@ struct LocationPermissionView: View {
                 }.padding()
             }
             
-               
+            
             
             
             
@@ -140,12 +138,13 @@ struct LocationPermissionView: View {
                     isFirstTime = false
                 }, label: {
                     Text("Go Home")
-                        .font(.subheadline)
+                        .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
-                        .cornerRadius(4)
-                        .scaleEffect(animate ? 1.2 : 1.0)
+                        .cornerRadius(10)
+                        .padding()
+                        .scaleEffect(animate ? 1.05 : 1.0)
                         .animation(
                             Animation.easeInOut(duration: 1)
                                 .repeatForever(autoreverses: true)
@@ -155,7 +154,7 @@ struct LocationPermissionView: View {
                                 self.animate.toggle()
                             }
                         })
-                               
+                    
                 })
             }
             
@@ -210,12 +209,7 @@ struct LocationPermissionView: View {
             locationManager.reverseGeocode(location: location){placemark, error in
                 if let area = placemark?.locality, let country = placemark?.country {
                     self.currentArea = "\(area), \(country)"
-                    
-                    print("currr")
-                    print(currentArea)
-                    print("currr")
                 } else {
-                    print("burrr")
                     return
                 }
             }

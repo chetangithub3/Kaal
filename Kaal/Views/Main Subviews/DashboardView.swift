@@ -15,10 +15,10 @@ struct DashboardView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
     @State private var selectedTab: Int = 0
-   
+    @State private var date = Date()
     @State var startTime = ""
     @State var endTime = ""
-    @State var currentDate = ""
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -30,10 +30,14 @@ struct DashboardView: View {
                         Spacer()
                     }
                     HStack(spacing: 2){
-                        DatePicker(selection: $viewModel.kaal.date, in: Date()..., displayedComponents: [.date])
-                        {
-                            
-                        }.datePickerStyle(CustomCompactDatePickerStyle())
+                       
+                        HStack(spacing: 2) {
+                            // Customize the appearance of the compact date picker here
+                            Image(systemName: "calendar")
+                            DatePicker("", selection: $date, in: Date()..., displayedComponents: [.date])
+                                .datePickerStyle(CompactDatePickerStyle())
+                                .labelsHidden()
+                        }
                        
                         Spacer()
                         LocationItemView(theme: .underlined)
@@ -44,10 +48,8 @@ struct DashboardView: View {
                     .minimumScaleFactor(0.5)
                 
                 VStack {
-                    if storedTimeFormat == "hh:mm a" {
-                        Highlighted12HourClockView(timezone: viewModel.kaal.timezone, range: viewModel.kaal.daySpan).padding(.vertical)
-                    } else {
-                        Highlighted24HourClockView(timezone: viewModel.kaal.timezone, range: viewModel.kaal.daySpan).padding(.vertical)
+                    Section{
+                        HighlightedClockView(isDaySpanMoreThan12Hours: viewModel.kaal.isDaySpanMoreThan12Hours, timezone: viewModel.kaal.timezone, range: viewModel.kaal.daySpan).padding()
                     }
                     
                     HStack{
@@ -120,28 +122,23 @@ struct DashboardView: View {
             }.background(getBackgroundColor())
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
             .onAppear(perform: {
-                viewModel.daylightFromLocation(on: viewModel.kaal.date)
+                viewModel.daylightFromLocation(on: date)
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
             })
-            .onChange(of: viewModel.kaal.date, { oldValue, newValue in
-                viewModel.daylightFromLocation(on: viewModel.kaal.date)
+            .onChange(of: date, { oldValue, newValue in
+                
+                viewModel.daylightFromLocation(on: date)
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
             })
             .onChange(of: viewModel.kaal.daySpan, { oldValue, newValue in
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
-                formattedDate()
             })
             .navigationTitle(Text("Kaal"))
             .navigationBarTitleDisplayMode(.inline)
         }
     }
     
-    private func formattedDate() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMM d"
-        formatter.timeZone = TimeZone(identifier: viewModel.kaal.timezone) 
-        currentDate = formatter.string(from: viewModel.kaal.date)
-    }
+ 
     
     private func greeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
@@ -153,6 +150,19 @@ struct DashboardView: View {
                 return "Good Afternoon"
             default:
                 return "Good Evening"
+        }
+    }
+    func isDaySpanMoreThan12Hours(span: ClosedRange<Date>) -> Bool{
+        let calendar = Calendar.current
+        guard span.lowerBound < span.upperBound else {
+                   return true
+               }
+        let components = calendar.dateComponents([.minute], from: span.lowerBound, to: span.upperBound)
+        print("------\(components.minute ?? 0 > 720)")
+        if let minutes = components.minute, minutes > 720 {
+            return true
+        } else {
+            return false
         }
     }
     

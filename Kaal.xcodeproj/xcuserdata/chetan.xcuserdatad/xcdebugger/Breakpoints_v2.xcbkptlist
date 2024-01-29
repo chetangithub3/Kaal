@@ -115,5 +115,53 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C70C668-B646-4F9E-AA47-77435EB7A859"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kaal/Views/Main Subviews/DashboardView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "isDaySpanMoreThan12Hours(span:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9C70C668-B646-4F9E-AA47-77435EB7A859 - f414122a68443213"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kaal.DashboardView.isDaySpanMoreThan12Hours(span: Swift.ClosedRange&lt;Foundation.Date&gt;) -&gt; Swift.Bool"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Main%20Subviews/DashboardView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "9C70C668-B646-4F9E-AA47-77435EB7A859 - f414122a68443213"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kaal.DashboardView.isDaySpanMoreThan12Hours(span: Swift.ClosedRange&lt;Foundation.Date&gt;) -&gt; Swift.Bool"
+                  moduleName = "Kaal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Views/Main%20Subviews/DashboardView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "488">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
