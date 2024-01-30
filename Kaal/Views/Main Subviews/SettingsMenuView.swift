@@ -46,19 +46,27 @@ struct SettingsMenuView: View {
                             Spacer()
                             
                             Text("\(currentArea)")
+                                .underline()
                         }
                     }
                 }.scaleEffect(shouldAnimate ? 1.2 : 1.0) // Scaled effect for animation
-                    .animation(.bouncy, value: 0.5)
+                    .animation(.bouncy, value: 1)
                     
                     
                 
                 Section("Misc") {
+                    
+                    NavigationLink(destination: WebView(url:URL(string: "https://www.termsfeed.com/live/53b19986-13af-451c-a59e-726efa238cd7")! )) {
+                        Text("Privacy policy")
+                    }
+                    
                     HStack{
-                        Text("App verion")
+                        Text("App version")
                         Spacer()
                         Text(appVersion)
                     }
+                    
+                 
                     Button(action: {
                         sendFeedback()
                     }) {
@@ -104,9 +112,17 @@ struct SettingsMenuView: View {
                 }
             })
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ChangeTab"))) { _ in
-               shouldAnimate = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                    shouldAnimate = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+                    withAnimation {
+                        shouldAnimate = true
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
+                        withAnimation {
+                            shouldAnimate = false
+                        }
+                        
+                    }
                 }
             }
         })

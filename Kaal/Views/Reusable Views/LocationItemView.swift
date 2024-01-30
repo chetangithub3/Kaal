@@ -11,33 +11,31 @@ struct LocationItemView: View {
     var theme: LocationItemTheme = .button
     @AppStorage("currentArea") var currentArea: String = ""
     var body: some View {
-        HStack{
+        HStack(spacing: 2){
             if theme == .button{
                 Text("Location:").font(.subheadline)
                 Spacer()
+            } else {
+                Image(systemName: "map")
             }
            
             Button(action: {
                 NotificationCenter.default.post(name: Notification.Name("ChangeTab"), object: nil)
             }, label: {
-                if theme == .button{
+                
                     HStack{
-                        Image(systemName: "map")
+                        if theme == .button{
+                            Image(systemName: "map")
+                        }
                         Text("\(currentArea)").underline(pattern: .solid)
                     }
                     .padding(8)
                     .frame(height: 35)
                     .foregroundColor(.primary)
-                    .background(.background)
+                    .background(theme == .button ? Color.white : Color.secondary.opacity(0.15))
+                
                     .cornerRadius(10)
-                } else {
-                    HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 2, content: {
-                        Image(systemName: "map")
-                        Text(currentArea)
-                            .font(.subheadline)
-                            .underline()
-                    }).foregroundColor(.primary)
-                }
+                
                
                 
             })

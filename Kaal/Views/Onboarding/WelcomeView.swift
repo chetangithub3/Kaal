@@ -6,51 +6,69 @@
     //
 
 import SwiftUI
-import OnboardingKit
+
 
 struct WelcomeView: View {
     
     @AppStorage("isFirstTime") var isFirstTime = true
-    @EnvironmentObject var addressViewModel: AddressSearchViewModel
+    
     var body: some View {
         NavigationView {
-            VStack {
-                Image("yantra-svg")
-                    .resizable()
-                    .frame(width: .infinity)
+            VStack{
+                ScrollView {
+                    VStack(spacing: 16) {
+                        Image("yantra-svg")
+                            .resizable()
+                            .padding()
+                            .frame(width: 300, height: 300)
+                            .background(Color.gray.opacity(0.2).gradient)
+                            .cornerRadius(10)
+                        
+                        
+                        VStack(spacing: 0){
+                            Text("Welcome to")
+                                .font(.title2)
+                            
+                            Text("Kaal")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                            Text("Your celestial guide to finding the right moments.")
+                                .font(.title2)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                        }
+                        
+                        Text("Discover the power of choosing the right moment for your needs, with this app. Align your actions with the cosmic flow by tracking the most auspicious/inauspicious muhurtas according to the Hindu Astrology.")
+                            .font(.subheadline)
+                            .italic()
+                        
+                        Spacer()
+                       
+                        
+                    }
                     .padding()
-                    .frame(height: getScreenBounds().width)
-                    .background(Color.gray.opacity(0.2).gradient)
-                
-                VStack {
-                    Text("Kaal")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                    Text("Your celestial guide to finding the right moments.")
-                        .font(.headline)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
-                    Text("Discover the power of choosing the right moment with our app. Align your actions with the cosmic flow by tracking the most auspicious muhurtas. Increase your chances of success and reduce obstacles effortlessly.")
-                           .font(.headline)
-                           .lineLimit(1)
-                           .minimumScaleFactor(0.5)
+                    
+                    
                 }
-                .padding()
-                
-                Spacer()
-                
-                NavigationLink(destination: LocationPermissionView().environmentObject(addressViewModel)) {
+                NavigationLink(destination: LocationPermissionView()) {
+                    
                     Text("Next")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding()
                 }
-                
-            }.frame(alignment: .top)
+            }
             
         }
-        .ignoresSafeArea()
-        .toolbar(.hidden)
+
     }
 }
 
 #Preview {
     WelcomeView()
 }
+
+

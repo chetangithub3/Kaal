@@ -38,6 +38,10 @@ struct KaalModel: Identifiable, Equatable{
         return sunrise...sunset
     }
     
+    var isDaySpanMoreThan12Hours: Bool {
+        return isDaySpanMoreThan12Hours(span: sunrise...sunset)
+    }
+    
     var rahuKaal: ClosedRange<Date> {
        
         let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
@@ -103,5 +107,19 @@ struct KaalModel: Identifiable, Equatable{
             }
         }
         return nil
+    }
+    
+    func isDaySpanMoreThan12Hours(span: ClosedRange<Date>) -> Bool{
+        let calendar = Calendar.current
+        guard span.lowerBound < span.upperBound else {
+                   return true
+               }
+        let components = calendar.dateComponents([.minute], from: span.lowerBound, to: span.upperBound)
+    
+        if let minutes = components.minute, minutes > 720 {
+            return true
+        } else {
+            return false
+        }
     }
 }

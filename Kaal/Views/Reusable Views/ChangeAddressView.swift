@@ -17,6 +17,7 @@ struct ChangeAddressView: View {
     @ObservedObject var locationManager = LocationManager()
     @State private var isExpanded = false
     @State private var is2Expanded = false
+  
     
     var body: some View {
         VStack {
@@ -76,6 +77,17 @@ struct ChangeAddressView: View {
                 .cornerRadius(4)
                 .border(.gray)
                 .padding()
+                .alert(isPresented: $locationManager.showAlert) {
+                    Alert(
+                        title: Text("Location Permission"),
+                        message: Text("Please enable the location permission from the Settings app"),
+                        primaryButton: .default(Text("Continue")) {
+                            locationManager.showAlert = false
+                            locationManager.openAppSettings()
+                        },
+                        secondaryButton: .cancel(Text("Cancel"))
+                    )
+                }
             
             VStack{
                 Button {

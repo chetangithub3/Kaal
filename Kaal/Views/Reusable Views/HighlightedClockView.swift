@@ -7,6 +7,29 @@
 
 import SwiftUI
 
+struct HighlightedClockView: View {
+    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
+     var isDaySpanMoreThan12Hours: Bool
+    
+    var timezone: String
+    var range: ClosedRange<Date>
+    var body: some View {
+        
+        VStack(spacing: 0){
+            if isDaySpanMoreThan12Hours{
+                Highlighted24HourClockView(timezone: timezone, range: range)
+            } else{
+                if storedTimeFormat == "hh:mm a" {
+                    Highlighted12HourClockView(timezone: timezone, range: range)
+                } else {
+                    Highlighted24HourClockView(timezone: timezone, range: range)
+                }
+            }
+        }
+        
+    }
+}
+
 struct Highlighted24HourClockView: View, Clock {
    
     var theme: TimeIntervalNature = TimeIntervalNature.neutral
@@ -139,10 +162,8 @@ struct Highlighted24HourClockView: View, Clock {
         })
         .onChange(of: range) { _, _ in
             self.percentage = 0
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                withAnimation {
-                    self.percentage = 1.0
-                }
+            withAnimation {
+                self.percentage = 1.0
             }
         }
     }
@@ -200,7 +221,7 @@ struct Highlighted12HourClockView: View, Clock {
                         Rectangle()
                             .fill(.primary)
                             .frame(width: 2, height: index % 5 == 0 ? 10 : 0)
-                            .offset(y: (width - 35) / 2)
+                            .offset(y: (width - 34) / 2)
                             .rotationEffect(.init(degrees: Double((index * 6))))
                     }
                     ForEach(1...60, id: \.self) { index in

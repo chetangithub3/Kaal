@@ -31,9 +31,7 @@ struct LocationPermissionView: View {
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
                 .padding()
-          
-          
-            
+
             VStack{
                 Button {
                     withAnimation {
@@ -57,7 +55,7 @@ struct LocationPermissionView: View {
                             showNext = true
                         }.environmentObject(locationManager)
                     }
-                   
+                    
                 }
                 
             }.padding(.vertical)
@@ -78,16 +76,19 @@ struct LocationPermissionView: View {
                             .font(.subheadline)
                         Spacer()
                         Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                            
+                        
                     }.padding()
                 }
                 
                 if isExpanded {
                     Button(action: {
+                        if let location = locationManager.exposedLocation{
+                            updateLocation()
+                        }
                         if let location = locationManager.handleLocation() {
-                                savedLat = location.coordinate.latitude.description
-                                savedLng = location.coordinate.longitude.description
-                                updateLocation()
+                            savedLat = location.coordinate.latitude.description
+                            savedLng = location.coordinate.longitude.description
+                            updateLocation()
                         } else {
                             locationManager.askPermission()
                         }
@@ -105,9 +106,20 @@ struct LocationPermissionView: View {
                         .padding(.bottom)
                 }
             }
-                .cornerRadius(4)
-                .border(.gray)
-                .padding()
+            .cornerRadius(4)
+            .border(.gray)
+            .padding()
+            .alert(isPresented: $locationManager.showAlert) {
+                Alert(
+                    title: Text("Location Permission"),
+                    message: Text("Please enable the location permission from the Settings app"),
+                    primaryButton: .default(Text("Continue")) {
+                        locationManager.showAlert = false
+                        locationManager.openAppSettings()
+                    },
+                    secondaryButton: .cancel(Text("Cancel"))
+                )
+            }
             if showNext{
                 HStack{
                     Text("Location saved:").font(.subheadline)
@@ -115,7 +127,7 @@ struct LocationPermissionView: View {
                 }.padding()
             }
             
-               
+            
             
             
             
@@ -126,12 +138,13 @@ struct LocationPermissionView: View {
                     isFirstTime = false
                 }, label: {
                     Text("Go Home")
-                        .font(.subheadline)
+                        .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
-                        .cornerRadius(4)
-                        .scaleEffect(animate ? 1.2 : 1.0)
+                        .cornerRadius(10)
+                        .padding()
+                        .scaleEffect(animate ? 1.05 : 1.0)
                         .animation(
                             Animation.easeInOut(duration: 1)
                                 .repeatForever(autoreverses: true)
@@ -141,12 +154,12 @@ struct LocationPermissionView: View {
                                 self.animate.toggle()
                             }
                         })
-                               
+                    
                 })
             }
             
             NavigationLink("", destination: MainView().environmentObject(dashboardVM), isActive: $next)
-        }.navigationBarHidden(true)
+        }.navigationTitle("Location")
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
                 self.isKeyboardVisible = true
             }
@@ -156,9 +169,14 @@ struct LocationPermissionView: View {
             .onChange(of: locationManager.permissionGiven) { oldValue, newValue in
                 if newValue {
                     updateLocation()
+                    checkSavedLocation()
                 }
             }
-            .onChange(of: savedLat) { oldValue, newValue in
+            .onChange(of: locationManager.exposedLocation, { oldValue, newValue in
+                updateLocation()
+                checkSavedLocation()
+            })
+            .onChange(of: currentArea) { oldValue, newValue in
                 dashboardVM.daylightFromLocation()
             }
             .onChange(of: dashboardVM.kaal) { oldValue, newValue in
@@ -178,6 +196,8 @@ struct LocationPermissionView: View {
     func checkSavedLocation() {
         if !savedLat.isEmpty && !savedLng.isEmpty {
             showNext = true
+            isExpanded = false
+            is2Expanded = false
             dashboardVM.daylightFromLocation()
         }
     }
@@ -185,6 +205,7 @@ struct LocationPermissionView: View {
         if let location = locationManager.handleLocation() {
             savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
             savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
+            print("savedLat = \(savedLat)")
             locationManager.reverseGeocode(location: location){placemark, error in
                 if let area = placemark?.locality, let country = placemark?.country {
                     self.currentArea = "\(area), \(country)"

@@ -18,6 +18,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var neverAsked = true
     @Published var permissionGiven = false
     @Published var permissionDenied = false
+    @Published var showAlert = false
     
     override init() {
         super.init()
@@ -25,22 +26,22 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-//    func locationManager(_ manager: CLLocationManager,
-//                         didChangeAuthorization status:      CLAuthorizationStatus) {
-//
-//        switch status {
-//            case .notDetermined         : neverAsked = true
-//            case .authorizedWhenInUse   : 
-//                exposedLocation = locationManager.location
-//                permissionGiven = true
-//            case .authorizedAlways      : 
-//                exposedLocation = locationManager.location
-//                permissionGiven = true
-//            case .restricted            : self.permissionDenied = true
-//            case .denied                : self.permissionDenied = true
-//            default                     : openAppSettings()
-//        }
-//    }
+    func locationManager(_ manager: CLLocationManager,
+                         didChangeAuthorization status:      CLAuthorizationStatus) {
+
+        switch status {
+            case .notDetermined         : neverAsked = true
+            case .authorizedWhenInUse   : 
+                
+                permissionGiven = true
+            case .authorizedAlways      :
+               
+                permissionGiven = true
+            case .restricted            : self.permissionDenied = true
+            case .denied                : self.permissionDenied = true
+            default                     : openAppSettings()
+        }
+    }
     
     func askPermission() {
         locationManager.requestWhenInUseAuthorization()
@@ -59,7 +60,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
                 exposedLocation = locationManager.location
                 permissionGiven = true
             case .restricted            : openAppSettings()
-            case .denied                : openAppSettings()
+            case .denied                : showAlert = true
             default                     : openAppSettings()
         }
         return locationManager.location

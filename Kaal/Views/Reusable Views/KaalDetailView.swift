@@ -13,7 +13,7 @@ struct KaalDetailView: View {
     var kaalRange: ClosedRange<Date>
     var kaal: Kaal
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
-    @State var date = Date()
+    @Binding var date: Date
     @EnvironmentObject var viewModel: DashboardViewModel
     @State var startTime = ""
     @State var endTime = ""
@@ -69,8 +69,8 @@ struct KaalDetailView: View {
         .onAppear(perform: {
             convertDateRangeToStrings(range: kaalRange)
         })
-        .onChange(of: date) { oldValue, newValue in
-            viewModel.daylightFromLocation(on: date)
+        .onChange(of: viewModel.kaal.date) { oldValue, newValue in
+            viewModel.daylightFromLocation(on: viewModel.kaal.date)
         }
         .onChange(of: viewModel.kaal) { oldValue, newValue in
             convertDateRangeToStrings(range: kaalRange)
@@ -170,21 +170,10 @@ struct KaalDetailView: View {
 }
 
 #Preview {
-    KaalDetailView(kaalRange: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()), kaal: Kaal.brahma)
+    KaalDetailView(kaalRange: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()), kaal: Kaal.brahma, date: .constant(Date()))
 }
 
-struct ActivityView: UIViewControllerRepresentable {
-    var activityItems: [Any]
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        return activityViewController
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        
-    }
-}
+
 
 
 struct ButtonHeightKey: PreferenceKey {

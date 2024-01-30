@@ -44,6 +44,8 @@
 		61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C62B37A16500221661 /* WelcomeView.swift */; };
 		61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C82B37A71E00221661 /* LocationPermissionView.swift */; };
 		61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */; };
+		61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319352B686FCB00EA2491 /* UIKitViews.swift */; };
+		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
 		61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EA78072B512BED00AF618F /* ForLaterVersions.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
 		61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */; };
@@ -87,6 +89,8 @@
 		61DE51C62B37A16500221661 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		61DE51C82B37A71E00221661 /* LocationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionView.swift; sourceTree = "<group>"; };
 		61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchBarView.swift; sourceTree = "<group>"; };
+		61E319352B686FCB00EA2491 /* UIKitViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViews.swift; sourceTree = "<group>"; };
+		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
 		61EA78072B512BED00AF618F /* ForLaterVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForLaterVersions.swift; sourceTree = "<group>"; };
 		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenuView.swift; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 				61B5DBFB2B4387D9003E0E8C /* KaalDetailView.swift */,
 				61D694D42B4D15D40039A97F /* LocationItemView.swift */,
 				61EA78072B512BED00AF618F /* ForLaterVersions.swift */,
+				61E319352B686FCB00EA2491 /* UIKitViews.swift */,
+				61E319372B687B8400EA2491 /* CompactDatePickerView.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */,
 				61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */,
 				61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */,
 				61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */,
@@ -343,6 +350,7 @@
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
 				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
+				61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */,
 				61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */,
 				61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */,
 				6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */,
@@ -519,7 +527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
+				MARKETING_VERSION = 0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chetan.KaalaVeda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -553,7 +561,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
+				MARKETING_VERSION = 0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chetan.KaalaVeda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
