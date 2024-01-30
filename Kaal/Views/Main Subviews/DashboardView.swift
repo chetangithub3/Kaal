@@ -18,7 +18,7 @@ struct DashboardView: View {
     @State private var date = Date()
     @State var startTime = ""
     @State var endTime = ""
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -34,9 +34,7 @@ struct DashboardView: View {
                         HStack(spacing: 2) {
                             // Customize the appearance of the compact date picker here
                             Image(systemName: "calendar")
-                            DatePicker("", selection: $date, in: Date()..., displayedComponents: [.date])
-                                .datePickerStyle(CompactDatePickerStyle())
-                                .labelsHidden()
+                            CompactDatePickerView(date: $date)
                         }
                        
                         Spacer()

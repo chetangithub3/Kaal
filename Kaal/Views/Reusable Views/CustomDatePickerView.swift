@@ -35,9 +35,7 @@ struct CustomDatePickerView: View {
                 }.disabled(self.date <= Date())
                     .opacity(self.date <= Date() ? 0.0  : 1.0)
          
-                    DatePicker("", selection: $date, in: Date()..., displayedComponents: .date)
-                        .datePickerStyle(.compact)
-                        .labelsHidden()
+                CompactDatePickerView(date: $date)
                         .background(
                             GeometryReader { geometry in
                                 Rectangle()
