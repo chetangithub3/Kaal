@@ -10,10 +10,10 @@ import SwiftUI
 struct AbhijitKaalView: View {
     
     @EnvironmentObject var viewModel: DashboardViewModel
-    
+    @Binding var date: Date
     var body: some View {
         VStack{
-            KaalDetailView(kaalRange: viewModel.kaal.abhijitKaal, kaal: Kaal.abhijit)
+            KaalDetailView(kaalRange: viewModel.kaal.abhijitKaal, kaal: Kaal.abhijit, date: $date)
         }.navigationTitle(Kaal.abhijit.title)
             .navigationBarTitleDisplayMode(.inline)
     }
@@ -21,5 +21,5 @@ struct AbhijitKaalView: View {
 }
 
 #Preview {
-    AbhijitKaalView()
+    AbhijitKaalView(date: .constant(Date()))
 }

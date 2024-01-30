@@ -90,25 +90,25 @@ struct DashboardView: View {
                         if !viewModel.kaal.dateString.isEmpty {
                             HStack(spacing: 16) {
                                 NavigationLink {
-                                    AbhijitKaalView()
+                                    AbhijitKaalView(date: $date)
                                 } label: {
                                     TileView(title: "Abhijit Kaal", range: viewModel.kaal.abhijitKaal, theme: Kaal.abhijit.nature)
                                 }
                                 
                                 NavigationLink {
-                                    RahuKaalView()
+                                    RahuKaalView(date: $date)
                                 } label: {
                                     TileView(title: "Rahu Kaal", range: viewModel.kaal.rahuKaal, theme: Kaal.rahu.nature)
                                 }
                                 
                                 NavigationLink {
-                                    BrahmaMuhurtaView()
+                                    BrahmaMuhurtaView(date: $date)
                                 } label: {
                                     TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat, theme: Kaal.brahma.nature)
                                 }
                                
                                 NavigationLink {
-                                    YamaGandaView()
+                                    YamaGandaView(date: $date)
                                 } label: {
                                     TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal, theme: Kaal.yama.nature)
                                 }

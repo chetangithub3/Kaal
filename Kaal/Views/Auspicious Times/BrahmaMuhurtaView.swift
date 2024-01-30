@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct BrahmaMuhurtaView: View {
-    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
-    @State var date = Date()
+    
     @EnvironmentObject var viewModel: DashboardViewModel
-    @State var startTime = ""
-    @State var endTime = ""
+    @Binding var date: Date
+    
     var body: some View {
         VStack{
-            KaalDetailView(kaalRange: viewModel.kaal.brahmaMahurat, kaal: Kaal.brahma)
+            KaalDetailView(kaalRange: viewModel.kaal.brahmaMahurat, kaal: Kaal.brahma, date: $date)
         }.navigationTitle(Kaal.brahma.title)
             .navigationBarTitleDisplayMode(.inline)
     }
@@ -23,5 +22,5 @@ struct BrahmaMuhurtaView: View {
 }
 
 #Preview {
-    BrahmaMuhurtaView()
+    BrahmaMuhurtaView(date: .constant(Date()))
 }

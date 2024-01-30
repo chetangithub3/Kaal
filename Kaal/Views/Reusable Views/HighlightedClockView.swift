@@ -162,10 +162,8 @@ struct Highlighted24HourClockView: View, Clock {
         })
         .onChange(of: range) { _, _ in
             self.percentage = 0
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                withAnimation {
-                    self.percentage = 1.0
-                }
+            withAnimation {
+                self.percentage = 1.0
             }
         }
     }

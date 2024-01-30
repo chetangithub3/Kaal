@@ -13,7 +13,7 @@ struct KaalDetailView: View {
     var kaalRange: ClosedRange<Date>
     var kaal: Kaal
     @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
-   
+    @Binding var date: Date
     @EnvironmentObject var viewModel: DashboardViewModel
     @State var startTime = ""
     @State var endTime = ""
@@ -98,7 +98,7 @@ struct KaalDetailView: View {
     
     func screenshottableView() -> some View {
         VStack{
-            CustomDatePickerView(date: $viewModel.kaal.date, timezone: viewModel.kaal.timezone)
+            CustomDatePickerView(date: $date, timezone: viewModel.kaal.timezone)
                 .padding(.vertical)
                 .background(Color.secondary.opacity(0.3))
             VStack{
@@ -170,7 +170,7 @@ struct KaalDetailView: View {
 }
 
 #Preview {
-    KaalDetailView(kaalRange: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()), kaal: Kaal.brahma)
+    KaalDetailView(kaalRange: Date()...(DateFormatter().calendar.date(byAdding: .hour, value: +8, to: Date()) ?? Date()), kaal: Kaal.brahma, date: .constant(Date()))
 }
 
 
