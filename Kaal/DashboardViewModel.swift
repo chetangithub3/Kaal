@@ -49,7 +49,7 @@ class DashboardViewModel: ObservableObject {
     func fetchData(from url: URL) {
         self.isLoading = true
         apiManager.publisher(for: url)
-            .sink (receiveCompletion: { (completion) in
+            .sink (receiveCompletion: { [weak self] (completion) in
                 switch completion {
                     case .finished:
                         return
@@ -58,7 +58,7 @@ class DashboardViewModel: ObservableObject {
                         
                         
                 }
-            }, receiveValue: { (timeData: DaylightData) in
+            }, receiveValue: { [weak self] (timeData: DaylightData) in
                 
                 if let sunrise = timeData.results?.sunrise, let sunset = timeData.results?.sunset, let date = timeData.results?.date, let utcOffset = timeData.results?.utcOffset, let timeZone = timeData.results?.timezone {
                     
@@ -73,8 +73,8 @@ class DashboardViewModel: ObservableObject {
     
                     let combinedSunset = dateFormatter.date(from: "\(date) \(sunset)")!
   
-                    self.kaal = KaalModel(place: self.currentArea, dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
-                    self.isLoading = false
+                    self?.kaal = KaalModel(place: self?.currentArea ?? "", dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
+                    self?.isLoading = false
                 }
                 
             })
