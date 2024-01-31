@@ -24,7 +24,7 @@ struct LocationPermissionView: View {
     @State var next = false
     @State private var isExpanded = false
     @State private var is2Expanded = false
-    @State private var animate = false
+    
     var body: some View {
         VStack {
             Text("Please grant the location permission, so that we can provide you with accurate muhurta timings based on your precise location. You may also manually enter an approximate address.")
@@ -144,16 +144,7 @@ struct LocationPermissionView: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         .padding()
-                        .scaleEffect(animate ? 1.05 : 1.0)
-                        .animation(
-                            Animation.easeInOut(duration: 1)
-                                .repeatForever(autoreverses: true)
-                        )
-                        .onAppear(perform: {
-                            withAnimation {
-                                self.animate.toggle()
-                            }
-                        })
+                       
                     
                 })
             }
