@@ -122,13 +122,16 @@ struct LocationPermissionView: View {
             }
             if showNext{
                 HStack{
+                    Image(systemName: "checkmark.circle.fill")
+                        .symbolEffect(.variableColor.iterative)
+                        .symbolVariant(.slash)
                     Text("Location saved:").font(.subheadline)
                     Text("\(currentArea)").font(.subheadline).bold()
                 }.padding()
             }
             
             
-            
+            NavigationLink("", destination: MainView().environmentObject(dashboardVM), isActive: $next)
             
             
             Spacer()
@@ -140,7 +143,7 @@ struct LocationPermissionView: View {
                     Text("Go Home")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue)
+                        .background(getTintColor())
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         .padding()
@@ -149,8 +152,10 @@ struct LocationPermissionView: View {
                 })
             }
             
-            NavigationLink("", destination: MainView().environmentObject(dashboardVM), isActive: $next)
-        }.navigationTitle("Location")
+            
+        } 
+        .navigationTitle("Location")
+           
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
                 self.isKeyboardVisible = true
             }

@@ -21,7 +21,7 @@ struct WelcomeView: View {
                             .resizable()
                             .padding()
                             .frame(width: 300, height: 300)
-                            .background(Color.gray.opacity(0.2).gradient)
+                            .background(getTintColor().opacity(0.5))
                             .cornerRadius(10)
                         
                         
@@ -38,7 +38,7 @@ struct WelcomeView: View {
                                 .minimumScaleFactor(0.5)
                         }
                         
-                        Text("Discover the power of choosing the right moment for your needs, with this app. Align your actions with the cosmic flow by tracking the most auspicious/inauspicious muhurtas according to the Hindu Astrology.")
+                        Text("\nDiscover the power of choosing the right moment for your needs, with this app. Align your actions with the cosmic flow by tracking the most auspicious/inauspicious muhurtas according to the Hindu Astrology.")
                             .font(.subheadline)
                             .italic()
                         
@@ -53,16 +53,17 @@ struct WelcomeView: View {
                 NavigationLink(destination: LocationPermissionView()) {
                     
                     Text("Next")
+                        .bold()
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue)
+                        .background(getTintColor())
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         .padding()
                 }
             }
             
-        }
+        }.tint(getTintColor())
 
     }
 }

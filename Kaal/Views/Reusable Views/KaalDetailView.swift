@@ -38,31 +38,25 @@ struct KaalDetailView: View {
                         })
                     }
                 )
-  
-            HStack{
-                Spacer()
-                Button {
-                    if let geometry = self.geometry{
-                        takeScreenshot(geometry: geometry) {
-                            isShareSheetPresented = true
-                        }
-                    }
-                } label: {
-                    HStack{
-                        Text("Share").font(.subheadline)
-                        Image(systemName: "square.and.arrow.up")
-                    }
-                    .padding(8)
-                    .frame(height: buttonHeight)
-                    .foregroundColor(getTintColor())
-                    .background(Color.secondary.opacity(0.3))
-                    .cornerRadius(10)
-                    .opacity(viewModel.isLoading ? 0.2 : 1.0)
-                    .disabled(viewModel.isLoading)
-                }
-            }.padding(.horizontal)
+
             Spacer()
-        }
+        }.navigationBarItems(trailing: Button(action: {
+            if let geometry = self.geometry{
+                takeScreenshot(geometry: geometry) {
+                    isShareSheetPresented = true
+                }
+            }
+        }, label: {
+            HStack{
+                Text("Share").font(.subheadline)
+                Image(systemName: "square.and.arrow.up")
+            }
+            .padding(8)
+            .frame(height: buttonHeight)
+            .foregroundColor(getTintColor())
+            .opacity(viewModel.isLoading ? 0.2 : 1.0)
+            .disabled(viewModel.isLoading)
+        }))
         .onPreferenceChange(ButtonHeightKey.self) { newValue in
             buttonHeight = newValue
         }
