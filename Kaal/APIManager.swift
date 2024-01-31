@@ -30,18 +30,18 @@ public struct APIManager: APIManagerDelegate {
             }
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError { error -> APIError in
-                            if let urlError = error as? URLError {
-                                switch urlError.code {
-                                    case .badServerResponse:
-                                    self.errorSubject.send(.badServer)
-                                    return .badServer
-                                default:
-                                    return .unhandled(urlError)
-                                }
-                            } else {
-                                return .unhandled(error)
-                            }
-                        }
+                if let urlError = error as? URLError {
+                    switch urlError.code {
+                        case .badServerResponse:
+                            self.errorSubject.send(.badServer)
+                            return .badServer
+                        default:
+                            return .unhandled(urlError)
+                    }
+                } else {
+                    return .unhandled(error)
+                }
+            }
             .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

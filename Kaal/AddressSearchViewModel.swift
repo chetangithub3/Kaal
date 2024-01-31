@@ -51,8 +51,8 @@ class AddressSearchViewModel: ObservableObject {
         cancellebles.removeAll()
         isLoading = true
         apiManager.publisher(for: url)
-            .sink (receiveCompletion: { (completion) in
-                self.isLoading = false
+            .sink (receiveCompletion: {[weak self] (completion) in
+                self?.isLoading = false
                 switch completion {
                     case .finished:
                         return
@@ -62,9 +62,9 @@ class AddressSearchViewModel: ObservableObject {
                         
                         
                 }
-            }, receiveValue: { (addresses: AddressesListResponse) in
-                self.results = addresses
-                    self.showDropDown = true
+            }, receiveValue: {[weak self] (addresses: AddressesListResponse) in
+                self?.results = addresses
+                    self?.showDropDown = true
                 
             })
             .store(in: &cancellebles)

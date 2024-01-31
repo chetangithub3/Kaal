@@ -22,7 +22,7 @@ struct DashboardView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 0){
+                VStack(spacing: 2){
                     HStack{
                         Text(greeting())
                             .bold()

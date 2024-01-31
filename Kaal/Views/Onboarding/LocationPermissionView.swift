@@ -24,7 +24,7 @@ struct LocationPermissionView: View {
     @State var next = false
     @State private var isExpanded = false
     @State private var is2Expanded = false
-    @State private var animate = false
+    
     var body: some View {
         VStack {
             Text("Please grant the location permission, so that we can provide you with accurate muhurta timings based on your precise location. You may also manually enter an approximate address.")
@@ -122,13 +122,16 @@ struct LocationPermissionView: View {
             }
             if showNext{
                 HStack{
+                    Image(systemName: "checkmark.circle.fill")
+                        .symbolEffect(.variableColor.iterative)
+                        .symbolVariant(.slash)
                     Text("Location saved:").font(.subheadline)
                     Text("\(currentArea)").font(.subheadline).bold()
                 }.padding()
             }
             
             
-            
+            NavigationLink("", destination: MainView().environmentObject(dashboardVM), isActive: $next)
             
             
             Spacer()
@@ -140,26 +143,19 @@ struct LocationPermissionView: View {
                     Text("Go Home")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue)
+                        .background(getTintColor())
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         .padding()
-                        .scaleEffect(animate ? 1.05 : 1.0)
-                        .animation(
-                            Animation.easeInOut(duration: 1)
-                                .repeatForever(autoreverses: true)
-                        )
-                        .onAppear(perform: {
-                            withAnimation {
-                                self.animate.toggle()
-                            }
-                        })
+                       
                     
                 })
             }
             
-            NavigationLink("", destination: MainView().environmentObject(dashboardVM), isActive: $next)
-        }.navigationTitle("Location")
+            
+        } 
+        .navigationTitle("Location")
+           
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
                 self.isKeyboardVisible = true
             }
