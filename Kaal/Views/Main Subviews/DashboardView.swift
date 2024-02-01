@@ -131,7 +131,7 @@ struct DashboardView: View {
             .onChange(of: viewModel.kaal.daySpan, { oldValue, newValue in
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
             })
-            .navigationTitle(Text("Kaal"))
+            .navigationTitle(Text("Home"))
             .navigationBarTitleDisplayMode(.inline)
         }
     }
