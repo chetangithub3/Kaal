@@ -28,7 +28,7 @@
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
 		61A1C77B2B291D1000E42544 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77A2B291D1000E42544 /* MainView.swift */; };
-		61A1C77D2B291D4000E42544 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77C2B291D4000E42544 /* NotificationsView.swift */; };
+		61A1C77D2B291D4000E42544 /* NotificationsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77C2B291D4000E42544 /* NotificationsTabView.swift */; };
 		61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */; };
 		61B5DBFC2B4387D9003E0E8C /* KaalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5DBFB2B4387D9003E0E8C /* KaalDetailView.swift */; };
 		61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE67882B258A2B0036CF69 /* InauspiciousTimesGridView.swift */; };
@@ -73,7 +73,7 @@
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		61A1C77C2B291D4000E42544 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		61A1C77C2B291D4000E42544 /* NotificationsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTabView.swift; sourceTree = "<group>"; };
 		61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuView.swift; sourceTree = "<group>"; };
 		61B5DBFB2B4387D9003E0E8C /* KaalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalDetailView.swift; sourceTree = "<group>"; };
 		61BE67882B258A2B0036CF69 /* InauspiciousTimesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InauspiciousTimesGridView.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			children = (
 				614C172B2B1FD3F4002A2D18 /* DashboardView.swift */,
 				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
-				61A1C77C2B291D4000E42544 /* NotificationsView.swift */,
+				61A1C77C2B291D4000E42544 /* NotificationsTabView.swift */,
 			);
 			path = "Main Subviews";
 			sourceTree = "<group>";
@@ -367,7 +367,7 @@
 				61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */,
 				61D694D52B4D15D40039A97F /* LocationItemView.swift in Sources */,
 				61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */,
-				61A1C77D2B291D4000E42544 /* NotificationsView.swift in Sources */,
+				61A1C77D2B291D4000E42544 /* NotificationsTabView.swift in Sources */,
 				611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
 				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,

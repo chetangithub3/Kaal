@@ -22,7 +22,7 @@ struct MainView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }.tag(1)
-            NotificationsView()
+            NotificationsTabView()
                 .tabItem {
                     Image(systemName: "bell.fill")
                     Text("Notifications")
