@@ -29,10 +29,10 @@ struct WelcomeView: View {
                             Text("Welcome to")
                                 .font(.title2)
                             
-                            Text("Kaal")
+                            Text("Muhurta Daily")
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
-                            Text("Your celestial guide to finding the right moments.")
+                            Text("Your celestial guide to finding the right moments everyday.")
                                 .font(.title2)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.5)

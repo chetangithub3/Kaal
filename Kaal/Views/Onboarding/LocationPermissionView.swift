@@ -53,6 +53,8 @@ struct LocationPermissionView: View {
                         AddressSearchBarView(){
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             showNext = true
+                            isExpanded = false
+                            is2Expanded = false
                         }.environmentObject(locationManager)
                     }
                     

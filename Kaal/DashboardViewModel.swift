@@ -48,6 +48,7 @@ class DashboardViewModel: ObservableObject {
     
     func fetchData(from url: URL) {
         self.isLoading = true
+        cancellebles.removeAll()
         apiManager.publisher(for: url)
             .sink (receiveCompletion: { [weak self] (completion) in
                 switch completion {
@@ -59,7 +60,6 @@ class DashboardViewModel: ObservableObject {
                         
                 }
             }, receiveValue: { [weak self] (timeData: DaylightData) in
-                
                 if let sunrise = timeData.results?.sunrise, let sunset = timeData.results?.sunset, let date = timeData.results?.date, let utcOffset = timeData.results?.utcOffset, let timeZone = timeData.results?.timezone {
                     
                     //formatting
