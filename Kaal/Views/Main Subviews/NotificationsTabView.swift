@@ -8,7 +8,8 @@
 import SwiftUI
 import UserNotifications
 
-struct NotificationsView: View {
+struct NotificationsTabView: View {
+    @AppStorage("currentArea") var currentArea: String = ""
     @State var areNotificationsEnabled = true
     
     var body: some View {
@@ -47,6 +48,7 @@ struct NotificationsView: View {
                     Spacer()
                 }.edgesIgnoringSafeArea(.all)
                     .background(getBackgroundColor())
+                   
             }
             
         }
@@ -61,6 +63,28 @@ struct NotificationsView: View {
         .background(getBackgroundColor())
         
     }
+    
+    func scheduleNotification() {
+            let content = UNMutableNotificationContent()
+            content.title = ""
+            content.body = "Kaal starts in 10 mins for \(currentArea)"
+            
+            var dateComponents = DateComponents()
+            dateComponents.hour = 13  // 1 PM
+            dateComponents.minute = 30
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: "yourNotificationIdentifier", content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("Error scheduling notification: \(error)")
+                } else {
+                    print("Notification scheduled successfully!")
+                }
+            }
+        }
 }
 struct NotificationsDeniedView: View {
     
@@ -84,5 +108,5 @@ struct NotificationsDeniedView: View {
     
 }
 #Preview {
-    NotificationsView()
+    NotificationsTabView()
 }
