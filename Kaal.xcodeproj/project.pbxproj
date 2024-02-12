@@ -47,6 +47,8 @@
 		61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319352B686FCB00EA2491 /* UIKitViews.swift */; };
 		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
 		61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EA78072B512BED00AF618F /* ForLaterVersions.swift */; };
+		61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */; };
+		61EEC3A62B78CD9F00FDC951 /* MuhurtaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
 		61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +94,8 @@
 		61E319352B686FCB00EA2491 /* UIKitViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViews.swift; sourceTree = "<group>"; };
 		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
 		61EA78072B512BED00AF618F /* ForLaterVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForLaterVersions.swift; sourceTree = "<group>"; };
+		61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaModel.swift; sourceTree = "<group>"; };
+		61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaViewModel.swift; sourceTree = "<group>"; };
 		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +184,7 @@
 				614C174E2B1FF281002A2D18 /* LocationManager.swift */,
 				61DE51C22B33C56A00221661 /* AddressSearchViewModel.swift */,
 				614C17562B243EE3002A2D18 /* DashboardViewModel.swift */,
+				61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */,
 			);
 			name = "View Models";
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 		614C17522B1FF608002A2D18 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */,
 				614C17532B1FF628002A2D18 /* DaylightModel.swift */,
 				611B2BFC2B3966E1004CA53A /* TimeData.swift */,
 				61DE51C02B33C2C600221661 /* AddressesListResponse.swift */,
@@ -358,9 +364,11 @@
 				610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */,
 				61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */,
 				614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */,
+				61EEC3A62B78CD9F00FDC951 /* MuhurtaViewModel.swift in Sources */,
 				61B5DBFC2B4387D9003E0E8C /* KaalDetailView.swift in Sources */,
 				61D694D72B4D20570039A97F /* Protocols.swift in Sources */,
 				614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */,
+				61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */,
 				610CE3362B2DA8C40045F006 /* LoadingView.swift in Sources */,
 				611B2C012B396729004CA53A /* KaalModel.swift in Sources */,
 				614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */,

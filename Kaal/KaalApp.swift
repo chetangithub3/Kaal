@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import SwiftData
 
 @main
 struct KaalApp: App {
@@ -15,8 +16,7 @@ struct KaalApp: App {
         WindowGroup {
             IntroView()
                 .environment(\.colorScheme, .light)
-            
-        }
+        }.modelContainer(for: MuhurtaModel.self)
     }
 }
 

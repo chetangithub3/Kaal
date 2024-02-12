@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct MainView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
     @State private var selection = 1
@@ -33,6 +33,11 @@ struct MainView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }.tag(3)
+            DatabaseView()
+                .tabItem {
+                    Image(systemName: "externaldrive.fill")
+                    Text("DatabaseList")
+                }.tag(4)
         }
   .tint(getTintColor())
         
@@ -53,3 +58,29 @@ extension View {
 }
 
 
+
+
+struct DatabaseView: View {
+    
+    @Query var savedMuhurtas: [MuhurtaModel]
+    @Environment(\.modelContext) var modelContext
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(savedMuhurtas) { muhurta in
+                    HStack{
+                        Text(muhurta.sunriseString)
+                        Text(muhurta.dateString)
+                        Text(muhurta.place)
+                    }
+                }
+            }
+            .navigationTitle("Data List")
+        }
+    }
+    
+    
+   
+
+}

@@ -18,8 +18,11 @@ import Foundation
 import CoreLocation
 import Combine
 import SwiftUI
+import SwiftData
 
 class DashboardViewModel: ObservableObject {
+    
+
     @AppStorage("currentArea") var currentArea: String = ""
     @AppStorage("savedLat") var savedLat = ""
     @AppStorage("savedLong") var savedLng = ""
@@ -45,10 +48,11 @@ class DashboardViewModel: ObservableObject {
       
         fetchData(from: URL)
     }
-    
+ 
     func fetchData(from url: URL) {
         self.isLoading = true
         cancellebles.removeAll()
+        
         apiManager.publisher(for: url)
             .sink (receiveCompletion: { [weak self] (completion) in
                 switch completion {
@@ -60,6 +64,7 @@ class DashboardViewModel: ObservableObject {
                         
                 }
             }, receiveValue: { [weak self] (timeData: DaylightData) in
+                guard let self else {return}
                 if let sunrise = timeData.results?.sunrise, let sunset = timeData.results?.sunset, let date = timeData.results?.date, let utcOffset = timeData.results?.utcOffset, let timeZone = timeData.results?.timezone {
                     
                     //formatting
@@ -73,11 +78,15 @@ class DashboardViewModel: ObservableObject {
     
                     let combinedSunset = dateFormatter.date(from: "\(date) \(sunset)")!
   
-                    self?.kaal = KaalModel(place: self?.currentArea ?? "", dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
-                    self?.isLoading = false
+                    let kaal = KaalModel(place: self.currentArea , dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
+                    self.kaal = kaal
+                    self.isLoading = false
+                
                 }
                 
             })
             .store(in: &cancellebles)
     }
+    
+    
 }
