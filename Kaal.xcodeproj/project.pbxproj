@@ -48,6 +48,7 @@
 		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
 		61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EA78072B512BED00AF618F /* ForLaterVersions.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
+		61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */; };
 		61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
 		61EA78072B512BED00AF618F /* ForLaterVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForLaterVersions.swift; sourceTree = "<group>"; };
 		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAddressDetailsView.swift; sourceTree = "<group>"; };
 		61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,6 +259,7 @@
 				61EA78072B512BED00AF618F /* ForLaterVersions.swift */,
 				61E319352B686FCB00EA2491 /* UIKitViews.swift */,
 				61E319372B687B8400EA2491 /* CompactDatePickerView.swift */,
+				61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */,
+				61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */,
 				61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */,
 				61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */,
 				61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */,

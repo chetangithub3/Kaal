@@ -15,7 +15,7 @@ struct SettingsMenuView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
     @State var selectedTimeFormat = ""
     @State var shouldAnimate = false
-    var link = "https://www.youtube.com/"
+    var link = "https://apps.apple.com/us/app/muhurta-daily/id6477121908"
     let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown Version"
 
     var body: some View {
@@ -86,15 +86,15 @@ struct SettingsMenuView: View {
                             Image(systemName: "star")
                         }.foregroundColor(.primary)
                     }
-//                    Button {
-//                        shareLink()
-//                    } label: {
-//                        HStack {
-//                            Text("Share the app")
-//                            Spacer()
-//                            Image(systemName: "square.and.arrow.up")
-//                        }.foregroundColor(.primary)
-//                    }
+                    Button {
+                        shareLink()
+                    } label: {
+                        HStack {
+                            Text("Share the app")
+                            Spacer()
+                            Image(systemName: "square.and.arrow.up")
+                        }.foregroundColor(.primary)
+                    }
                 }
                 
             }
