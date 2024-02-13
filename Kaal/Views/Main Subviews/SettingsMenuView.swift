@@ -129,7 +129,7 @@ struct SettingsMenuView: View {
     }
     
     func shareLink() {
-        let activityViewController = UIActivityViewController(activityItems: [URL(string: link)!], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [URL(string: link)!, "To know the accurate Muhurta timings based on your precise location on your device, please download Muhurta Daily from the following link:\n"], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
     }
     
