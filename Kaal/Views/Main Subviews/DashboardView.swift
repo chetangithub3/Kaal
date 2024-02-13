@@ -115,6 +115,8 @@ struct DashboardView: View {
                         }
                     }
                     .scrollIndicators(.hidden)
+                    BannerAdView()
+                    
                     
                 }
             }.background(getBackgroundColor())
@@ -133,6 +135,7 @@ struct DashboardView: View {
             })
             .navigationTitle(Text("Home"))
             .navigationBarTitleDisplayMode(.inline)
+            
         }
     }
     
