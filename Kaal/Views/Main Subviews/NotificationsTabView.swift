@@ -98,6 +98,9 @@ struct NotificationsDeniedView: View {
                 .frame(width: 100, height: 100)
                 .symbolVariant(.slash)
             Text("Notifications are not enabled. Please enable notifications from settings to schedule tracking.")
+                .font(.italic(.subheadline)())
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
             Button(action: {
                 openAppSettings()
             }) {
