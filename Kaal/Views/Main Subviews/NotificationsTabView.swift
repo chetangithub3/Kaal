@@ -90,11 +90,21 @@ struct NotificationsDeniedView: View {
     
     var body: some View {
         VStack{
+            Spacer()
+            Image(systemName: "bell.slash")
+                .resizable()
+                .scaledToFit()
+                .symbolEffect(.variableColor.iterative)
+                .frame(width: 100, height: 100)
+                .symbolVariant(.slash)
+            Text("Notifications are not enabled. Please enable notifications from settings to schedule tracking.")
             Button(action: {
                 openAppSettings()
             }) {
-                Text("Open Notification Settings")
+                Text("Open Notification Settings").font(.subheadline)
                     .padding()
+                    .background(getTintColor().opacity(0.2))
+                    .cornerRadius(10)
             }
             Spacer()
             BannerAdView()
