@@ -34,11 +34,11 @@ struct MainView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }.tag(3)
-            DatabaseView()
-                .tabItem {
-                    Image(systemName: "externaldrive.fill")
-                    Text("DatabaseList")
-                }.tag(4)
+//            DatabaseView()
+//                .tabItem {
+//                    Image(systemName: "externaldrive.fill")
+//                    Text("DatabaseList")
+//                }.tag(4)
         }
         .onAppear(perform: {
             cleanDatabase()
@@ -91,25 +91,3 @@ struct MainView: View {
     MainView()
 }
 
-
-
-
-struct DatabaseView: View {
-    
-    @Query var savedMuhurtas: [MuhurtaModel]
-    @Environment(\.modelContext) var modelContext
-    
-    var body: some View {
-        NavigationStack {
-            List {
-                ForEach(savedMuhurtas) { muhurta in
-                    HStack{
-                        Text(muhurta.dateString)
-                        Text(muhurta.place)
-                    }
-                }
-            }
-            .navigationTitle("Data List")
-        }
-    }
-}
