@@ -20,104 +20,108 @@ struct DashboardView: View {
     @State var endTime = ""
 
     var body: some View {
+        
         NavigationView {
-            ScrollView {
-                VStack(spacing: 2){
-                    HStack{
-                        Text(greeting())
-                            .bold()
-                            .font(.title2)
-                        Spacer()
-                    }
-                    HStack(spacing: 2){
-                       
-                        HStack(spacing: 2) {
-                            // Customize the appearance of the compact date picker here
-                            Image(systemName: "calendar")
-                            CompactDatePickerView(date: $date)
+            VStack{
+                ScrollView {
+                    VStack(spacing: 2){
+                        HStack{
+                            Text(greeting())
+                                .bold()
+                                .font(.title2)
+                            Spacer()
                         }
-                       
-                        Spacer()
-                        LocationItemView(theme: .underlined)
-                    }
-                    
-                }.padding(.horizontal)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                
-                VStack {
-                    Section{
-                        HighlightedClockView(isDaySpanMoreThan12Hours: viewModel.kaal.isDaySpanMoreThan12Hours, timezone: viewModel.kaal.timezone, range: viewModel.kaal.daySpan).padding()
-                    }
-                    
-                    HStack{
-                        HStack {
-                            Image(systemName: "sunrise")
-                            VStack(alignment: .leading){
-                                Text("Sunrise:").font(.subheadline)
-                                Text(startTime).font(.title2).bold()
-                                
+                        HStack(spacing: 2){
+                            
+                            HStack(spacing: 2) {
+                                    // Customize the appearance of the compact date picker here
+                                Image(systemName: "calendar")
+                                CompactDatePickerView(date: $date)
                             }
+                            
+                            Spacer()
+                            LocationItemView(theme: .underlined)
                         }
                         
-                        Spacer()
-                        
-                        HStack {
-                            Image(systemName: "sunset")
-                            VStack(alignment: .leading){
-                                Text("Sunset:").font(.subheadline)
-                                Text(endTime).font(.title2).bold()
-                            }
-                        }
-                    }
-                    .padding(.horizontal)
-                    Text("Note: All times are according to the local time of the saved location.")
-                        .italic()
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                    }.padding(.horizontal)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
-                        .padding(.horizontal)
-                    HStack{
-                        Text("Muhurta:")
-                            .bold()
-                            .font(.title2)
-                        Spacer()
-                    }.padding([.horizontal, .top])
-                    ScrollView(.horizontal) {
-                        if !viewModel.kaal.dateString.isEmpty {
-                            HStack(spacing: 16) {
-                                NavigationLink {
-                                    AbhijitKaalView(date: $date)
-                                } label: {
-                                    TileView(title: "Abhijit Kaal", range: viewModel.kaal.abhijitKaal, theme: Kaal.abhijit.nature)
-                                }
-                                
-                                NavigationLink {
-                                    RahuKaalView(date: $date)
-                                } label: {
-                                    TileView(title: "Rahu Kaal", range: viewModel.kaal.rahuKaal, theme: Kaal.rahu.nature)
-                                }
-                                
-                                NavigationLink {
-                                    BrahmaMuhurtaView(date: $date)
-                                } label: {
-                                    TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat, theme: Kaal.brahma.nature)
-                                }
-                               
-                                NavigationLink {
-                                    YamaGandaView(date: $date)
-                                } label: {
-                                    TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal, theme: Kaal.yama.nature)
-                                }
-                                
-                            }.padding(.horizontal)
-                        }
-                    }
-                    .scrollIndicators(.hidden)
                     
+                    VStack {
+                        Section{
+                            HighlightedClockView(isDaySpanMoreThan12Hours: viewModel.kaal.isDaySpanMoreThan12Hours, timezone: viewModel.kaal.timezone, range: viewModel.kaal.daySpan).padding()
+                        }
+                        
+                        HStack{
+                            HStack {
+                                Image(systemName: "sunrise")
+                                VStack(alignment: .leading){
+                                    Text("Sunrise:").font(.subheadline)
+                                    Text(startTime).font(.title2).bold()
+                                    
+                                }
+                            }
+                            
+                            Spacer()
+                            
+                            HStack {
+                                Image(systemName: "sunset")
+                                VStack(alignment: .leading){
+                                    Text("Sunset:").font(.subheadline)
+                                    Text(endTime).font(.title2).bold()
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
+                        Text("Note: All times are according to the local time of the saved location.")
+                            .italic()
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+                            .padding(.horizontal)
+                        HStack{
+                            Text("Muhurta:")
+                                .bold()
+                                .font(.title2)
+                            Spacer()
+                        }.padding([.horizontal, .top])
+                        ScrollView(.horizontal) {
+                            if !viewModel.kaal.dateString.isEmpty {
+                                HStack(spacing: 16) {
+                                    NavigationLink {
+                                        AbhijitKaalView(date: $date)
+                                    } label: {
+                                        TileView(title: "Abhijit Kaal", range: viewModel.kaal.abhijitKaal, theme: Kaal.abhijit.nature)
+                                    }
+                                    
+                                    NavigationLink {
+                                        RahuKaalView(date: $date)
+                                    } label: {
+                                        TileView(title: "Rahu Kaal", range: viewModel.kaal.rahuKaal, theme: Kaal.rahu.nature)
+                                    }
+                                    
+                                    NavigationLink {
+                                        BrahmaMuhurtaView(date: $date)
+                                    } label: {
+                                        TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat, theme: Kaal.brahma.nature)
+                                    }
+                                    
+                                    NavigationLink {
+                                        YamaGandaView(date: $date)
+                                    } label: {
+                                        TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal, theme: Kaal.yama.nature)
+                                    }
+                                    
+                                }.padding(.horizontal)
+                            }
+                        }
+                        .scrollIndicators(.hidden)
+                    }
                 }
-            }.background(getBackgroundColor())
+                BannerAdView()
+            }
+            .background(getBackgroundColor())
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
             .onAppear(perform: {
                 viewModel.daylightFromLocation(on: date)
@@ -133,6 +137,7 @@ struct DashboardView: View {
             })
             .navigationTitle(Text("Home"))
             .navigationBarTitleDisplayMode(.inline)
+            
         }
     }
     

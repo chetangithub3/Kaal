@@ -48,7 +48,11 @@
 		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
 		61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EA78072B512BED00AF618F /* ForLaterVersions.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
+		61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */; };
+		61F6C09B2B7B59310094780C /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C09A2B7B59310094780C /* BannerAdView.swift */; };
+		61F6C09D2B7B59750094780C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C09C2B7B59750094780C /* AppDelegate.swift */; };
 		61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */; };
+		8E32211E398AA66E96F1BF54 /* Pods_Kaal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF14DAB1FA4A39F97B5544FD /* Pods_Kaal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +97,13 @@
 		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
 		61EA78072B512BED00AF618F /* ForLaterVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForLaterVersions.swift; sourceTree = "<group>"; };
 		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAddressDetailsView.swift; sourceTree = "<group>"; };
+		61F6C09A2B7B59310094780C /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		61F6C09C2B7B59750094780C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenuView.swift; sourceTree = "<group>"; };
+		6D8EC72BC5520420A3CA2E7D /* Pods-Kaal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaal.debug.xcconfig"; path = "Target Support Files/Pods-Kaal/Pods-Kaal.debug.xcconfig"; sourceTree = "<group>"; };
+		9126379FDD6962ED00F3620B /* Pods-Kaal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaal.release.xcconfig"; path = "Target Support Files/Pods-Kaal/Pods-Kaal.release.xcconfig"; sourceTree = "<group>"; };
+		BF14DAB1FA4A39F97B5544FD /* Pods_Kaal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kaal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,7 @@
 			files = (
 				617A66D32B610532000A49DF /* Shimmer in Frameworks */,
 				6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */,
+				8E32211E398AA66E96F1BF54 /* Pods_Kaal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +134,8 @@
 			children = (
 				614C17282B1FD3F4002A2D18 /* Kaal */,
 				614C17272B1FD3F4002A2D18 /* Products */,
+				97C6705FA51B9D626BA2CDF6 /* Pods */,
+				E915A0BC1FE8B2C3F14540E6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +160,7 @@
 				614C17452B1FF18F002A2D18 /* Views */,
 				614C172D2B1FD3F5002A2D18 /* Assets.xcassets */,
 				614C172F2B1FD3F5002A2D18 /* Preview Content */,
+				61F6C09C2B7B59750094780C /* AppDelegate.swift */,
 			);
 			path = Kaal;
 			sourceTree = "<group>";
@@ -170,6 +184,7 @@
 				61A1C7782B291C4B00E42544 /* Auspicious Times */,
 				61A1C7792B291C5800E42544 /* Other Times */,
 				61B5DBFA2B4387B2003E0E8C /* Reusable Views */,
+				61F6C09A2B7B59310094780C /* BannerAdView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -257,8 +272,26 @@
 				61EA78072B512BED00AF618F /* ForLaterVersions.swift */,
 				61E319352B686FCB00EA2491 /* UIKitViews.swift */,
 				61E319372B687B8400EA2491 /* CompactDatePickerView.swift */,
+				61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */,
 			);
 			path = "Reusable Views";
+			sourceTree = "<group>";
+		};
+		97C6705FA51B9D626BA2CDF6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6D8EC72BC5520420A3CA2E7D /* Pods-Kaal.debug.xcconfig */,
+				9126379FDD6962ED00F3620B /* Pods-Kaal.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E915A0BC1FE8B2C3F14540E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF14DAB1FA4A39F97B5544FD /* Pods_Kaal.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +301,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 614C17342B1FD3F5002A2D18 /* Build configuration list for PBXNativeTarget "Kaal" */;
 			buildPhases = (
+				CDBEA444A4A61D4E87130250 /* [CP] Check Pods Manifest.lock */,
 				614C17222B1FD3F4002A2D18 /* Sources */,
 				614C17232B1FD3F4002A2D18 /* Frameworks */,
 				614C17242B1FD3F4002A2D18 /* Resources */,
@@ -334,14 +368,41 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CDBEA444A4A61D4E87130250 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kaal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		614C17222B1FD3F4002A2D18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */,
+				61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */,
 				61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */,
 				61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */,
+				61F6C09D2B7B59750094780C /* AppDelegate.swift in Sources */,
 				61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */,
 				610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */,
 				61A1C77B2B291D1000E42544 /* MainView.swift in Sources */,
@@ -349,6 +410,7 @@
 				61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
+				61F6C09B2B7B59310094780C /* BannerAdView.swift in Sources */,
 				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
 				61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */,
 				61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */,
@@ -504,6 +566,7 @@
 		};
 		614C17352B1FD3F5002A2D18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D8EC72BC5520420A3CA2E7D /* Pods-Kaal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -527,7 +590,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chetan.MuhurtaDaily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -540,6 +603,7 @@
 		};
 		614C17362B1FD3F5002A2D18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9126379FDD6962ED00F3620B /* Pods-Kaal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -563,7 +627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chetan.MuhurtaDaily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
