@@ -7,11 +7,11 @@
 
 import SwiftUI
 import Combine
+import SwiftData
 import GoogleMobileAds
 
 @main
 struct KaalApp: App {
-    
     var body: some Scene {
         WindowGroup {
             IntroView()
@@ -20,8 +20,7 @@ struct KaalApp: App {
                     GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "c2e5ee090dcdb37321e5e076d9ee9c84" ]
                     GADMobileAds.sharedInstance().start(completionHandler: nil)
                 })
-            
-        }
+        }.modelContainer(for: MuhurtaModel.self)
     }
 }
 
@@ -36,7 +35,7 @@ struct IntroView: View{
     @State var apiErrorCancellable: AnyCancellable?
     @State var showAlert = false
     @ObservedObject var addressViewModel = AddressSearchViewModel(apiManager: APIManager())
-    @ObservedObject var dashboardViewModel = DashboardViewModel()
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack{

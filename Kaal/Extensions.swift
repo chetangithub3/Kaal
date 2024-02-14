@@ -9,6 +9,12 @@ import Foundation
 import SwiftUI
 import UIKit
 
+extension View {
+    func getScreenBounds() -> CGRect {
+        return UIScreen.main.bounds
+    }
+}
+
 extension UIView {
     func takeScreenshot() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.isOpaque, UIScreen.main.scale)
