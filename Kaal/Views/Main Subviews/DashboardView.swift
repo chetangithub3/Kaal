@@ -128,27 +128,27 @@ struct DashboardView: View {
             .onAppear(perform: {
                 viewModel.isLoading = true
                 defer { viewModel.isLoading = false}
-                let muhurt =  getObject(date: date)
+                let muhurt =  fetchMuhurta(date: date)
            
                 if let muhurta = muhurt{
                     viewModel.kaal = KaalModel(dateString: muhurta.dateString, sunriseString: muhurta.sunriseString, sunsetString: muhurta.sunsetString, utcOffset: muhurta.utcOffset, timezone: muhurta.timezone, date: muhurta.date, sunrise: muhurta.sunrise, sunset: muhurta.sunset)
                 } else {
                     viewModel.daylightFromLocation(on: date)
                 }
-
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
             })
             .onChange(of: date, { oldValue, newValue in
                 viewModel.isLoading = true
                 defer { viewModel.isLoading = false}
-                let muhurta =  getObject(date: date)
+                let muhurta =  fetchMuhurta(date: date)
                 if let muhurta = muhurta{
                     viewModel.kaal = KaalModel(dateString: muhurta.dateString, sunriseString: muhurta.sunriseString, sunsetString: muhurta.sunsetString, utcOffset: muhurta.utcOffset, timezone: muhurta.timezone, date: muhurta.date, sunrise: muhurta.sunrise, sunset: muhurta.sunset)
                 } else {
                     viewModel.daylightFromLocation(on: date)
+                    saveKaalToLocalDatabase(kaal: viewModel.kaal)
                 }
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
-                saveKaalToLocalDatabase(kaal: viewModel.kaal)
+              
             })
             .onChange(of: viewModel.kaal.daySpan, { oldValue, newValue in
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
@@ -159,7 +159,7 @@ struct DashboardView: View {
         }
     }
     
-    func getObject(date: Date) -> MuhurtaModel? {
+    func fetchMuhurta(date: Date) -> MuhurtaModel? {
         let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                let  dateString = dateFormatter.string(from: date)
@@ -178,7 +178,7 @@ struct DashboardView: View {
     
     func saveKaalToLocalDatabase(kaal: KaalModel){
         let muhurta = MuhurtaModel(place: self.currentArea , dateString: kaal.dateString, sunriseString: kaal.sunriseString, sunsetString: kaal.sunsetString, utcOffset: kaal.utcOffset, timezone: kaal.timezone, date: kaal.date, sunrise: kaal.sunrise, sunset: kaal.sunset)
-        let found =  getObject(date: date)
+        let found = fetchMuhurta(date: date)
         if found == nil {
             modelContext.insert(muhurta)
         }
