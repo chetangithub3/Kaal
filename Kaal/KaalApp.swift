@@ -35,7 +35,7 @@ struct IntroView: View{
     @State var apiErrorCancellable: AnyCancellable?
     @State var showAlert = false
     @ObservedObject var addressViewModel = AddressSearchViewModel(apiManager: APIManager())
-    @ObservedObject var dashboardViewModel = DashboardViewModel()
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack{

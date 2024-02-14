@@ -139,8 +139,9 @@ struct DashboardView: View {
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
             })
             .onChange(of: date, { oldValue, newValue in
+                viewModel.isLoading = true
+                defer { viewModel.isLoading = false}
                 let muhurta =  getObject(date: date)
-                dump(muhurta)
                 if let muhurta = muhurta{
                     viewModel.kaal = KaalModel(dateString: muhurta.dateString, sunriseString: muhurta.sunriseString, sunsetString: muhurta.sunsetString, utcOffset: muhurta.utcOffset, timezone: muhurta.timezone, date: muhurta.date, sunrise: muhurta.sunrise, sunset: muhurta.sunset)
                 } else {
@@ -163,19 +164,25 @@ struct DashboardView: View {
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                let  dateString = dateFormatter.string(from: date)
           do {
-              var predicate = #Predicate<MuhurtaModel> { object in
+              let predicate = #Predicate<MuhurtaModel> { object in
                   object.place == currentArea && object.dateString == dateString
               }
               var descriptor = FetchDescriptor(predicate: predicate)
               descriptor.fetchLimit = 1
-              var object = try modelContext.fetch(descriptor)
-              dump(object.first?.date)
+              let object = try modelContext.fetch(descriptor)
               return object.first
           } catch {
-              
               return nil
           }
       }
+    
+    func saveKaalToLocalDatabase(kaal: KaalModel){
+        let muhurta = MuhurtaModel(place: self.currentArea , dateString: kaal.dateString, sunriseString: kaal.sunriseString, sunsetString: kaal.sunsetString, utcOffset: kaal.utcOffset, timezone: kaal.timezone, date: kaal.date, sunrise: kaal.sunrise, sunset: kaal.sunset)
+        let found =  getObject(date: date)
+        if found == nil {
+            modelContext.insert(muhurta)
+        }
+    }
     
     private func greeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
@@ -188,17 +195,6 @@ struct DashboardView: View {
             default:
                 return "Good Evening"
         }
-    }
-    
-    func saveKaalToLocalDatabase(kaal: KaalModel){
-        let muhurta = MuhurtaModel(place: self.currentArea , dateString: kaal.dateString, sunriseString: kaal.sunriseString, sunsetString: kaal.sunsetString, utcOffset: kaal.utcOffset, timezone: kaal.timezone, date: kaal.date, sunrise: kaal.sunrise, sunset: kaal.sunset)
-        let found =  getObject(date: date)
-        if found == nil {
-            modelContext.insert(muhurta)
-        }
-        
-      
-        
     }
     
     func convertDateRangeToStrings(range: ClosedRange<Date>) {
