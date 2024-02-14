@@ -40,6 +40,7 @@ struct KaalDetailView: View {
                 )
 
             Spacer()
+            BannerAdView()
         }.navigationBarItems(trailing: Button(action: {
             if let geometry = self.geometry{
                 takeScreenshot(geometry: geometry) {
