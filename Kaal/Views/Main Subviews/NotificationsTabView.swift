@@ -13,9 +13,10 @@ struct NotificationsTabView: View {
     @State var areNotificationsEnabled = true
     
     var body: some View {
-        VStack {
+        Group{
             if !areNotificationsEnabled{
                 NotificationsDeniedView()
+                
             }
             else {
                 VStack {
@@ -46,21 +47,20 @@ struct NotificationsTabView: View {
                     
                     
                     Spacer()
-                }.edgesIgnoringSafeArea(.all)
-                    .background(getBackgroundColor())
-                   
+                    BannerAdView()
+                }
+                .background(getBackgroundColor())
+                
             }
-            
-        }
-        .onAppear(perform: {
+        } .onAppear(perform: {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
                 self.areNotificationsEnabled = granted
             }
             
         })
+            
         
-        .edgesIgnoringSafeArea(.all)
-        .background(getBackgroundColor())
+       
         
     }
     
@@ -89,13 +89,32 @@ struct NotificationsTabView: View {
 struct NotificationsDeniedView: View {
     
     var body: some View {
-        
-        Button(action: {
-            openAppSettings()
-        }) {
-            Text("Open Notification Settings")
-                .padding()
+        VStack{
+            Spacer()
+            Image(systemName: "bell.slash")
+                .resizable()
+                .scaledToFit()
+                .symbolEffect(.variableColor.iterative)
+                .frame(width: 100, height: 100)
+                .symbolVariant(.slash)
+            Text("Notifications are not enabled. Please enable notifications from settings to schedule tracking.")
+                .font(.italic(.subheadline)())
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+            Button(action: {
+                openAppSettings()
+            }) {
+                Text("Open Notification Settings").font(.subheadline)
+                    .padding()
+                    .background(getTintColor().opacity(0.2))
+                    .cornerRadius(10)
+            }
+            Spacer()
+            BannerAdView()
+                
         }
+        
+        
     }
     
     private func openAppSettings() {

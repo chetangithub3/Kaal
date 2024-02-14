@@ -40,6 +40,7 @@ struct KaalDetailView: View {
                 )
 
             Spacer()
+            BannerAdView()
         }.navigationBarItems(trailing: Button(action: {
             if let geometry = self.geometry{
                 takeScreenshot(geometry: geometry) {
@@ -63,9 +64,9 @@ struct KaalDetailView: View {
         .onAppear(perform: {
             convertDateRangeToStrings(range: kaalRange)
         })
-        .onChange(of: viewModel.kaal.date) { oldValue, newValue in
-            viewModel.daylightFromLocation(on: viewModel.kaal.date)
-        }
+//        .onChange(of: viewModel.kaal.date) { oldValue, newValue in
+//            viewModel.daylightFromLocation(on: viewModel.kaal.date)
+//        }
         .onChange(of: viewModel.kaal) { oldValue, newValue in
             convertDateRangeToStrings(range: kaalRange)
         }

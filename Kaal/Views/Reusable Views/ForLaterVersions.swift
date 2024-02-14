@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 func getCurrentTimeComponents(for timeZone: String) -> DateComponents? {
     let calendar = Calendar.current
     var components = calendar.dateComponents([.hour, .minute, .second], from: Date())
@@ -101,3 +102,22 @@ func path(in rect: CGRect) -> Path {
 //    .foregroundColor(.primary)
 //    .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
 
+struct DatabaseView: View {
+    
+    @Query var savedMuhurtas: [MuhurtaModel]
+    @Environment(\.modelContext) var modelContext
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(savedMuhurtas) { muhurta in
+                    HStack{
+                        Text(muhurta.dateString)
+                        Text(muhurta.place)
+                    }
+                }
+            }
+            .navigationTitle("Data List")
+        }
+    }
+}

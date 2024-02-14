@@ -203,7 +203,6 @@ struct LocationPermissionView: View {
         if let location = locationManager.handleLocation() {
             savedLat =  locationManager.exposedLocation?.coordinate.latitude.description ?? ""
             savedLng =  locationManager.exposedLocation?.coordinate.longitude.description ?? ""
-            print("savedLat = \(savedLat)")
             locationManager.reverseGeocode(location: location){placemark, error in
                 if let area = placemark?.locality, let country = placemark?.country {
                     self.currentArea = "\(area), \(country)"

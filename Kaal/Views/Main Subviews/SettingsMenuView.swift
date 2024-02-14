@@ -15,7 +15,7 @@ struct SettingsMenuView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
     @State var selectedTimeFormat = ""
     @State var shouldAnimate = false
-    var link = "https://www.youtube.com/"
+    var link = "https://apps.apple.com/us/app/muhurta-daily/id6477121908"
     let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown Version"
 
     var body: some View {
@@ -86,15 +86,15 @@ struct SettingsMenuView: View {
                             Image(systemName: "star")
                         }.foregroundColor(.primary)
                     }
-//                    Button {
-//                        shareLink()
-//                    } label: {
-//                        HStack {
-//                            Text("Share the app")
-//                            Spacer()
-//                            Image(systemName: "square.and.arrow.up")
-//                        }.foregroundColor(.primary)
-//                    }
+                    Button {
+                        shareLink()
+                    } label: {
+                        HStack {
+                            Text("Share the app")
+                            Spacer()
+                            Image(systemName: "square.and.arrow.up")
+                        }.foregroundColor(.primary)
+                    }
                 }
                 
             }
@@ -129,7 +129,7 @@ struct SettingsMenuView: View {
     }
     
     func shareLink() {
-        let activityViewController = UIActivityViewController(activityItems: [URL(string: link)!], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [URL(string: link)!, "To know the accurate Muhurta timings based on your precise location on your device, please download Muhurta Daily from the following link:\n"], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
     }
     

@@ -51,9 +51,7 @@ struct DropDownMenuView: View {
                 .stroke(.primary.opacity(0.5), lineWidth: 1)
         }
         .padding()
-        .onChange(of: ddViewModel.results) { oldValue, newValue in
-            print(newValue)
-        }
+      
         
     }
 }
