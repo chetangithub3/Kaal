@@ -13,9 +13,10 @@ struct NotificationsTabView: View {
     @State var areNotificationsEnabled = true
     
     var body: some View {
-        VStack {
+        Group{
             if !areNotificationsEnabled{
                 NotificationsDeniedView()
+                
             }
             else {
                 VStack {
@@ -46,21 +47,20 @@ struct NotificationsTabView: View {
                     
                     
                     Spacer()
-                }.edgesIgnoringSafeArea(.all)
-                    .background(getBackgroundColor())
-                   
+                    BannerAdView()
+                }
+                .background(getBackgroundColor())
+                
             }
-            
-        }
-        .onAppear(perform: {
+        } .onAppear(perform: {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
                 self.areNotificationsEnabled = granted
             }
             
         })
+            
         
-        .edgesIgnoringSafeArea(.all)
-        .background(getBackgroundColor())
+       
         
     }
     
@@ -89,13 +89,19 @@ struct NotificationsTabView: View {
 struct NotificationsDeniedView: View {
     
     var body: some View {
-        
-        Button(action: {
-            openAppSettings()
-        }) {
-            Text("Open Notification Settings")
-                .padding()
+        VStack{
+            Button(action: {
+                openAppSettings()
+            }) {
+                Text("Open Notification Settings")
+                    .padding()
+            }
+            Spacer()
+            BannerAdView()
+                
         }
+        
+        
     }
     
     private func openAppSettings() {
