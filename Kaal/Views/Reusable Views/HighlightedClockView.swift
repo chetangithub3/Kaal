@@ -143,9 +143,20 @@ struct Highlighted24HourClockView: View, Clock {
                             self.percentage = 1.0
                         }
                     }
-                durationTextFromRange(from: range)
-                    .font(.title)
-                    .bold()
+                if theme == .neutral {
+                    VStack(alignment: .leading){
+                        Text("Day Span:")
+                            .font(.subheadline)
+                        durationTextFromRange(from: range)
+                            .font(.title)
+                            .bold()
+                    }
+                } else {
+                    durationTextFromRange(from: range)
+                        .font(.title)
+                        .bold()
+                }
+                
             }
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
@@ -276,9 +287,19 @@ struct Highlighted12HourClockView: View, Clock {
                     .rotationEffect(.init(degrees: percentage == 0 ? startAng : endAng))
                     .animation(.linear(duration: 1), value: 1)
                 
-                durationTextFromRange(from: range)
-                    .font(.title)
-                    .bold()
+                if theme == .neutral {
+                    VStack(alignment: .leading){
+                        Text("Day Span:")
+                            .font(.subheadline)
+                        durationTextFromRange(from: range)
+                            .font(.title)
+                            .bold()
+                    }
+                } else {
+                    durationTextFromRange(from: range)
+                        .font(.title)
+                        .bold()
+                }
             }
         }
         .frame(width: getScreenBounds().width/1.6, height: getScreenBounds().width/1.6)
