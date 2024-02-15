@@ -31,6 +31,8 @@ struct KaalModel: Identifiable, Equatable{
     
     var yamaInterval: [String:Int] = ["Sunday": 5, "Monday" : 4, "Tuesday":  3, "Wednesday": 2, "Thursday": 1, "Friday": 7, "Saturday": 6]
     
+    var gulikaInterval: [String:Int] = ["Sunday": 7, "Monday" : 6, "Tuesday":  5, "Wednesday": 4, "Thursday": 3, "Friday": 2, "Saturday": 1]
+    
     var daySpan: ClosedRange<Date> {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
@@ -60,6 +62,16 @@ struct KaalModel: Identifiable, Equatable{
         dateFormatter.timeZone = TimeZone(identifier: timezone)
         let dayOfWeekString = dateFormatter.string(from: date)
         return ranges[(yamaInterval[dayOfWeekString] ?? 1) - 1]
+    }
+    
+    var gulikaKaal: ClosedRange<Date> {
+        
+        let ranges = divideTimeRangeIntoNParts(start: sunrise, end: sunset, numberOfParts: 8)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        let dayOfWeekString = dateFormatter.string(from: date)
+        return ranges[(gulikaInterval[dayOfWeekString] ?? 1) - 1]
     }
     
     var abhijitKaal: ClosedRange<Date> {

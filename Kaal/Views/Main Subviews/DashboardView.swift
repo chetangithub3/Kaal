@@ -100,19 +100,24 @@ struct DashboardView: View {
                                     NavigationLink {
                                         RahuKaalView(date: $date)
                                     } label: {
-                                        TileView(title: "Rahu Kaal", range: viewModel.kaal.rahuKaal, theme: Kaal.rahu.nature)
+                                        TileView(title: Kaal.rahu.title, range: viewModel.kaal.rahuKaal, theme: Kaal.rahu.nature)
                                     }
                                     
                                     NavigationLink {
                                         BrahmaMuhurtaView(date: $date)
                                     } label: {
-                                        TileView(title: "Brahma Muhurta", range: viewModel.kaal.brahmaMahurat, theme: Kaal.brahma.nature)
+                                        TileView(title: Kaal.brahma.title, range: viewModel.kaal.brahmaMahurat, theme: Kaal.brahma.nature)
                                     }
                                     
                                     NavigationLink {
                                         YamaGandaView(date: $date)
                                     } label: {
-                                        TileView(title: "Yama Ganda", range: viewModel.kaal.yamaKaal, theme: Kaal.yama.nature)
+                                        TileView(title: Kaal.yama.title, range: viewModel.kaal.yamaKaal, theme: Kaal.yama.nature)
+                                    }
+                                    NavigationLink {
+                                        GulikaKaalView(date: $date)
+                                    } label: {
+                                        TileView(title: Kaal.gulika.title, range: viewModel.kaal.gulikaKaal, theme: Kaal.gulika.nature)
                                     }
                                     
                                 }.padding(.horizontal)

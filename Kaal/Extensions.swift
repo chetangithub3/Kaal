@@ -116,13 +116,13 @@ enum Kaal: String {
     case brahma
     case rahu
     case yama
+    case gulika
 }
 
 extension Kaal {
     var title : String {
         
         switch self {
-                
             case .abhijit:
                 return "Abhijit Kaala"
             case .brahma:
@@ -131,13 +131,15 @@ extension Kaal {
                 return "Rahu Kaala"
             case .yama:
                 return "Yama Ganda"
+            case .gulika:
+                return "Gulika Kaala"
         }
     }
     var nature: TimeIntervalNature {
         switch self {
         case .abhijit, .brahma:
             return .auspicious
-        case .yama, .rahu:
+            case .yama, .rahu, .gulika:
             return .inauspicious
         }
     }

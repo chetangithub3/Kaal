@@ -13,6 +13,7 @@
 		61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */; };
 		611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2BFC2B3966E1004CA53A /* TimeData.swift */; };
 		611B2C012B396729004CA53A /* KaalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2C002B396729004CA53A /* KaalModel.swift */; };
+		614AF5262B7D97000034559F /* GulikaKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614AF5252B7D97000034559F /* GulikaKaalView.swift */; };
 		614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17292B1FD3F4002A2D18 /* KaalApp.swift */; };
 		614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C172B2B1FD3F4002A2D18 /* DashboardView.swift */; };
 		614C172E2B1FD3F5002A2D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 614C172D2B1FD3F5002A2D18 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		611B2BFC2B3966E1004CA53A /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
 		611B2C002B396729004CA53A /* KaalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalModel.swift; sourceTree = "<group>"; };
+		614AF5252B7D97000034559F /* GulikaKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GulikaKaalView.swift; sourceTree = "<group>"; };
 		614C17262B1FD3F4002A2D18 /* Kaal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		614C17292B1FD3F4002A2D18 /* KaalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalApp.swift; sourceTree = "<group>"; };
 		614C172B2B1FD3F4002A2D18 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			children = (
 				61BE67882B258A2B0036CF69 /* InauspiciousTimesGridView.swift */,
 				61A1C7732B28F89400E42544 /* RahuKaalView.swift */,
+				614AF5252B7D97000034559F /* GulikaKaalView.swift */,
 				61A1C7752B28F8A400E42544 /* YamaGandaView.swift */,
 			);
 			path = "Inauspicious Times";
@@ -440,6 +443,7 @@
 				61A1C77D2B291D4000E42544 /* NotificationsTabView.swift in Sources */,
 				611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
+				614AF5262B7D97000034559F /* GulikaKaalView.swift in Sources */,
 				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
 				61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */,
