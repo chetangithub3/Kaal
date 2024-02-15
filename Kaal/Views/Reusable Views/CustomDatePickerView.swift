@@ -29,8 +29,9 @@ struct CustomDatePickerView: View {
                 } label: {
                     Image(systemName: "chevron.left")
                         .frame(width: height, height: height)
-                        .foregroundColor(.primary)
-                        .background(Color.secondary)
+                        .foregroundColor(getTintColor())
+                        .background(getTintColor().opacity(0.2))
+                        .background(Color.white)
                         .cornerRadius(10)
                 }.disabled(self.date <= Date())
                     .opacity(self.date <= Date() ? 0.0  : 1.0)
@@ -52,8 +53,9 @@ struct CustomDatePickerView: View {
                 } label: {
                     Image(systemName: "chevron.right")
                         .frame(width: height, height: height)
-                        .foregroundColor(.primary)
-                        .background(Color.secondary)
+                        .foregroundColor(getTintColor())
+                        .background(getTintColor().opacity(0.2))
+                        .background(Color.white)
                         .cornerRadius(10)
                 }
             }

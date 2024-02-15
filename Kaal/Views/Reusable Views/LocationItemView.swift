@@ -31,8 +31,9 @@ struct LocationItemView: View {
                 }
                 .padding(8)
                 .frame(height: 35)
-                .foregroundColor(theme == .button ? Color.black : Color.primary)
-                .background(theme == .button ? Color.white : Color.secondary.opacity(0.15))
+                .foregroundColor(getTintColor())
+                .background(getTintColor().opacity(0.2))
+                .background(Color.white)
                 
                 .cornerRadius(10)
             })

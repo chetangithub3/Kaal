@@ -62,7 +62,9 @@ struct DashboardView: View {
                                     Text(startTime).font(.title2).bold()
                                     
                                 }
-                            }
+                            }.padding(8)
+                                .background(Color.secondary.opacity(0.2))
+                                    .cornerRadius(8)
                             
                             Spacer()
                             
@@ -72,7 +74,9 @@ struct DashboardView: View {
                                     Text("Sunset:").font(.subheadline)
                                     Text(endTime).font(.title2).bold()
                                 }
-                            }
+                            }.padding(8)
+                                .background(Color.secondary.opacity(0.2))
+                                    .cornerRadius(8)
                         }
                         .padding(.horizontal)
                         Text("Note: All times are according to the local time of the saved location.")

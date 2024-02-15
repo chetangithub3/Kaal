@@ -287,15 +287,10 @@ struct Highlighted12HourClockView: View, Clock {
                     .rotationEffect(.init(degrees: percentage == 0 ? startAng : endAng))
                     .animation(.linear(duration: 1), value: 1)
                 
-                if theme == .neutral {
-                    VStack(alignment: .leading){
-                        Text("Day Span:")
-                            .font(.subheadline)
-                        durationTextFromRange(from: range)
-                            .font(.title)
-                            .bold()
-                    }
-                } else {
+                VStack(alignment: .leading){
+                    Text(theme == .neutral ? "Day Span:" : "Duration:")
+                        .font(.subheadline)
+                    
                     durationTextFromRange(from: range)
                         .font(.title)
                         .bold()

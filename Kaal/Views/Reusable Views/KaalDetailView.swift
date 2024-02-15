@@ -116,14 +116,18 @@ struct KaalDetailView: View {
                         VStack(alignment: .leading) {
                             Text("Starts at:").font(.subheadline)
                             Text(startTime).font(.title2).bold()
-                        }
+                        }.padding(8)
+                            .background(Color.secondary.opacity(0.2))
+                                .cornerRadius(8)
                         
                         Spacer()
                         
                         VStack(alignment: .leading) {
                             Text("Ends at:").font(.subheadline)
                             Text(endTime).font(.title2).bold()
-                        }
+                        }.padding(8)
+                            .background(Color.secondary.opacity(0.2))
+                                .cornerRadius(8)
                         
                     }
                     Text("Note: All times are according to the local time of the saved location.")
