@@ -106,7 +106,7 @@ struct Highlighted24HourClockView: View, Clock {
                 
                 Circle()
                     .trim(from: startAng/360, to: percentage == 0 ? startAng/360 : endAng/360)
-                    .stroke(theme.color, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round), antialiased: true)
+                    .stroke(theme.color.gradient, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round), antialiased: true)
                     .rotationEffect(.init(degrees: 90))
                     .animation(.linear(duration: 1), value: 1)
                     .onAppear {
@@ -246,7 +246,7 @@ struct Highlighted12HourClockView: View, Clock {
                 
                 Circle()
                     .trim(from: 0.0 , to: percentage == 0 ? 0.0   :  getAngles().1 / 360 )
-                    .stroke(theme.color, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                    .stroke(theme.color.gradient, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
                     .rotationEffect(.init(degrees: -90))
                     .rotationEffect(.init(degrees: getAngles().0))
                     .animation(.linear(duration: 1), value: 1)
