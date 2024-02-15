@@ -1,9 +1,9 @@
-//
-//  LocationItemView.swift
-//  Kaal
-//
-//  Created by Chetan Dhowlaghar on 1/8/24.
-//
+    //
+    //  LocationItemView.swift
+    //  Kaal
+    //
+    //  Created by Chetan Dhowlaghar on 1/8/24.
+    //
 
 import SwiftUI
 
@@ -18,26 +18,23 @@ struct LocationItemView: View {
             } else {
                 Image(systemName: "map")
             }
-           
+            
             Button(action: {
                 NotificationCenter.default.post(name: Notification.Name("ChangeTab"), object: nil)
             }, label: {
-                
-                    HStack{
-                        if theme == .button{
-                            Image(systemName: "map")
-                        }
-                        Text("\(currentArea)").underline(pattern: .solid)
+                HStack{
+                    if theme == .button{
+                        Image(systemName: "map")
                     }
-                    .padding(8)
-                    .frame(height: 35)
-                    .foregroundColor(.primary)
-                    .background(theme == .button ? Color.white : Color.secondary.opacity(0.15))
+                    Text("\(currentArea)").underline(pattern: .solid)
+                    
+                }
+                .padding(8)
+                .frame(height: 35)
+                .foregroundColor(theme == .button ? Color.black : Color.primary)
+                .background(theme == .button ? Color.white : Color.secondary.opacity(0.15))
                 
-                    .cornerRadius(10)
-                
-               
-                
+                .cornerRadius(10)
             })
             
         }
