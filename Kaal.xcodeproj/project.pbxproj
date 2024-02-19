@@ -47,7 +47,6 @@
 		61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */; };
 		61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319352B686FCB00EA2491 /* UIKitViews.swift */; };
 		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
-		61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EA78072B512BED00AF618F /* ForLaterVersions.swift */; };
 		61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */; };
 		61EEC3A62B78CD9F00FDC951 /* MuhurtaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
@@ -99,7 +98,6 @@
 		61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchBarView.swift; sourceTree = "<group>"; };
 		61E319352B686FCB00EA2491 /* UIKitViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViews.swift; sourceTree = "<group>"; };
 		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
-		61EA78072B512BED00AF618F /* ForLaterVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForLaterVersions.swift; sourceTree = "<group>"; };
 		61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaModel.swift; sourceTree = "<group>"; };
 		61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaViewModel.swift; sourceTree = "<group>"; };
 		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 				610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */,
 				61B5DBFB2B4387D9003E0E8C /* KaalDetailView.swift */,
 				61D694D42B4D15D40039A97F /* LocationItemView.swift */,
-				61EA78072B512BED00AF618F /* ForLaterVersions.swift */,
 				61E319352B686FCB00EA2491 /* UIKitViews.swift */,
 				61E319372B687B8400EA2491 /* CompactDatePickerView.swift */,
 				61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */,
@@ -415,7 +412,6 @@
 				61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */,
 				610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */,
 				61A1C77B2B291D1000E42544 /* MainView.swift in Sources */,
-				61EA78082B512BED00AF618F /* ForLaterVersions.swift in Sources */,
 				61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
