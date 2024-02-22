@@ -177,9 +177,9 @@ extension Choghadiya {
     var nature: ChoghadiyaNature {
         switch self {
             case .udveg: return .bad
-            case .amrit: return .good
-            case .rog: return .bad
-            case .labh: return .good
+            case .amrit: return .best
+            case .rog: return .evil
+            case .labh: return .gain
             case .shubh: return .good
             case .char: return .neu
             case .kaal: return .bad
@@ -188,7 +188,57 @@ extension Choghadiya {
 }
 
 enum ChoghadiyaNature {
+    case best
     case good
+    case gain
     case neu
+    case loss
     case bad
+    case evil
+    
+    var title: String {
+        switch self {
+                
+            case .best:
+                return "Best"
+            case .good:
+                return "Good"
+            case .gain:
+                return "Gain"
+            case .neu:
+                return "Neutral"
+            case .loss:
+                return "Loss"
+            case .bad:
+                return "Bad"
+            case .evil:
+                return "Evil"
+        }
+    }
+    var color: Color {
+        switch self {
+            case .best:
+                return Color(hex: 0x508D69)
+            case .good:
+                return Color(red: 58 / 255.0, green: 95 / 255.0, blue: 11 / 255.0)
+            case .gain:
+                return Color(hex: 0xA8DF8E)
+            case .neu:
+                return Color(hex: 0x73A9AD)
+            case .loss:
+                return Color(hex: 0xFF004D)
+            case .bad:
+                return Color(hex: 0x750E21)
+            case .evil:
+                return Color(red: 179 / 255.0, green: 27 / 255.0, blue: 27 / 255.0)
+        }
+    }
+}
+extension Color {
+    init(hex: UInt) {
+        let red = Double((hex >> 16) & 0xFF) / 255.0
+        let green = Double((hex >> 8) & 0xFF) / 255.0
+        let blue = Double(hex & 0xFF) / 255.0
+        self.init(red: red, green: green, blue: blue)
+    }
 }
