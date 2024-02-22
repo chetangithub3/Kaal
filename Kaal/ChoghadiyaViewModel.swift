@@ -80,9 +80,8 @@ class ChoghadiyaViewModel: ObservableObject {
                         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
                         if let sunrise = dateFormatter.date(from:   "\(dateString) \(sunriseString)"),
                            let sunset = dateFormatter.date(from:  "\(dateString) \(sunsetString)"),
-                           let nextSunrise = dateFormatter.date(from: "\(nextDateString) \(sunriseString)") {
-                            
-                            choghadiya = ChoghadiyaModel(date: date, sunrise: sunrise, sunset: sunset, nextDate: nextDate, nextSunrise: nextSunrise,  utcOffset: utc, timezone: timezone)
+                           let nextSunrise = dateFormatter.date(from: "\(nextDateString) \(sunriseString)")  {
+                            choghadiya = ChoghadiyaModel(displayAddress: currentArea, date: date, sunrise: sunrise, sunset: sunset, nextDate: nextDate, nextSunrise: nextSunrise,  utcOffset: utc, timezone: timezone)
                         }
                         
                     }

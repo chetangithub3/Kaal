@@ -8,19 +8,16 @@
 import Foundation
 
 struct ChoghadiyaModel {
-    
-    var date: Date
-    var sunrise: Date
-    var sunset: Date
-    
-    var nextDate: Date
-    var nextSunrise: Date
-  
+    let displayAddress: String
+    let date: Date
+    let sunrise: Date
+    let sunset: Date
+    let nextDate: Date
+    let nextSunrise: Date
     
     let utcOffset: Int
     let timezone: String
 
-    
     var dayChoghadiya: DayChoghadiya {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
@@ -61,10 +58,7 @@ struct ChoghadiyaModel {
         }
         return ranges
     }
-   
- 
-   
-    
+
 }
 
 
