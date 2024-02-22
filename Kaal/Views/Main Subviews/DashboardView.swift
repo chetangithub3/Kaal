@@ -20,7 +20,7 @@ struct DashboardView: View {
     @State private var date = Date()
     @State var startTime = ""
     @State var endTime = ""
-
+    @State var choghadiya: ChoghadiyaModel?
     var body: some View {
         
         NavigationView {
@@ -185,7 +185,7 @@ struct DashboardView: View {
           }
       }
     
-    func saveKaalToLocalDatabase(kaal: KaalModel){
+    func saveKaalToLocalDatabase(kaal: KaalModel) {
         let muhurta = MuhurtaModel(place: self.currentArea , dateString: kaal.dateString, sunriseString: kaal.sunriseString, sunsetString: kaal.sunsetString, utcOffset: kaal.utcOffset, timezone: kaal.timezone, date: kaal.date, sunrise: kaal.sunrise, sunset: kaal.sunset)
         let found = fetchMuhurta(date: date)
         if found == nil {

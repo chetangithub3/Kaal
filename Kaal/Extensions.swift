@@ -154,3 +154,41 @@ enum LocationItemTheme {
 }
 
 
+enum Choghadiya: String {
+    case udveg = "Udveg"
+    case amrit = "Amrit"
+    case rog = "Rog"
+    case labh = "Labh"
+    case shubh = "Shubh"
+    case char = "Char"
+    case kaal = "Kaal"
+}
+
+extension Date {
+    
+    func toStringVersion() -> String {
+        let formatter = DateFormatter()
+                       formatter.dateFormat = "hh:mm a"
+            return formatter.string(from: self)
+        }
+}
+extension Choghadiya {
+    
+    var nature: ChoghadiyaNature {
+        switch self {
+            case .udveg: return .bad
+            case .amrit: return .good
+            case .rog: return .bad
+            case .labh: return .good
+            case .shubh: return .good
+            case .char: return .neu
+            case .kaal: return .bad
+        }
+    }
+}
+
+enum ChoghadiyaNature {
+    case good
+    case neu
+    case bad
+}

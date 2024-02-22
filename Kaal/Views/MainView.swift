@@ -20,30 +20,28 @@ struct MainView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }.tag(1)
+            ChoghadiyaView()
+                .tabItem {
+                    Image(systemName: "deskclock.fill")
+                    Text("Choghadiya")
+                }.tag(2)
             NotificationsTabView()
                 .tabItem {
                     Image(systemName: "bell.fill")
                     Text("Notifications")
-                }.tag(2)
-            
+                }.tag(3)
             SettingsMenuView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
-                }.tag(3)
-//            DatabaseView()
-//                .tabItem {
-//                    Image(systemName: "externaldrive.fill")
-//                    Text("DatabaseList")
-//                }.tag(4)
+                }.tag(4)
         }
         .onAppear(perform: {
             cleanDatabase()
         })
         .tint(getTintColor())
-        
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ChangeTab"))) { _ in
-            self.selection = 3
+            self.selection = 4
         }
     }
     

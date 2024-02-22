@@ -10,6 +10,7 @@
 		610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */; };
 		610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */; };
 		610CE3362B2DA8C40045F006 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE3352B2DA8C40045F006 /* LoadingView.swift */; };
+		61131A412B82E5FD00104A58 /* ChoghadiyaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61131A402B82E5FD00104A58 /* ChoghadiyaModel.swift */; };
 		61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */; };
 		611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2BFC2B3966E1004CA53A /* TimeData.swift */; };
 		611B2C012B396729004CA53A /* KaalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2C002B396729004CA53A /* KaalModel.swift */; };
@@ -45,6 +46,9 @@
 		61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C62B37A16500221661 /* WelcomeView.swift */; };
 		61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51C82B37A71E00221661 /* LocationPermissionView.swift */; };
 		61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */; };
+		61E083562B86A6F7006331E8 /* ChoghadiyaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E083552B86A6F7006331E8 /* ChoghadiyaViewModel.swift */; };
+		61E083582B86A926006331E8 /* DateRangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E083572B86A926006331E8 /* DateRangeResponse.swift */; };
+		61E0835A2B8713DE006331E8 /* ChoghadiyaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E083592B8713DE006331E8 /* ChoghadiyaView.swift */; };
 		61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319352B686FCB00EA2491 /* UIKitViews.swift */; };
 		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
 		61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */; };
@@ -61,6 +65,7 @@
 		610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedClockView.swift; sourceTree = "<group>"; };
 		610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		610CE3352B2DA8C40045F006 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		61131A402B82E5FD00104A58 /* ChoghadiyaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoghadiyaModel.swift; sourceTree = "<group>"; };
 		61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		611B2BFC2B3966E1004CA53A /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
 		611B2C002B396729004CA53A /* KaalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalModel.swift; sourceTree = "<group>"; };
@@ -96,6 +101,9 @@
 		61DE51C62B37A16500221661 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		61DE51C82B37A71E00221661 /* LocationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionView.swift; sourceTree = "<group>"; };
 		61DE51CA2B37A8FB00221661 /* AddressSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchBarView.swift; sourceTree = "<group>"; };
+		61E083552B86A6F7006331E8 /* ChoghadiyaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoghadiyaViewModel.swift; sourceTree = "<group>"; };
+		61E083572B86A926006331E8 /* DateRangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeResponse.swift; sourceTree = "<group>"; };
+		61E083592B8713DE006331E8 /* ChoghadiyaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoghadiyaView.swift; sourceTree = "<group>"; };
 		61E319352B686FCB00EA2491 /* UIKitViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViews.swift; sourceTree = "<group>"; };
 		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
 		61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaModel.swift; sourceTree = "<group>"; };
@@ -200,6 +208,7 @@
 				61DE51C22B33C56A00221661 /* AddressSearchViewModel.swift */,
 				614C17562B243EE3002A2D18 /* DashboardViewModel.swift */,
 				61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */,
+				61E083552B86A6F7006331E8 /* ChoghadiyaViewModel.swift */,
 			);
 			name = "View Models";
 			sourceTree = "<group>";
@@ -221,6 +230,8 @@
 				611B2BFC2B3966E1004CA53A /* TimeData.swift */,
 				61DE51C02B33C2C600221661 /* AddressesListResponse.swift */,
 				611B2C002B396729004CA53A /* KaalModel.swift */,
+				61131A402B82E5FD00104A58 /* ChoghadiyaModel.swift */,
+				61E083572B86A926006331E8 /* DateRangeResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				614C172B2B1FD3F4002A2D18 /* DashboardView.swift */,
+				61E083592B8713DE006331E8 /* ChoghadiyaView.swift */,
 				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
 				61A1C77C2B291D4000E42544 /* NotificationsTabView.swift */,
 			);
@@ -417,7 +429,9 @@
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
 				61F6C09B2B7B59310094780C /* BannerAdView.swift in Sources */,
 				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
+				61E0835A2B8713DE006331E8 /* ChoghadiyaView.swift in Sources */,
 				61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */,
+				61E083582B86A926006331E8 /* DateRangeResponse.swift in Sources */,
 				61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */,
 				61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */,
 				6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */,
@@ -434,8 +448,10 @@
 				611B2C012B396729004CA53A /* KaalModel.swift in Sources */,
 				614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */,
 				61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */,
+				61131A412B82E5FD00104A58 /* ChoghadiyaModel.swift in Sources */,
 				61D694D52B4D15D40039A97F /* LocationItemView.swift in Sources */,
 				61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */,
+				61E083562B86A6F7006331E8 /* ChoghadiyaViewModel.swift in Sources */,
 				61A1C77D2B291D4000E42544 /* NotificationsTabView.swift in Sources */,
 				611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
