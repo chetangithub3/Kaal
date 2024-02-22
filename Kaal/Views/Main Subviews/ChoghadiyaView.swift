@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Shimmer
 struct ChoghadiyaView: View {
     @StateObject var viewModel = ChoghadiyaViewModel()
     @State var date = Date()
@@ -32,12 +32,18 @@ struct ChoghadiyaView: View {
                                 Text(gadiya.1.upperBound.toStringVersion())
                             }
                         }
-                    }
+                    } .shimmering(
+                        active: viewModel.isLoading,
+                        animation: .easeIn
+                    )
                 } else {
                     ProgressView()
                 }
                 
             }.navigationTitle("Choghadiya")
+                .onChange(of: date) { oldValue, newValue in
+                    viewModel.getChoghadiyas(on: newValue)
+                }
             
         }
     }

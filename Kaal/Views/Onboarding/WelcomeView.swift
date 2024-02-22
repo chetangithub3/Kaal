@@ -43,15 +43,11 @@ struct WelcomeView: View {
                             .italic()
                         
                         Spacer()
-                       
-                        
                     }
                     .padding()
-                    
-                    
                 }
+                
                 NavigationLink(destination: LocationPermissionView()) {
-                    
                     Text("Next")
                         .bold()
                         .frame(maxWidth: .infinity)
@@ -62,9 +58,7 @@ struct WelcomeView: View {
                         .padding()
                 }
             }
-            
         }.tint(getTintColor())
-
     }
 }
 
