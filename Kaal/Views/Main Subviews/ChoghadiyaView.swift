@@ -61,7 +61,10 @@ struct GadiyaView: View {
     
     var gadiya: (String, ClosedRange<Date>)
     @State private var currentTimeWithinRange = false
-    
+    @State private var timeRemaining = TimeInterval(0)
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+ 
+    @State var remainingTime = ""
     var body: some View {
         
         VStack(alignment: .leading){
@@ -69,12 +72,6 @@ struct GadiyaView: View {
                 VStack(alignment: .leading){
                     Spacer()
                     HStack(spacing: 2){
-                        if currentTimeWithinRange{
-                            Image(systemName: "stopwatch.fill")
-                                .symbolEffect(.variableColor.iterative)
-                                .symbolVariant(.slash)
-                        }
-                        
                         Text(gadiya.0)
                             .font(.title2)
                             .bold()
@@ -91,6 +88,8 @@ struct GadiyaView: View {
                     Text("Starts at:").font(.subheadline)
                     Text(gadiya.1.lowerBound.toStringVersion())
                         .font(.title2).bold()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }.foregroundColor(.black)
                     .padding()
                 
@@ -99,6 +98,8 @@ struct GadiyaView: View {
                     Text("Ends at:").font(.subheadline)
                     Text(gadiya.1.upperBound.toStringVersion())
                         .font(.title2).bold()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }.foregroundColor(.black)
                     .padding()
                 
@@ -107,8 +108,24 @@ struct GadiyaView: View {
         .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.2))
         .cornerRadius(8)
         .padding(.bottom)
-        .onAppear {
+        .onReceive(timer, perform: { _ in
             currentTimeWithinRange = gadiya.1.contains(Date())
-        }
+            updateTimer()
+        })
     }
+    
+    private func updateTimer() {
+        if currentTimeWithinRange {
+            let currentDate = Date()
+            if gadiya.1.contains(currentDate) {
+                timeRemaining = gadiya.1.upperBound.timeIntervalSince(currentDate)
+            } else {
+                timeRemaining = 0
+            }
+        }
+        let minutes = Int(timeRemaining) / 60
+        let seconds = Int(timeRemaining) % 60
+        self.remainingTime = String(format: "%02d:%02d", minutes, seconds)
+    }
+    
 }
