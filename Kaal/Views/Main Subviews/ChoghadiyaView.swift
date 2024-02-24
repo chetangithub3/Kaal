@@ -57,58 +57,28 @@ struct ChoghadiyaView: View {
     }
 }
 
-struct GadiyaView: View {
-    
-    var gadiya: (String, ClosedRange<Date>)
-    @State private var currentTimeWithinRange = false
-    
-    var body: some View {
-        
-        VStack(alignment: .leading){
-            HStack(spacing: 0){
-                VStack(alignment: .leading){
-                    Spacer()
-                    HStack(spacing: 2){
-                        if currentTimeWithinRange{
-                            Image(systemName: "stopwatch.fill")
-                                .symbolEffect(.variableColor.iterative)
-                                .symbolVariant(.slash)
-                        }
-                        
-                        Text(gadiya.0)
-                            .font(.title2)
-                            .bold()
+
+
+struct Glow: ViewModifier {
+    var shouldGlow: Bool
+    @State var throb = false
+    func body(content: Content) -> some View {
+        ZStack{
+            if shouldGlow{
+                content
+                    .blur(radius: throb ? 10 : 0)
+                    .animation(.easeInOut(duration: 0.5).repeatForever(), value: throb)
+                    .onAppear {
+                        throb.toggle()
                     }
-                    Text(Choghadiya(rawValue: gadiya.0)?.nature.title ?? "")
-                        .font(.subheadline)
-                    Spacer()
-                }.frame(width: getScreenBounds().width * 0.25)
-                    .foregroundColor(.white)
-                    .background(Choghadiya(rawValue: gadiya.0)?.nature.color)
-                
-                Spacer()
-                VStack(alignment: .leading){
-                    Text("Starts at:").font(.subheadline)
-                    Text(gadiya.1.lowerBound.toStringVersion())
-                        .font(.title2).bold()
-                }.foregroundColor(.black)
-                    .padding()
-                
-                Spacer()
-                VStack(alignment: .leading){
-                    Text("Ends at:").font(.subheadline)
-                    Text(gadiya.1.upperBound.toStringVersion())
-                        .font(.title2).bold()
-                }.foregroundColor(.black)
-                    .padding()
-                
             }
+          
+            content
         }
-        .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.2))
-        .cornerRadius(8)
-        .padding(.bottom)
-        .onAppear {
-            currentTimeWithinRange = gadiya.1.contains(Date())
-        }
+    }
+}
+extension View{
+    func glow(shouldGlow: Bool) -> some View {
+        modifier(Glow(shouldGlow: shouldGlow))
     }
 }

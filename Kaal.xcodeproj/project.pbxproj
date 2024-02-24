@@ -14,6 +14,7 @@
 		61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */; };
 		611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2BFC2B3966E1004CA53A /* TimeData.swift */; };
 		611B2C012B396729004CA53A /* KaalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2C002B396729004CA53A /* KaalModel.swift */; };
+		614271F32B8965B80076D56B /* GadiyaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614271F22B8965B80076D56B /* GadiyaView.swift */; };
 		614AF5262B7D97000034559F /* GulikaKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614AF5252B7D97000034559F /* GulikaKaalView.swift */; };
 		614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17292B1FD3F4002A2D18 /* KaalApp.swift */; };
 		614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C172B2B1FD3F4002A2D18 /* DashboardView.swift */; };
@@ -69,6 +70,7 @@
 		61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		611B2BFC2B3966E1004CA53A /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
 		611B2C002B396729004CA53A /* KaalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalModel.swift; sourceTree = "<group>"; };
+		614271F22B8965B80076D56B /* GadiyaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadiyaView.swift; sourceTree = "<group>"; };
 		614AF5252B7D97000034559F /* GulikaKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GulikaKaalView.swift; sourceTree = "<group>"; };
 		614C17262B1FD3F4002A2D18 /* Kaal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		614C17292B1FD3F4002A2D18 /* KaalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalApp.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				610CE3352B2DA8C40045F006 /* LoadingView.swift */,
 				610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */,
 				610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */,
+				614271F22B8965B80076D56B /* GadiyaView.swift */,
 				61B5DBFB2B4387D9003E0E8C /* KaalDetailView.swift */,
 				61D694D42B4D15D40039A97F /* LocationItemView.swift */,
 				61E319352B686FCB00EA2491 /* UIKitViews.swift */,
@@ -437,6 +440,7 @@
 				6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */,
 				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
 				610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */,
+				614271F32B8965B80076D56B /* GadiyaView.swift in Sources */,
 				61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */,
 				614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */,
 				61EEC3A62B78CD9F00FDC951 /* MuhurtaViewModel.swift in Sources */,
