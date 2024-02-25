@@ -14,6 +14,23 @@ extension View {
         return UIScreen.main.bounds
     }
 }
+extension View {
+
+    func onBackground(_ f: @escaping () -> Void) -> some View {
+        self.onReceive(
+            NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification),
+            perform: { _ in f() }
+        )
+    }
+    
+    func onForeground(_ f: @escaping () -> Void) -> some View {
+        self.onReceive(
+            NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification),
+            perform: { _ in f() }
+        )
+    }
+  
+}
 
 extension UIView {
     func takeScreenshot() -> UIImage {
@@ -218,17 +235,17 @@ enum ChoghadiyaNature {
     var color: Color {
         switch self {
             case .best:
-                return Color(hex: 0x508D69)
+                return Color(red: 58 / 255.0, green: 95 / 255.0, blue: 11 / 255.0)
             case .good:
                 return Color(red: 58 / 255.0, green: 95 / 255.0, blue: 11 / 255.0)
             case .gain:
-                return Color(hex: 0xA8DF8E)
+                return Color(red: 58 / 255.0, green: 95 / 255.0, blue: 11 / 255.0)
             case .neu:
-                return Color(hex: 0x73A9AD)
+                return Color(red: 255 / 255.0, green: 196 / 255.0, blue: 12 / 255.0)
             case .loss:
-                return Color(hex: 0xFF004D)
+                return Color(red: 179 / 255.0, green: 27 / 255.0, blue: 27 / 255.0)
             case .bad:
-                return Color(hex: 0x750E21)
+                return Color(red: 179 / 255.0, green: 27 / 255.0, blue: 27 / 255.0)
             case .evil:
                 return Color(red: 179 / 255.0, green: 27 / 255.0, blue: 27 / 255.0)
         }

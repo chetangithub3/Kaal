@@ -26,7 +26,7 @@ struct ChoghadiyaView: View {
                         .font(.title3).bold()
                         
                         ForEach(choghadiya!.dayChoghadiya.gadiyas, id: \.1.upperBound) { gadiya in
-                           GadiyaView(gadiya: gadiya)
+                           GadiyaView(gadiya: gadiya, date: $date)
                         }
                         HStack{
                             Image(systemName: "moon.fill")
@@ -35,7 +35,7 @@ struct ChoghadiyaView: View {
                         }.foregroundColor(Color.blue)
                         .font(.title3).bold()
                         ForEach(choghadiya!.nightChoghadiya.gadiyas, id: \.1.lowerBound) { gadiya in
-                            GadiyaView(gadiya: gadiya)
+                            GadiyaView(gadiya: gadiya, date: $date)
                         }
                     }.padding()
                     .scrollIndicators(.hidden)
