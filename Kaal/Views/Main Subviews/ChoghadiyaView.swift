@@ -18,6 +18,19 @@ struct ChoghadiyaView: View {
                     let choghadiya = viewModel.choghadiya
                     CustomDatePickerView(date: $date, timezone: viewModel.timezone)
                     ScrollView {
+                        if willShowPreviousNightList(){
+                            HStack{
+                                Image(systemName: "moon.fill")
+                                Text("Previous Night Choghadiya(Falls into the next day)")
+                                Spacer()
+                            }.foregroundColor(getTintColor())
+                            .font(.title3).bold()
+                            
+                            ForEach(choghadiya!.previousNightChoghadiya.gadiyas, id: \.1.upperBound) { gadiya in
+                                GadiyaView(gadiya: gadiya, date: $date)
+                            }
+                        }
+                       
                         HStack{
                             Image(systemName: "sun.max.fill")
                             Text("Day Choghadiya")
@@ -54,6 +67,19 @@ struct ChoghadiyaView: View {
                 }
             
         }
+    }
+    
+    func willShowPreviousNightList() -> Bool{
+        let calendar = Calendar.current
+        let sunrise = viewModel.choghadiya?.sunrise ?? Date()
+        
+        let spoofTime = DateFormatter().calendar.date(byAdding: .hour, value: -10, to: sunrise) ?? sunrise
+        
+        let sunriseStartDate = calendar.startOfDay(for: sunrise)
+        let dateStart = calendar.startOfDay(for: Date())
+        
+        return (sunriseStartDate == dateStart) && (spoofTime < sunrise)
+      
     }
 }
 

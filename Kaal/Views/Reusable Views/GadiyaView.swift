@@ -131,7 +131,7 @@ struct GadiyaView: View {
         .cornerRadius(8)
         .padding(.bottom)
         .onAppear(perform: {
-            checkNextDayFlag(date: date)
+            checkDayFlag(date: date)
             isFinished = gadiya.1.upperBound < Date()
             currentTimeWithinRange = gadiya.1.contains(Date())
         })
@@ -141,7 +141,7 @@ struct GadiyaView: View {
             updateTimer()
         })
         .onChange(of: date, { oldValue, newValue in
-            checkNextDayFlag(date: date)
+            checkDayFlag(date: date)
         })
         .onForeground {
             isFinished = gadiya.1.upperBound < Date()
@@ -150,7 +150,7 @@ struct GadiyaView: View {
         }
     }
     
-    private func checkNextDayFlag(date: Date) {
+    private func checkDayFlag(date: Date) {
         let calendar = Calendar.current
         if !calendar.isDate(gadiya.1.upperBound, inSameDayAs: date) {
             fallsInTheNextDay = true
@@ -159,7 +159,6 @@ struct GadiyaView: View {
             let nextDay = formatter.calendar.date(byAdding: .day, value: 1, to: date)
             nextDayString = formatter.string(from: nextDay ?? Date())
         }
-        
     }
     private func isBeforeCurrentTime(time: Date) -> Bool {
       let comp =  time.compare(Date())
