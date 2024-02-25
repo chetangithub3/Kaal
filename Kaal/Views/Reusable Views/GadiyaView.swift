@@ -11,6 +11,7 @@ struct GadiyaView: View {
     
     var gadiya: (String, ClosedRange<Date>)
     @Binding var date: Date
+    var isPreviousDay: Bool = false
     @State private var currentTimeWithinRange = false
     @State private var timeRemaining = TimeInterval(0)
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -76,20 +77,35 @@ struct GadiyaView: View {
                 
             )
             .background(isFinished ? .gray.opacity(0.1) : Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
-            if fallsInTheNextDay{
-           
+            if isPreviousDay{
                 HStack(spacing: 0){
                    
                     Rectangle()
                         .frame(width: getScreenBounds().width * 0.25)
                             .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
                     Spacer()
-                    Text(nextDayString).padding([.horizontal])
+                    Text(showPreviousDate()).padding([.horizontal])
                         .foregroundColor(.black)
                 }
                 .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
                     .foregroundColor(.white)
+            } else {
+                if fallsInTheNextDay{
+               
+                    HStack(spacing: 0){
+                       
+                        Rectangle()
+                            .frame(width: getScreenBounds().width * 0.25)
+                                .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
+                        Spacer()
+                        Text(nextDayString).padding([.horizontal])
+                            .foregroundColor(.black)
+                    }
+                    .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
+                        .foregroundColor(.white)
+                }
             }
+            
             if currentTimeWithinRange{
                 HStack(spacing: 0){
                     Rectangle()
@@ -148,6 +164,12 @@ struct GadiyaView: View {
             currentTimeWithinRange = gadiya.1.contains(Date())
             updateTimer()
         }
+    }
+    private func showPreviousDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, EEEE"
+        let nextDay = formatter.calendar.date(byAdding: .day, value: -1, to: date)
+        return formatter.string(from: nextDay ?? Date())
     }
     
     private func checkDayFlag(date: Date) {

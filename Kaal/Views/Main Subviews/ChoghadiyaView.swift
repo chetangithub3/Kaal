@@ -21,13 +21,13 @@ struct ChoghadiyaView: View {
                         if willShowPreviousNightList(){
                             HStack{
                                 Image(systemName: "moon.fill")
-                                Text("Previous Night Choghadiya(Falls into the next day)")
+                                Text("Previous Night Choghadiya\n(Falls into the next day)")
                                 Spacer()
-                            }.foregroundColor(getTintColor())
+                            }.foregroundColor(Color.blue)
                             .font(.title3).bold()
                             
                             ForEach(choghadiya!.previousNightChoghadiya.gadiyas, id: \.1.upperBound) { gadiya in
-                                GadiyaView(gadiya: gadiya, date: $date)
+                                GadiyaView(gadiya: gadiya, date: $date, isPreviousDay: true)
                             }
                         }
                        
