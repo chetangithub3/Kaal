@@ -75,7 +75,8 @@ struct ChoghadiyaView: View {
     }
     
     func willShowPreviousNightList() -> Bool{
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: viewModel.choghadiya?.timezone ?? "UTC") ?? TimeZone(identifier: "UTC")!
         let sunrise = viewModel.choghadiya?.sunrise ?? Date()
         
         let sunriseStartDate = calendar.startOfDay(for: sunrise)
