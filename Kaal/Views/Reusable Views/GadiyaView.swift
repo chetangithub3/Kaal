@@ -84,7 +84,7 @@ struct GadiyaView: View {
                         .frame(width: getScreenBounds().width * 0.25)
                             .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
                     Spacer()
-                    Text(nextDayString).padding([.horizontal, .bottom], 8)
+                    Text(nextDayString).padding([.horizontal])
                         .foregroundColor(.black)
                 }
                 .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
