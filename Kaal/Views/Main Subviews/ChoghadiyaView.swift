@@ -27,7 +27,12 @@ struct ChoghadiyaView: View {
                             .font(.title3).bold()
                             
                             ForEach(choghadiya!.previousNightChoghadiya.gadiyas, id: \.1.upperBound) { gadiya in
-                                GadiyaView(gadiya: gadiya, date: $date, isPreviousDay: true)
+                                let startDateOfGadiya = Calendar.current.startOfDay(for: gadiya.1.upperBound)
+                              let  isSame = Calendar.current.isDate(startDateOfGadiya, equalTo: date, toGranularity: .day)
+                                if isSame{
+                                    GadiyaView(gadiya: gadiya, date: $date, isPreviousDay: true)
+                                }
+                                
                             }
                         }
                        
@@ -73,12 +78,10 @@ struct ChoghadiyaView: View {
         let calendar = Calendar.current
         let sunrise = viewModel.choghadiya?.sunrise ?? Date()
         
-        let spoofTime = DateFormatter().calendar.date(byAdding: .hour, value: -10, to: sunrise) ?? sunrise
-        
         let sunriseStartDate = calendar.startOfDay(for: sunrise)
         let dateStart = calendar.startOfDay(for: Date())
         
-        return (sunriseStartDate == dateStart) && (spoofTime < sunrise)
+        return (sunriseStartDate == dateStart) && (Date() < sunrise)
       
     }
 }
