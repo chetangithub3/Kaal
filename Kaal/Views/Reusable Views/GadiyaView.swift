@@ -75,13 +75,13 @@ struct GadiyaView: View {
                    
                     Rectangle()
                         .frame(width: getScreenBounds().width * 0.25)
-                            .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
+                            .foregroundColor(isFinished ? .gray : Choghadiya(rawValue: gadiya.0)?.nature.color)
                     Spacer()
                     Text(showPreviousDate())
                         .doesNotFallOnDateStyle()
                         .padding(.bottom, 8)
                 }
-                .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
+                .background(isFinished ? .gray.opacity(0.1) : Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1) )
                     .foregroundColor(.white)
             } else {
                 if fallsInTheNextDay{
