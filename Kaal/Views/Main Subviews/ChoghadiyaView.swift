@@ -55,7 +55,7 @@ struct ChoghadiyaView: View {
                         ForEach(choghadiya!.nightChoghadiya.gadiyas, id: \.1.lowerBound) { gadiya in
                             GadiyaView(gadiya: gadiya, date: $date)
                         }
-                    }.padding()
+                    }.padding(.horizontal)
                     .scrollIndicators(.hidden)
                     .shimmering(
                         active: viewModel.isLoading,
@@ -64,15 +64,22 @@ struct ChoghadiyaView: View {
                 } else {
                     ProgressView()
                 }
+           
                 
             }.navigationTitle("Choghadiya")
                 .navigationBarTitleDisplayMode(.inline)
+                .overlay(content: {
+                    VStack{
+                        Spacer()
+                        BannerAd320x50View()
+                    }
+                })
+
                 .onChange(of: date) { oldValue, newValue in
                     viewModel.getChoghadiyas(on: newValue)
                 }
             
-        }
-    }
+        }    }
     
     func willShowPreviousNightList() -> Bool{
         var calendar = Calendar.current

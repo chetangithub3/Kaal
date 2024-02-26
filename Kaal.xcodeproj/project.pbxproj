@@ -56,7 +56,7 @@
 		61EEC3A62B78CD9F00FDC951 /* MuhurtaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
 		61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */; };
-		61F6C09B2B7B59310094780C /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C09A2B7B59310094780C /* BannerAdView.swift */; };
+		61F6C09B2B7B59310094780C /* BannerAd320x50View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C09A2B7B59310094780C /* BannerAd320x50View.swift */; };
 		61F6C09D2B7B59750094780C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C09C2B7B59750094780C /* AppDelegate.swift */; };
 		61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */; };
 		8E32211E398AA66E96F1BF54 /* Pods_Kaal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF14DAB1FA4A39F97B5544FD /* Pods_Kaal.framework */; };
@@ -112,7 +112,7 @@
 		61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaViewModel.swift; sourceTree = "<group>"; };
 		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAddressDetailsView.swift; sourceTree = "<group>"; };
-		61F6C09A2B7B59310094780C /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		61F6C09A2B7B59310094780C /* BannerAd320x50View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd320x50View.swift; sourceTree = "<group>"; };
 		61F6C09C2B7B59750094780C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenuView.swift; sourceTree = "<group>"; };
 		6D8EC72BC5520420A3CA2E7D /* Pods-Kaal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaal.debug.xcconfig"; path = "Target Support Files/Pods-Kaal/Pods-Kaal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 				61A1C7782B291C4B00E42544 /* Auspicious Times */,
 				61A1C7792B291C5800E42544 /* Other Times */,
 				61B5DBFA2B4387B2003E0E8C /* Reusable Views */,
-				61F6C09A2B7B59310094780C /* BannerAdView.swift */,
+				61F6C09A2B7B59310094780C /* BannerAd320x50View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -430,7 +430,7 @@
 				61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
-				61F6C09B2B7B59310094780C /* BannerAdView.swift in Sources */,
+				61F6C09B2B7B59310094780C /* BannerAd320x50View.swift in Sources */,
 				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
 				61E0835A2B8713DE006331E8 /* ChoghadiyaView.swift in Sources */,
 				61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */,

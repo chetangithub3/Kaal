@@ -130,7 +130,7 @@ struct DashboardView: View {
                         .scrollIndicators(.hidden)
                     }
                 }
-                BannerAdView()
+            
             }
             .background(getBackgroundColor())
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
@@ -164,6 +164,12 @@ struct DashboardView: View {
             })
             .navigationTitle(Text("Home"))
             .navigationBarTitleDisplayMode(.inline)
+            .overlay(content: {
+                VStack{
+                    Spacer()
+                    BannerAd320x50View()
+                }
+            })
             
         }
     }
