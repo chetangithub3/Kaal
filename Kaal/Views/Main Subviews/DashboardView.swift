@@ -98,7 +98,7 @@ struct DashboardView: View {
                                     NavigationLink {
                                         AbhijitKaalView(date: $date)
                                     } label: {
-                                        TileView(title: "Abhijit Kaal", range: viewModel.kaal.abhijitKaal, theme: Kaal.abhijit.nature)
+                                        TileView(title: "Abhijit Muhurta", range: viewModel.kaal.abhijitKaal, theme: Kaal.abhijit.nature)
                                     }
                                     
                                     NavigationLink {

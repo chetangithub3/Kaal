@@ -19,12 +19,18 @@ struct ChoghadiyaView: View {
                     CustomDatePickerView(date: $date, timezone: viewModel.timezone)
                     ScrollView {
                         if willShowPreviousNightList(){
-                            HStack{
-                                Image(systemName: "moon.fill")
-                                Text("Previous Night Choghadiya\n(Falls into the next day)")
+                            HStack(alignment: .top){
+                                Image(systemName: "moon.fill").padding(.top, 8)
+                                VStack(alignment: .leading){
+                                    Text("Previous Night Choghadiya")
+                                        .font(.title3)
+                                        .bold()
+                                    Text("Falls into the next day")
+                                        .font(.subheadline)
+                                }
+                               
                                 Spacer()
-                            }.foregroundColor(Color.blue)
-                            .font(.title3).bold()
+                            } .foregroundColor(Color.blue)
                             
                             ForEach(choghadiya!.previousNightChoghadiya.gadiyas, id: \.1.upperBound) { gadiya in
                                 let startDateOfGadiya = Calendar.current.startOfDay(for: gadiya.1.upperBound)

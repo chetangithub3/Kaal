@@ -68,32 +68,20 @@ struct GadiyaView: View {
                     .padding()
                
             }
-            .background(
-                 currentTimeWithinRange ?  Image("yantra-svg")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(Color.white) as? Color :  Color.clear
-                   
-                
-            )
+          
             .background(isFinished ? .gray.opacity(0.1) : Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
             if isPreviousDay{
                 HStack(spacing: 0){
                    
                     Rectangle()
                         .frame(width: getScreenBounds().width * 0.25)
-                            .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
+                            .foregroundColor(isFinished ? .gray : Choghadiya(rawValue: gadiya.0)?.nature.color)
                     Spacer()
                     Text(showPreviousDate())
-                        .font(.subheadline)
-                        .padding(4)
-                        .background(Color.white)
-                        .cornerRadius(8.0)
-                        .padding([.horizontal])
-                        .foregroundColor(.black)
+                        .doesNotFallOnDateStyle()
                         .padding(.bottom, 8)
                 }
-                .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
+                .background(isFinished ? .gray.opacity(0.1) : Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1) )
                     .foregroundColor(.white)
             } else {
                 if fallsInTheNextDay{
@@ -105,12 +93,7 @@ struct GadiyaView: View {
                                 .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
                         Spacer()
                         Text(nextDayString)
-                            .font(.subheadline)
-                            .padding(4)
-                            .background(Color.white)
-                            .cornerRadius(8.0)
-                            .padding([.horizontal])
-                            .foregroundColor(.black)
+                            .doesNotFallOnDateStyle()
                             .padding(.bottom, 8)
                     }
                     .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
@@ -224,3 +207,22 @@ struct GadiyaView: View {
 //#Preview {
 //    GadiyaView(gadiya: )
 //}
+
+struct DoesNotFallOnDateModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.subheadline)
+            .padding(4)
+            .background(Color.white)
+            .cornerRadius(8.0)
+            .padding([.horizontal])
+            .foregroundColor(.black)
+    }
+}
+
+// Create an extension on View to easily apply your ViewModifier
+extension View {
+    func doesNotFallOnDateStyle() -> some View {
+        self.modifier(DoesNotFallOnDateModifier())
+    }
+}
