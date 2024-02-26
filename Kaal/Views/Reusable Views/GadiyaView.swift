@@ -11,6 +11,7 @@ struct GadiyaView: View {
     
     var gadiya: (String, ClosedRange<Date>)
     @Binding var date: Date
+    var isPreviousDay: Bool = false
     @State private var currentTimeWithinRange = false
     @State private var timeRemaining = TimeInterval(0)
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -76,20 +77,47 @@ struct GadiyaView: View {
                 
             )
             .background(isFinished ? .gray.opacity(0.1) : Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
-            if fallsInTheNextDay{
-           
+            if isPreviousDay{
                 HStack(spacing: 0){
                    
                     Rectangle()
                         .frame(width: getScreenBounds().width * 0.25)
                             .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
                     Spacer()
-                    Text(nextDayString).padding([.horizontal])
+                    Text(showPreviousDate())
+                        .font(.subheadline)
+                        .padding(4)
+                        .background(Color.white)
+                        .cornerRadius(8.0)
+                        .padding([.horizontal])
                         .foregroundColor(.black)
+                        .padding(.bottom, 8)
                 }
                 .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
                     .foregroundColor(.white)
+            } else {
+                if fallsInTheNextDay{
+               
+                    HStack(spacing: 0){
+                       
+                        Rectangle()
+                            .frame(width: getScreenBounds().width * 0.25)
+                                .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
+                        Spacer()
+                        Text(nextDayString)
+                            .font(.subheadline)
+                            .padding(4)
+                            .background(Color.white)
+                            .cornerRadius(8.0)
+                            .padding([.horizontal])
+                            .foregroundColor(.black)
+                            .padding(.bottom, 8)
+                    }
+                    .background(Choghadiya(rawValue: gadiya.0)?.nature.color.opacity(0.1))
+                        .foregroundColor(.white)
+                }
             }
+            
             if currentTimeWithinRange{
                 HStack(spacing: 0){
                     Rectangle()
@@ -131,7 +159,7 @@ struct GadiyaView: View {
         .cornerRadius(8)
         .padding(.bottom)
         .onAppear(perform: {
-            checkNextDayFlag(date: date)
+            checkDayFlag(date: date)
             isFinished = gadiya.1.upperBound < Date()
             currentTimeWithinRange = gadiya.1.contains(Date())
         })
@@ -141,7 +169,7 @@ struct GadiyaView: View {
             updateTimer()
         })
         .onChange(of: date, { oldValue, newValue in
-            checkNextDayFlag(date: date)
+            checkDayFlag(date: date)
         })
         .onForeground {
             isFinished = gadiya.1.upperBound < Date()
@@ -149,8 +177,14 @@ struct GadiyaView: View {
             updateTimer()
         }
     }
+    private func showPreviousDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, EEEE"
+        let nextDay = formatter.calendar.date(byAdding: .day, value: -1, to: date)
+        return formatter.string(from: nextDay ?? Date())
+    }
     
-    private func checkNextDayFlag(date: Date) {
+    private func checkDayFlag(date: Date) {
         let calendar = Calendar.current
         if !calendar.isDate(gadiya.1.upperBound, inSameDayAs: date) {
             fallsInTheNextDay = true
@@ -159,7 +193,6 @@ struct GadiyaView: View {
             let nextDay = formatter.calendar.date(byAdding: .day, value: 1, to: date)
             nextDayString = formatter.string(from: nextDay ?? Date())
         }
-        
     }
     private func isBeforeCurrentTime(time: Date) -> Bool {
       let comp =  time.compare(Date())

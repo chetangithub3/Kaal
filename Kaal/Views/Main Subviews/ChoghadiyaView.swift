@@ -18,6 +18,24 @@ struct ChoghadiyaView: View {
                     let choghadiya = viewModel.choghadiya
                     CustomDatePickerView(date: $date, timezone: viewModel.timezone)
                     ScrollView {
+                        if willShowPreviousNightList(){
+                            HStack{
+                                Image(systemName: "moon.fill")
+                                Text("Previous Night Choghadiya\n(Falls into the next day)")
+                                Spacer()
+                            }.foregroundColor(Color.blue)
+                            .font(.title3).bold()
+                            
+                            ForEach(choghadiya!.previousNightChoghadiya.gadiyas, id: \.1.upperBound) { gadiya in
+                                let startDateOfGadiya = Calendar.current.startOfDay(for: gadiya.1.upperBound)
+                              let  isSame = Calendar.current.isDate(startDateOfGadiya, equalTo: date, toGranularity: .day)
+                                if isSame{
+                                    GadiyaView(gadiya: gadiya, date: $date, isPreviousDay: true)
+                                }
+                                
+                            }
+                        }
+                       
                         HStack{
                             Image(systemName: "sun.max.fill")
                             Text("Day Choghadiya")
@@ -54,6 +72,18 @@ struct ChoghadiyaView: View {
                 }
             
         }
+    }
+    
+    func willShowPreviousNightList() -> Bool{
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: viewModel.choghadiya?.timezone ?? "UTC") ?? TimeZone(identifier: "UTC")!
+        let sunrise = viewModel.choghadiya?.sunrise ?? Date()
+        
+        let sunriseStartDate = calendar.startOfDay(for: sunrise)
+        let dateStart = calendar.startOfDay(for: Date())
+        
+        return (sunriseStartDate == dateStart) && (Date() < sunrise)
+      
     }
 }
 

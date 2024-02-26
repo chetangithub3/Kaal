@@ -12,12 +12,23 @@ struct ChoghadiyaModel {
     let date: Date
     let sunrise: Date
     let sunset: Date
+    let previousSunset: Date
     let nextDate: Date
     let nextSunrise: Date
     
     let utcOffset: Int
     let timezone: String
-
+    
+    var previousNightChoghadiya: NightChoghadiya{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let formattedDate = dateFormatter.string(from: previousSunset)
+        let components = formattedDate.components(separatedBy: ", ")
+        let weekdayName = components.first ?? ""
+        let weekDay = Weekday(rawValue: weekdayName) ?? .sunday
+        let timeRanges = divideTimeRangeIntoNParts(start: previousSunset, end: sunrise, numberOfParts: 8)
+        return NightChoghadiya(weekDay: weekDay, timeRanges: timeRanges)
+    }
     var dayChoghadiya: DayChoghadiya {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"

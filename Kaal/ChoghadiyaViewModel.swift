@@ -40,8 +40,9 @@ class ChoghadiyaViewModel: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let calendar = Calendar.current
+        let prevDate = calendar.date(byAdding: .day, value: -1, to: date)!
         let nextDate = calendar.date(byAdding: .day, value: 1, to: date)!
-        let formattedDateString = dateFormatter.string(from: date)
+        let formattedDateString = dateFormatter.string(from: prevDate)
         let nextDateString = dateFormatter.string(from: nextDate)
             //&date_start=1990-05-01&date_end=1990-07-01
         let url = baseURL + "?lat=\(lat)&lng=\(lng)&date_start=\(formattedDateString)&date_end=\(nextDateString)"
@@ -67,9 +68,9 @@ class ChoghadiyaViewModel: ObservableObject {
             }, receiveValue: { [weak self] (times: DateRangeResponse) in
                 guard let self else {return}
                 
-                guard let firstDay = times.results?.first, let lastDay = times.results?.last else {return}
+                guard let prevDay = times.results?.first,  let firstDay = times.results?[1], let lastDay = times.results?.last else {return}
                 
-                if let dateString = firstDay.date, let sunriseString = firstDay.sunrise, let sunsetString = firstDay.sunset, let nextDateString = lastDay.date, let nextSunriseString = lastDay.sunrise, let nextSunsetString = lastDay.sunset, let utc = firstDay.utcOffset, let timezone = firstDay.timezone {
+                if let prevSunsetString = prevDay.sunset, let dateString = firstDay.date, let sunriseString = firstDay.sunrise, let sunsetString = firstDay.sunset, let nextDateString = lastDay.date, let nextSunriseString = lastDay.sunrise, let nextSunsetString = lastDay.sunset, let utc = firstDay.utcOffset, let timezone = firstDay.timezone {
                     self.timezone = timezone
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -78,10 +79,13 @@ class ChoghadiyaViewModel: ObservableObject {
                     if let date = dateFormatter.date(from: dateString), let nextDate = dateFormatter.date(from: nextDateString) {
                         
                         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
+                        
+                     
                         if let sunrise = dateFormatter.date(from:   "\(dateString) \(sunriseString)"),
                            let sunset = dateFormatter.date(from:  "\(dateString) \(sunsetString)"),
-                           let nextSunrise = dateFormatter.date(from: "\(nextDateString) \(sunriseString)")  {
-                            self.choghadiya = ChoghadiyaModel(displayAddress: currentArea, date: date, sunrise: sunrise, sunset: sunset, nextDate: nextDate, nextSunrise: nextSunrise,  utcOffset: utc, timezone: timezone)
+                           let nextSunrise = dateFormatter.date(from: "\(nextDateString) \(sunriseString)"),
+                           let prevSunset = dateFormatter.date(from: "\(prevDay.date!) \(prevSunsetString)"){
+                            self.choghadiya = ChoghadiyaModel(displayAddress: currentArea, date: date, sunrise: sunrise, sunset: sunset, previousSunset: prevSunset, nextDate: nextDate, nextSunrise: nextSunrise,  utcOffset: utc, timezone: timezone)
                             self.isLoading = false
                         }
                         
