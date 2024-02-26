@@ -141,13 +141,13 @@ extension Kaal {
         
         switch self {
             case .abhijit:
-                return "Abhijit Kaala"
+                return "Abhijit Muhurta"
             case .brahma:
                 return "Brahma Muhurta"
             case .rahu:
                 return "Rahu Kaala"
             case .yama:
-                return "Yama Ganda"
+                return "Yama Kaala"
             case .gulika:
                 return "Gulika Kaala"
         }
