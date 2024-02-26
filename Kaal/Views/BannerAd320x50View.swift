@@ -9,19 +9,25 @@ import SwiftUI
 import UIKit
 import GoogleMobileAds
 
-struct BannerAdView: View {
+struct BannerAd320x50View: View {
     var body: some View {
         AdBannerView(adUnitID: "ca-app-pub-3694736860349569/3932435138")
-            .frame(width: getScreenBounds().width - 30, height: 50, alignment: .center)
+            .frame(width: 320, height: 50, alignment: .center)
     }
 }
 
+struct BannerAd320x100View: View {
+    var body: some View {
+        AdBannerView(adUnitID: "ca-app-pub-3694736860349569/3932435138")
+            .frame(width: 320, height: 100, alignment: .center)
+    }
+}
     // UIViewRepresentable wrapper for AdMob banner view
     struct AdBannerView: UIViewRepresentable {
         let adUnitID: String
 
         func makeUIView(context: Context) -> GADBannerView {
-            let bannerView = GADBannerView(adSize: GADAdSizeFromCGSize(CGSize(width: getScreenBounds().width - 30, height: 200))) // Set your desired banner ad size
+            let bannerView = GADBannerView(adSize: GADAdSizeFromCGSize(CGSize(width: 320, height: 50)))
             bannerView.adUnitID = adUnitID
             bannerView.rootViewController = UIApplication.shared.windows.first?.rootViewController
             
@@ -34,5 +40,5 @@ struct BannerAdView: View {
 
 
 #Preview {
-    BannerAdView()
+    BannerAd320x50View()
 }
