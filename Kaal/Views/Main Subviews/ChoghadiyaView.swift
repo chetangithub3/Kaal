@@ -84,6 +84,9 @@ struct ChoghadiyaView: View {
                 .onChange(of: date) { oldValue, newValue in
                     viewModel.getChoghadiyas(on: newValue)
                 }
+                .onForeground {
+                    viewModel.getChoghadiyas(on: date)
+                }
             
         }    }
     
