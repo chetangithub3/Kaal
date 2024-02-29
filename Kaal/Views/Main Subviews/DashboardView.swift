@@ -21,6 +21,10 @@ struct DashboardView: View {
     @State var startTime = ""
     @State var endTime = ""
     @State var choghadiya: ChoghadiyaModel?
+    
+    init() {
+        UINavigationBarAppearance().backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+    }
     var body: some View {
         
         NavigationView {
@@ -36,7 +40,7 @@ struct DashboardView: View {
                         HStack(spacing: 2){
                             
                             HStack(spacing: 2) {
-                                    // Customize the appearance of the compact date picker here
+                                   
                                 Image(systemName: "calendar")
                                 CompactDatePickerView(date: $date)
                             }

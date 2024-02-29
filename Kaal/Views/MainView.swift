@@ -36,6 +36,7 @@ struct MainView: View {
                     Text("Settings")
                 }.tag(4)
         }
+        
         .onAppear(perform: {
             cleanDatabase()
         })
