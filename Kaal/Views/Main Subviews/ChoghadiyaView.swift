@@ -10,7 +10,7 @@ import Shimmer
 struct ChoghadiyaView: View {
     @StateObject var viewModel = ChoghadiyaViewModel()
     @State var date = Date()
-    
+    @AppStorage("currentArea") var currentArea: String = ""
     var body: some View {
         NavigationStack {
             VStack{
@@ -84,6 +84,9 @@ struct ChoghadiyaView: View {
                 .onChange(of: date) { oldValue, newValue in
                     viewModel.getChoghadiyas(on: newValue)
                 }
+                .onChange(of: currentArea, { oldValue, newValue in
+                    viewModel.getChoghadiyas(on: date)
+                })
                 .onForeground {
                     viewModel.getChoghadiyas(on: date)
                 }
