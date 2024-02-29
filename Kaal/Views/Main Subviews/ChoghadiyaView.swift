@@ -36,7 +36,9 @@ struct ChoghadiyaView: View {
                                 let startDateOfGadiya = Calendar.current.startOfDay(for: gadiya.1.upperBound)
                               let  isSame = Calendar.current.isDate(startDateOfGadiya, equalTo: date, toGranularity: .day)
                                 if isSame{
-                                    GadiyaView(gadiya: gadiya, date: $date, isPreviousDay: true)
+                                    GadiyaView(timezone: viewModel.timezone, gadiya: gadiya, date: $date, isPreviousDay: true)
+                                        .environmentObject(viewModel)
+                                    
                                 }
                                 
                             }
@@ -50,7 +52,8 @@ struct ChoghadiyaView: View {
                         .font(.title3).bold()
                         
                         ForEach(choghadiya!.dayChoghadiya.gadiyas, id: \.1.upperBound) { gadiya in
-                           GadiyaView(gadiya: gadiya, date: $date)
+                           GadiyaView(timezone: viewModel.timezone, gadiya: gadiya, date: $date)
+                                .environmentObject(viewModel)
                         }
                         HStack{
                             Image(systemName: "moon.fill")
@@ -59,7 +62,8 @@ struct ChoghadiyaView: View {
                         }.foregroundColor(Color.blue)
                         .font(.title3).bold()
                         ForEach(choghadiya!.nightChoghadiya.gadiyas, id: \.1.lowerBound) { gadiya in
-                            GadiyaView(gadiya: gadiya, date: $date)
+                            GadiyaView(timezone: viewModel.timezone, gadiya: gadiya, date: $date)
+                                .environmentObject(viewModel)
                         }
                     }.padding(.horizontal)
                     .scrollIndicators(.hidden)
