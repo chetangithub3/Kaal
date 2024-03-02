@@ -30,9 +30,25 @@ class DashboardViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var kaal = KaalModel(dateString: "2024-01-16", sunriseString: "7:54:11 AM", sunsetString: "4:42:54 PM", utcOffset: -480, timezone: "America/Los_Angeles", date: Date(), sunrise: Date(), sunset: Date())
     private var apiManager: APIManagerDelegate
+    @Published var sortedKaal: [(ClosedRange<Date>, Kaal)]?
+
     
     init(apiManager: APIManagerDelegate = APIManager()) {
         self.apiManager = apiManager
+    }
+    
+    func sortedList() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+            var list: [(ClosedRange<Date>, Kaal)] = []
+            list.append((self.kaal.brahmaMahurat, Kaal.brahma))
+            list.append((self.kaal.abhijitKaal, Kaal.abhijit))
+            list.append((self.kaal.yamaKaal, Kaal.yama))
+            list.append((self.kaal.gulikaKaal, Kaal.gulika))
+            list.append((self.kaal.rahuKaal, Kaal.rahu))
+            let sorted = list.sorted { $0.0.lowerBound < $1.0.lowerBound }
+            self.sortedKaal = sorted
+        }
+        
     }
     
     func daylightFromLocation(on date: Date = Date()){
@@ -81,7 +97,7 @@ class DashboardViewModel: ObservableObject {
                     let kaal = KaalModel(place: self.currentArea , dateString: date, sunriseString: sunrise, sunsetString: sunset, utcOffset: utcOffset, timezone: timeZone, date: dt, sunrise: combinedSunrise, sunset: combinedSunset)
                     self.kaal = kaal
                     self.isLoading = false
-                
+                    sortedList()
                 }
                 
             })

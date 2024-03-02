@@ -27,6 +27,7 @@
 		6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 6159FCEB2B4E0CCF003703AC /* Reachability */; };
 		6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6159FCED2B4E197A003703AC /* NetworkManager.swift */; };
 		61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61662F332B2BBE1800B3C4ED /* TileView.swift */; };
+		616CF7FA2B932AFA00296480 /* KaalTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616CF7F92B932AFA00296480 /* KaalTileView.swift */; };
 		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -84,6 +85,7 @@
 		614C17562B243EE3002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		6159FCED2B4E197A003703AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		61662F332B2BBE1800B3C4ED /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
+		616CF7F92B932AFA00296480 /* KaalTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalTileView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				61662F332B2BBE1800B3C4ED /* TileView.swift */,
+				616CF7F92B932AFA00296480 /* KaalTileView.swift */,
 				61DE51C42B33CE1900221661 /* ChangeAddressView.swift */,
 				61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */,
 				610CE3352B2DA8C40045F006 /* LoadingView.swift */,
@@ -439,6 +442,7 @@
 				61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */,
 				6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */,
 				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
+				616CF7FA2B932AFA00296480 /* KaalTileView.swift in Sources */,
 				610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */,
 				614271F32B8965B80076D56B /* GadiyaView.swift in Sources */,
 				61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */,

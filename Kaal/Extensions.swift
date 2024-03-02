@@ -128,7 +128,7 @@ extension TimeIntervalNature {
     }
 }
 
-enum Kaal: String {
+enum Kaal {
     case abhijit 
     case brahma
     case rahu

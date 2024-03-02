@@ -21,7 +21,7 @@ struct DashboardView: View {
     @State var startTime = ""
     @State var endTime = ""
     @State var choghadiya: ChoghadiyaModel?
-    
+    @State var kaalType : Kaal?
     init() {
         UINavigationBarAppearance().backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
     }
@@ -68,7 +68,7 @@ struct DashboardView: View {
                                 }
                             }.padding(8)
                                 .background(Color.secondary.opacity(0.2))
-                                    .cornerRadius(8)
+                                .cornerRadius(8)
                             
                             Spacer()
                             
@@ -80,7 +80,7 @@ struct DashboardView: View {
                                 }
                             }.padding(8)
                                 .background(Color.secondary.opacity(0.2))
-                                    .cornerRadius(8)
+                                .cornerRadius(8)
                         }
                         .padding(.horizontal)
                         Text("Note: All times are according to the local time of the saved location.")
@@ -99,33 +99,10 @@ struct DashboardView: View {
                         ScrollView(.horizontal) {
                             if !viewModel.kaal.dateString.isEmpty {
                                 HStack(spacing: 16) {
-                                    NavigationLink {
-                                        AbhijitKaalView(date: $date)
-                                    } label: {
-                                        TileView(title: "Abhijit Muhurta", range: viewModel.kaal.abhijitKaal, theme: Kaal.abhijit.nature)
-                                    }
-                                    
-                                    NavigationLink {
-                                        RahuKaalView(date: $date)
-                                    } label: {
-                                        TileView(title: Kaal.rahu.title, range: viewModel.kaal.rahuKaal, theme: Kaal.rahu.nature)
-                                    }
-                                    
-                                    NavigationLink {
-                                        BrahmaMuhurtaView(date: $date)
-                                    } label: {
-                                        TileView(title: Kaal.brahma.title, range: viewModel.kaal.brahmaMahurat, theme: Kaal.brahma.nature)
-                                    }
-                                    
-                                    NavigationLink {
-                                        YamaGandaView(date: $date)
-                                    } label: {
-                                        TileView(title: Kaal.yama.title, range: viewModel.kaal.yamaKaal, theme: Kaal.yama.nature)
-                                    }
-                                    NavigationLink {
-                                        GulikaKaalView(date: $date)
-                                    } label: {
-                                        TileView(title: Kaal.gulika.title, range: viewModel.kaal.gulikaKaal, theme: Kaal.gulika.nature)
+                                    if let x = viewModel.sortedKaal {
+                                        ForEach(x, id: \.1) { item in
+                                            KaalTileView(kaal: item.0, name: item.1, date: $date)
+                                        }
                                     }
                                     
                                 }.padding(.horizontal)
@@ -145,6 +122,7 @@ struct DashboardView: View {
            
                 if let muhurta = muhurt{
                     viewModel.kaal = KaalModel(dateString: muhurta.dateString, sunriseString: muhurta.sunriseString, sunsetString: muhurta.sunsetString, utcOffset: muhurta.utcOffset, timezone: muhurta.timezone, date: muhurta.date, sunrise: muhurta.sunrise, sunset: muhurta.sunset)
+                    viewModel.sortedList()
                 } else {
                     viewModel.daylightFromLocation(on: date)
                 }
@@ -156,6 +134,7 @@ struct DashboardView: View {
                 let muhurta =  fetchMuhurta(date: date)
                 if let muhurta = muhurta{
                     viewModel.kaal = KaalModel(dateString: muhurta.dateString, sunriseString: muhurta.sunriseString, sunsetString: muhurta.sunsetString, utcOffset: muhurta.utcOffset, timezone: muhurta.timezone, date: muhurta.date, sunrise: muhurta.sunrise, sunset: muhurta.sunset)
+                    viewModel.sortedList()
                 } else {
                     viewModel.daylightFromLocation(on: date)
                     saveKaalToLocalDatabase(kaal: viewModel.kaal)
