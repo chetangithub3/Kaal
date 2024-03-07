@@ -35,7 +35,13 @@ struct MainView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }.tag(4)
+//            TestView()
+//                .tabItem {
+//                    Image(systemName: "gearshape.fill")
+//                    Text("Settings")
+//                }.tag(4)
         }
+        
         .onAppear(perform: {
             cleanDatabase()
         })

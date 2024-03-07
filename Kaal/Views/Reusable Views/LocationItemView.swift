@@ -27,6 +27,8 @@ struct LocationItemView: View {
                         Image(systemName: "map")
                     }
                     Text("\(currentArea)").underline(pattern: .solid)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                     
                 }
                 .padding(8)

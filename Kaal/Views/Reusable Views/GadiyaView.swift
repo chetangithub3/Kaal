@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct GadiyaView: View {
-    
+    @EnvironmentObject var viewModel: ChoghadiyaViewModel
+    @AppStorage("timeFormat") private var storedTimeFormat = "hh:mm a"
+    var timezone: String
     var gadiya: (String, ClosedRange<Date>)
     @Binding var date: Date
     var isPreviousDay: Bool = false
@@ -27,7 +29,7 @@ struct GadiyaView: View {
                     Spacer()
                     Divider()
                         .opacity(0.0)
-                        .frame(width: getScreenBounds().width * 0.25)
+                        .frame(width: getScreenBounds().width * 0.27)
                     HStack(spacing: 2){
                         Text(gadiya.0)
                             .font(.title2)
@@ -41,7 +43,7 @@ struct GadiyaView: View {
                         .padding(.horizontal)
                     Divider()
                         .opacity(0.0)
-                        .frame(width: getScreenBounds().width * 0.25)
+                        .frame(width: getScreenBounds().width * 0.27)
                     Spacer()
                 }
                     .foregroundColor(.white)
@@ -50,7 +52,7 @@ struct GadiyaView: View {
                 Spacer()
                 VStack(alignment: .leading){
                     Text("Starts at:").font(.subheadline)
-                    Text(gadiya.1.lowerBound.toStringVersion())
+                    Text(gadiya.1.lowerBound.toStringVersion(dateFormat: storedTimeFormat, timezone: timezone))
                         .font(.title2).bold()
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
@@ -60,7 +62,7 @@ struct GadiyaView: View {
                 Spacer()
                 VStack(alignment: .leading){
                     Text("Ends at:").font(.subheadline)
-                    Text(gadiya.1.upperBound.toStringVersion())
+                    Text(gadiya.1.upperBound.toStringVersion(dateFormat: storedTimeFormat, timezone: timezone))
                         .font(.title2).bold()
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
@@ -74,7 +76,7 @@ struct GadiyaView: View {
                 HStack(spacing: 0){
                    
                     Rectangle()
-                        .frame(width: getScreenBounds().width * 0.25)
+                        .frame(width: getScreenBounds().width * 0.27)
                             .foregroundColor(isFinished ? .gray : Choghadiya(rawValue: gadiya.0)?.nature.color)
                     Spacer()
                     Text(showPreviousDate())
@@ -89,7 +91,7 @@ struct GadiyaView: View {
                     HStack(spacing: 0){
                        
                         Rectangle()
-                            .frame(width: getScreenBounds().width * 0.25)
+                            .frame(width: getScreenBounds().width * 0.27)
                                 .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
                         Spacer()
                         Text(nextDayString)
@@ -104,7 +106,7 @@ struct GadiyaView: View {
             if currentTimeWithinRange{
                 HStack(spacing: 0){
                     Rectangle()
-                        .frame(width: getScreenBounds().width * 0.25)
+                        .frame(width: getScreenBounds().width * 0.27)
                             .foregroundColor(Choghadiya(rawValue: gadiya.0)?.nature.color)
                    
                     
@@ -163,8 +165,8 @@ struct GadiyaView: View {
     private func showPreviousDate() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d, EEEE"
-        let nextDay = formatter.calendar.date(byAdding: .day, value: -1, to: date)
-        return formatter.string(from: nextDay ?? Date())
+        let prevDay = formatter.calendar.date(byAdding: .day, value: -1, to: date)
+        return formatter.string(from: prevDay ?? Date())
     }
     
     private func checkDayFlag(date: Date) {
@@ -173,6 +175,7 @@ struct GadiyaView: View {
             fallsInTheNextDay = true
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM d, EEEE"
+            formatter.timeZone = TimeZone(identifier: viewModel.timezone)
             let nextDay = formatter.calendar.date(byAdding: .day, value: 1, to: date)
             nextDayString = formatter.string(from: nextDay ?? Date())
         }

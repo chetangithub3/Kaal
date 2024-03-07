@@ -128,7 +128,7 @@ extension TimeIntervalNature {
     }
 }
 
-enum Kaal: String {
+enum Kaal {
     case abhijit 
     case brahma
     case rahu
@@ -183,11 +183,12 @@ enum Choghadiya: String {
 
 extension Date {
     
-    func toStringVersion() -> String {
+    func toStringVersion(dateFormat: String ,timezone: String) -> String {
         let formatter = DateFormatter()
-                       formatter.dateFormat = "hh:mm a"
-            return formatter.string(from: self)
-        }
+        formatter.timeZone = TimeZone(identifier: timezone)
+        formatter.dateFormat = dateFormat
+        return formatter.string(from: self)
+    }
 }
 extension Choghadiya {
     
