@@ -14,9 +14,11 @@ struct TileView: View {
     var range: ClosedRange<Date>
     var theme: TimeIntervalNature = TimeIntervalNature.neutral
     var icon: String?
+    var isCompleted: Bool
     @State var duration = ""
     var body: some View {
         VStack(alignment: .center){
+            
                     if let icon = icon{
                         Image(systemName: icon)
                     }
@@ -26,6 +28,15 @@ struct TileView: View {
                     Text("\(convertTheDateRange(range: range).0) - \(convertTheDateRange(range: range).1)")
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
+            if isCompleted{
+                HStack(alignment: .bottom, spacing: 0, content: {
+                    Text("Completed")
+                        .font(.footnote)
+                })
+            }
+           
+            
+            
         }
         .padding()
         .frame(width: (getScreenBounds().width - 60) / 2, height: (getScreenBounds().width - 60) / 2)
@@ -34,7 +45,7 @@ struct TileView: View {
                 .resizable()
                 .opacity(0.1)
                 .tint(.primary)
-                .background(theme.color.gradient)
+                .background(isCompleted ? Color.gray.gradient : theme.color.gradient)
         )
         .cornerRadius(10)
         .foregroundColor(.white)
@@ -54,5 +65,5 @@ struct TileView: View {
 }
 
 #Preview {
-    TileView(title: "Test", range: Date()...Date())
+    TileView(title: "Test", range: Date()...Date(), isCompleted: false)
 }

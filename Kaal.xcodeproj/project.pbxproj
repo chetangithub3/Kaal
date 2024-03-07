@@ -54,7 +54,6 @@
 		61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319352B686FCB00EA2491 /* UIKitViews.swift */; };
 		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
 		61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */; };
-		61EEC3A62B78CD9F00FDC951 /* MuhurtaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */; };
 		61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6B9AE2B48C14200B9DF24 /* Extensions.swift */; };
 		61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */; };
 		61F6C09B2B7B59310094780C /* BannerAd320x50View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6C09A2B7B59310094780C /* BannerAd320x50View.swift */; };
@@ -111,7 +110,6 @@
 		61E319352B686FCB00EA2491 /* UIKitViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViews.swift; sourceTree = "<group>"; };
 		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
 		61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaModel.swift; sourceTree = "<group>"; };
-		61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaViewModel.swift; sourceTree = "<group>"; };
 		61F6B9AE2B48C14200B9DF24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		61F6C0982B7B4CE90094780C /* SaveAddressDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAddressDetailsView.swift; sourceTree = "<group>"; };
 		61F6C09A2B7B59310094780C /* BannerAd320x50View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd320x50View.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				614C174E2B1FF281002A2D18 /* LocationManager.swift */,
 				61DE51C22B33C56A00221661 /* AddressSearchViewModel.swift */,
 				614C17562B243EE3002A2D18 /* DashboardViewModel.swift */,
-				61EEC3A52B78CD9F00FDC951 /* MuhurtaViewModel.swift */,
 				61E083552B86A6F7006331E8 /* ChoghadiyaViewModel.swift */,
 			);
 			name = "View Models";
@@ -447,7 +444,6 @@
 				614271F32B8965B80076D56B /* GadiyaView.swift in Sources */,
 				61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */,
 				614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */,
-				61EEC3A62B78CD9F00FDC951 /* MuhurtaViewModel.swift in Sources */,
 				61B5DBFC2B4387D9003E0E8C /* KaalDetailView.swift in Sources */,
 				61D694D72B4D20570039A97F /* Protocols.swift in Sources */,
 				614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */,

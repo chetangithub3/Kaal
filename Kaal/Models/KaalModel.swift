@@ -41,7 +41,7 @@ struct KaalModel: Identifiable, Equatable{
     }
     
     var isDaySpanMoreThan12Hours: Bool {
-        return isDaySpanMoreThan12Hours(span: sunrise...sunset)
+        return isDaySpanMoreThan690Minutes(span: sunrise...sunset)
     }
     
     var rahuKaal: ClosedRange<Date> {
@@ -121,14 +121,14 @@ struct KaalModel: Identifiable, Equatable{
         return nil
     }
     
-    func isDaySpanMoreThan12Hours(span: ClosedRange<Date>) -> Bool{
+    func isDaySpanMoreThan690Minutes(span: ClosedRange<Date>) -> Bool{
         let calendar = Calendar.current
         guard span.lowerBound < span.upperBound else {
                    return true
                }
         let components = calendar.dateComponents([.minute], from: span.lowerBound, to: span.upperBound)
     
-        if let minutes = components.minute, minutes > 720 {
+        if let minutes = components.minute, minutes > 690 { // 11.5 hours
             return true
         } else {
             return false

@@ -40,7 +40,7 @@ struct DashboardView: View {
                         HStack(spacing: 2){
                             
                             HStack(spacing: 2) {
-                                   
+                                
                                 Image(systemName: "calendar")
                                 CompactDatePickerView(date: $date)
                             }
@@ -54,42 +54,58 @@ struct DashboardView: View {
                         .minimumScaleFactor(0.5)
                     
                     VStack {
-                        Section{
-                            HighlightedClockView(isDaySpanMoreThan12Hours: viewModel.kaal.isDaySpanMoreThan12Hours, timezone: viewModel.kaal.timezone, range: viewModel.kaal.daySpan).padding()
+                        VStack{
+                            HStack(spacing: 0){
+                                Text(getWeekday()).font(.subheadline).bold()
+                                    .padding(.horizontal)
+                                Spacer()
+                            }
+                            
+                            Section{
+                                HighlightedClockView(isDaySpanMoreThan12Hours: viewModel.kaal.isDaySpanMoreThan12Hours, timezone: viewModel.kaal.timezone, range: viewModel.kaal.daySpan).padding(.bottom)
+                            }
+                            
+                            HStack{
+                                HStack {
+                                    Image(systemName: "sunrise")
+                                    VStack(alignment: .leading){
+                                        Text("Sunrise:").font(.subheadline)
+                                        Text(startTime).font(.title2).bold()
+                                        
+                                    }
+                                }.padding(8)
+                                    .background(Color.secondary.opacity(0.2))
+                                    .cornerRadius(8)
+                                
+                                Spacer()
+                                
+                                HStack {
+                                    Image(systemName: "sunset")
+                                    VStack(alignment: .leading){
+                                        Text("Sunset:").font(.subheadline)
+                                        Text(endTime).font(.title2).bold()
+                                    }
+                                }.padding(8)
+                                    .background(Color.secondary.opacity(0.2))
+                                    .cornerRadius(8)
+                            }
+                            .padding(.horizontal)
+                            Text("Note: All times are according to the local time of the saved location.")
+                                .italic()
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                                .padding(.horizontal)
                         }
                         
-                        HStack{
-                            HStack {
-                                Image(systemName: "sunrise")
-                                VStack(alignment: .leading){
-                                    Text("Sunrise:").font(.subheadline)
-                                    Text(startTime).font(.title2).bold()
-                                    
-                                }
-                            }.padding(8)
-                                .background(Color.secondary.opacity(0.2))
-                                .cornerRadius(8)
-                            
-                            Spacer()
-                            
-                            HStack {
-                                Image(systemName: "sunset")
-                                VStack(alignment: .leading){
-                                    Text("Sunset:").font(.subheadline)
-                                    Text(endTime).font(.title2).bold()
-                                }
-                            }.padding(8)
-                                .background(Color.secondary.opacity(0.2))
-                                .cornerRadius(8)
-                        }
-                        .padding(.horizontal)
-                        Text("Note: All times are according to the local time of the saved location.")
-                            .italic()
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                            .padding(.horizontal)
+                        .padding(.vertical)
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(8)
+                        .padding([.top, .horizontal])
+                        
+                        
+                        
                         HStack{
                             Text("Muhurta:")
                                 .bold()
@@ -111,7 +127,7 @@ struct DashboardView: View {
                         .scrollIndicators(.hidden)
                     }
                 }
-            
+                
             }
             .background(getBackgroundColor())
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
@@ -119,7 +135,7 @@ struct DashboardView: View {
                 viewModel.isLoading = true
                 defer { viewModel.isLoading = false}
                 let muhurt =  fetchMuhurta(date: date)
-           
+                
                 if let muhurta = muhurt{
                     viewModel.kaal = KaalModel(dateString: muhurta.dateString, sunriseString: muhurta.sunriseString, sunsetString: muhurta.sunsetString, utcOffset: muhurta.utcOffset, timezone: muhurta.timezone, date: muhurta.date, sunrise: muhurta.sunrise, sunset: muhurta.sunset)
                     viewModel.sortedList()
@@ -140,7 +156,7 @@ struct DashboardView: View {
                     saveKaalToLocalDatabase(kaal: viewModel.kaal)
                 }
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
-              
+                
             })
             .onChange(of: viewModel.kaal.daySpan, { oldValue, newValue in
                 convertDateRangeToStrings(range: viewModel.kaal.daySpan)
@@ -159,21 +175,35 @@ struct DashboardView: View {
     
     func fetchMuhurta(date: Date) -> MuhurtaModel? {
         let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-               let  dateString = dateFormatter.string(from: date)
-          do {
-              let predicate = #Predicate<MuhurtaModel> { object in
-                  object.place == currentArea && object.dateString == dateString
-              }
-              var descriptor = FetchDescriptor(predicate: predicate)
-              descriptor.fetchLimit = 1
-              let object = try modelContext.fetch(descriptor)
-              return object.first
-          } catch {
-              return nil
-          }
-      }
-    
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let  dateString = dateFormatter.string(from: date)
+        do {
+            let predicate = #Predicate<MuhurtaModel> { object in
+                object.place == currentArea && object.dateString == dateString
+            }
+            var descriptor = FetchDescriptor(predicate: predicate)
+            descriptor.fetchLimit = 1
+            let object = try modelContext.fetch(descriptor)
+            return object.first
+        } catch {
+            return nil
+        }
+    }
+    func getWeekday() -> String{
+        let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEEE, MMMM d, yyyy"
+            return formatter
+        }()
+        let formattedDate = dateFormatter.string(from: date)
+        dateFormatter.timeZone = TimeZone(identifier: viewModel.kaal.timezone)
+        if dateFormatter.calendar.isDateInToday(date) {
+            return "Today"
+        }
+        let components = formattedDate.components(separatedBy: ", ")
+        let weekdayName = components.first ?? ""
+        return weekdayName
+    }
     func saveKaalToLocalDatabase(kaal: KaalModel) {
         let muhurta = MuhurtaModel(place: self.currentArea , dateString: kaal.dateString, sunriseString: kaal.sunriseString, sunsetString: kaal.sunsetString, utcOffset: kaal.utcOffset, timezone: kaal.timezone, date: kaal.date, sunrise: kaal.sunrise, sunset: kaal.sunset)
         let found = fetchMuhurta(date: date)
