@@ -1,4 +1,5 @@
 {
+  "originHash" : "82a7c9911ed258f72f50b36c76dc87cb41fa2dc990f7a7370a1c91799501d9e8",
   "pins" : [
     {
       "identity" : "reachability.swift",
@@ -19,5 +20,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

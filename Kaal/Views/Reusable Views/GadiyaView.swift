@@ -122,7 +122,7 @@ struct GadiyaView: View {
                             .font(.subheadline)
                             .padding(.trailing)
                     }.foregroundColor(.black)
-                        
+                        .padding(.bottom)
                     
                    
                 }
