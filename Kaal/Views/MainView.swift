@@ -35,11 +35,11 @@ struct MainView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }.tag(4)
-//            TestView()
-//                .tabItem {
-//                    Image(systemName: "gearshape.fill")
-//                    Text("Settings")
-//                }.tag(4)
+            HoroscopeView()
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Horoscope")
+                }.tag(5)
         }
         
         .onAppear(perform: {
