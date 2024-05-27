@@ -94,63 +94,36 @@ struct AddDetailsView: View {
     @AppStorage("horoscopeObDone") var horoscopeObDone: Bool = false
     @AppStorage("birthArea") var birthArea: String = ""
     @AppStorage("birthday") var birthday: String = ""
+    @AppStorage("birthtime") var birthtime: String = ""
     @State private var placeOfBirth: String = ""
     @State private var dateOfBirth: Date = Date()
     @State var showBirthdayPicker = false
+    @State var showBirthtimePicker = false
     var body: some View {
         VStack {
             Text("Your horoscope is based on many factors including your birthday, the time, and place of your birth.")
                 .font(.title3)
                 .multilineTextAlignment(.leading)
             BirthdayPickerLabelView(showBirthdayPicker: $showBirthdayPicker)
-           
+            BirthtimePickerLabelView(showBirthtimePicker: $showBirthtimePicker)
             
             Spacer()
-        }.blur(radius: showBirthdayPicker ? 10 : 0)
+        }.padding()
+        .blur(radius: showBirthdayPicker || showBirthtimePicker ? 10 : 0)
         .overlay {
             if showBirthdayPicker {
-                    BirthdayPicker(showPicker: $showBirthdayPicker)
+                BirthdayPicker(showPicker: $showBirthdayPicker)
+            }
+            if showBirthtimePicker {
+                BirthTimePicker(showPicker: $showBirthtimePicker)
             }
         }
+        .navigationBarHidden(true)
         
     }
 }
 
-struct BirthdayPickerLabelView: View {
-    @AppStorage("birthday") var birthday: String = ""
-    @Binding var showBirthdayPicker: Bool
-    var body: some View {
-        Button {
-            showBirthdayPicker = true
-        } label: {
-            HStack{
-                VStack {
-                    HStack{
-                        Image(systemName: "calendar")
-                        Text("Select your date of birth")
-                        Spacer()
-                    }
-                    if !birthday.isEmpty {
-                        HStack {
-                            Image(systemName: "checkmark.circle.fill")
-                                .symbolEffect(.variableColor.iterative)
-                                .symbolVariant(.slash)
-                            Text(birthday)
-                                
-                            Spacer()
-                        }.foregroundColor(.black)
-                    }
-                }
-                Image(systemName: "arrow.right")
-            }
-            .padding()
-            .overlay {
-                RoundedRectangle(cornerRadius: 4)
-                    .stroke(getTintColor(), lineWidth: 2)
-            }
-        }
-    }
-}
+
 
 
 #Preview {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BirthTimePicker: View {
     @Binding var showPicker: Bool
-    @AppStorage("birthday") var birthday: String = ""
+    @AppStorage("birthtime") var birthtime: String = ""
     @State var dateOfBirth: Date = Date()
     
     var body: some View {
@@ -28,7 +28,7 @@ struct BirthTimePicker: View {
                 })
                 Spacer()
                 Button(action: {
-                    self.birthday = formatDate(dateOfBirth)
+                    self.birthtime = formatDate(dateOfBirth)
                     showPicker = false
                 }, label: {
                     Text("Save")

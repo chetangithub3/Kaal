@@ -91,11 +91,7 @@ struct DashboardView: View {
                             }
                             .padding(.horizontal)
                             Text("Note: All times are according to the local time of the saved location.")
-                                .italic()
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
+                                .noticeStyle()
                                 .padding(.horizontal)
                         }
                         
