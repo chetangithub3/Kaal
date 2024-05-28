@@ -1,5 +1,5 @@
 //
-//  BirthtimePickerLabelView.swift
+//  BirthplacePickerLabelView.swift
 //  Kaal
 //
 //  Created by Chetan Dhowlaghar on 5/27/24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct BirthtimePickerLabelView: View {
-    @AppStorage("birthtime") var birthtime: String = ""
+struct BirthplacePickerLabelView: View {
+    @AppStorage("birthplace") var birthplace: String = ""
     @Binding var showBirthtimePicker: Bool
     var body: some View {
         Button {
@@ -17,23 +17,22 @@ struct BirthtimePickerLabelView: View {
             HStack{
                 VStack(alignment: .leading) {
                     HStack{
-                        Image(systemName: "clock")
-                        Text("Select your time of birth")
+                        Image(systemName: "mappin.circle")
+                        Text("Select your place of birth")
+                        Text("*")
+                            .foregroundColor(.red)
                         Spacer()
                     }
-                    if !birthtime.isEmpty {
+                    if !birthplace.isEmpty {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(.green)
                            
-                            Text(birthtime)
+                            Text(birthplace)
                                 
                             Spacer()
                         }.foregroundColor(.black)
                     }
-             
-                    Text("Note: You can always change your time of birth from the settings.")
-                        .noticeStyle()
                 }
                 Image(systemName: "arrow.right")
             }
@@ -42,10 +41,10 @@ struct BirthtimePickerLabelView: View {
                 RoundedRectangle(cornerRadius: 4)
                     .stroke(getTintColor(), lineWidth: 2)
             }
-        }
+        }.padding(.top)
     }
 }
 
 #Preview {
-    BirthtimePickerLabelView(showBirthtimePicker: .constant(true))
+    BirthplacePickerLabelView(showBirthtimePicker: .constant(true))
 }

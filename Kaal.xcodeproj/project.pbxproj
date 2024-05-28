@@ -39,6 +39,8 @@
 		616FB8852C052BD40011AD58 /* BirthdayPickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8842C052BD40011AD58 /* BirthdayPickerLabelView.swift */; };
 		616FB8872C052C530011AD58 /* BirthtimePickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8862C052C530011AD58 /* BirthtimePickerLabelView.swift */; };
 		616FB8892C0534110011AD58 /* NoticeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8882C0534110011AD58 /* NoticeStyle.swift */; };
+		616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */; };
+		616FB88D2C057CF30011AD58 /* BirthplacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */; };
 		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -107,6 +109,8 @@
 		616FB8842C052BD40011AD58 /* BirthdayPickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayPickerLabelView.swift; sourceTree = "<group>"; };
 		616FB8862C052C530011AD58 /* BirthtimePickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthtimePickerLabelView.swift; sourceTree = "<group>"; };
 		616FB8882C0534110011AD58 /* NoticeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeStyle.swift; sourceTree = "<group>"; };
+		616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePickerLabelView.swift; sourceTree = "<group>"; };
+		616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePicker.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 				616FB8772C03A7240011AD58 /* BirthdayPicker.swift */,
 				616FB8842C052BD40011AD58 /* BirthdayPickerLabelView.swift */,
 				616FB8862C052C530011AD58 /* BirthtimePickerLabelView.swift */,
+				616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */,
+				616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */,
 				616FB8822C03E81A0011AD58 /* BirthTimePicker.swift */,
 				616FB87E2C03DF5C0011AD58 /* AddressSearchView.swift */,
 			);
@@ -488,6 +494,7 @@
 				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
 				616FB87F2C03DF5C0011AD58 /* AddressSearchView.swift in Sources */,
 				616FB8782C03A7240011AD58 /* BirthdayPicker.swift in Sources */,
+				616FB88D2C057CF30011AD58 /* BirthplacePicker.swift in Sources */,
 				616FB8892C0534110011AD58 /* NoticeStyle.swift in Sources */,
 				616CF7FA2B932AFA00296480 /* KaalTileView.swift in Sources */,
 				610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */,
@@ -513,6 +520,7 @@
 				61124D832BFE9DEA0069DC89 /* HoroscopeMainPageView.swift in Sources */,
 				614AF5262B7D97000034559F /* GulikaKaalView.swift in Sources */,
 				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,
+				616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
 				61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */,
 				61DE51C12B33C2C600221661 /* AddressesListResponse.swift in Sources */,

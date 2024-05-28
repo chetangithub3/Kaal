@@ -24,3 +24,21 @@ extension View {
     }
 }
 
+
+struct LongButtonStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(getTintColor())
+            .foregroundColor(.white)
+            .cornerRadius(10)
+    }
+}
+
+extension View {
+    func longButtonStyle() -> some View {
+        self.modifier(LongButtonStyle())
+    }
+}
+

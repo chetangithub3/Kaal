@@ -71,6 +71,12 @@ extension View {
     }
 }
 
+extension ViewModifier {
+    func getTintColor() -> Color {
+        return Color(red: 196 / 255.0, green: 134 / 255.0, blue: 18 / 255.0)
+    }
+}
+
 extension UIApplication {
     func currentUIWindow() -> UIWindow? {
         let connectedScenes = UIApplication.shared.connectedScenes

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddDetailsView2: View {
     @AppStorage("horoscopeObDone") var horoscopeObDone: Bool = false
-    @AppStorage("birthPlace") var birthPlace: String = ""
+    @AppStorage("birthplace") var birthplace: String = ""
     @AppStorage("birthday") var birthday: String = ""
     @State private var placeOfBirth: String = ""
     @State private var dateOfBirth: Date = Date()
@@ -69,16 +69,16 @@ struct AddDetailsView2: View {
                     .font(.headline)
                 
                 AddressSearchView { address in
-                    self.birthPlace = address
+                    self.birthplace = address
                 }
-                if !self.birthPlace.isEmpty {
-                    Text(birthPlace)
+                if !self.birthplace.isEmpty {
+                    Text(birthplace)
                 }
                 Spacer()
                 
             }
             .padding(.horizontal, 30)
-            if !self.birthday.isEmpty && !self.birthPlace.isEmpty{
+            if !self.birthday.isEmpty && !self.birthplace.isEmpty{
                 Button(action: {
                     horoscopeObDone = true
                 }, label: {
@@ -92,32 +92,44 @@ struct AddDetailsView2: View {
 
 struct AddDetailsView: View {
     @AppStorage("horoscopeObDone") var horoscopeObDone: Bool = false
-    @AppStorage("birthPlace") var birthPlace: String = ""
+    @AppStorage("birthplace") var birthplace: String = ""
     @AppStorage("birthday") var birthday: String = ""
     @AppStorage("birthtime") var birthtime: String = ""
     @State private var placeOfBirth: String = ""
     @State private var dateOfBirth: Date = Date()
     @State var showBirthdayPicker = false
     @State var showBirthtimePicker = false
+    @State var showBirthplacePicker = false
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("Your horoscope is based on many factors including your birthday, the time, and place of your birth.")
                 .font(.title3)
                 .multilineTextAlignment(.leading)
             BirthdayPickerLabelView(showBirthdayPicker: $showBirthdayPicker)
+                .padding(.vertical)
+            BirthplacePickerLabelView(showBirthtimePicker: $showBirthplacePicker)
+                .padding(.bottom)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Optional:")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Divider()
+            }
             BirthtimePickerLabelView(showBirthtimePicker: $showBirthtimePicker)
+           
             
             Spacer()
-            if !self.birthday.isEmpty && !self.birthPlace.isEmpty{
+            if !self.birthday.isEmpty && !self.birthplace.isEmpty {
                 Button {
                     horoscopeObDone = true
                 } label: {
                     Text("Finish")
+                        .longButtonStyle()
                 }
             }
 
         }.padding()
-        .blur(radius: showBirthdayPicker || showBirthtimePicker ? 10 : 0)
+        .blur(radius: showBirthdayPicker || showBirthtimePicker || showBirthplacePicker ? 10 : 0)
         .overlay {
             if showBirthdayPicker {
                 withAnimation {
@@ -127,6 +139,11 @@ struct AddDetailsView: View {
             if showBirthtimePicker {
                 withAnimation {
                     BirthTimePicker(showPicker: $showBirthtimePicker)
+                }
+            }
+            if showBirthplacePicker {
+                withAnimation {
+                    BirthplacePicker(showPicker: $showBirthplacePicker)
                 }
             }
         }

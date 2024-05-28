@@ -11,11 +11,12 @@ import CoreLocation
 struct AddressSearchView: View {
     @StateObject var viewModel = AddressSearchViewModel(apiManager: APIManager())
     @ObservedObject var locationManager = LocationManager()
+    var placeholder: String?
     var completion: (String) -> Void
     var body: some View {
         VStack {
             HStack {
-                TextField("Search city", text: $viewModel.searchText, onEditingChanged: { _ in
+                TextField(placeholder ?? "Search city", text: $viewModel.searchText, onEditingChanged: { _ in
                 })
                 .textFieldStyle(.plain)
                 .foregroundColor(.primary)
