@@ -47,7 +47,7 @@ struct WelcomeView: View {
                     .padding()
                 }
                 
-                NavigationLink(destination: LocationPermissionView()) {
+                NavigationLink(destination: NameView()) {
                     Text("Next")
                         .bold()
                         .frame(maxWidth: .infinity)

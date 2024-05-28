@@ -41,6 +41,7 @@
 		616FB8892C0534110011AD58 /* NoticeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8882C0534110011AD58 /* NoticeStyle.swift */; };
 		616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */; };
 		616FB88D2C057CF30011AD58 /* BirthplacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */; };
+		616FB88F2C06427A0011AD58 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88E2C06427A0011AD58 /* NameView.swift */; };
 		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -111,6 +112,7 @@
 		616FB8882C0534110011AD58 /* NoticeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeStyle.swift; sourceTree = "<group>"; };
 		616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePickerLabelView.swift; sourceTree = "<group>"; };
 		616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePicker.swift; sourceTree = "<group>"; };
+		616FB88E2C06427A0011AD58 /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				61DE51C62B37A16500221661 /* WelcomeView.swift */,
+				616FB88E2C06427A0011AD58 /* NameView.swift */,
 				61DE51C82B37A71E00221661 /* LocationPermissionView.swift */,
 			);
 			path = Onboarding;
@@ -192,6 +195,7 @@
 			children = (
 				614C17552B212BE1002A2D18 /* Info.plist */,
 				614C17292B1FD3F4002A2D18 /* KaalApp.swift */,
+				61F6C09C2B7B59750094780C /* AppDelegate.swift */,
 				61F6B9AE2B48C14200B9DF24 /* Extensions.swift */,
 				61D694D62B4D20570039A97F /* Protocols.swift */,
 				616FB87B2C03A92C0011AD58 /* Horoscope */,
@@ -201,7 +205,6 @@
 				614C17452B1FF18F002A2D18 /* Views */,
 				614C172D2B1FD3F5002A2D18 /* Assets.xcassets */,
 				614C172F2B1FD3F5002A2D18 /* Preview Content */,
-				61F6C09C2B7B59750094780C /* AppDelegate.swift */,
 			);
 			path = Kaal;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */,
 				616FB87A2C03A87B0011AD58 /* HoroscopeOnboardingView.swift in Sources */,
 				61E083582B86A926006331E8 /* DateRangeResponse.swift in Sources */,
+				616FB88F2C06427A0011AD58 /* NameView.swift in Sources */,
 				61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */,
 				61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */,
 				616FB8832C03E81A0011AD58 /* BirthTimePicker.swift in Sources */,
