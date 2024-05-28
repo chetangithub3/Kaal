@@ -54,7 +54,7 @@ struct GroqClient {
 class ChatViewModel: ObservableObject {
     @Published var chatCompletion: String = "Loading..."
     @Published var isLoading: Bool = true
-    @AppStorage("birthArea") var birthArea: String = ""
+    @AppStorage("birthPlace") var birthPlace: String = ""
     @AppStorage("birthday") var birthday: String = ""
     private let apiKey = "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"
     private let endpoint = "https://api.groq.com/openai/v1/chat/completions"
@@ -79,7 +79,7 @@ class ChatViewModel: ObservableObject {
 
         let requestBody: [String: Any] = [
             "messages": [
-                ["role": "user", "content": "give the horoscope for \(Date().description) for a person whose birthday is \(birthday) and birthplace is \(birthArea)"]
+                ["role": "user", "content": "give the horoscope for \(Date().description) for a person whose birthday is \(birthday) and birthplace is \(birthPlace)"]
             ],
             "model": "llama3-8b-8192"
         ]

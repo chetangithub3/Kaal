@@ -38,8 +38,8 @@ struct BirthTimePicker: View {
             RoundedRectangle(cornerRadius: 4)
                 .stroke(getTintColor(), lineWidth: 2)
         })
-        .padding()
         .background(Color.white)
+        .padding()
     }
     
     func formatDate(_ date: Date) -> String {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddDetailsView2: View {
     @AppStorage("horoscopeObDone") var horoscopeObDone: Bool = false
-    @AppStorage("birthArea") var birthArea: String = ""
+    @AppStorage("birthPlace") var birthPlace: String = ""
     @AppStorage("birthday") var birthday: String = ""
     @State private var placeOfBirth: String = ""
     @State private var dateOfBirth: Date = Date()
@@ -69,16 +69,16 @@ struct AddDetailsView2: View {
                     .font(.headline)
                 
                 AddressSearchView { address in
-                    self.birthArea = address
+                    self.birthPlace = address
                 }
-                if !self.birthArea.isEmpty {
-                    Text(birthArea)
+                if !self.birthPlace.isEmpty {
+                    Text(birthPlace)
                 }
                 Spacer()
                 
             }
             .padding(.horizontal, 30)
-            if !self.birthday.isEmpty && !self.birthArea.isEmpty{
+            if !self.birthday.isEmpty && !self.birthPlace.isEmpty{
                 Button(action: {
                     horoscopeObDone = true
                 }, label: {
@@ -92,7 +92,7 @@ struct AddDetailsView2: View {
 
 struct AddDetailsView: View {
     @AppStorage("horoscopeObDone") var horoscopeObDone: Bool = false
-    @AppStorage("birthArea") var birthArea: String = ""
+    @AppStorage("birthPlace") var birthPlace: String = ""
     @AppStorage("birthday") var birthday: String = ""
     @AppStorage("birthtime") var birthtime: String = ""
     @State private var placeOfBirth: String = ""
@@ -108,14 +108,26 @@ struct AddDetailsView: View {
             BirthtimePickerLabelView(showBirthtimePicker: $showBirthtimePicker)
             
             Spacer()
+            if !self.birthday.isEmpty && !self.birthPlace.isEmpty{
+                Button {
+                    horoscopeObDone = true
+                } label: {
+                    Text("Finish")
+                }
+            }
+
         }.padding()
         .blur(radius: showBirthdayPicker || showBirthtimePicker ? 10 : 0)
         .overlay {
             if showBirthdayPicker {
-                BirthdayPicker(showPicker: $showBirthdayPicker)
+                withAnimation {
+                    BirthdayPicker(showPicker: $showBirthdayPicker)
+                }
             }
             if showBirthtimePicker {
-                BirthTimePicker(showPicker: $showBirthtimePicker)
+                withAnimation {
+                    BirthTimePicker(showPicker: $showBirthtimePicker)
+                }
             }
         }
         .navigationBarHidden(true)
