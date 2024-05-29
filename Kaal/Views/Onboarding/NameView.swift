@@ -15,24 +15,7 @@ struct NameView: View {
      @State private var go = false
      var body: some View {
          VStack(alignment: .leading) {
-             Text("Lets start with the essentials. What is your name?")
-                 .font(.title2)
-                 .padding(.bottom, 20)
-             HStack{
-                 TextField("First Name *", text: $firstName)
-                     .padding()
-                     .background(getTintColor().opacity(0.2))
-                     .cornerRadius(8)
-                 TextField("Last Name *", text: $lastName)
-                     .padding()
-                     .background(getTintColor().opacity(0.2))
-                     .cornerRadius(8)
-             }
-             TextField("Middle Name (optional)", text: $middleName)
-                 .padding()
-                 .background(getTintColor().opacity(0.2))
-                 .cornerRadius(8)
-             
+            NameFieldsView(firstName: $firstName, middleName: $middleName, lastName: $lastName)
              Spacer()
          if !(firstName.isEmpty || lastName.isEmpty){
              NavigationLink("", destination: LocationPermissionView(fullName: fullName), isActive: $go)
@@ -51,6 +34,9 @@ struct NameView: View {
          }
          }
          .padding()
+         .navigationTitle("Birth Name")
+         .navigationBarTitleDisplayMode(.inline)
+         .navigationBarBackButtonHidden()
         
      }
 }

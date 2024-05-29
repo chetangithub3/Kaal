@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HoroscopeOnboardingView: View {
+    @AppStorage("name") var name = ""
     var body: some View {
         NavigationStack{
             VStack{
@@ -29,22 +30,52 @@ struct HoroscopeOnboardingView: View {
                     .font(.body)
                     .multilineTextAlignment(.center)
                 Spacer()
-                NavigationLink {
-                    AddDetailsView()
-                } label: {
-                    Text("Continue")
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(getTintColor())
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                if name.isEmpty {
+                    NavigationLink {
+                        Name()
+                    } label: {
+                        Text("Continue")
+                            .longButtonStyle()
+                    }
+                } else {
+                    NavigationLink {
+                        AddDetailsView()
+                    } label: {
+                        Text("Continue")
+                            .longButtonStyle()
+                    }
                 }
             }.padding()
         }
     }
 }
 
+
+struct Name: View {
+    @AppStorage("name") var name = ""
+    @State private var firstName: String = ""
+     @State private var middleName: String = ""
+     @State private var lastName: String = ""
+    var body: some View {
+        VStack {
+            NameFieldsView(firstName: $firstName, middleName: $middleName, lastName: $lastName)
+            Spacer()
+            if !firstName.isEmpty && !lastName.isEmpty {
+                NavigationLink {
+                    AddDetailsView()
+                } label: {
+                    Text("Continue")
+                        .longButtonStyle()
+                }
+            }
+        }.padding()
+        .onDisappear {
+            self.name = "\(firstName) \(middleName) \(lastName)"
+        }.navigationBarBackButtonHidden()
+            .navigationTitle("Birth name")
+            .navigationBarTitleDisplayMode(.inline)
+    }
+}
 #Preview {
     HoroscopeOnboardingView()
 }

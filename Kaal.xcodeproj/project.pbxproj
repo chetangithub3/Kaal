@@ -42,6 +42,7 @@
 		616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */; };
 		616FB88D2C057CF30011AD58 /* BirthplacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */; };
 		616FB88F2C06427A0011AD58 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88E2C06427A0011AD58 /* NameView.swift */; };
+		616FB8912C06D6130011AD58 /* NameFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8902C06D6130011AD58 /* NameFieldsView.swift */; };
 		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -113,6 +114,7 @@
 		616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePickerLabelView.swift; sourceTree = "<group>"; };
 		616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePicker.swift; sourceTree = "<group>"; };
 		616FB88E2C06427A0011AD58 /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		616FB8902C06D6130011AD58 /* NameFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameFieldsView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				61662F332B2BBE1800B3C4ED /* TileView.swift */,
 				616CF7F92B932AFA00296480 /* KaalTileView.swift */,
 				61DE51C42B33CE1900221661 /* ChangeAddressView.swift */,
+				616FB8902C06D6130011AD58 /* NameFieldsView.swift */,
 				61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */,
 				610CE3352B2DA8C40045F006 /* LoadingView.swift */,
 				616FB8882C0534110011AD58 /* NoticeStyle.swift */,
@@ -482,6 +485,7 @@
 				610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */,
 				61A1C77B2B291D1000E42544 /* MainView.swift in Sources */,
 				61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */,
+				616FB8912C06D6130011AD58 /* NameFieldsView.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
 				61F6C09B2B7B59310094780C /* BannerAd320x50View.swift in Sources */,

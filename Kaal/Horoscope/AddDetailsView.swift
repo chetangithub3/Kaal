@@ -65,7 +65,9 @@ struct AddDetailsView: View {
                 }
             }
         }
-        .navigationBarHidden(true)
+        .navigationTitle("Horoscope")
+        .navigationBarBackButtonHidden()
+        .navigationBarTitleDisplayMode(.inline)
         
     }
 }
