@@ -34,6 +34,4 @@ struct NameFieldsView: View {
     }
 }
 
-#Preview {
-    NameFieldsView()
-}
+
