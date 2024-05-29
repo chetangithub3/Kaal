@@ -11,6 +11,7 @@
 		610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */; };
 		610CE3362B2DA8C40045F006 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610CE3352B2DA8C40045F006 /* LoadingView.swift */; };
 		611197EC2BBCF3BC006E4E59 /* IndianBorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611197EB2BBCF3BC006E4E59 /* IndianBorderedView.swift */; };
+		61124D832BFE9DEA0069DC89 /* HoroscopeMainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61124D822BFE9DEA0069DC89 /* HoroscopeMainPageView.swift */; };
 		61131A412B82E5FD00104A58 /* ChoghadiyaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61131A402B82E5FD00104A58 /* ChoghadiyaModel.swift */; };
 		61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */; };
 		611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611B2BFC2B3966E1004CA53A /* TimeData.swift */; };
@@ -29,6 +30,20 @@
 		6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6159FCED2B4E197A003703AC /* NetworkManager.swift */; };
 		61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61662F332B2BBE1800B3C4ED /* TileView.swift */; };
 		616CF7FA2B932AFA00296480 /* KaalTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616CF7F92B932AFA00296480 /* KaalTileView.swift */; };
+		616FB8782C03A7240011AD58 /* BirthdayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8772C03A7240011AD58 /* BirthdayPicker.swift */; };
+		616FB87A2C03A87B0011AD58 /* HoroscopeOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8792C03A87B0011AD58 /* HoroscopeOnboardingView.swift */; };
+		616FB87D2C03A9490011AD58 /* HoroscopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB87C2C03A9490011AD58 /* HoroscopeView.swift */; };
+		616FB87F2C03DF5C0011AD58 /* AddressSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB87E2C03DF5C0011AD58 /* AddressSearchView.swift */; };
+		616FB8812C03E0320011AD58 /* AddDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8802C03E0320011AD58 /* AddDetailsView.swift */; };
+		616FB8832C03E81A0011AD58 /* BirthTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8822C03E81A0011AD58 /* BirthTimePicker.swift */; };
+		616FB8852C052BD40011AD58 /* BirthdayPickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8842C052BD40011AD58 /* BirthdayPickerLabelView.swift */; };
+		616FB8872C052C530011AD58 /* BirthtimePickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8862C052C530011AD58 /* BirthtimePickerLabelView.swift */; };
+		616FB8892C0534110011AD58 /* NoticeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8882C0534110011AD58 /* NoticeStyle.swift */; };
+		616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */; };
+		616FB88D2C057CF30011AD58 /* BirthplacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */; };
+		616FB88F2C06427A0011AD58 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88E2C06427A0011AD58 /* NameView.swift */; };
+		616FB8912C06D6130011AD58 /* NameFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8902C06D6130011AD58 /* NameFieldsView.swift */; };
+		616FB8942C06D6F60011AD58 /* ClockThemeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8932C06D6F60011AD58 /* ClockThemeSelectorView.swift */; };
 		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -68,6 +83,7 @@
 		610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		610CE3352B2DA8C40045F006 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		611197EB2BBCF3BC006E4E59 /* IndianBorderedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndianBorderedView.swift; sourceTree = "<group>"; };
+		61124D822BFE9DEA0069DC89 /* HoroscopeMainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeMainPageView.swift; sourceTree = "<group>"; };
 		61131A402B82E5FD00104A58 /* ChoghadiyaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoghadiyaModel.swift; sourceTree = "<group>"; };
 		61180D632B4D44F6006DDA6D /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		611B2BFC2B3966E1004CA53A /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
@@ -87,6 +103,20 @@
 		6159FCED2B4E197A003703AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		61662F332B2BBE1800B3C4ED /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		616CF7F92B932AFA00296480 /* KaalTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalTileView.swift; sourceTree = "<group>"; };
+		616FB8772C03A7240011AD58 /* BirthdayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayPicker.swift; sourceTree = "<group>"; };
+		616FB8792C03A87B0011AD58 /* HoroscopeOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeOnboardingView.swift; sourceTree = "<group>"; };
+		616FB87C2C03A9490011AD58 /* HoroscopeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeView.swift; sourceTree = "<group>"; };
+		616FB87E2C03DF5C0011AD58 /* AddressSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchView.swift; sourceTree = "<group>"; };
+		616FB8802C03E0320011AD58 /* AddDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDetailsView.swift; sourceTree = "<group>"; };
+		616FB8822C03E81A0011AD58 /* BirthTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthTimePicker.swift; sourceTree = "<group>"; };
+		616FB8842C052BD40011AD58 /* BirthdayPickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayPickerLabelView.swift; sourceTree = "<group>"; };
+		616FB8862C052C530011AD58 /* BirthtimePickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthtimePickerLabelView.swift; sourceTree = "<group>"; };
+		616FB8882C0534110011AD58 /* NoticeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeStyle.swift; sourceTree = "<group>"; };
+		616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePickerLabelView.swift; sourceTree = "<group>"; };
+		616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePicker.swift; sourceTree = "<group>"; };
+		616FB88E2C06427A0011AD58 /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		616FB8902C06D6130011AD58 /* NameFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameFieldsView.swift; sourceTree = "<group>"; };
+		616FB8932C06D6F60011AD58 /* ClockThemeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockThemeSelectorView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -140,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				61DE51C62B37A16500221661 /* WelcomeView.swift */,
+				616FB88E2C06427A0011AD58 /* NameView.swift */,
 				61DE51C82B37A71E00221661 /* LocationPermissionView.swift */,
 			);
 			path = Onboarding;
@@ -168,15 +199,16 @@
 			children = (
 				614C17552B212BE1002A2D18 /* Info.plist */,
 				614C17292B1FD3F4002A2D18 /* KaalApp.swift */,
+				61F6C09C2B7B59750094780C /* AppDelegate.swift */,
 				61F6B9AE2B48C14200B9DF24 /* Extensions.swift */,
 				61D694D62B4D20570039A97F /* Protocols.swift */,
+				616FB87B2C03A92C0011AD58 /* Horoscope */,
 				614C17522B1FF608002A2D18 /* Models */,
 				614C17492B1FF1DC002A2D18 /* NetworkModule */,
 				614C17482B1FF1CA002A2D18 /* View Models */,
 				614C17452B1FF18F002A2D18 /* Views */,
 				614C172D2B1FD3F5002A2D18 /* Assets.xcassets */,
 				614C172F2B1FD3F5002A2D18 /* Preview Content */,
-				61F6C09C2B7B59750094780C /* AppDelegate.swift */,
 			);
 			path = Kaal;
 			sourceTree = "<group>";
@@ -244,10 +276,37 @@
 			children = (
 				614C172B2B1FD3F4002A2D18 /* DashboardView.swift */,
 				61E083592B8713DE006331E8 /* ChoghadiyaView.swift */,
-				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
+				616FB8922C06D6DE0011AD58 /* Settings */,
 				61A1C77C2B291D4000E42544 /* NotificationsTabView.swift */,
 			);
 			path = "Main Subviews";
+			sourceTree = "<group>";
+		};
+		616FB87B2C03A92C0011AD58 /* Horoscope */ = {
+			isa = PBXGroup;
+			children = (
+				61124D822BFE9DEA0069DC89 /* HoroscopeMainPageView.swift */,
+				616FB87C2C03A9490011AD58 /* HoroscopeView.swift */,
+				616FB8802C03E0320011AD58 /* AddDetailsView.swift */,
+				616FB8792C03A87B0011AD58 /* HoroscopeOnboardingView.swift */,
+				616FB8772C03A7240011AD58 /* BirthdayPicker.swift */,
+				616FB8842C052BD40011AD58 /* BirthdayPickerLabelView.swift */,
+				616FB8862C052C530011AD58 /* BirthtimePickerLabelView.swift */,
+				616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */,
+				616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */,
+				616FB8822C03E81A0011AD58 /* BirthTimePicker.swift */,
+				616FB87E2C03DF5C0011AD58 /* AddressSearchView.swift */,
+			);
+			path = Horoscope;
+			sourceTree = "<group>";
+		};
+		616FB8922C06D6DE0011AD58 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
+				616FB8932C06D6F60011AD58 /* ClockThemeSelectorView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		61A1C7772B291C2D00E42544 /* Inauspicious Times */ = {
@@ -286,8 +345,10 @@
 				61662F332B2BBE1800B3C4ED /* TileView.swift */,
 				616CF7F92B932AFA00296480 /* KaalTileView.swift */,
 				61DE51C42B33CE1900221661 /* ChangeAddressView.swift */,
+				616FB8902C06D6130011AD58 /* NameFieldsView.swift */,
 				61F7783E2B5CF58E00E2C0B8 /* DropDownMenuView.swift */,
 				610CE3352B2DA8C40045F006 /* LoadingView.swift */,
+				616FB8882C0534110011AD58 /* NoticeStyle.swift */,
 				610CE3332B2DA3F90045F006 /* CustomDatePickerView.swift */,
 				610CE32F2B2C0F910045F006 /* HighlightedClockView.swift */,
 				614271F22B8965B80076D56B /* GadiyaView.swift */,
@@ -423,26 +484,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */,
+				616FB8942C06D6F60011AD58 /* ClockThemeSelectorView.swift in Sources */,
+				616FB87D2C03A9490011AD58 /* HoroscopeView.swift in Sources */,
+				616FB8872C052C530011AD58 /* BirthtimePickerLabelView.swift in Sources */,
 				61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */,
 				61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */,
 				611197EC2BBCF3BC006E4E59 /* IndianBorderedView.swift in Sources */,
+				616FB8812C03E0320011AD58 /* AddDetailsView.swift in Sources */,
 				61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */,
 				61F6C09D2B7B59750094780C /* AppDelegate.swift in Sources */,
 				61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */,
 				610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */,
 				61A1C77B2B291D1000E42544 /* MainView.swift in Sources */,
 				61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */,
+				616FB8912C06D6130011AD58 /* NameFieldsView.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
 				61F6C09B2B7B59310094780C /* BannerAd320x50View.swift in Sources */,
 				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
 				61E0835A2B8713DE006331E8 /* ChoghadiyaView.swift in Sources */,
 				61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */,
+				616FB87A2C03A87B0011AD58 /* HoroscopeOnboardingView.swift in Sources */,
 				61E083582B86A926006331E8 /* DateRangeResponse.swift in Sources */,
+				616FB88F2C06427A0011AD58 /* NameView.swift in Sources */,
 				61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */,
 				61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */,
+				616FB8832C03E81A0011AD58 /* BirthTimePicker.swift in Sources */,
 				6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */,
 				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
+				616FB87F2C03DF5C0011AD58 /* AddressSearchView.swift in Sources */,
+				616FB8782C03A7240011AD58 /* BirthdayPicker.swift in Sources */,
+				616FB88D2C057CF30011AD58 /* BirthplacePicker.swift in Sources */,
+				616FB8892C0534110011AD58 /* NoticeStyle.swift in Sources */,
 				616CF7FA2B932AFA00296480 /* KaalTileView.swift in Sources */,
 				610CE3342B2DA3F90045F006 /* CustomDatePickerView.swift in Sources */,
 				614271F32B8965B80076D56B /* GadiyaView.swift in Sources */,
@@ -461,10 +534,13 @@
 				61180D642B4D44F6006DDA6D /* NetworkErrorView.swift in Sources */,
 				61E083562B86A6F7006331E8 /* ChoghadiyaViewModel.swift in Sources */,
 				61A1C77D2B291D4000E42544 /* NotificationsTabView.swift in Sources */,
+				616FB8852C052BD40011AD58 /* BirthdayPickerLabelView.swift in Sources */,
 				611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
+				61124D832BFE9DEA0069DC89 /* HoroscopeMainPageView.swift in Sources */,
 				614AF5262B7D97000034559F /* GulikaKaalView.swift in Sources */,
 				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,
+				616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
 				61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */,
 				61DE51C12B33C2C600221661 /* AddressesListResponse.swift in Sources */,

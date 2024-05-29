@@ -11,9 +11,7 @@ import StoreKit
 
 struct SettingsMenuView: View {
     @AppStorage("currentArea") var currentArea: String = ""
-    @AppStorage("timeFormat") var storedTimeFormat: String = "hh:mm a"
     @EnvironmentObject var viewModel: DashboardViewModel
-    @State var selectedTimeFormat = ""
     @State var shouldAnimate = false
     var link = "https://apps.apple.com/us/app/muhurta-daily/id6477121908"
     let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown Version"
@@ -21,20 +19,7 @@ struct SettingsMenuView: View {
     var body: some View {
         NavigationView(content: {
             List {
-                Section("Clock") {
-                    HStack{
-                        Text("Time format")
-                        
-                        Spacer()
-                        
-                        Picker("", selection: $selectedTimeFormat) {
-                            Text("12 Hour").tag("hh:mm a")
-                            Text("24 Hour").tag("HH:mm")
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 200)
-                    }
-                }
+                ClockThemeSelectorView()
                 
                 Section("Change Address") {
                     NavigationLink {
@@ -49,7 +34,7 @@ struct SettingsMenuView: View {
                                 .underline()
                         }
                     }
-                }.scaleEffect(shouldAnimate ? 1.2 : 1.0) // Scaled effect for animation
+                }.scaleEffect(shouldAnimate ? 1.2 : 1.0)
                     .animation(.bouncy, value: 1)
                     
                     
@@ -100,12 +85,7 @@ struct SettingsMenuView: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear(perform: {
-                selectedTimeFormat = storedTimeFormat
-            })
-            .onChange(of: selectedTimeFormat) { oldValue, newValue in
-                self.storedTimeFormat = newValue
-            }
+           
             .onChange(of: currentArea, { oldValue, newValue in
                 if oldValue != newValue {
                     viewModel.daylightFromLocation(on: Date())
@@ -156,5 +136,5 @@ struct SettingsMenuView: View {
 
 
 #Preview {
-    SettingsMenuView(storedTimeFormat: "hh:mm a")
+    SettingsMenuView()
 }

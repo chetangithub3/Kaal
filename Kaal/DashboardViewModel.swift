@@ -22,7 +22,7 @@ import SwiftData
 
 class DashboardViewModel: ObservableObject {
     
-
+    @AppStorage("name") var name = ""
     @AppStorage("currentArea") var currentArea: String = ""
     @AppStorage("savedLat") var savedLat = ""
     @AppStorage("savedLong") var savedLng = ""
@@ -35,6 +35,33 @@ class DashboardViewModel: ObservableObject {
     
     init(apiManager: APIManagerDelegate = APIManager()) {
         self.apiManager = apiManager
+    }
+    
+    func greeting() -> String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        switch hour {
+            case 0..<12:
+                return !(getFirstName().isEmpty) ? "Good Morning, \(String(describing: getFirstName()))" : "Good Morning"
+            case 12..<17:
+                return  !(getFirstName().isEmpty) ? "Good Afternoon, \(String(describing: getFirstName()))" : "Good Afternoon"
+            default:
+                return !(getFirstName().isEmpty) ? "Good Evening, \(String(describing: getFirstName()))" : "Good Evening"
+        }
+        
+    }
+    func getFirstName() -> String{
+        guard !name.isEmpty else {return ""}
+        let name = self.name
+        let split = name.split(separator: " ")
+        guard !split.isEmpty else {return ""}
+        
+        if let firstName = split.first?.capitalized {
+            return firstName
+        } else {
+            return ""
+        }
+        
     }
     
     func sortedList() {

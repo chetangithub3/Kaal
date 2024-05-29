@@ -32,7 +32,7 @@ struct DashboardView: View {
                 ScrollView {
                     VStack(spacing: 2){
                         HStack{
-                            Text(greeting())
+                            Text(viewModel.greeting())
                                 .bold()
                                 .font(.title2)
                             Spacer()
@@ -91,11 +91,7 @@ struct DashboardView: View {
                             }
                             .padding(.horizontal)
                             Text("Note: All times are according to the local time of the saved location.")
-                                .italic()
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
+                                .noticeStyle()
                                 .padding(.horizontal)
                         }
                         
@@ -212,18 +208,7 @@ struct DashboardView: View {
         }
     }
     
-    private func greeting() -> String {
-        let hour = Calendar.current.component(.hour, from: Date())
-        
-        switch hour {
-            case 0..<12:
-                return "Good Morning"
-            case 12..<17:
-                return "Good Afternoon"
-            default:
-                return "Good Evening"
-        }
-    }
+    
     
     func convertDateRangeToStrings(range: ClosedRange<Date>) {
         let dateFormatter = DateFormatter()

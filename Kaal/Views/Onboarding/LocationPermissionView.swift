@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct LocationPermissionView: View {
-    
+    @AppStorage("name") var name = ""
     @AppStorage("savedLat") var savedLat = ""
     @AppStorage("savedLong") var savedLng = ""
     @AppStorage("currentArea") var currentArea: String = ""
@@ -18,7 +18,7 @@ struct LocationPermissionView: View {
     @StateObject var locationManager = LocationManager()
     @ObservedObject var dashboardVM = DashboardViewModel(apiManager: APIManager())
     @EnvironmentObject var ddViewModel: AddressSearchViewModel
-    
+    var fullName: String
     @State private var isKeyboardVisible = false
     @State var showNext = false
     @State var next = false
@@ -140,6 +140,7 @@ struct LocationPermissionView: View {
             
             if showNext{
                 Button(action: {
+                    self.name = fullName
                     isFirstTime = false
                 }, label: {
                     Text("Go Home")
@@ -218,5 +219,5 @@ struct LocationPermissionView: View {
 }
 
 #Preview {
-    LocationPermissionView()
+    LocationPermissionView(fullName: "")
 }
