@@ -193,23 +193,6 @@ class HoroscopeViewModel: ObservableObject {
     }
 }
 
-extension Data {
-    func printJSON(debugTitle: String) {
-        if let JSONString = String(data: self, encoding: String.Encoding.utf8) {
-            dump(JSONString, name: "JSONString")
-        }
-    }
-}
-
-struct Prediction {
-    let general: String
-    let personal: String
-    let finance: String
-    let health: String
-    let social: String
-    let luckyNumbers: [Int]?
-    let luckyColors: [String]?
-}
 
 struct PredictionView: View {
     let prediction: Prediction
