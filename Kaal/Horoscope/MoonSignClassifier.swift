@@ -1,13 +1,13 @@
 //
-//  SunSignClassifier.swift
+//  MoonSignClassifier.swift
 //  Kaal
 //
-//  Created by Chetan Dhowlaghar on 6/2/24.
+//  Created by Chetan Dhowlaghar on 6/3/24.
 //
 
 import Foundation
-struct SunSignClassifier {
-    static func getSunSign(for date: Date) -> String {
+struct MoonSignClassifier {
+    static func getMoonSign(for date: Date) -> String {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.month, .day], from: date)
         
