@@ -29,19 +29,15 @@ struct PredictionView: View {
                 Text(prediction.social).padding(.bottom, 10)
                 
                 Text("Lucky Numbers").font(.headline)
-               
-                if let nums = prediction.luckyNumbers {
+                 let nums = prediction.luckyNumbers
                     let filtered = nums.map({$0.description}).joined(separator: ", ")
                     Text(filtered)
-                }
+                
                 Text("Lucky Colors").font(.headline)
-                if let nums = prediction.luckyColors  {
-                    let filtered = nums.map({$0.description}).joined(separator: ", ")
-                    Text(filtered)
-                }
-               
+                let colss = prediction.luckyColors
+                    let cols = colss.map({$0.description}).joined(separator: ", ")
+                    Text(cols)
             }
-            .padding()
         }
         .navigationTitle("Prediction")
     }

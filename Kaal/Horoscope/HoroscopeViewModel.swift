@@ -17,7 +17,7 @@ class HoroscopeViewModel: ObservableObject {
     private let apiKey = "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"
     private let endpoint = "https://api.groq.com/openai/v1/chat/completions"
     
-    
+    @MainActor
     func fetchHoroscope() async {
         guard let request = createRequest() else {
             self.horoscope = "Error Occured"
@@ -25,28 +25,27 @@ class HoroscopeViewModel: ObservableObject {
         }
         do {
             let (data,_) = try await URLSession.shared.data(for: request)
-            switch decodeDataToPrediction(data) {
+            let result = await decodeDataToPrediction(data)
+            switch result {
                 case .success(let prediction):
                     self.prediction = prediction
                 case .failure(_):
-                    decodeDataIntoText(data)
+                   await decodeDataIntoText(data)
             }
-        }
-        catch(let error) {
+        } catch(let error) {
             print(error.localizedDescription)
             return
         }
         
     }
-    func decodeDataIntoText(_ data: Data) {
+    
+    func decodeDataIntoText(_ data: Data) async {
         if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
            let choices = jsonResponse["choices"] as? [[String: Any]],
            let firstChoice = choices.first,
            let message = firstChoice["message"] as? [String: Any],
            let content = message["content"] as? String {
             let horoscope = parseHoroscopeContent(content)
-                  
-                  // Print out the sections
             let text = """
                         General: \(horoscope.general)
                 
@@ -56,13 +55,9 @@ class HoroscopeViewModel: ObservableObject {
                 
                         Health: \(horoscope.health)
                 
-                        Lucky Numbers: \(horoscope.luckyNumbers.map({ num in
-                num.description
-                
-                }).joined(separator: ", "))
+                        Lucky Numbers: \(horoscope.luckyNumbers.map({ $0.description}).joined(separator: ", "))
                 
                         Lucky Colors: \(horoscope.luckyColors.joined(separator: ", "))
-                
                 """
             self.horoscope = text
             
@@ -93,7 +88,7 @@ class HoroscopeViewModel: ObservableObject {
         return (general, personal, finance, health, luckyNumbers, luckyColors)
     }
     
-    func decodeDataToPrediction(_ data: Data) -> Result<Prediction, APIError> {
+    func decodeDataToPrediction(_ data: Data) async -> Result<Prediction, APIError> {
         if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
            let choices = jsonResponse["choices"] as? [[String: Any]],
            let firstChoice = choices.first,
@@ -109,8 +104,8 @@ class HoroscopeViewModel: ObservableObject {
                let social = content["Social"] as? String,
                let luckyNumbers = content["Lucky Numbers"] as? [Int],
                let luckyColors = content["Lucky Colors"] as? [String] {
-
-                let prediction = Prediction(general: general,
+                
+                let prediction = Prediction(dateString: formatDate(Date()), general: general,
                                             personal: personal,
                                             finance: finance,
                                             health: health,
@@ -170,4 +165,9 @@ class HoroscopeViewModel: ObservableObject {
         }
         return request
     }
+     func formatDate(_ date: Date) -> String {
+         let dateFormatter = DateFormatter()
+         dateFormatter.dateFormat = "MM-dd-yyyy"
+         return dateFormatter.string(from: date)
+     }
 }
