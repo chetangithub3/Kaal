@@ -7,20 +7,39 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 @MainActor
 class HoroscopeViewModel: ObservableObject {
+    @ObservationIgnored
+    private let service: PredictionDataSource = PredictionDataSource.shared
     @Published var isLoading: Bool = true
     @AppStorage("birthplace") var birthplace: String = ""
     @AppStorage("birthday") var birthday: String = ""
     @Published var prediction: Prediction?
-    @Published var horoscope: String?
+    @Published var horoscope: String = ""
     private let apiKey = "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"
     private let endpoint = "https://api.groq.com/openai/v1/chat/completions"
+   
     
     @MainActor
-    func fetchHoroscope() async {
-        guard let request = createRequest() else {
+    func fetchPrediction() async {
+        isLoading = true
+        let date = formatDate(Date())
+        let result = await service.searchDatabase(for: date)
+        switch result {
+            case .success(let prediction):
+                let pred = Prediction(dateString: prediction.dateString, general: prediction.general, personal: prediction.personal, finance: prediction.finance, health: prediction.health, social: prediction.social, luckyNumbers: prediction.luckyNumbers, luckyColors: prediction.luckyColors)
+                self.prediction = pred
+                isLoading = false
+            case .failure(_):
+                await fetchpredictionFromAPI()
+        }
+    }
+    @MainActor
+    func fetchpredictionFromAPI() async {
+        guard let request = await createRequest() else {
             self.horoscope = "Error Occured"
+            isLoading = false
             return
         }
         do {
@@ -28,24 +47,35 @@ class HoroscopeViewModel: ObservableObject {
             let result = await decodeDataToPrediction(data)
             switch result {
                 case .success(let prediction):
-                    self.prediction = prediction
+                    Task {
+                        await service.savePredictionToLocalDatabase(prediction: prediction)
+                        self.prediction = prediction
+                        isLoading = false
+                    }
+                    break
                 case .failure(_):
-                   await decodeDataIntoText(data)
+                    Task{
+                        if let text = await decodeDataIntoText(data) {
+                            self.horoscope = text
+                            isLoading = false
+                        }
+                    }
+                    break
             }
         } catch(let error) {
             print(error.localizedDescription)
+            isLoading = false
             return
         }
-        
     }
     
-    func decodeDataIntoText(_ data: Data) async {
+    func decodeDataIntoText(_ data: Data) async -> String? {
         if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
            let choices = jsonResponse["choices"] as? [[String: Any]],
            let firstChoice = choices.first,
            let message = firstChoice["message"] as? [String: Any],
            let content = message["content"] as? String {
-            let horoscope = parseHoroscopeContent(content)
+            let horoscope = await parseHoroscopeContent(content)
             let text = """
                         General: \(horoscope.general)
                 
@@ -59,13 +89,12 @@ class HoroscopeViewModel: ObservableObject {
                 
                         Lucky Colors: \(horoscope.luckyColors.joined(separator: ", "))
                 """
-            self.horoscope = text
-            
+            return text
         } else {
-            self.horoscope = "Error Occured"
+           return nil
         }
     }
-    func parseHoroscopeContent(_ content: String) -> (general: String, personal: String, finance: String, health: String, luckyNumbers: [Int], luckyColors: [String]) {
+    func parseHoroscopeContent(_ content: String) async -> (general: String, personal: String, finance: String, health: String, luckyNumbers: [Int], luckyColors: [String]) {
         var general = "N/A"
         var personal = "N/A"
         var finance = "N/A"
@@ -76,7 +105,6 @@ class HoroscopeViewModel: ObservableObject {
         if let data = content.data(using: .utf8),
            let horoscopeJSON = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
             
-            // Extract individual sections
             general = horoscopeJSON["General"] as? String ?? "N/A"
             personal = horoscopeJSON["Personal"] as? String ?? "N/A"
             finance = horoscopeJSON["Finance"] as? String ?? "N/A"
@@ -84,7 +112,6 @@ class HoroscopeViewModel: ObservableObject {
             luckyNumbers = horoscopeJSON["Lucky Numbers"] as? [Int] ?? []
             luckyColors = horoscopeJSON["Lucky Colors"] as? [String] ?? []
         }
-        
         return (general, personal, finance, health, luckyNumbers, luckyColors)
     }
     
@@ -120,11 +147,8 @@ class HoroscopeViewModel: ObservableObject {
         }
     }
     
-    func createRequest() -> URLRequest? {
+    func createRequest() async -> URLRequest? {
         guard let url = URL(string: endpoint) else {
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
             return nil
         }
         
@@ -158,16 +182,72 @@ class HoroscopeViewModel: ObservableObject {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: requestBody, options: [])
         } catch {
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
             return nil
         }
         return request
     }
+    
      func formatDate(_ date: Date) -> String {
          let dateFormatter = DateFormatter()
          dateFormatter.dateFormat = "MM-dd-yyyy"
          return dateFormatter.string(from: date)
      }
+}
+
+@MainActor
+final class PredictionDataSource {
+    private let modelContainer: ModelContainer
+    private let modelContext: ModelContext
+
+    @MainActor
+    static let shared = PredictionDataSource()
+
+    private init() {
+        self.modelContainer = try! ModelContainer(for: PredictionModel.self)
+        self.modelContext = modelContainer.mainContext
+     
+    }
+ 
+    private func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        return dateFormatter.string(from: date)
+    }
+
+    func fetchPrediction(for formattedDate: String) async -> Result<Prediction, APIError> {
+        let result = await searchDatabase(for: formattedDate)
+        switch result {
+            case .success(let model):
+                let prediction = Prediction(dateString: model.dateString, general: model.general, personal: model.personal, finance: model.finance, health: model.health, social: model.social, luckyNumbers: model.luckyNumbers, luckyColors: model.luckyColors)
+                return .success(prediction)
+            case .failure(_):
+                return .failure(APIError.notFound)
+        }
+    }
+    
+    func searchDatabase(for formattedDate: String) async -> Result<PredictionModel, APIError> {
+        
+        do {
+            let predicate = #Predicate<PredictionModel> { object in
+                object.dateString == formattedDate
+            }
+            let descriptor = FetchDescriptor(predicate: predicate)
+            let objects = try modelContext.fetch(descriptor)
+            if objects.count > 1 {
+                let count = objects.count
+                for index in 1..<count {
+                    modelContext.delete(objects[index])
+                }
+            }
+            guard let first = objects.first else {return .failure(APIError.notFound)}
+            return .success(first)
+        } catch {
+            return .failure(.notFound)
+        }
+    }
+    
+    func savePredictionToLocalDatabase(prediction: Prediction) async {
+        let prediction = PredictionModel(dateString: prediction.dateString, general: prediction.general, personal: prediction.personal, finance: prediction.finance, health: prediction.health, social: prediction.social, luckyNumbers: prediction.luckyNumbers, luckyColors: prediction.luckyColors)
+            modelContext.insert(prediction)
+    }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 
+@Model
 class  PredictionModel {
     let id = UUID()
     let dateString: String

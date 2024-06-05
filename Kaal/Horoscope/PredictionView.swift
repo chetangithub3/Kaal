@@ -13,6 +13,7 @@ struct PredictionView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                Text(prediction.dateString)
                 Text("General").font(.headline)
                 Text(prediction.general).padding(.bottom, 10)
                 
