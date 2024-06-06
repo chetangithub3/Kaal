@@ -12,16 +12,15 @@ struct HoroscopeMainPageView: View {
     var body: some View {
         VStack {
             if viewModel.isLoading {
-                ProgressView()
+                ProgressView("Fetching data")
             } else if let prediction = viewModel.prediction{
                 PredictionView(prediction: prediction)
             }
         }
         .padding()
         .task {
-            guard viewModel.prediction != nil else {
+            if viewModel.needsNewFetch() {
                 await viewModel.fetchPrediction()
-                return
             }
         }
     }

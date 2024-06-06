@@ -39,6 +39,14 @@ class HoroscopeViewModel: ObservableObject {
                 await fetchpredictionFromAPI()
         }
     }
+    
+    func needsNewFetch() -> Bool {
+        guard let prediction = self.prediction else {return true}
+        let savedDate = prediction.dateString
+        let currentDate = formatDate(Date())
+        return savedDate != currentDate
+    }
+    
     @MainActor
     func fetchpredictionFromAPI() async {
         guard let request = await createRequest() else {
