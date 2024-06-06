@@ -13,12 +13,8 @@ struct HoroscopeMainPageView: View {
         VStack {
             if viewModel.isLoading {
                 ProgressView()
-            } else {
-                if let prediction = viewModel.prediction{
-                    PredictionView(prediction: prediction)
-                } else {
-                    Text(viewModel.horoscope)
-                }
+            } else if let prediction = viewModel.prediction{
+                PredictionView(prediction: prediction)
             }
         }
         .padding()

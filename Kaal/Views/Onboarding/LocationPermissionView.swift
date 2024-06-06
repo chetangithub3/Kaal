@@ -14,11 +14,12 @@ struct LocationPermissionView: View {
     @AppStorage("savedLong") var savedLng = ""
     @AppStorage("currentArea") var currentArea: String = ""
     @AppStorage("isFirstTime") var isFirstTime = true
-    
+    @AppStorage("genderSaved") var genderSaved: Gender?
     @StateObject var locationManager = LocationManager()
     @ObservedObject var dashboardVM = DashboardViewModel(apiManager: APIManager())
     @EnvironmentObject var ddViewModel: AddressSearchViewModel
     var fullName: String
+    var gender: Gender
     @State private var isKeyboardVisible = false
     @State var showNext = false
     @State var next = false
@@ -141,6 +142,7 @@ struct LocationPermissionView: View {
             if showNext{
                 Button(action: {
                     self.name = fullName
+                    self.genderSaved = gender
                     isFirstTime = false
                 }, label: {
                     Text("Go Home")
@@ -219,5 +221,5 @@ struct LocationPermissionView: View {
 }
 
 #Preview {
-    LocationPermissionView(fullName: "")
+    LocationPermissionView(fullName: "", gender: .male)
 }

@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-struct NameView: View {
+struct ProfileSetupView: View {
     @State var fullName = ""
     @State private var firstName: String = ""
      @State private var middleName: String = ""
      @State private var lastName: String = ""
      @State private var go = false
+    @State private var gender: Gender = .male
      var body: some View {
          VStack(alignment: .leading) {
             NameFieldsView(firstName: $firstName, middleName: $middleName, lastName: $lastName)
+             GenderPickerView(selectedGender: $gender)
              Spacer()
          if !(firstName.isEmpty || lastName.isEmpty){
-             NavigationLink("", destination: LocationPermissionView(fullName: fullName), isActive: $go)
+             NavigationLink("", destination: LocationPermissionView(fullName: fullName, gender: gender), isActive: $go)
              Button {
                  self.fullName = "\(firstName) \(middleName) \(lastName)"
                  go = true
@@ -34,7 +36,7 @@ struct NameView: View {
          }
          }
          .padding()
-         .navigationTitle("Birth Name")
+         .navigationTitle("Profile Setup")
          .navigationBarTitleDisplayMode(.inline)
          .navigationBarBackButtonHidden()
         
@@ -42,5 +44,5 @@ struct NameView: View {
 }
 
 #Preview {
-    NameView()
+    ProfileSetupView()
 }

@@ -15,12 +15,16 @@ class HoroscopeViewModel: ObservableObject {
     @Published var isLoading: Bool = true
     @AppStorage("birthplace") var birthplace: String = ""
     @AppStorage("birthday") var birthday: String = ""
+    @AppStorage("name") var name = ""
+    @AppStorage("genderSaved") var genderSaved: Gender?
     @Published var prediction: Prediction?
     @Published var horoscope: String = ""
     private let apiKey = "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"
     private let endpoint = "https://api.groq.com/openai/v1/chat/completions"
    
-    
+    var firstName: String {
+        return name.components(separatedBy: " ").first ?? name
+    }
     @MainActor
     func fetchPrediction() async {
         isLoading = true
@@ -28,7 +32,7 @@ class HoroscopeViewModel: ObservableObject {
         let result = await service.searchDatabase(for: date)
         switch result {
             case .success(let prediction):
-                let pred = Prediction(dateString: prediction.dateString, general: prediction.general, personal: prediction.personal, finance: prediction.finance, health: prediction.health, social: prediction.social, luckyNumbers: prediction.luckyNumbers, luckyColors: prediction.luckyColors)
+                let pred = Prediction(dateString: prediction.dateString, general: prediction.general, personal: prediction.personal, finance: prediction.finance, health: prediction.health, luckyNumbers: prediction.luckyNumbers, luckyColors: prediction.luckyColors)
                 self.prediction = pred
                 isLoading = false
             case .failure(_):
@@ -111,6 +115,8 @@ class HoroscopeViewModel: ObservableObject {
             health = horoscopeJSON["Health"] as? String ?? "N/A"
             luckyNumbers = horoscopeJSON["Lucky Numbers"] as? [Int] ?? []
             luckyColors = horoscopeJSON["Lucky Colors"] as? [String] ?? []
+            let prediction = Prediction(dateString: formatDate(Date()), general: general, personal: personal, finance: finance, health: health, luckyNumbers: luckyNumbers, luckyColors: luckyColors)
+            self.prediction = prediction
         }
         return (general, personal, finance, health, luckyNumbers, luckyColors)
     }
@@ -128,7 +134,6 @@ class HoroscopeViewModel: ObservableObject {
                let personal = content["Personal"] as? String,
                let finance = content["Finance"] as? String,
                let health = content["Health"] as? String,
-               let social = content["Social"] as? String,
                let luckyNumbers = content["Lucky Numbers"] as? [Int],
                let luckyColors = content["Lucky Colors"] as? [String] {
                 
@@ -136,7 +141,6 @@ class HoroscopeViewModel: ObservableObject {
                                             personal: personal,
                                             finance: finance,
                                             health: health,
-                                            social: social,
                                             luckyNumbers: luckyNumbers,
                                             luckyColors: luckyColors)
                 return .success(prediction)
@@ -151,7 +155,7 @@ class HoroscopeViewModel: ObservableObject {
         guard let url = URL(string: endpoint) else {
             return nil
         }
-        
+        let date = formatDate(Date())
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
@@ -160,9 +164,9 @@ class HoroscopeViewModel: ObservableObject {
         let requestBody: [String: Any] = [
             "messages": [
                 ["role": "system", "content": """
-                You will be given a birthday, birthtime, and location of birth. Your job is to give a horoscope for a given day.
+                You will be given a name, gender, birthday, birthtime, and location of birth. Your job is to give a horoscope for a GIVEN DAY.
                 The response should contain horoscope elements such as General, personal, finance, health, social and list of lucky numbers and a list of lucky colors. It needs to be in the following JSON structure.
-
+                The General section can contain more material, say 200 words. Give responses based on the data provided. Calculate the user's sun - moon sign and analyse how it might be affecting the GIVEN DAY.  Add emojis if applicable and if the user is young(Only in general section).
                 {
                   "General": "This is a great day to take a break from your daily routine and indulge in some self-care. Take a relaxing bath, read a book, or practice some yoga to recharge your batteries.",
                   "Personal": "You may feel a sense of restlessness today, but try to channel it into something productive. Use this energy to tackle that pending task or project you've been putting off.",
@@ -173,7 +177,7 @@ class HoroscopeViewModel: ObservableObject {
                   "Lucky Colors": ["Yellow", "Orange", "Pink"]
                 }
                 """],
-                ["role": "user", "content": "give the horoscope for \(Date().description) for a person whose birthday is \(birthday) and birthplace is \(birthplace)"]
+                ["role": "user", "content": "give the horoscope for \(date) for \(firstName) - Gender: \(String(describing: genderSaved?.rawValue)), whose birthday is \(birthday) and birthplace is \(birthplace)"]
             ],
             "model": "llama3-8b-8192",
             "response_format": ["type": "json_object"]
@@ -218,7 +222,7 @@ final class PredictionDataSource {
         let result = await searchDatabase(for: formattedDate)
         switch result {
             case .success(let model):
-                let prediction = Prediction(dateString: model.dateString, general: model.general, personal: model.personal, finance: model.finance, health: model.health, social: model.social, luckyNumbers: model.luckyNumbers, luckyColors: model.luckyColors)
+                let prediction = Prediction(dateString: model.dateString, general: model.general, personal: model.personal, finance: model.finance, health: model.health, luckyNumbers: model.luckyNumbers, luckyColors: model.luckyColors)
                 return .success(prediction)
             case .failure(_):
                 return .failure(APIError.notFound)
@@ -247,7 +251,7 @@ final class PredictionDataSource {
     }
     
     func savePredictionToLocalDatabase(prediction: Prediction) async {
-        let prediction = PredictionModel(dateString: prediction.dateString, general: prediction.general, personal: prediction.personal, finance: prediction.finance, health: prediction.health, social: prediction.social, luckyNumbers: prediction.luckyNumbers, luckyColors: prediction.luckyColors)
+        let prediction = PredictionModel(dateString: prediction.dateString, general: prediction.general, personal: prediction.personal, finance: prediction.finance, health: prediction.health,  luckyNumbers: prediction.luckyNumbers, luckyColors: prediction.luckyColors)
             modelContext.insert(prediction)
     }
 }

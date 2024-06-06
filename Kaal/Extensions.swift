@@ -274,3 +274,12 @@ extension Data {
         }
     }
 }
+
+enum Gender: String, CaseIterable, Identifiable {
+    case male = "Male"
+    case female = "Female"
+    case other = "Other"
+    case preferNotToSay = "Prefer not to say"
+
+    var id: String { self.rawValue }
+}

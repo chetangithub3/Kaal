@@ -25,9 +25,7 @@ struct PredictionView: View {
                 
                 Text("Health").font(.headline)
                 Text(prediction.health).padding(.bottom, 10)
-                
-                Text("Social").font(.headline)
-                Text(prediction.social).padding(.bottom, 10)
+
                 
                 Text("Lucky Numbers").font(.headline)
                  let nums = prediction.luckyNumbers

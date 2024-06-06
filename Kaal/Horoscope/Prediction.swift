@@ -13,7 +13,6 @@ struct  Prediction {
     let personal: String
     let finance: String
     let health: String
-    let social: String
     let luckyNumbers: [Int]
     let luckyColors: [String]
 }

@@ -47,7 +47,7 @@ struct WelcomeView: View {
                     .padding()
                 }
                 
-                NavigationLink(destination: NameView()) {
+                NavigationLink(destination: ProfileSetupView()) {
                     Text("Next")
                         .bold()
                         .frame(maxWidth: .infinity)
