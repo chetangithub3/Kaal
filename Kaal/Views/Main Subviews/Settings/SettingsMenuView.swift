@@ -10,6 +10,11 @@ import MessageUI
 import StoreKit
 
 struct SettingsMenuView: View {
+    @AppStorage("genderSaved") var genderSaved: Gender?
+    @AppStorage("name") var name = ""
+    var firstName: String {
+        return name.components(separatedBy: " ").first ?? name
+    }
     @AppStorage("currentArea") var currentArea: String = ""
     @EnvironmentObject var viewModel: DashboardViewModel
     @State var shouldAnimate = false
@@ -19,17 +24,29 @@ struct SettingsMenuView: View {
     var body: some View {
         NavigationView(content: {
             List {
-                ClockThemeSelectorView()
-                
-                Section("Change Address") {
+                Section("Horoscope") {
+                    NavigationLink {
+                        ChangeNameView()
+                    } label: {
+                        HStack{
+                            Text("Name")
+                            Spacer()
+                            Text("\(firstName)")
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.7)
+                        }
+                    }
+                    
+                }
+            
+                Section("Astrology") {
+                    ClockThemeSelectorView()
                     NavigationLink {
                         ChangeAddressView()
                     } label: {
                         HStack {
                             Text("Current Address")
-                            
                             Spacer()
-                            
                             Text("\(currentArea)")
                                 .underline()
                         }
@@ -81,11 +98,9 @@ struct SettingsMenuView: View {
                         }.foregroundColor(.primary)
                     }
                 }
-                
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
-           
             .onChange(of: currentArea, { oldValue, newValue in
                 if oldValue != newValue {
                     viewModel.daylightFromLocation(on: Date())

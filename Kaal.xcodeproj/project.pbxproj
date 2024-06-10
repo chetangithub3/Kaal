@@ -51,6 +51,7 @@
 		616FB9412C0E89260011AD58 /* HoroscopeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9402C0E89260011AD58 /* HoroscopeViewModel.swift */; };
 		616FB9432C0F8CCD0011AD58 /* PredictionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */; };
 		616FB9452C11194A0011AD58 /* GenderPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9442C11194A0011AD58 /* GenderPickerView.swift */; };
+		616FB9472C1417260011AD58 /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9462C1417260011AD58 /* ChangeNameView.swift */; };
 		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -131,6 +132,7 @@
 		616FB9402C0E89260011AD58 /* HoroscopeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeViewModel.swift; sourceTree = "<group>"; };
 		616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionModel.swift; sourceTree = "<group>"; };
 		616FB9442C11194A0011AD58 /* GenderPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPickerView.swift; sourceTree = "<group>"; };
+		616FB9462C1417260011AD58 /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
+				616FB9462C1417260011AD58 /* ChangeNameView.swift */,
 				616FB8932C06D6F60011AD58 /* ClockThemeSelectorView.swift */,
 			);
 			path = Settings;
@@ -553,6 +556,7 @@
 				61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */,
 				610CE3362B2DA8C40045F006 /* LoadingView.swift in Sources */,
 				611B2C012B396729004CA53A /* KaalModel.swift in Sources */,
+				616FB9472C1417260011AD58 /* ChangeNameView.swift in Sources */,
 				614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */,
 				61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */,
 				61131A412B82E5FD00104A58 /* ChoghadiyaModel.swift in Sources */,
