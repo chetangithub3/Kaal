@@ -52,6 +52,7 @@
 		616FB9432C0F8CCD0011AD58 /* PredictionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */; };
 		616FB9452C11194A0011AD58 /* GenderPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9442C11194A0011AD58 /* GenderPickerView.swift */; };
 		616FB9472C1417260011AD58 /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9462C1417260011AD58 /* ChangeNameView.swift */; };
+		616FB9492C17B7950011AD58 /* ExpandableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9482C17B7950011AD58 /* ExpandableCardView.swift */; };
 		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -133,6 +134,7 @@
 		616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionModel.swift; sourceTree = "<group>"; };
 		616FB9442C11194A0011AD58 /* GenderPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPickerView.swift; sourceTree = "<group>"; };
 		616FB9462C1417260011AD58 /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
+		616FB9482C17B7950011AD58 /* ExpandableCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCardView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				61124D822BFE9DEA0069DC89 /* HoroscopeMainPageView.swift */,
+				616FB9482C17B7950011AD58 /* ExpandableCardView.swift */,
 				616FB93C2C0E88C20011AD58 /* Prediction.swift */,
 				616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */,
 				616FB93E2C0E89060011AD58 /* PredictionView.swift */,
@@ -571,6 +574,7 @@
 				61124D832BFE9DEA0069DC89 /* HoroscopeMainPageView.swift in Sources */,
 				614AF5262B7D97000034559F /* GulikaKaalView.swift in Sources */,
 				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,
+				616FB9492C17B7950011AD58 /* ExpandableCardView.swift in Sources */,
 				616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
 				61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */,

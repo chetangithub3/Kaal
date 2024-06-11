@@ -13,31 +13,23 @@ struct PredictionView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Text(prediction.dateString)
-                Text("General").font(.headline)
-                Text(prediction.general).padding(.bottom, 10)
+                ExpandableCardView(title: "General", desc: prediction.general)
+                ExpandableCardView(title: "Personal", desc: prediction.personal)
+                ExpandableCardView(title: "Finance", desc: prediction.finance)
+                ExpandableCardView(title: "Health", desc: prediction.health)
                 
-                Text("Personal").font(.headline)
-                Text(prediction.personal).padding(.bottom, 10)
+                let nums = prediction.luckyNumbers
+                   let filtered = nums.map({$0.description}).joined(separator: ", ")
+                ExpandableCardView(title: "Lucky Numbers", desc: filtered)
                 
-                Text("Finance").font(.headline)
-                Text(prediction.finance).padding(.bottom, 10)
-                
-                Text("Health").font(.headline)
-                Text(prediction.health).padding(.bottom, 10)
-
-                
-                Text("Lucky Numbers").font(.headline)
-                 let nums = prediction.luckyNumbers
-                    let filtered = nums.map({$0.description}).joined(separator: ", ")
-                    Text(filtered)
-                
-                Text("Lucky Colors").font(.headline)
                 let colss = prediction.luckyColors
                     let cols = colss.map({$0.description}).joined(separator: ", ")
-                    Text(cols)
+                ExpandableCardView(title: "Lucky Colors", desc: cols)
             }
         }
         .navigationTitle("Prediction")
     }
+}
+#Preview {
+    HoroscopeMainPageView()
 }
