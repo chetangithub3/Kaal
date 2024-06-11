@@ -172,7 +172,9 @@ class HoroscopeViewModel: ObservableObject {
         let requestBody: [String: Any] = [
             "messages": [
                 ["role": "system", "content": """
-                You will be given a name, gender, birthday, birthtime, and location of birth. Your job is to give a horoscope for a GIVEN DAY.
+                You will be given a name, gender, birthday, birthtime, and location of birth. 
+                The details are: Firstname - \(firstName), Gender - \(String(describing: genderSaved?.rawValue)), whose birthday is \(birthday) and birthplace is \(birthplace)
+                Your job is to give a horoscope for a GIVEN DAY.
                 The response should contain horoscope elements such as General, personal, finance, health, social and list of lucky numbers and a list of lucky colors. It needs to be in the following JSON structure.
                 The General section can contain more material, say 200 words. Give responses based on the data provided. Calculate the user's sun - moon sign and analyse how it might be affecting the GIVEN DAY.  Add emojis if applicable and if the user is young(Only in general section).
                 {
@@ -185,7 +187,7 @@ class HoroscopeViewModel: ObservableObject {
                   "Lucky Colors": ["Yellow", "Orange", "Pink"]
                 }
                 """],
-                ["role": "user", "content": "give the horoscope for \(date) for \(firstName) - Gender: \(String(describing: genderSaved?.rawValue)), whose birthday is \(birthday) and birthplace is \(birthplace)"]
+                ["role": "user", "content": "give the horoscope for \(date)"]
             ],
             "model": "llama3-8b-8192",
             "response_format": ["type": "json_object"]
