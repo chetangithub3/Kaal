@@ -283,3 +283,19 @@ enum Gender: String, CaseIterable, Identifiable {
 
     var id: String { self.rawValue }
 }
+
+extension String {
+    func trimFirstAndLastSpaces() -> String {
+        var trimmedString = self
+        
+        if trimmedString.hasPrefix(" ") {
+            trimmedString.removeFirst()
+        }
+        
+        if trimmedString.hasSuffix(" ") {
+            trimmedString.removeLast()
+        }
+        
+        return trimmedString
+    }
+}

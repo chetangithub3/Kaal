@@ -13,16 +13,7 @@ struct NameFieldsView: View {
     @Binding  var lastName: String
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Lets start with the essentials.")
-                .font(.title3)
-                .padding(.bottom, 20)
-            Text("Name")
-                .font(.title2)
-                .bold()
-                .padding(.bottom, 20)
-            Text("What is your name?")
-                .font(.title3)
-            HStack{
+            HStack {
                 TextField("First Name *", text: $firstName)
                     .padding()
                     .background(getTintColor().opacity(0.2))
