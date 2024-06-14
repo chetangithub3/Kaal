@@ -11,7 +11,6 @@ struct PredictionView: View {
     let prediction: Prediction
 
     var body: some View {
-        ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 ExpandableCardView(title: "General", desc: prediction.general)
                 ExpandableCardView(title: "Personal", desc: prediction.personal)
@@ -25,9 +24,7 @@ struct PredictionView: View {
                 let colss = prediction.luckyColors
                     let cols = colss.map({$0.description}).joined(separator: ", ")
                 ExpandableCardView(title: "Lucky Colors", desc: cols)
-            }
-        }
-        .navigationTitle("Prediction")
+            }.padding(.horizontal)
     }
 }
 #Preview {

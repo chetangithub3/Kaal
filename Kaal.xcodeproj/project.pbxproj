@@ -26,6 +26,7 @@
 		614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174E2B1FF281002A2D18 /* LocationManager.swift */; };
 		614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17532B1FF628002A2D18 /* DaylightModel.swift */; };
 		614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17562B243EE3002A2D18 /* DashboardViewModel.swift */; };
+		61539F042C1CEF57008B06D9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61539F032C1CEF57008B06D9 /* ProfileView.swift */; };
 		6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 6159FCEB2B4E0CCF003703AC /* Reachability */; };
 		6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6159FCED2B4E197A003703AC /* NetworkManager.swift */; };
 		61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61662F332B2BBE1800B3C4ED /* TileView.swift */; };
@@ -109,6 +110,7 @@
 		614C17532B1FF628002A2D18 /* DaylightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DaylightModel.swift; path = /Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Models/DaylightModel.swift; sourceTree = "<absolute>"; };
 		614C17552B212BE1002A2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		614C17562B243EE3002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		61539F032C1CEF57008B06D9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6159FCED2B4E197A003703AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		61662F332B2BBE1800B3C4ED /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		616CF7F92B932AFA00296480 /* KaalTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalTileView.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */,
 				616FB93E2C0E89060011AD58 /* PredictionView.swift */,
 				616FB9402C0E89260011AD58 /* HoroscopeViewModel.swift */,
+				61539F032C1CEF57008B06D9 /* ProfileView.swift */,
 				616FB87C2C03A9490011AD58 /* HoroscopeView.swift */,
 				616FB9382C0D38AE0011AD58 /* SunSignClassifier.swift */,
 				616FB8802C03E0320011AD58 /* AddDetailsView.swift */,
@@ -516,6 +519,7 @@
 				616FB87D2C03A9490011AD58 /* HoroscopeView.swift in Sources */,
 				616FB8872C052C530011AD58 /* BirthtimePickerLabelView.swift in Sources */,
 				61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */,
+				61539F042C1CEF57008B06D9 /* ProfileView.swift in Sources */,
 				61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */,
 				611197EC2BBCF3BC006E4E59 /* IndianBorderedView.swift in Sources */,
 				616FB8812C03E0320011AD58 /* AddDetailsView.swift in Sources */,
