@@ -20,25 +20,25 @@ struct SettingsMenuView: View {
     @State var shouldAnimate = false
     var link = "https://apps.apple.com/us/app/muhurta-daily/id6477121908"
     let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown Version"
-
+    @AppStorage("horoscopeObDone") var horoscopeObDone: Bool = false
     var body: some View {
         NavigationView(content: {
             List {
-                Section("Horoscope") {
-                    NavigationLink {
-                        ChangeNameView()
-                    } label: {
-                        HStack{
-                            Text("Name")
-                            Spacer()
-                            Text("\(firstName)")
-                                .lineLimit(2)
-                                .minimumScaleFactor(0.7)
+                if horoscopeObDone {
+                    Section("Horoscope") {
+                        NavigationLink {
+                            ChangeNameView()
+                        } label: {
+                            HStack{
+                                Text("Name")
+                                Spacer()
+                                Text("\(firstName)")
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+                            }
                         }
                     }
-                    
                 }
-            
                 Section("Astrology") {
                     ClockThemeSelectorView()
                     NavigationLink {
