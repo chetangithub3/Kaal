@@ -21,7 +21,7 @@ struct ChangeBirthdayView: View {
         .alert(isPresented: $ageIsChanged) {
             Alert(
                 title: Text("Successful"),
-                message: Text("Birthday chnaged to\n\(birthday)"),
+                message: Text("Birthday changed to\n\(birthday)"),
                 dismissButton: .default(Text("OK"), action: {
                     self.presentationMode.wrappedValue.dismiss()
                 })

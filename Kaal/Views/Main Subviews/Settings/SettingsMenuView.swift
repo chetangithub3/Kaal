@@ -13,6 +13,7 @@ struct SettingsMenuView: View {
     @AppStorage("genderSaved") var genderSaved: Gender?
     @AppStorage("name") var name = ""
     @AppStorage("birthday") var birthday: String = ""
+    @AppStorage("birthplace") var birthplace: String = ""
     var firstName: String {
         return name.components(separatedBy: " ").first ?? name
     }
@@ -50,7 +51,18 @@ struct SettingsMenuView: View {
                             }
                            
                         }
-
+                        
+                        NavigationLink {
+                            ChangeBirthplaceView()
+                        } label: {
+                            HStack{
+                                Text("Birthplace")
+                                Spacer()
+                                Text("\(birthplace)")
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+                            }
+                        }
                     }
                 }
                 Section("Astrology") {
