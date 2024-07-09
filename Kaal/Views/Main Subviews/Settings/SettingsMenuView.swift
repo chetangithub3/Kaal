@@ -12,6 +12,7 @@ import StoreKit
 struct SettingsMenuView: View {
     @AppStorage("genderSaved") var genderSaved: Gender?
     @AppStorage("name") var name = ""
+    @AppStorage("birthday") var birthday: String = ""
     var firstName: String {
         return name.components(separatedBy: " ").first ?? name
     }
@@ -37,6 +38,19 @@ struct SettingsMenuView: View {
                                     .minimumScaleFactor(0.7)
                             }
                         }
+                        NavigationLink {
+                            ChangeBirthdayView()
+                        } label: {
+                            HStack{
+                                Text("Birthday")
+                                Spacer()
+                                Text("\(birthday)")
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+                            }
+                           
+                        }
+
                     }
                 }
                 Section("Astrology") {

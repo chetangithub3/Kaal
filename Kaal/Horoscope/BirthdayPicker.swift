@@ -12,7 +12,7 @@ struct BirthdayPicker: View {
     @Binding var showPicker: Bool
     @AppStorage("birthday") var birthday: String = ""
     @State var dateOfBirth: Date = Calendar.current.date(byAdding: .year, value: -4, to: Date())!
-    
+    var optionalAction: (() -> Void)?
     var body: some View {
         VStack{
             Text("Select your date of birth")
@@ -24,13 +24,19 @@ struct BirthdayPicker: View {
             HStack{
                 Button(action: {
                     showPicker = false
+                    if let optionalAction = optionalAction {
+                        optionalAction()
+                    }
                 }, label: {
                     Text("Cancel")
                 })
                 Spacer()
                 Button(action: {
-                    self.birthday = formatDate(dateOfBirth)
+                    self.birthday = formatBirthDate(dateOfBirth)
                     showPicker = false
+                    if let optionalAction = optionalAction {
+                        optionalAction()
+                    }
                 }, label: {
                     Text("Save")
                 })
@@ -43,7 +49,7 @@ struct BirthdayPicker: View {
         .padding()
     }
     
-    func formatDate(_ date: Date) -> String {
+    func formatBirthDate(_ date: Date) -> String {
          let dateFormatter = DateFormatter()
          dateFormatter.dateFormat = "d MMMM, yyyy"
          return dateFormatter.string(from: date)
