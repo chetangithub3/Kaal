@@ -31,17 +31,22 @@ struct ProfileView: View {
         HStack {
             VStack {
                 Text(name)
-                if let age = age {
-                    Text(age.description)
-                }
+               Text(birthplace)
             }
+            Spacer()
             VStack {
                 if let sunsign = getSunSign(), let moonsign = getMoonSign(){
+                    if let age = age {
+                        Text(age.description)
+                    }
                     Text("Sun Sign - \(sunsign)")
-                    Text("Moon Sign - \(moonsign)")
+                    
                 }
             }
-        }
+        }.background(getTintColor().opacity(0.3))
+            .cornerRadius(20)
+            .padding(.horizontal)
+          
     }
     
     func getSunSign() -> String? {

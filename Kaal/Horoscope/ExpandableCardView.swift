@@ -31,20 +31,17 @@ struct ExpandableCardView: View {
                         .background(Color.white)
                         .cornerRadius(10)
                 }
-            }).padding()
+            })
+            .padding()
             .background(Color.gray.opacity(0.3))
-            
             if isExpanded{
                 Text(desc)
                     .padding()
             }
         }
-            .background(.gray.opacity(0.2))
-            .cornerRadius(20)
-     
+        .background(.gray.opacity(0.2))
+        .cornerRadius(20)
     }
-    
-    
 }
 
 #Preview {

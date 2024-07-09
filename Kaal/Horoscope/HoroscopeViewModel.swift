@@ -173,8 +173,8 @@ class HoroscopeViewModel: ObservableObject {
             "messages": [
                 ["role": "system", "content": """
                 You will be given a name, gender, birthday, birthtime, and location of birth. 
-                The details are: Firstname - \(firstName), Gender - \(String(describing: genderSaved?.rawValue)), whose birthday is \(birthday) and birthplace is \(birthplace)
-                Your job is to give a horoscope for a GIVEN DAY.
+                The details are: Firstname - \(firstName), Gender - \(String(describing: genderSaved?.rawValue)), Birth day - \(birthday), Birthplace - \(birthplace)
+                Your job is to give a horoscope for any day the user asks for.
                 The response should contain horoscope elements such as General, personal, finance, health, social and list of lucky numbers and a list of lucky colors. It needs to be in the following JSON structure.
                 The General section can contain more material, say 200 words. Give responses based on the data provided. Calculate the user's sun - moon sign and analyse how it might be affecting the GIVEN DAY.  Add emojis if applicable and if the user is young(Only in general section).
                 {

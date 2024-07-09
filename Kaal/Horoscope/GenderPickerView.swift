@@ -12,15 +12,11 @@ struct GenderPickerView: View {
     @Binding var selectedGender: Gender
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Gender")
-                .font(.title2)
-                .bold()
             HStack{
                 Text("Please select your gender:")
                     .font(.title3)
                     .minimumScaleFactor(0.5)
                     .lineLimit(2)
-                   
                 Spacer()
                 Picker("Select your gender", selection: $selectedGender) {
                     ForEach(Gender.allCases, id: \.self) { gender in
@@ -33,7 +29,6 @@ struct GenderPickerView: View {
                 .background(getTintColor().opacity(0.2))
                 .cornerRadius(20)
             }
-            
         }
     }
 }

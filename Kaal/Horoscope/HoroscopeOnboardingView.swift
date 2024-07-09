@@ -66,10 +66,11 @@ struct Name: View {
             Text("Name")
                 .font(.title2)
                 .bold()
-                .padding(.bottom, 20)
             Text("What is your name?")
                 .font(.title3)
             NameFieldsView(firstName: $firstName, middleName: $middleName, lastName: $lastName)
+                .padding(.bottom)
+         
             GenderPickerView(selectedGender: $gender)
             Spacer()
             if !firstName.isEmpty && !lastName.isEmpty {
