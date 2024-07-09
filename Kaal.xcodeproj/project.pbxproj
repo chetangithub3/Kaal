@@ -79,6 +79,7 @@
 		61E0835A2B8713DE006331E8 /* ChoghadiyaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E083592B8713DE006331E8 /* ChoghadiyaView.swift */; };
 		61E23F462C3DBE5200BDE7E5 /* ChangeBirthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E23F452C3DBE5200BDE7E5 /* ChangeBirthdayView.swift */; };
 		61E23F482C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E23F472C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift */; };
+		61E23F4A2C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E23F492C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift */; };
 		61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319352B686FCB00EA2491 /* UIKitViews.swift */; };
 		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
 		61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */; };
@@ -163,6 +164,7 @@
 		61E083592B8713DE006331E8 /* ChoghadiyaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoghadiyaView.swift; sourceTree = "<group>"; };
 		61E23F452C3DBE5200BDE7E5 /* ChangeBirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBirthdayView.swift; sourceTree = "<group>"; };
 		61E23F472C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBirthplaceView.swift; sourceTree = "<group>"; };
+		61E23F492C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBirthtimeView.swift; sourceTree = "<group>"; };
 		61E319352B686FCB00EA2491 /* UIKitViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViews.swift; sourceTree = "<group>"; };
 		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
 		61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaModel.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			children = (
 				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
 				61E23F452C3DBE5200BDE7E5 /* ChangeBirthdayView.swift */,
+				61E23F492C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift */,
 				61E23F472C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift */,
 				616FB9462C1417260011AD58 /* ChangeNameView.swift */,
 				616FB8932C06D6F60011AD58 /* ClockThemeSelectorView.swift */,
@@ -583,6 +586,7 @@
 				611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
 				61124D832BFE9DEA0069DC89 /* HoroscopeMainPageView.swift in Sources */,
+				61E23F4A2C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift in Sources */,
 				61E23F482C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift in Sources */,
 				614AF5262B7D97000034559F /* GulikaKaalView.swift in Sources */,
 				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,

@@ -13,6 +13,7 @@ struct SettingsMenuView: View {
     @AppStorage("genderSaved") var genderSaved: Gender?
     @AppStorage("name") var name = ""
     @AppStorage("birthday") var birthday: String = ""
+    @AppStorage("birthtime") var birthtime: String = ""
     @AppStorage("birthplace") var birthplace: String = ""
     var firstName: String {
         return name.components(separatedBy: " ").first ?? name
@@ -26,6 +27,21 @@ struct SettingsMenuView: View {
     var body: some View {
         NavigationView(content: {
             List {
+                Section("Astrology") {
+                    ClockThemeSelectorView()
+                    NavigationLink {
+                        ChangeAddressView()
+                    } label: {
+                        HStack {
+                            Text("Current Address")
+                            Spacer()
+                            Text("\(currentArea)")
+                                .underline()
+                        }
+                    }
+                }.scaleEffect(shouldAnimate ? 1.2 : 1.0)
+                    .animation(.bouncy, value: 1)
+                
                 if horoscopeObDone {
                     Section("Horoscope") {
                         NavigationLink {
@@ -49,9 +65,7 @@ struct SettingsMenuView: View {
                                     .lineLimit(2)
                                     .minimumScaleFactor(0.7)
                             }
-                           
                         }
-                        
                         NavigationLink {
                             ChangeBirthplaceView()
                         } label: {
@@ -63,27 +77,21 @@ struct SettingsMenuView: View {
                                     .minimumScaleFactor(0.7)
                             }
                         }
-                    }
-                }
-                Section("Astrology") {
-                    ClockThemeSelectorView()
-                    NavigationLink {
-                        ChangeAddressView()
-                    } label: {
-                        HStack {
-                            Text("Current Address")
-                            Spacer()
-                            Text("\(currentArea)")
-                                .underline()
+                        NavigationLink {
+                            ChangeBirthtimeView()
+                        } label: {
+                            HStack{
+                                Text("Birthtime")
+                                Spacer()
+                                Text("\(birthtime)")
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+                            }
                         }
                     }
-                }.scaleEffect(shouldAnimate ? 1.2 : 1.0)
-                    .animation(.bouncy, value: 1)
-                    
-                    
-                
+                }
+
                 Section("Misc") {
-                    
                     NavigationLink(destination: WebView(url:URL(string: "https://www.termsfeed.com/live/53b19986-13af-451c-a59e-726efa238cd7")! )) {
                         Text("Privacy policy")
                     }
