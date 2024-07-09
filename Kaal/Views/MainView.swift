@@ -46,7 +46,7 @@ struct MainView: View {
         })
         .tint(getTintColor())
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ChangeTab"))) { _ in
-            self.selection = 4
+            self.selection = 5
         }
     }
     

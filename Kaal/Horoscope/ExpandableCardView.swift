@@ -37,6 +37,12 @@ struct ExpandableCardView: View {
             if isExpanded{
                 Text(desc)
                     .padding()
+                    .onTapGesture {
+                        withAnimation {
+                            isExpanded = false
+                        }
+                       
+                    }
             }
         }
         .background(.gray.opacity(0.2))

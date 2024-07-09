@@ -28,24 +28,43 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        HStack {
-            VStack {
-                Text(name)
-               Text(birthplace)
-            }
-            Spacer()
-            VStack {
-                if let sunsign = getSunSign(), let moonsign = getMoonSign(){
+        VStack(alignment: .leading) {
+           
+            HStack(alignment: .center){
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                VStack(alignment: .leading) {
+                    Text(name)
+                        .bold()
                     if let age = age {
                         Text(age.description)
                     }
-                    Text("Sun Sign - \(sunsign)")
-                    
+                }
+                Spacer()
+                
+                
+            }.padding(.bottom)
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Birthplace: ")
+                    Text(birthplace)
+                        .bold()
+                }
+                if let sunsign = getSunSign() {
+                    HStack {
+                        Text("Sun Sign: ")
+                        Text(sunsign)
+                            .bold()
+                    }
                 }
             }
-        }.background(getTintColor().opacity(0.3))
+        }.padding()
+            .foregroundColor(getTintColor())
+        .background(getTintColor().opacity(0.2))
             .cornerRadius(20)
-            .padding(.horizontal)
+            .padding([.horizontal, .bottom])
+        
           
     }
     
