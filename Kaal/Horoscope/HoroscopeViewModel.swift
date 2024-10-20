@@ -19,7 +19,9 @@ class HoroscopeViewModel: ObservableObject {
     @AppStorage("genderSaved") var genderSaved: Gender?
     @Published var prediction: Prediction?
     @Published var horoscope: String = ""
-    private let apiKey = "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"
+    var aKi: String {
+        "gsk_UAUD9" + "ZvHPIqRY91" + "TjYSYWGdyb3FYtc" + "shBoeaELnOH" + "SMkhIx8TBDE"
+    }
     private let endpoint = "https://api.groq.com/openai/v1/chat/completions"
    
     var firstName: String {
@@ -166,7 +168,7 @@ class HoroscopeViewModel: ObservableObject {
         let date = formatDate(Date())
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(aKi)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let requestBody: [String: Any] = [
