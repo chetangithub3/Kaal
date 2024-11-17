@@ -10,37 +10,88 @@ import MessageUI
 import StoreKit
 
 struct SettingsMenuView: View {
+    @AppStorage("genderSaved") var genderSaved: Gender?
+    @AppStorage("name") var name = ""
+    @AppStorage("birthday") var birthday: String = ""
+    @AppStorage("birthtime") var birthtime: String = ""
+    @AppStorage("birthplace") var birthplace: String = ""
+    var firstName: String {
+        return name.components(separatedBy: " ").first ?? name
+    }
     @AppStorage("currentArea") var currentArea: String = ""
     @EnvironmentObject var viewModel: DashboardViewModel
     @State var shouldAnimate = false
     var link = "https://apps.apple.com/us/app/muhurta-daily/id6477121908"
     let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown Version"
-
+    @AppStorage("horoscopeObDone") var horoscopeObDone: Bool = false
     var body: some View {
         NavigationView(content: {
             List {
-                ClockThemeSelectorView()
-                
-                Section("Change Address") {
+                Section("Astrology") {
+                    ClockThemeSelectorView()
                     NavigationLink {
                         ChangeAddressView()
                     } label: {
                         HStack {
                             Text("Current Address")
-                            
                             Spacer()
-                            
                             Text("\(currentArea)")
                                 .underline()
                         }
                     }
                 }.scaleEffect(shouldAnimate ? 1.2 : 1.0)
                     .animation(.bouncy, value: 1)
-                    
-                    
                 
+                if horoscopeObDone {
+                    Section("Horoscope") {
+                        NavigationLink {
+                            ChangeNameView()
+                        } label: {
+                            HStack{
+                                Text("Name")
+                                Spacer()
+                                Text("\(firstName)")
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+                            }
+                        }
+                        NavigationLink {
+                            ChangeBirthdayView()
+                        } label: {
+                            HStack{
+                                Text("Birthday")
+                                Spacer()
+                                Text("\(birthday)")
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+                            }
+                        }
+                        NavigationLink {
+                            ChangeBirthplaceView()
+                        } label: {
+                            HStack{
+                                Text("Birthplace")
+                                Spacer()
+                                Text("\(birthplace)")
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+                            }
+                        }
+                        NavigationLink {
+                            ChangeBirthtimeView()
+                        } label: {
+                            HStack{
+                                Text("Birthtime")
+                                Spacer()
+                                Text("\(birthtime)")
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+                            }
+                        }
+                    }
+                }
+
                 Section("Misc") {
-                    
                     NavigationLink(destination: WebView(url:URL(string: "https://www.termsfeed.com/live/53b19986-13af-451c-a59e-726efa238cd7")! )) {
                         Text("Privacy policy")
                     }
@@ -81,11 +132,9 @@ struct SettingsMenuView: View {
                         }.foregroundColor(.primary)
                     }
                 }
-                
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
-           
             .onChange(of: currentArea, { oldValue, newValue in
                 if oldValue != newValue {
                     viewModel.daylightFromLocation(on: Date())

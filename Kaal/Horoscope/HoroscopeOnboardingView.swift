@@ -56,9 +56,22 @@ struct Name: View {
     @State private var firstName: String = ""
      @State private var middleName: String = ""
      @State private var lastName: String = ""
+    @State private var gender: Gender = .male
+    @AppStorage("genderSaved") var genderSaved: Gender?
     var body: some View {
         VStack {
+            Text("Lets start with the essentials.")
+                .font(.title3)
+                .padding(.bottom, 20)
+            Text("Name")
+                .font(.title2)
+                .bold()
+            Text("What is your name?")
+                .font(.title3)
             NameFieldsView(firstName: $firstName, middleName: $middleName, lastName: $lastName)
+                .padding(.bottom)
+         
+            GenderPickerView(selectedGender: $gender)
             Spacer()
             if !firstName.isEmpty && !lastName.isEmpty {
                 NavigationLink {
@@ -70,9 +83,10 @@ struct Name: View {
             }
         }.padding()
         .onDisappear {
-            self.name = "\(firstName) \(middleName) \(lastName)"
+            self.name = "\(firstName.trimFirstAndLastSpaces()) \(middleName.trimFirstAndLastSpaces()) \(lastName.trimFirstAndLastSpaces())"
+            self.genderSaved = gender
         }.navigationBarBackButtonHidden()
-            .navigationTitle("Birth name")
+            .navigationTitle("Profile Setup")
             .navigationBarTitleDisplayMode(.inline)
     }
 }

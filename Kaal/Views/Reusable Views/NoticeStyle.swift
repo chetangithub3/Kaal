@@ -26,19 +26,20 @@ extension View {
 
 
 struct LongButtonStyle: ViewModifier {
+    var isDisabled: Bool
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
             .padding()
-            .background(getTintColor())
+            .background(isDisabled ? getTintColor().opacity(0.5) : getTintColor())
             .foregroundColor(.white)
             .cornerRadius(10)
     }
 }
 
 extension View {
-    func longButtonStyle() -> some View {
-        self.modifier(LongButtonStyle())
+    func longButtonStyle(isDisabled: Bool = false) -> some View {
+        self.modifier(LongButtonStyle(isDisabled: isDisabled))
     }
 }
 

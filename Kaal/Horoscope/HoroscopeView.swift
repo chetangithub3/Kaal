@@ -15,7 +15,11 @@ struct HoroscopeView: View {
               HoroscopeOnboardingView()
             }
         } else {
-            HoroscopeMainPageView()
+            NavigationStack {
+                HoroscopeMainPageView()
+                    .navigationTitle("Horoscope")
+                    .navigationBarTitleDisplayMode(.inline)
+            }
         }
     }
 }

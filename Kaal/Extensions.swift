@@ -266,3 +266,36 @@ extension Color {
         self.init(red: red, green: green, blue: blue)
     }
 }
+
+extension Data {
+    func printJSON(debugTitle: String) {
+        if let JSONString = String(data: self, encoding: String.Encoding.utf8) {
+            dump(JSONString, name: "JSONString")
+        }
+    }
+}
+
+enum Gender: String, CaseIterable, Identifiable {
+    case male = "Male"
+    case female = "Female"
+    case other = "Other"
+    case preferNotToSay = "Prefer not to say"
+
+    var id: String { self.rawValue }
+}
+
+extension String {
+    func trimFirstAndLastSpaces() -> String {
+        var trimmedString = self
+        
+        if trimmedString.hasPrefix(" ") {
+            trimmedString.removeFirst()
+        }
+        
+        if trimmedString.hasSuffix(" ") {
+            trimmedString.removeLast()
+        }
+        
+        return trimmedString
+    }
+}

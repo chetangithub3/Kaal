@@ -20,7 +20,7 @@ struct KaalApp: App {
                     GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "c2e5ee090dcdb37321e5e076d9ee9c84" ]
                     GADMobileAds.sharedInstance().start(completionHandler: nil)
                 })
-        }.modelContainer(for: MuhurtaModel.self)
+        }.modelContainer(for: [MuhurtaModel.self, PredictionModel.self])
     }
 }
 

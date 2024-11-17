@@ -11,7 +11,7 @@ struct BirthTimePicker: View {
     @Binding var showPicker: Bool
     @AppStorage("birthtime") var birthtime: String = ""
     @State var dateOfBirth: Date = Date()
-    
+    var optionalAction: (() -> Void)?
     var body: some View {
         VStack {
             Text("Select your time of birth")
@@ -23,6 +23,9 @@ struct BirthTimePicker: View {
             HStack{
                 Button(action: {
                     showPicker = false
+                    if let optionalAction = optionalAction {
+                        optionalAction()
+                    }
                 }, label: {
                     Text("Cancel")
                 })
@@ -30,6 +33,9 @@ struct BirthTimePicker: View {
                 Button(action: {
                     self.birthtime = formatDate(dateOfBirth)
                     showPicker = false
+                    if let optionalAction = optionalAction {
+                        optionalAction()
+                    }
                 }, label: {
                     Text("Save")
                 })

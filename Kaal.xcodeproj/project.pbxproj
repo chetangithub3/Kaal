@@ -26,6 +26,7 @@
 		614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C174E2B1FF281002A2D18 /* LocationManager.swift */; };
 		614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17532B1FF628002A2D18 /* DaylightModel.swift */; };
 		614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C17562B243EE3002A2D18 /* DashboardViewModel.swift */; };
+		61539F042C1CEF57008B06D9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61539F032C1CEF57008B06D9 /* ProfileView.swift */; };
 		6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 6159FCEB2B4E0CCF003703AC /* Reachability */; };
 		6159FCEE2B4E197A003703AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6159FCED2B4E197A003703AC /* NetworkManager.swift */; };
 		61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61662F332B2BBE1800B3C4ED /* TileView.swift */; };
@@ -41,9 +42,18 @@
 		616FB8892C0534110011AD58 /* NoticeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8882C0534110011AD58 /* NoticeStyle.swift */; };
 		616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */; };
 		616FB88D2C057CF30011AD58 /* BirthplacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */; };
-		616FB88F2C06427A0011AD58 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88E2C06427A0011AD58 /* NameView.swift */; };
+		616FB88F2C06427A0011AD58 /* ProfileSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB88E2C06427A0011AD58 /* ProfileSetupView.swift */; };
 		616FB8912C06D6130011AD58 /* NameFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8902C06D6130011AD58 /* NameFieldsView.swift */; };
 		616FB8942C06D6F60011AD58 /* ClockThemeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB8932C06D6F60011AD58 /* ClockThemeSelectorView.swift */; };
+		616FB9392C0D38AE0011AD58 /* SunSignClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9382C0D38AE0011AD58 /* SunSignClassifier.swift */; };
+		616FB93B2C0E88530011AD58 /* MoonSignClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB93A2C0E88530011AD58 /* MoonSignClassifier.swift */; };
+		616FB93D2C0E88C20011AD58 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB93C2C0E88C20011AD58 /* Prediction.swift */; };
+		616FB93F2C0E89060011AD58 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB93E2C0E89060011AD58 /* PredictionView.swift */; };
+		616FB9412C0E89260011AD58 /* HoroscopeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9402C0E89260011AD58 /* HoroscopeViewModel.swift */; };
+		616FB9432C0F8CCD0011AD58 /* PredictionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */; };
+		616FB9452C11194A0011AD58 /* GenderPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9442C11194A0011AD58 /* GenderPickerView.swift */; };
+		616FB9472C1417260011AD58 /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9462C1417260011AD58 /* ChangeNameView.swift */; };
+		616FB9492C17B7950011AD58 /* ExpandableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FB9482C17B7950011AD58 /* ExpandableCardView.swift */; };
 		617A66D32B610532000A49DF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 617A66D22B610532000A49DF /* Shimmer */; };
 		61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7732B28F89400E42544 /* RahuKaalView.swift */; };
 		61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C7752B28F8A400E42544 /* YamaGandaView.swift */; };
@@ -67,6 +77,9 @@
 		61E083562B86A6F7006331E8 /* ChoghadiyaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E083552B86A6F7006331E8 /* ChoghadiyaViewModel.swift */; };
 		61E083582B86A926006331E8 /* DateRangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E083572B86A926006331E8 /* DateRangeResponse.swift */; };
 		61E0835A2B8713DE006331E8 /* ChoghadiyaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E083592B8713DE006331E8 /* ChoghadiyaView.swift */; };
+		61E23F462C3DBE5200BDE7E5 /* ChangeBirthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E23F452C3DBE5200BDE7E5 /* ChangeBirthdayView.swift */; };
+		61E23F482C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E23F472C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift */; };
+		61E23F4A2C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E23F492C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift */; };
 		61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319352B686FCB00EA2491 /* UIKitViews.swift */; };
 		61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E319372B687B8400EA2491 /* CompactDatePickerView.swift */; };
 		61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */; };
@@ -100,6 +113,7 @@
 		614C17532B1FF628002A2D18 /* DaylightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DaylightModel.swift; path = /Users/chetan/Desktop/iOS/AppStore/Kaal/Kaal/Models/DaylightModel.swift; sourceTree = "<absolute>"; };
 		614C17552B212BE1002A2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		614C17562B243EE3002A2D18 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		61539F032C1CEF57008B06D9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6159FCED2B4E197A003703AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		61662F332B2BBE1800B3C4ED /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		616CF7F92B932AFA00296480 /* KaalTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalTileView.swift; sourceTree = "<group>"; };
@@ -114,9 +128,18 @@
 		616FB8882C0534110011AD58 /* NoticeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeStyle.swift; sourceTree = "<group>"; };
 		616FB88A2C057BAD0011AD58 /* BirthplacePickerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePickerLabelView.swift; sourceTree = "<group>"; };
 		616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthplacePicker.swift; sourceTree = "<group>"; };
-		616FB88E2C06427A0011AD58 /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		616FB88E2C06427A0011AD58 /* ProfileSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupView.swift; sourceTree = "<group>"; };
 		616FB8902C06D6130011AD58 /* NameFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameFieldsView.swift; sourceTree = "<group>"; };
 		616FB8932C06D6F60011AD58 /* ClockThemeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockThemeSelectorView.swift; sourceTree = "<group>"; };
+		616FB9382C0D38AE0011AD58 /* SunSignClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunSignClassifier.swift; sourceTree = "<group>"; };
+		616FB93A2C0E88530011AD58 /* MoonSignClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonSignClassifier.swift; sourceTree = "<group>"; };
+		616FB93C2C0E88C20011AD58 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
+		616FB93E2C0E89060011AD58 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
+		616FB9402C0E89260011AD58 /* HoroscopeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeViewModel.swift; sourceTree = "<group>"; };
+		616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionModel.swift; sourceTree = "<group>"; };
+		616FB9442C11194A0011AD58 /* GenderPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPickerView.swift; sourceTree = "<group>"; };
+		616FB9462C1417260011AD58 /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
+		616FB9482C17B7950011AD58 /* ExpandableCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCardView.swift; sourceTree = "<group>"; };
 		61A1C7732B28F89400E42544 /* RahuKaalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RahuKaalView.swift; sourceTree = "<group>"; };
 		61A1C7752B28F8A400E42544 /* YamaGandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaGandaView.swift; sourceTree = "<group>"; };
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -139,6 +162,9 @@
 		61E083552B86A6F7006331E8 /* ChoghadiyaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoghadiyaViewModel.swift; sourceTree = "<group>"; };
 		61E083572B86A926006331E8 /* DateRangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeResponse.swift; sourceTree = "<group>"; };
 		61E083592B8713DE006331E8 /* ChoghadiyaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoghadiyaView.swift; sourceTree = "<group>"; };
+		61E23F452C3DBE5200BDE7E5 /* ChangeBirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBirthdayView.swift; sourceTree = "<group>"; };
+		61E23F472C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBirthplaceView.swift; sourceTree = "<group>"; };
+		61E23F492C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBirthtimeView.swift; sourceTree = "<group>"; };
 		61E319352B686FCB00EA2491 /* UIKitViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViews.swift; sourceTree = "<group>"; };
 		61E319372B687B8400EA2491 /* CompactDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactDatePickerView.swift; sourceTree = "<group>"; };
 		61EEC3A32B78C6F600FDC951 /* MuhurtaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuhurtaModel.swift; sourceTree = "<group>"; };
@@ -170,7 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				61DE51C62B37A16500221661 /* WelcomeView.swift */,
-				616FB88E2C06427A0011AD58 /* NameView.swift */,
+				616FB88E2C06427A0011AD58 /* ProfileSetupView.swift */,
 				61DE51C82B37A71E00221661 /* LocationPermissionView.swift */,
 			);
 			path = Onboarding;
@@ -286,10 +312,19 @@
 			isa = PBXGroup;
 			children = (
 				61124D822BFE9DEA0069DC89 /* HoroscopeMainPageView.swift */,
+				616FB9482C17B7950011AD58 /* ExpandableCardView.swift */,
+				616FB93C2C0E88C20011AD58 /* Prediction.swift */,
+				616FB9422C0F8CCD0011AD58 /* PredictionModel.swift */,
+				616FB93E2C0E89060011AD58 /* PredictionView.swift */,
+				616FB9402C0E89260011AD58 /* HoroscopeViewModel.swift */,
+				61539F032C1CEF57008B06D9 /* ProfileView.swift */,
 				616FB87C2C03A9490011AD58 /* HoroscopeView.swift */,
+				616FB9382C0D38AE0011AD58 /* SunSignClassifier.swift */,
 				616FB8802C03E0320011AD58 /* AddDetailsView.swift */,
+				616FB93A2C0E88530011AD58 /* MoonSignClassifier.swift */,
 				616FB8792C03A87B0011AD58 /* HoroscopeOnboardingView.swift */,
 				616FB8772C03A7240011AD58 /* BirthdayPicker.swift */,
+				616FB9442C11194A0011AD58 /* GenderPickerView.swift */,
 				616FB8842C052BD40011AD58 /* BirthdayPickerLabelView.swift */,
 				616FB8862C052C530011AD58 /* BirthtimePickerLabelView.swift */,
 				616FB88C2C057CF30011AD58 /* BirthplacePicker.swift */,
@@ -304,6 +339,10 @@
 			isa = PBXGroup;
 			children = (
 				61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */,
+				61E23F452C3DBE5200BDE7E5 /* ChangeBirthdayView.swift */,
+				61E23F492C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift */,
+				61E23F472C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift */,
+				616FB9462C1417260011AD58 /* ChangeNameView.swift */,
 				616FB8932C06D6F60011AD58 /* ClockThemeSelectorView.swift */,
 			);
 			path = Settings;
@@ -483,30 +522,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				616FB9432C0F8CCD0011AD58 /* PredictionModel.swift in Sources */,
 				61E319382B687B8400EA2491 /* CompactDatePickerView.swift in Sources */,
 				616FB8942C06D6F60011AD58 /* ClockThemeSelectorView.swift in Sources */,
 				616FB87D2C03A9490011AD58 /* HoroscopeView.swift in Sources */,
 				616FB8872C052C530011AD58 /* BirthtimePickerLabelView.swift in Sources */,
 				61F6C0992B7B4CE90094780C /* SaveAddressDetailsView.swift in Sources */,
+				61539F042C1CEF57008B06D9 /* ProfileView.swift in Sources */,
 				61DE51C32B33C56A00221661 /* AddressSearchViewModel.swift in Sources */,
 				611197EC2BBCF3BC006E4E59 /* IndianBorderedView.swift in Sources */,
 				616FB8812C03E0320011AD58 /* AddDetailsView.swift in Sources */,
 				61BE678D2B258A5F0036CF69 /* OthersGridView.swift in Sources */,
+				61E23F462C3DBE5200BDE7E5 /* ChangeBirthdayView.swift in Sources */,
 				61F6C09D2B7B59750094780C /* AppDelegate.swift in Sources */,
 				61DE51C92B37A71E00221661 /* LocationPermissionView.swift in Sources */,
 				610CE3302B2C0F910045F006 /* HighlightedClockView.swift in Sources */,
+				616FB9412C0E89260011AD58 /* HoroscopeViewModel.swift in Sources */,
 				61A1C77B2B291D1000E42544 /* MainView.swift in Sources */,
 				61F7783F2B5CF58E00E2C0B8 /* DropDownMenuView.swift in Sources */,
 				616FB8912C06D6130011AD58 /* NameFieldsView.swift in Sources */,
 				61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */,
 				61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */,
 				61F6C09B2B7B59310094780C /* BannerAd320x50View.swift in Sources */,
+				616FB9392C0D38AE0011AD58 /* SunSignClassifier.swift in Sources */,
 				61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */,
 				61E0835A2B8713DE006331E8 /* ChoghadiyaView.swift in Sources */,
 				61E319362B686FCB00EA2491 /* UIKitViews.swift in Sources */,
 				616FB87A2C03A87B0011AD58 /* HoroscopeOnboardingView.swift in Sources */,
 				61E083582B86A926006331E8 /* DateRangeResponse.swift in Sources */,
-				616FB88F2C06427A0011AD58 /* NameView.swift in Sources */,
+				616FB88F2C06427A0011AD58 /* ProfileSetupView.swift in Sources */,
 				61A1C7762B28F8A400E42544 /* YamaGandaView.swift in Sources */,
 				61BE67912B28152B0036CF69 /* BrahmaMuhurtaView.swift in Sources */,
 				616FB8832C03E81A0011AD58 /* BirthTimePicker.swift in Sources */,
@@ -514,6 +558,7 @@
 				614C174F2B1FF281002A2D18 /* LocationManager.swift in Sources */,
 				616FB87F2C03DF5C0011AD58 /* AddressSearchView.swift in Sources */,
 				616FB8782C03A7240011AD58 /* BirthdayPicker.swift in Sources */,
+				616FB9452C11194A0011AD58 /* GenderPickerView.swift in Sources */,
 				616FB88D2C057CF30011AD58 /* BirthplacePicker.swift in Sources */,
 				616FB8892C0534110011AD58 /* NoticeStyle.swift in Sources */,
 				616CF7FA2B932AFA00296480 /* KaalTileView.swift in Sources */,
@@ -522,11 +567,13 @@
 				61A1C7742B28F89400E42544 /* RahuKaalView.swift in Sources */,
 				614C17542B1FF628002A2D18 /* DaylightModel.swift in Sources */,
 				61B5DBFC2B4387D9003E0E8C /* KaalDetailView.swift in Sources */,
+				616FB93B2C0E88530011AD58 /* MoonSignClassifier.swift in Sources */,
 				61D694D72B4D20570039A97F /* Protocols.swift in Sources */,
 				614C174B2B1FF200002A2D18 /* APIManager.swift in Sources */,
 				61EEC3A42B78C6F600FDC951 /* MuhurtaModel.swift in Sources */,
 				610CE3362B2DA8C40045F006 /* LoadingView.swift in Sources */,
 				611B2C012B396729004CA53A /* KaalModel.swift in Sources */,
+				616FB9472C1417260011AD58 /* ChangeNameView.swift in Sources */,
 				614C172C2B1FD3F4002A2D18 /* DashboardView.swift in Sources */,
 				61662F342B2BBE1800B3C4ED /* TileView.swift in Sources */,
 				61131A412B82E5FD00104A58 /* ChoghadiyaModel.swift in Sources */,
@@ -535,11 +582,15 @@
 				61E083562B86A6F7006331E8 /* ChoghadiyaViewModel.swift in Sources */,
 				61A1C77D2B291D4000E42544 /* NotificationsTabView.swift in Sources */,
 				616FB8852C052BD40011AD58 /* BirthdayPickerLabelView.swift in Sources */,
+				616FB93D2C0E88C20011AD58 /* Prediction.swift in Sources */,
 				611B2BFD2B3966E1004CA53A /* TimeData.swift in Sources */,
 				61BE678F2B26E4720036CF69 /* AbhijitKaalView.swift in Sources */,
 				61124D832BFE9DEA0069DC89 /* HoroscopeMainPageView.swift in Sources */,
+				61E23F4A2C3DCF0200BDE7E5 /* ChangeBirthtimeView.swift in Sources */,
+				61E23F482C3DC1D900BDE7E5 /* ChangeBirthplaceView.swift in Sources */,
 				614AF5262B7D97000034559F /* GulikaKaalView.swift in Sources */,
 				61DE51C72B37A16500221661 /* WelcomeView.swift in Sources */,
+				616FB9492C17B7950011AD58 /* ExpandableCardView.swift in Sources */,
 				616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
 				61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */,
@@ -547,6 +598,7 @@
 				61DE51C52B33CE1900221661 /* ChangeAddressView.swift in Sources */,
 				614C17572B243EE3002A2D18 /* DashboardViewModel.swift in Sources */,
 				61DE51CB2B37A8FB00221661 /* AddressSearchBarView.swift in Sources */,
+				616FB93F2C0E89060011AD58 /* PredictionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

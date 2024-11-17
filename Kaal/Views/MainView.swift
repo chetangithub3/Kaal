@@ -20,34 +20,33 @@ struct MainView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }.tag(1)
-            ChoghadiyaView()
-                .tabItem {
-                    Image(systemName: "deskclock.fill")
-                    Text("Choghadiya")
-                }.tag(2)
-            NotificationsTabView()
-                .tabItem {
-                    Image(systemName: "bell.fill")
-                    Text("Notifications")
-                }.tag(3)
-            SettingsMenuView()
-                .tabItem {
-                    Image(systemName: "gearshape.fill")
-                    Text("Settings")
-                }.tag(4)
             HoroscopeView()
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Horoscope")
+                }.tag(2)
+            ChoghadiyaView()
+                .tabItem {
+                    Image(systemName: "deskclock.fill")
+                    Text("Choghadiya")
+                }.tag(3)
+            NotificationsTabView()
+                .tabItem {
+                    Image(systemName: "bell.fill")
+                    Text("Notifications")
+                }.tag(4)
+            SettingsMenuView()
+                .tabItem {
+                    Image(systemName: "gearshape.fill")
+                    Text("Settings")
                 }.tag(5)
         }
-        
         .onAppear(perform: {
             cleanDatabase()
         })
         .tint(getTintColor())
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ChangeTab"))) { _ in
-            self.selection = 4
+            self.selection = 5
         }
     }
     
