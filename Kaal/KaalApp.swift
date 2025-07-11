@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 import SwiftData
-import GoogleMobileAds
+
 
 @main
 struct KaalApp: App {
@@ -17,8 +17,8 @@ struct KaalApp: App {
             IntroView()
                 .environment(\.colorScheme, .light)
                 .onAppear(perform: {
-                    GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "c2e5ee090dcdb37321e5e076d9ee9c84" ]
-                    GADMobileAds.sharedInstance().start(completionHandler: nil)
+//                    GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "c2e5ee090dcdb37321e5e076d9ee9c84" ]
+//                    GADMobileAds.sharedInstance().start(completionHandler: nil)
                 })
         }.modelContainer(for: [MuhurtaModel.self, PredictionModel.self])
     }

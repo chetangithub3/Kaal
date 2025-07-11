@@ -47,7 +47,7 @@ struct NotificationsTabView: View {
                     
                     
                     Spacer()
-                    BannerAd320x50View()
+                   // BannerAd320x50View()
                 }
                 .background(getBackgroundColor())
                 
@@ -110,7 +110,7 @@ struct NotificationsDeniedView: View {
                     .cornerRadius(10)
             }
             Spacer()
-            BannerAd320x50View()
+           // BannerAd320x50View()
                 
         }
         
