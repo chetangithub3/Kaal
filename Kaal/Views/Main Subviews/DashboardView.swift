@@ -162,7 +162,7 @@ struct DashboardView: View {
             .overlay(content: {
                 VStack{
                     Spacer()
-                    BannerAd320x50View()
+                  //  BannerAd320x50View()
                 }
             })
             
