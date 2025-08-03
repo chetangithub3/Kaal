@@ -60,6 +60,8 @@
 		61A1C77B2B291D1000E42544 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77A2B291D1000E42544 /* MainView.swift */; };
 		61A1C77D2B291D4000E42544 /* NotificationsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77C2B291D4000E42544 /* NotificationsTabView.swift */; };
 		61A1C77F2B291D6600E42544 /* SettingsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */; };
+		61AA5DFE2E34E75A00BE26CE /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 61AA5DFD2E34E75A00BE26CE /* GoogleMobileAds */; };
+		61AA5E012E3F6C9700BE26CE /* IDFAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AA5E002E3F6C9700BE26CE /* IDFAManager.swift */; };
 		61B5DBFC2B4387D9003E0E8C /* KaalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5DBFB2B4387D9003E0E8C /* KaalDetailView.swift */; };
 		61BE67892B258A2B0036CF69 /* InauspiciousTimesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE67882B258A2B0036CF69 /* InauspiciousTimesGridView.swift */; };
 		61BE678B2B258A4F0036CF69 /* AuspiciousTimesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE678A2B258A4F0036CF69 /* AuspiciousTimesGridView.swift */; };
@@ -144,6 +146,7 @@
 		61A1C77A2B291D1000E42544 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		61A1C77C2B291D4000E42544 /* NotificationsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTabView.swift; sourceTree = "<group>"; };
 		61A1C77E2B291D6600E42544 /* SettingsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuView.swift; sourceTree = "<group>"; };
+		61AA5E002E3F6C9700BE26CE /* IDFAManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFAManager.swift; sourceTree = "<group>"; };
 		61B5DBFB2B4387D9003E0E8C /* KaalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaalDetailView.swift; sourceTree = "<group>"; };
 		61BE67882B258A2B0036CF69 /* InauspiciousTimesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InauspiciousTimesGridView.swift; sourceTree = "<group>"; };
 		61BE678A2B258A4F0036CF69 /* AuspiciousTimesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuspiciousTimesGridView.swift; sourceTree = "<group>"; };
@@ -179,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61AA5DFE2E34E75A00BE26CE /* GoogleMobileAds in Frameworks */,
 				617A66D32B610532000A49DF /* Shimmer in Frameworks */,
 				6159FCEC2B4E0CCF003703AC /* Reachability in Frameworks */,
 			);
@@ -252,7 +256,7 @@
 				61A1C7782B291C4B00E42544 /* Auspicious Times */,
 				61A1C7792B291C5800E42544 /* Other Times */,
 				61B5DBFA2B4387B2003E0E8C /* Reusable Views */,
-				61F6C09A2B7B59310094780C /* BannerAd320x50View.swift */,
+				61AA5DFF2E3F6BDF00BE26CE /* Ads */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -372,6 +376,15 @@
 			path = "Other Times";
 			sourceTree = "<group>";
 		};
+		61AA5DFF2E3F6BDF00BE26CE /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				61F6C09A2B7B59310094780C /* BannerAd320x50View.swift */,
+				61AA5E002E3F6C9700BE26CE /* IDFAManager.swift */,
+			);
+			path = Ads;
+			sourceTree = "<group>";
+		};
 		61B5DBFA2B4387B2003E0E8C /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +434,7 @@
 			packageProductDependencies = (
 				6159FCEB2B4E0CCF003703AC /* Reachability */,
 				617A66D22B610532000A49DF /* Shimmer */,
+				61AA5DFD2E34E75A00BE26CE /* GoogleMobileAds */,
 			);
 			productName = Kaal;
 			productReference = 614C17262B1FD3F4002A2D18 /* Kaal.app */;
@@ -451,8 +465,9 @@
 			);
 			mainGroup = 614C171D2B1FD3F4002A2D18;
 			packageReferences = (
-				6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */,
 				617A66D12B610532000A49DF /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				61AA5DFC2E34E75A00BE26CE /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 614C17272B1FD3F4002A2D18 /* Products */;
 			projectDirPath = "";
@@ -551,6 +566,7 @@
 				616FB9492C17B7950011AD58 /* ExpandableCardView.swift in Sources */,
 				616FB88B2C057BAD0011AD58 /* BirthplacePickerLabelView.swift in Sources */,
 				614C172A2B1FD3F4002A2D18 /* KaalApp.swift in Sources */,
+				61AA5E012E3F6C9700BE26CE /* IDFAManager.swift in Sources */,
 				61F6B9AF2B48C14200B9DF24 /* Extensions.swift in Sources */,
 				61DE51C12B33C2C600221661 /* AddressesListResponse.swift in Sources */,
 				61DE51C52B33CE1900221661 /* ChangeAddressView.swift in Sources */,
@@ -780,7 +796,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+		6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -796,18 +812,31 @@
 				version = 1.4.0;
 			};
 		};
+		61AA5DFC2E34E75A00BE26CE /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.7.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		6159FCEB2B4E0CCF003703AC /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 6159FCEA2B4E0CCF003703AC /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
 		};
 		617A66D22B610532000A49DF /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 617A66D12B610532000A49DF /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
+		};
+		61AA5DFD2E34E75A00BE26CE /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61AA5DFC2E34E75A00BE26CE /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,19 +8,20 @@
 import SwiftUI
 import Combine
 import SwiftData
-
+import GoogleMobileAds
 
 @main
 struct KaalApp: App {
+    init() {
+        MobileAds.shared.start()
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ "c2e5ee090dcdb37321e5e076d9ee9c84", "22cb1b0b6a27fec7888b2939e1b2bacf" ]
+    }
     var body: some Scene {
         WindowGroup {
             IntroView()
                 .environment(\.colorScheme, .light)
-                .onAppear(perform: {
-//                    GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "c2e5ee090dcdb37321e5e076d9ee9c84" ]
-//                    GADMobileAds.sharedInstance().start(completionHandler: nil)
-                })
-        }.modelContainer(for: [MuhurtaModel.self, PredictionModel.self])
+        }
+        .modelContainer(for: [MuhurtaModel.self, PredictionModel.self])
     }
 }
 

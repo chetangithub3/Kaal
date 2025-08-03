@@ -132,6 +132,8 @@ struct SettingsMenuView: View {
                         }.foregroundColor(.primary)
                     }
                 }
+                
+                BannerAd320x50View()
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)

@@ -159,13 +159,6 @@ struct DashboardView: View {
             })
             .navigationTitle(Text("Home"))
             .navigationBarTitleDisplayMode(.inline)
-            .overlay(content: {
-                VStack{
-                    Spacer()
-                  //  BannerAd320x50View()
-                }
-            })
-            
         }
     }
     
